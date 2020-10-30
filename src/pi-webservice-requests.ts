@@ -58,7 +58,7 @@ export class PiWebserviceProvider {
 
   getAttributes(filter: AttributesFilter): Promise<AttributesResponse> {
     const queryParameters = filterToParams(filter)
-    const url = this.locationsUrl(queryParameters)
+    const url = this.attributesUrl(queryParameters)
     const promise = requestJson(url)
     return promise as Promise<AttributesResponse>
   }
