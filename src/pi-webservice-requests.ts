@@ -14,24 +14,10 @@ import {
   ExternalForecastsResponse,
 } from './interfaces/response'
 import { requestJson } from './utils/requests'
+import { filterToParams } from './utils/filter'
 
 const attributesForKey: { [key: string]: any } = {
   parameterIds: 'long_name',
-}
-
-function filterToParams(filter: Record<string, any>): string {
-  const filterArgs: any[] = []
-  for (const [key, value] of Object.entries(filter)) {
-    if (value === undefined) continue
-    if (value.constructor === Array) {
-      for (const item of value) {
-        filterArgs.push(`${key}=${encodeURIComponent(item)}`)
-      }
-    } else {
-      filterArgs.push(`${key}=${encodeURIComponent(value)}`)
-    }
-  }
-  return filterArgs.length ? '?' + filterArgs.join('&') : ''
 }
 
 export class PiWebserviceProvider {
