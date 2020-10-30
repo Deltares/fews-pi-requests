@@ -1,10 +1,10 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {LocationsFilter, DocumentFormat, LocationsResponse} from '../../src/interfaces'
+import {ParametersFilter, DocumentFormat, ParametersResponse} from '../../src/interfaces'
 
-import expectedResponse from './mock/locations.json'
+import expectedResponse from './mock/parameters.json'
 
-describe("archive/locations", function() {
+describe("archive/parameters", function() {
   beforeEach(function() {
     mock.setup();
   });
@@ -14,7 +14,7 @@ describe("archive/locations", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias", {
+    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
@@ -22,15 +22,15 @@ describe("archive/locations", function() {
     const provider = new PiWebserviceProvider("http://mock.dev")
     const doneCallback = jest.fn();
 
-    const validate = function(results: LocationsResponse): void {
+    const validate = function(results: ParametersResponse): void {
       expect(results).toStrictEqual(expectedResponse);
     }
 
-    const filter: LocationsFilter = {
+    const filter: ParametersFilter = {
       documentFormat: DocumentFormat.PI_JSON,
-      parameterIds: "waterlevel_stat_bias"
+      locationIds: "delfzijl"
     }
-    await provider.getLocations(filter).then((results) => {
+    await provider.getParameters(filter).then((results) => {
       validate(results)
       doneCallback()
     })

@@ -1,6 +1,6 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {LocationsFilter, DocumentFormat, LocationsResponse} from '../../src/interfaces'
+import {DocumentFormat, AttributesFilter, AttributesResponse} from '../../src/interfaces'
 
 import expectedResponse from './mock/locations.json'
 
@@ -14,7 +14,7 @@ describe("archive/locations", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias", {
+    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source_id", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
@@ -22,15 +22,17 @@ describe("archive/locations", function() {
     const provider = new PiWebserviceProvider("http://mock.dev")
     const doneCallback = jest.fn();
 
-    const validate = function(results: LocationsResponse): void {
+    const validate = function(results: AttributesResponse): void {
       expect(results).toStrictEqual(expectedResponse);
     }
 
-    const filter: LocationsFilter = {
+    const filter: AttributesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
-      parameterIds: "waterlevel_stat_bias"
+      parameterIds: "waterlevel_stat_bias",
+      locationIds: "delfzijl",
+      attributes: 'source_id',
     }
-    await provider.getLocations(filter).then((results) => {
+    await provider.getAttributes(filter).then((results) => {
       validate(results)
       doneCallback()
     })

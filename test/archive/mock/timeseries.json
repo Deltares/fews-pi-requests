@@ -1,0 +1,233 @@
+{
+  "version" : "1.28",
+  "timeZone" : "0.0",
+  "timeSeries" : [ {
+    "header" : {
+      "type" : "instantaneous",
+      "moduleInstanceId" : "dcsm6zuno4_hirlam",
+      "locationId" : "delfzijl",
+      "parameterId" : "waterlevel_stat_bias",
+      "qualifierId" : [ "period=7d" ],
+      "timeStep" : {
+        "unit" : "nonequidistant"
+      },
+      "startDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "endDate" : {
+        "date" : "2020-10-17",
+        "time" : "00:00:00"
+      },
+      "forecastDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "missVal" : "-999.0",
+      "stationName" : "Delfzijl",
+      "lat" : "53.33000183105469",
+      "lon" : "6.929999828338623",
+      "x" : "6.929999828338623",
+      "y" : "53.33000183105469",
+      "z" : "0.0",
+      "units" : "-"
+    },
+    "events" : [ {
+      "date" : "2020-10-16",
+      "time" : "00:00:00",
+      "value" : "-0.107307345",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "06:00:00",
+      "value" : "-0.028743902",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "12:00:00",
+      "value" : "-0.03753653",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "18:00:00",
+      "value" : "-0.041162033",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-17",
+      "time" : "00:00:00",
+      "value" : "-0.04319835",
+      "flag" : "0"
+    } ]
+  }, {
+    "header" : {
+      "type" : "instantaneous",
+      "moduleInstanceId" : "dcsm6zuno4_hirlam",
+      "locationId" : "den_helder",
+      "parameterId" : "waterlevel_stat_bias",
+      "qualifierId" : [ "period=7d" ],
+      "timeStep" : {
+        "unit" : "nonequidistant"
+      },
+      "startDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "endDate" : {
+        "date" : "2020-10-17",
+        "time" : "00:00:00"
+      },
+      "forecastDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "missVal" : "-999.0",
+      "stationName" : "Den Helder",
+      "lat" : "52.970001220703125",
+      "lon" : "4.75",
+      "x" : "4.75",
+      "y" : "52.970001220703125",
+      "z" : "0.0",
+      "units" : "-"
+    },
+    "events" : [ {
+      "date" : "2020-10-16",
+      "time" : "00:00:00",
+      "value" : "-0.07785009",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "06:00:00",
+      "value" : "0.028827162",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "12:00:00",
+      "value" : "0.035316654",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "18:00:00",
+      "value" : "0.033506017",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-17",
+      "time" : "00:00:00",
+      "value" : "0.03179414",
+      "flag" : "0"
+    } ]
+  }, {
+    "header" : {
+      "type" : "instantaneous",
+      "moduleInstanceId" : "dcsm6zuno4_hirlam_kf",
+      "locationId" : "delfzijl",
+      "parameterId" : "waterlevel_stat_bias",
+      "qualifierId" : [ "period=7d" ],
+      "timeStep" : {
+        "unit" : "nonequidistant"
+      },
+      "startDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "endDate" : {
+        "date" : "2020-10-17",
+        "time" : "00:00:00"
+      },
+      "forecastDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "missVal" : "-999.0",
+      "stationName" : "Delfzijl",
+      "lat" : "53.33000183105469",
+      "lon" : "6.929999828338623",
+      "x" : "6.929999828338623",
+      "y" : "53.33000183105469",
+      "z" : "0.0",
+      "units" : "-"
+    },
+    "events" : [ {
+      "date" : "2020-10-16",
+      "time" : "00:00:00",
+      "value" : "0.022410657",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "06:00:00",
+      "value" : "0.0075783106",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "12:00:00",
+      "value" : "-0.020486796",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "18:00:00",
+      "value" : "-0.036977153",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-17",
+      "time" : "00:00:00",
+      "value" : "-0.04424969",
+      "flag" : "0"
+    } ]
+  }, {
+    "header" : {
+      "type" : "instantaneous",
+      "moduleInstanceId" : "dcsm6zuno4_hirlam_kf",
+      "locationId" : "den_helder",
+      "parameterId" : "waterlevel_stat_bias",
+      "qualifierId" : [ "period=7d" ],
+      "timeStep" : {
+        "unit" : "nonequidistant"
+      },
+      "startDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "endDate" : {
+        "date" : "2020-10-17",
+        "time" : "00:00:00"
+      },
+      "forecastDate" : {
+        "date" : "2020-10-16",
+        "time" : "00:00:00"
+      },
+      "missVal" : "-999.0",
+      "stationName" : "Den Helder",
+      "lat" : "52.970001220703125",
+      "lon" : "4.75",
+      "x" : "4.75",
+      "y" : "52.970001220703125",
+      "z" : "0.0",
+      "units" : "-"
+    },
+    "events" : [ {
+      "date" : "2020-10-16",
+      "time" : "00:00:00",
+      "value" : "3.6682075E-4",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "06:00:00",
+      "value" : "0.014483536",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "12:00:00",
+      "value" : "0.010825735",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-16",
+      "time" : "18:00:00",
+      "value" : "0.009141749",
+      "flag" : "0"
+    }, {
+      "date" : "2020-10-17",
+      "time" : "00:00:00",
+      "value" : "0.002068618",
+      "flag" : "0"
+    } ]
+  } ]
+}
