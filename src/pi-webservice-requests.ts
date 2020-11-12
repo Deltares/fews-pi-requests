@@ -62,9 +62,6 @@ export class PiWebserviceProvider {
     }
     const defaults: any = {
       documentFormat: DocumentFormat.PI_JSON,
-      startTime: '1970-01-01T00:00:00Z',
-      endTime: '2021-01-01T00:00:00Z',
-      requestedAttribute: 'source_id',
     }
     const filterWithDefaults = { ...mappedFilter, ...defaults }
     const queryParameters = filterToParams(filterWithDefaults)
@@ -76,10 +73,6 @@ export class PiWebserviceProvider {
   getTimeSeries(filter: TimeSeriesFilter): Promise<TimeSeriesResponse> {
     const defaults: any = {
       documentFormat: DocumentFormat.PI_JSON,
-      forecastCount: 1,
-      importFromExternalDataSource: true,
-      timeSeriesType: 'EXTERNAL_FORECASTING',
-      moduleInstanceIds: 'dcsm6zuno4_hirlam',
     }
     const filterWithDefaults = { ...defaults, ...filter }
     filterWithDefaults.startForecastTime = filterWithDefaults.startForecastTime.replace(
