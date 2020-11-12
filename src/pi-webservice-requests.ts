@@ -75,14 +75,6 @@ export class PiWebserviceProvider {
       documentFormat: DocumentFormat.PI_JSON,
     }
     const filterWithDefaults = { ...defaults, ...filter }
-    filterWithDefaults.startForecastTime = filterWithDefaults.startForecastTime.replace(
-      '+0000',
-      'Z'
-    )
-    filterWithDefaults.endForecastTime = filterWithDefaults.endForecastTime.replace(
-      '+0000',
-      'Z'
-    )
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.timeSeriesUrl(queryParameters)
     const promise = requestJson(url)
