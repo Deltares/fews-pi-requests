@@ -91,6 +91,8 @@ enum TimeSeriesType {
 }
 
 export interface TimeSeriesFilter extends BaseFilter {
+  // (dateTime: yyyy-MM-ddTHH:mm:ssZ): Analysis time
+  analysisTime?: string;
   // (dateTime: yyyy-MM-ddTHH:mm:ssZ): End time of search period that looks for creation time of time series. Note: creation time of time series is actually the creation time of the task that produced/imported these time series.
   endCreationTime?: string;
   // (dateTime: yyyy-MM-ddTHH:mm:ssZ): End time of search period that looks for time series produced by forecasts that have their forecast time within this period.
