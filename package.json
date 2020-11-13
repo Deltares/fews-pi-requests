@@ -7,6 +7,7 @@
   "scripts": {
     "build": "npm run clean && tsc && webpack",
     "clean": "shx rm -rf dist",
+    "doc": "typedoc --out doc src",
     "lint": "eslint src/**.ts",
     "lint:fix": "eslint src/**.ts --fix",
     "prepare": "npm run build",
@@ -24,6 +25,7 @@
     "shx": "^0.3.2",
     "ts-jest": "^26.4.3",
     "ts-loader": "^6.2.1",
+    "typedoc": "^0.19.2",
     "typescript": "^3.8.3",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
