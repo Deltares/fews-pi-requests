@@ -61,7 +61,7 @@ export interface AttributesFilter extends BaseFilter {
   'attribute(period)'?: string;
 }
 
-export interface ExternalForecastsFilter {
+export interface ExternalForecastsFilter extends BaseFilter {
   /**
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    * Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
@@ -80,7 +80,7 @@ export interface ExternalForecastsFilter {
    * If you only want to download the most recent forecast in the requested period then use forecastCount=1
    */
   forcastCount?: number;
-  'attribute(long_name)': string | string[];
+  'attribute(long_name)'?: string | string[];
 }
 
 enum TimeSeriesType {

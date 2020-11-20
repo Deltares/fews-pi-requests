@@ -10,7 +10,7 @@ function filterArgToStrings(key: string, value: any ): string[] {
     return result
 }
 
-export function filterToParams(filter: Record < string, object > ): string {
+export function filterToParams(filter: any ): string {
     const filterArgs: string[] = []
     for (const [key, value] of Object.entries(filter)) {
         if (value === undefined) continue
