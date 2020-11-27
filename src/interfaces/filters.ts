@@ -87,7 +87,7 @@ export interface ExternalForecastsFilter extends BaseFilter {
   requestedAttributes?: string | string[];
 }
 
-enum TimeSeriesType {
+export enum TimeSeriesType {
   EXTERNAL_HISTORICAL = 'EXTERNAL_HISTORICAL',
   EXTERNAL_FORECASTING = 'EXTERNAL_FORECASTING',
   SIMULATED_HISTORICAL = 'SIMULATED_HISTORICAL',
