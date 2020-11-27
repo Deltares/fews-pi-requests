@@ -1,6 +1,6 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {TimeSeriesFilter, DocumentFormat, TimeSeriesResponse} from '../../src/interfaces'
+import {TimeSeriesFilter, DocumentFormat, TimeSeriesResponse, TimeSeriesType} from '../../src/interfaces'
 
 import expectedResponse from './mock/timeseries.json'
 
@@ -14,7 +14,7 @@ describe("archive/locations", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("https://fewswebservices/rest/fewspiservice/v1/timeseries?documentFormat=PI_JSON&forecastCount=1&importFromExternalDataSource=true&timeSeriesType=EXTERNAL_FORECASTING&moduleInstanceIds=dcsm6zuno4_hirlam&moduleInstanceIds=dcsm6zuno4_hirlam_kf&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&locationIds=den_helder&startForecastTime=2020-10-16T00%3A00%3A00Z&endForecastTime=2020-10-16T00%3A00%3A00Z&qualifierIds=period%3D7d", {
+    mock.get("https://fewswebservices/rest/fewspiservice/v1/timeseries?documentFormat=PI_JSON&importFromExternalDataSource=true&timeSeriesType=EXTERNAL_FORECASTING&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&locationIds=den_helder&moduleInstanceIds=dcsm6zuno4_hirlam&moduleInstanceIds=dcsm6zuno4_hirlam_kf&startForecastTime=2020-10-16T00%3A00%3A00Z&endForecastTime=2020-10-16T00%3A00%3A00Z&forecastCount=1&qualifierIds=period%3D7d", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
@@ -28,12 +28,14 @@ describe("archive/locations", function() {
 
     const filter: TimeSeriesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
+      importFromExternalDataSource: true,
+      timeSeriesType: TimeSeriesType.EXTERNAL_FORECASTING,
       parameterIds: 'waterlevel_stat_bias',
       locationIds: ['delfzijl', 'den_helder'],
       moduleInstanceIds: ['dcsm6zuno4_hirlam', 'dcsm6zuno4_hirlam_kf'], 
-      importFromExternalDataSource: true,
       startForecastTime: '2020-10-16T00:00:00Z',
       endForecastTime: '2020-10-16T00:00:00Z',
+      forecastCount: 1,
       "qualifierIds=period" : '7d',
     }
     await provider.getTimeSeries(filter).then((results) => {

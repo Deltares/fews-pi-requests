@@ -66,7 +66,8 @@ export interface ExternalForecastsFilter extends BaseFilter {
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    * Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
    */
-  'attribute(period)'?: string;
+  'attribute(period)'?: string | string[];
+  'attribute(long_name)'?: string | string[];
   /**
    * (dateTime: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for time series values that lie within this period.
    */
@@ -80,10 +81,13 @@ export interface ExternalForecastsFilter extends BaseFilter {
    * If you only want to download the most recent forecast in the requested period then use forecastCount=1
    */
   forcastCount?: number;
-  'attribute(long_name)'?: string | string[];
+  /**
+   * The attributes of the forecast which should be included in the response. Repeat the parameter to specify multiple attributes.
+   */
+  requestedAttributes?: string | string[];
 }
 
-enum TimeSeriesType {
+export enum TimeSeriesType {
   EXTERNAL_HISTORICAL = 'EXTERNAL_HISTORICAL',
   EXTERNAL_FORECASTING = 'EXTERNAL_FORECASTING',
   SIMULATED_HISTORICAL = 'SIMULATED_HISTORICAL',
@@ -99,6 +103,8 @@ export interface TimeSeriesFilter extends BaseFilter {
   endTime?: string;
   // (dateTime format: yyyy-MM-ddTHH:mm:ssZ): Time value of external forecast time. This parameter has to be duplicated to specify multiple multiple externalForecastTimes.
   externalForecastTimes?: string | string[];
+  // Number of forecast runs to return when using start- and end- forecast time. Default is 1.
+  forecastCount?: number;
   // (string): Subset of locations for which to retrieve time series. This parameter can be duplicated to use multiple locationIds.
   locationIds?: string | string[];
   // (string): Subset of moduleInstances for which to retrieve time series. This parameter can be duplicated to specify multiple moduleInstanceIds.
