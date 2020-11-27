@@ -103,6 +103,8 @@ export interface TimeSeriesFilter extends BaseFilter {
   endTime?: string;
   // (dateTime format: yyyy-MM-ddTHH:mm:ssZ): Time value of external forecast time. This parameter has to be duplicated to specify multiple multiple externalForecastTimes.
   externalForecastTimes?: string | string[];
+  // Number of forecast runs to return when using start- and end- forecast time. Default is 1.
+  forecastCount?: number;
   // (string): Subset of locations for which to retrieve time series. This parameter can be duplicated to use multiple locationIds.
   locationIds?: string | string[];
   // (string): Subset of moduleInstances for which to retrieve time series. This parameter can be duplicated to specify multiple moduleInstanceIds.
