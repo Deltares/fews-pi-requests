@@ -21,7 +21,7 @@ export function filterToParams(filter: object ): string {
             }
         } else if ( parameter === 'qualifierIds') {
             for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${parameter}=${key})`, value)
+                const strings = filterArgToStrings(`${parameter}=${key}`, value)
                 filterArgs.push(...strings)
             }
         } else {
