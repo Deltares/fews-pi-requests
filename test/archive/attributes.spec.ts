@@ -14,7 +14,7 @@ describe("archive/locations", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source_id", {
+    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
@@ -30,7 +30,7 @@ describe("archive/locations", function() {
       documentFormat: DocumentFormat.PI_JSON,
       parameterIds: "waterlevel_stat_bias",
       locationIds: "delfzijl",
-      attributes: 'source_id',
+      attributes: 'source',
     }
     await provider.getAttributes(filter).then((results) => {
       validate(results)
