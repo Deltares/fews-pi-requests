@@ -10,12 +10,24 @@ function filterArgToStrings(key: string, value: any ): string[] {
     return result
 }
 
-export function filterToParams(filter: any ): string {
+export function filterToParams(filter: object ): string {
     const filterArgs: string[] = []
-    for (const [key, value] of Object.entries(filter)) {
-        if (value === undefined) continue
-        const strings = filterArgToStrings(key, value)
-        filterArgs.push(...strings)
+    for (const [parameter, values] of Object.entries(filter)) {
+        if (values === undefined) continue
+        if ( parameter === 'attribute') {
+            for (const [key, value] of Object.entries(values)) {
+                const strings = filterArgToStrings(`${parameter}(${key})`, value)
+                filterArgs.push(...strings)
+            }
+        } else if ( parameter === 'qualifierIds') {
+            for (const [key, value] of Object.entries(values)) {
+                const strings = filterArgToStrings(`${parameter}=${key})`, value)
+                filterArgs.push(...strings)
+            }
+        } else {
+            const strings = filterArgToStrings(parameter, values)
+            filterArgs.push(...strings)
+        }
     }
     return filterArgs.length ? '?' + filterArgs.join('&') : ''
 }

@@ -36,7 +36,9 @@ describe("archive/locations", function() {
       startForecastTime: '2020-10-16T00:00:00Z',
       endForecastTime: '2020-10-16T00:00:00Z',
       forecastCount: 1,
-      "qualifierIds=verification_period" : '7d',
+      qualifierIds: {
+        'verification_period': '7d'
+      }
     }
     await provider.getTimeSeries(filter).then((results) => {
       validate(results)

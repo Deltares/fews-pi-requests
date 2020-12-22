@@ -3,6 +3,16 @@ export enum DocumentFormat {
   PI_JSON = 'PI_JSON',
 }
 
+/** attribute(key)=value (string) */
+export type AttributeQueryParameter = {
+  [key: string]: string | string[];
+}
+
+/** 'qualifierIds=key'=value (string) */
+export type QualifierIdsQueryParameter  = {
+  [key: string]: string | string[];
+}
+
 interface BaseFilter {
   /** File format version 1.9 or up */
   documentVersion?: string;
@@ -20,7 +30,7 @@ export interface ParametersFilter extends BaseFilter {
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    *  Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
    */
-  'attribute(verification_period)'?: string;
+  attribute?: AttributeQueryParameter;
 }
 
 export interface LocationsFilter extends BaseFilter {
@@ -33,7 +43,7 @@ export interface LocationsFilter extends BaseFilter {
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    *  Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
    */
-  'attribute(verification_period)'?: string;
+  attribute?: AttributeQueryParameter;
 }
 
 export interface AttributesFilter extends BaseFilter {
@@ -58,7 +68,7 @@ export interface AttributesFilter extends BaseFilter {
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    *  Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
    */
-  'attribute(verification_period)'?: string;
+  attribute?: AttributeQueryParameter;
 }
 
 export interface ExternalForecastsFilter extends BaseFilter {
@@ -66,8 +76,7 @@ export interface ExternalForecastsFilter extends BaseFilter {
    * attribute(key)=value (string): one or more attributes that have to match the archive attribute.
    * Attributes are passed by passing the key as an argument to the attribute() parameter and the value as parameter value.
    */
-  'attribute(verification_period)'?: string | string[];
-  'attribute(long_name)'?: string | string[];
+  attribute?: AttributeQueryParameter;
   /**
    * (dateTime: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for time series values that lie within this period.
    */
@@ -112,7 +121,7 @@ export interface TimeSeriesFilter extends BaseFilter {
   // (string): Subset of parameters for which to retrieve time series. This parameter has to be duplicated to specify multiple parameters.
   parameterIds?: string | string[];
   // (string): Subset of qualifiers for which to retrieve time series. This parameter has to be duplicated to specify multiple qualifierIds.
-  'qualifierIds=verification_period'?: string | string[];
+  qualifierIds?: QualifierIdsQueryParameter;
   // (string): Explicitly filter on a specific time series type. (Since 2020.01).
   timeSeriesType?: TimeSeriesType;
   // (dateTime format: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for creation time of time series. Note: creation time of time series is actually the creation time of the task that produced/imported these time series.
