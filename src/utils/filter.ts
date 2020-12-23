@@ -24,6 +24,10 @@ export function filterToParams(filter: object ): string {
                 const strings = filterArgToStrings(`${parameter}=${key}`, value)
                 filterArgs.push(...strings)
             }
+        } else if (parameter === 'bbox') {
+            const value = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`
+            const strings = filterArgToStrings(parameter, value)
+            filterArgs.push(...strings)
         } else {
             const strings = filterArgToStrings(parameter, values)
             filterArgs.push(...strings)

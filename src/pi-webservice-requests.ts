@@ -3,6 +3,7 @@ import {
   LocationsFilter,
   AttributesFilter,
   TimeSeriesFilter,
+  TimeSeriesGridFilter,
   ExternalForecastsFilter,
   DocumentFormat,
 } from './interfaces/filters'
@@ -119,6 +120,23 @@ export class PiWebserviceProvider {
   }
 
 /**
+ * Request Time Series Grid
+ *
+ * @param filter an object with request query parameters
+ * @returns Time Series Grid PI API response
+ */
+getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
+  const defaults: TimeSeriesGridFilter = {
+    documentFormat: DocumentFormat.PI_JSON,
+  }
+  const filterWithDefaults = { ...defaults, ...filter }
+  const queryParameters = filterToParams(filterWithDefaults)
+  const url = this.timeSeriesGridUrl(queryParameters)
+  const promise = requestJson(url)
+  return promise as Promise<TimeSeriesResponse>
+}
+
+/**
  * Construct URL for locations request
  *
  * @param queryParameters query string
@@ -179,6 +197,20 @@ export class PiWebserviceProvider {
   timeSeriesUrl(queryParameters: string): URL {
     const url = new URL(
       `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
+      this.baseUrl
+    )
+    return url
+  }
+
+/**
+ * Construct URL for time series grid request
+ *
+ * @param queryParameters query string
+ * @returns complete url for making a request
+ */
+  timeSeriesGridUrl(queryParameters: string): URL {
+    const url = new URL(
+      `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
       this.baseUrl
     )
     return url
