@@ -40,11 +40,11 @@ export function splitUrl(url: URL): URL[] {
       baseUrl.searchParams.delete(key)
     }
     const urls = url.searchParams.getAll(keys[0]).map((value) => {
-        const url = new URL(baseUrl.toString())
-        url.searchParams.append(keys[0], value)
+        const newUrl = new URL(baseUrl.toString())
+        newUrl.searchParams.append(keys[0], value)
         addSearchParam(url, url.searchParams, keys, 1)
-        console.log('params', url.toString())
-        return url
+        console.log('params', newUrl.toString())
+        return newUrl
     })
     return urls
 }
