@@ -44,8 +44,7 @@ export class PiWebserviceProvider {
   getParameters(filter: ParametersFilter): Promise<ParametersResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.parametersUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<ParametersResponse>
+    return requestJson<ParametersResponse>(url)
   }
 
   /**
@@ -57,8 +56,7 @@ export class PiWebserviceProvider {
   getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.locationsUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<LocationsResponse>
+    return requestJson<LocationsResponse>(url)
   }
 
   /**
@@ -70,8 +68,7 @@ export class PiWebserviceProvider {
   getAttributes(filter: AttributesFilter): Promise<AttributesResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.attributesUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<AttributesResponse>
+    return requestJson<AttributesResponse>(url)
   }
 
   /**
@@ -97,8 +94,7 @@ export class PiWebserviceProvider {
     const filterWithDefaults = { ...mappedFilter, ...defaults }
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.externalForecastsUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<ExternalForecastsResponse>
+    return requestJson<ExternalForecastsResponse>(url)
   }
 
 
@@ -115,8 +111,7 @@ export class PiWebserviceProvider {
     const filterWithDefaults = { ...defaults, ...filter }
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.timeSeriesUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<TimeSeriesResponse>
+    return requestJson<TimeSeriesResponse>(url)
   }
 
 /**
@@ -132,8 +127,7 @@ getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
   const filterWithDefaults = { ...defaults, ...filter }
   const queryParameters = filterToParams(filterWithDefaults)
   const url = this.timeSeriesGridUrl(queryParameters)
-  const promise = requestJson(url)
-  return promise as Promise<TimeSeriesResponse>
+  return requestJson<TimeSeriesResponse>(url)
 }
 
 /**

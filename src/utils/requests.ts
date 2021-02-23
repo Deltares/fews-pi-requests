@@ -1,9 +1,9 @@
-export function requestJson(url: URL) {
+export function requestJson<T>(url: URL): Promise<T> {
     const xhr = new XMLHttpRequest()
     const promise = new Promise((resolve, reject) => {
         xhr.open('GET', url.href)
 
-        xhr.onload = function () {
+        xhr.onload = function (this: XMLHttpRequest): any {
             if (this.status >= 200 && this.status < 300) {
                 const json = JSON.parse(this.responseText)
                 resolve(json)
@@ -11,10 +11,10 @@ export function requestJson(url: URL) {
                 reject(new Error(this.statusText))
             }
         }
-        xhr.onerror = function () {
+        xhr.onerror = function (this: XMLHttpRequest): any {
             reject(new Error(this.statusText))
         }
         xhr.send()
     })
-    return promise
+    return promise as Promise<T>
 }
