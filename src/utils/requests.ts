@@ -23,15 +23,13 @@ export function requestJson<T>(url: URL): Promise<T> {
 
 function addSearchParam(url: URL, params: URLSearchParams, keys: string[], i: number): void {
     const key = keys[i]
+    for (const value of url.searchParams.getAll(key)) {
+        params.append(key, value)
+    }
     if (i === keys.length - 1) {
-        for (const value of url.searchParams.getAll(key)) {
-            params.append(key, value)
-        }
+        // check
     } else {
-        for (const value of url.searchParams.getAll(key)) {
-            params.append(key, value)
-            addSearchParam(url, params, keys, i + 1)
-        }
+        addSearchParam(url, params, keys, i + 1)
     }
 }
 
