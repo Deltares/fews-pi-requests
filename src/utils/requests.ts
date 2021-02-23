@@ -26,9 +26,7 @@ function addSearchParam(url: URL, params: URLSearchParams, keys: string[], i: nu
     for (const value of url.searchParams.getAll(key)) {
         params.append(key, value)
     }
-    if (i === keys.length - 1) {
-        // check
-    } else {
+    if (i < keys.length - 1) {
         addSearchParam(url, params, keys, i + 1)
     }
 }
