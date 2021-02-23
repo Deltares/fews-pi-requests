@@ -14,12 +14,14 @@ import {
   TimeSeriesResponse,
   ExternalForecastsResponse,
 } from './interfaces/response'
-import { requestJson } from './utils/requests'
+import { requestJson, splitUrl } from './utils/requests'
 import { filterToParams } from './utils/filter'
 
 const attributesForKey: { [key: string]: string } = {
   parameterIds: 'long_name',
 }
+
+const MAX_URL_LENGTH = 1000
 
 export class PiWebserviceProvider {
   baseUrl: URL
@@ -111,7 +113,19 @@ export class PiWebserviceProvider {
     const filterWithDefaults = { ...defaults, ...filter }
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.timeSeriesUrl(queryParameters)
-    return requestJson<TimeSeriesResponse>(url)
+    if ( url.toString().length <= MAX_URL_LENGTH ) {
+      return requestJson<TimeSeriesResponse>(url)
+    } else {
+      const urls = splitUrl(url)
+      const promises = urls.map( (u) => requestJson<TimeSeriesResponse>(u))
+      return Promise.all(promises).then((responses) => {
+        const response = responses[0]
+        for ( let i=1 ; i < responses.length;  i++) {
+          response.timeSeries.push(...responses[i].timeSeries)
+        }
+        return response
+      })
+    }
   }
 
 /**
