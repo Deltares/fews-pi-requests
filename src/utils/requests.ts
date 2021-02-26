@@ -21,27 +21,33 @@ export function requestJson<T>(url: URL): Promise<T> {
     return promise as Promise<T>
 }
 
-function addSearchParam(url: URL, params: URLSearchParams, keys: string[], i: number): void {
-    const key = keys[i]
-    for (const value of url.searchParams.getAll(key)) {
-        params.append(key, value)
-    }
-    if (i < keys.length - 1) {
-        addSearchParam(url, params, keys, i + 1)
-    }
-}
-
-export function splitUrl(url: URL): URL[] {
-    const keys = duplicates(Array.from(url.searchParams.keys()))
+export function splitUrl(url: URL, maxLength = 2000, byKey?: string): URL[] {
+    if ( url.toString().length <= maxLength ) return [url]
+    const duplicateEntries = duplicates(Array.from(url.searchParams.keys()))
+    const keys = Array.from(duplicateEntries.keys())
     const baseUrl = new URL(url.toString())
-    for (const key of keys) {
-      baseUrl.searchParams.delete(key)
+    // delete duplicate keys from url
+    let split = byKey
+    if ( split === undefined) {
+        let max = 0
+        split = keys[0]
+        for (const [key, value] of duplicateEntries) {
+            if ( value > max) {
+                max = value
+                split = key
+            }
+        }
     }
-    const urls = url.searchParams.getAll(keys[0]).map((value) => {
-        const newUrl = new URL(baseUrl.toString())
-        newUrl.searchParams.append(keys[0], value)
-        addSearchParam(url, newUrl.searchParams, keys, 1)
-        return newUrl
-    })
+    baseUrl.searchParams.delete(split)
+    const urls: URL[] = []
+    let newUrl = new URL(baseUrl.toString())
+    for (const value of url.searchParams.getAll(split) ) {
+        if ( newUrl.toString().length + split.length + value.length + 2 > maxLength ) {
+            urls.push(new URL(newUrl.toString()))
+            newUrl = new URL(baseUrl.toString())
+        }
+        newUrl.searchParams.append(split, value)
+    }
+    urls.push(newUrl)
     return urls
 }
