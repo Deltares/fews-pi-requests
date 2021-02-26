@@ -35,10 +35,10 @@ function mostFrequentParameter(url: URL): string {
     return split
 }
 
-export function splitUrl(url: URL, maxLength = 2000, byKey?: string): URL[] {
+export function splitUrl(url: URL, maxLength = 2000, parameter?: string): URL[] {
     if ( url.toString().length <= maxLength ) return [url]
     const baseUrl = new URL(url.toString())
-    const split = byKey !== undefined ? byKey : mostFrequentParameter(url)
+    const split = parameter !== undefined ? parameter : mostFrequentParameter(url)
     baseUrl.searchParams.delete(split)
     const urls: URL[] = []
     let newUrl = new URL(baseUrl.toString())
@@ -48,6 +48,9 @@ export function splitUrl(url: URL, maxLength = 2000, byKey?: string): URL[] {
             newUrl = new URL(baseUrl.toString())
         }
         newUrl.searchParams.append(split, value)
+        if ( newUrl.toString().length > maxLength ) {
+            throw new Error(`Cannot split url by query parameter '${split}' to be shorter than ${maxLength} <= ${newUrl.toString()}.`)
+        }
     }
     urls.push(newUrl)
     return urls
