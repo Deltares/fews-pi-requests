@@ -25,6 +25,7 @@ const MAX_URL_LENGTH = 1000
 
 export class PiWebserviceProvider {
   baseUrl: URL
+  maxUrlLength?: number
   readonly API_ENDPOINT = '/FewsWebServices/rest/fewspiservice/v1'
 
 /**
@@ -32,8 +33,9 @@ export class PiWebserviceProvider {
  *
  * @param url the base url where the PI servive is available
  */
-  constructor(url: string) {
+  constructor(url: string, maxUrlLength?: number ) {
     this.baseUrl = new URL('', url)
+    this.maxUrlLength = maxUrlLength
   }
 
 
@@ -116,7 +118,7 @@ export class PiWebserviceProvider {
     if ( url.toString().length <= MAX_URL_LENGTH ) {
       return requestJson<TimeSeriesResponse>(url)
     } else {
-      const urls = splitUrl(url)
+      const urls = splitUrl(url, this.maxUrlLength)
       const promises = urls.map( (u) => requestJson<TimeSeriesResponse>(u))
       return Promise.all(promises).then((responses) => {
         const response = responses[0]
