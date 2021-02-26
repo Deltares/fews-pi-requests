@@ -1,6 +1,6 @@
 {
   "name": "fews-pi-requests",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "main": "./dist/fews-pi-requests.umd.js",
   "typings": "./dist/types/index.d.ts",
   "private": true,
