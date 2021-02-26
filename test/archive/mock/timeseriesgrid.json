@@ -1,0 +1,36 @@
+{
+    "version" : "1.28",
+    "timeZone" : "0.0",
+    "timeSeries" : [ {
+      "header" : {
+        "type" : "instantaneous",
+        "moduleInstanceId" : "import_knmi_harmonie40",
+        "locationId" : "knmi_harmonie40",
+        "parameterId" : "air_pressure_fixed_height",
+        "timeStep" : {
+          "unit" : "nonequidistant"
+        },
+        "startDate" : {
+          "date" : "2020-12-22",
+          "time" : "21:00:00"
+        },
+        "endDate" : {
+          "date" : "2020-12-22",
+          "time" : "21:00:00"
+        },
+        "forecastDate" : {
+          "date" : "2020-12-20",
+          "time" : "21:00:00"
+        },
+        "missVal" : "-999.0",
+        "stationName" : "knmi_harmonie40",
+        "units" : "Pa"
+      },
+      "events" : [ {
+        "date" : "2020-12-22",
+        "time" : "21:00:00",
+        "value" : "101224.8",
+        "flag" : "0"
+      } ]
+    } ]
+  }

@@ -3,6 +3,7 @@ import {
   LocationsFilter,
   AttributesFilter,
   TimeSeriesFilter,
+  TimeSeriesGridFilter,
   ExternalForecastsFilter,
   DocumentFormat,
 } from './interfaces/filters'
@@ -13,15 +14,18 @@ import {
   TimeSeriesResponse,
   ExternalForecastsResponse,
 } from './interfaces/response'
-import { requestJson } from './utils/requests'
+import { requestJson, splitUrl } from './utils/requests'
 import { filterToParams } from './utils/filter'
 
 const attributesForKey: { [key: string]: string } = {
   parameterIds: 'long_name',
 }
 
+const MAX_URL_LENGTH = 1000
+
 export class PiWebserviceProvider {
   baseUrl: URL
+  maxUrlLength?: number
   readonly API_ENDPOINT = '/FewsWebServices/rest/fewspiservice/v1'
 
 /**
@@ -29,8 +33,9 @@ export class PiWebserviceProvider {
  *
  * @param url the base url where the PI servive is available
  */
-  constructor(url: string) {
+  constructor(url: string, maxUrlLength?: number ) {
     this.baseUrl = new URL('', url)
+    this.maxUrlLength = maxUrlLength
   }
 
 
@@ -43,8 +48,7 @@ export class PiWebserviceProvider {
   getParameters(filter: ParametersFilter): Promise<ParametersResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.parametersUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<ParametersResponse>
+    return requestJson<ParametersResponse>(url)
   }
 
   /**
@@ -56,8 +60,7 @@ export class PiWebserviceProvider {
   getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.locationsUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<LocationsResponse>
+    return requestJson<LocationsResponse>(url)
   }
 
   /**
@@ -69,8 +72,7 @@ export class PiWebserviceProvider {
   getAttributes(filter: AttributesFilter): Promise<AttributesResponse> {
     const queryParameters = filterToParams(filter)
     const url = this.attributesUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<AttributesResponse>
+    return requestJson<AttributesResponse>(url)
   }
 
   /**
@@ -96,8 +98,7 @@ export class PiWebserviceProvider {
     const filterWithDefaults = { ...mappedFilter, ...defaults }
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.externalForecastsUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<ExternalForecastsResponse>
+    return requestJson<ExternalForecastsResponse>(url)
   }
 
 
@@ -114,9 +115,36 @@ export class PiWebserviceProvider {
     const filterWithDefaults = { ...defaults, ...filter }
     const queryParameters = filterToParams(filterWithDefaults)
     const url = this.timeSeriesUrl(queryParameters)
-    const promise = requestJson(url)
-    return promise as Promise<TimeSeriesResponse>
+    if ( url.toString().length <= MAX_URL_LENGTH ) {
+      return requestJson<TimeSeriesResponse>(url)
+    } else {
+      const urls = splitUrl(url, this.maxUrlLength)
+      const promises = urls.map( (u) => requestJson<TimeSeriesResponse>(u))
+      return Promise.all(promises).then((responses) => {
+        const response = responses[0]
+        for ( let i=1 ; i < responses.length;  i++) {
+          response.timeSeries.push(...responses[i].timeSeries)
+        }
+        return response
+      })
+    }
   }
+
+/**
+ * Request Time Series Grid
+ *
+ * @param filter an object with request query parameters
+ * @returns Time Series Grid PI API response
+ */
+getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
+  const defaults: TimeSeriesGridFilter = {
+    documentFormat: DocumentFormat.PI_JSON,
+  }
+  const filterWithDefaults = { ...defaults, ...filter }
+  const queryParameters = filterToParams(filterWithDefaults)
+  const url = this.timeSeriesGridUrl(queryParameters)
+  return requestJson<TimeSeriesResponse>(url)
+}
 
 /**
  * Construct URL for locations request
@@ -179,6 +207,20 @@ export class PiWebserviceProvider {
   timeSeriesUrl(queryParameters: string): URL {
     const url = new URL(
       `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
+      this.baseUrl
+    )
+    return url
+  }
+
+/**
+ * Construct URL for time series grid request
+ *
+ * @param queryParameters query string
+ * @returns complete url for making a request
+ */
+  timeSeriesGridUrl(queryParameters: string): URL {
+    const url = new URL(
+      `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
       this.baseUrl
     )
     return url
