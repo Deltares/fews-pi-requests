@@ -122,8 +122,11 @@ export class PiWebserviceProvider {
       const promises = urls.map( (u) => requestJson<TimeSeriesResponse>(u))
       return Promise.all(promises).then((responses) => {
         const response = responses[0]
-        for ( let i=1 ; i < responses.length;  i++) {
-          response.timeSeries.push(...responses[i].timeSeries)
+        if (response.timeSeries !== undefined ) {
+          for ( let i=1 ; i < responses.length;  i++) {
+            if ( responses[i].timeSeries === undefined ) continue
+            response.timeSeries.push(...responses[i].timeSeries)
+          }
         }
         return response
       })
