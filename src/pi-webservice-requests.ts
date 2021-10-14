@@ -1,5 +1,6 @@
 import {
   ParametersFilter,
+  ArchiveLocationsFilter,
   LocationsFilter,
   AttributesFilter,
   TimeSeriesFilter,
@@ -52,14 +53,26 @@ export class PiWebserviceProvider {
   }
 
   /**
- * Request locations
+ * Request locations from archive
  *
  * @param filter an object with request query parameters
  * @returns Locations PI API response
  */
-  getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
+   getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
     const queryParameters = filterToParams(filter)
-    const url = this.locationsUrl(queryParameters)
+    const url = this.locationsUrl(queryParameters, false)
+    return requestJson<LocationsResponse>(url)
+  }
+
+  /**
+ * Request locations from archive
+ *
+ * @param filter an object with request query parameters
+ * @returns Locations PI API response
+ */
+  getArchiveLocations(filter: ArchiveLocationsFilter): Promise<LocationsResponse> {
+    const queryParameters = filterToParams(filter)
+    const url = this.locationsUrl(queryParameters, true)
     return requestJson<LocationsResponse>(url)
   }
 
@@ -153,11 +166,14 @@ getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
  * Construct URL for locations request
  *
  * @param queryParameters query string
+ * @param useArchive whether to use the archive or not
  * @returns complete url for making a request
  */
-  locationsUrl(queryParameters: string): URL {
+  locationsUrl(queryParameters: string, useArchive: boolean): URL {
+    const path = useArchive ? 'archive/locations'
+                            : 'locations'
     return new URL(
-      `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,
+      `${this.baseUrl.pathname}${this.API_ENDPOINT}/${path}${queryParameters}`,
       this.baseUrl
     )
   }

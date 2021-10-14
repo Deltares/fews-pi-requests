@@ -1,6 +1,6 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {LocationsFilter, DocumentFormat, LocationsResponse} from '../../src/interfaces'
+import {ArchiveLocationsFilter, DocumentFormat, LocationsResponse} from '../../src/interfaces'
 
 import expectedResponse from './mock/locations.json'
 
@@ -26,11 +26,11 @@ describe("archive/locations", function() {
       expect(results).toStrictEqual(expectedResponse);
     }
 
-    const filter: LocationsFilter = {
+    const filter: ArchiveLocationsFilter = {
       documentFormat: DocumentFormat.PI_JSON,
       parameterIds: "waterlevel_stat_bias"
     }
-    await provider.getLocations(filter).then((results) => {
+    await provider.getArchiveLocations(filter).then((results) => {
       validate(results)
       doneCallback()
     })
