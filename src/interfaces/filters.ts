@@ -1,6 +1,7 @@
 export enum DocumentFormat {
   PI_XML = 'PI_XML',
   PI_JSON = 'PI_JSON',
+  GEO_JSON = 'GEO_JSON'
 }
 
 /** attribute(key)=value (string) */
@@ -34,6 +35,13 @@ export interface ParametersFilter extends BaseFilter {
 }
 
 export interface LocationsFilter extends BaseFilter {
+  filterId: string;
+  showAttributes: boolean;
+  includeLocationRelations?: boolean;
+  includeTimeDependency?: boolean;
+}
+
+export interface ArchiveLocationsFilter extends BaseFilter {
   /**
    * Subset of locations for which to retrieve parameters.
    * This parameter has to be duplicated to specify multiple locations.
