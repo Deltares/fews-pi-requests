@@ -10,7 +10,6 @@
     "doc": "typedoc --out doc src",
     "lint": "eslint src/**.ts",
     "lint:fix": "eslint src/**.ts --fix",
-    "prepare": "npm run build",
     "test": "jest"
   },
   "dependencies": {
