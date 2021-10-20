@@ -1,6 +1,15 @@
 {
   "name": "fews-pi-requests",
   "version": "0.5.0",
+  "description": "Library for making requests to the FEWS PI webservice",
+  "author": {
+    "name": "Werner Kramer",
+    "email": "werner.kramer@deltares.nl"
+  },
+  "keywords": [
+    "FEWS",
+    "PI REST Service"
+  ],
   "main": "./dist/fews-pi-requests.umd.js",
   "typings": "./dist/types/index.d.ts",
   "private": false,
@@ -34,5 +43,12 @@
   "files": [
     "dist/*",
     "src/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deltares/fews-pi-requests"
+  },
+  "bugs": {
+    "url": "https://github.com/Deltares/fews-pi-requests/issues"
+  }
 }
