@@ -19,7 +19,6 @@
     "doc": "typedoc --out doc src",
     "lint": "eslint src/**.ts",
     "lint:fix": "eslint src/**.ts --fix",
-    "eslint:github-action": "eslint src/**.ts",
     "test": "jest"
   },
   "dependencies": {},

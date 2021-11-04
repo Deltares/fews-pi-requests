@@ -13,4 +13,4 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - uses: eslint/github-action@v0
+      - run: npm lint
