@@ -1,4 +1,4 @@
-import { Records } from "./records";
+import { Records } from "../records";
 
 /**
  * The tasks/moduleruntimes resource is used to get all expected runtimes for workflows per module instance id.
