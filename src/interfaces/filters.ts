@@ -206,7 +206,7 @@ export interface TimeSeriesGridFilter extends BaseTimeSeriesFilter {
   y?: number;
 }
 
-export interface ScheduledTasksFilter {
+export interface ScheduledTasksFilter extends BaseFilter {
   // Filter option to hide one-off tasks. Default is false.
   hideOneOffTask: boolean;
   // Filter option to hide finished tasks. Default is false.
@@ -225,12 +225,12 @@ export interface ScheduledTasksFilter {
   order: [OrderBy];
 }
 
-export interface ModuleRuntimesFilter {
+export interface ModuleRuntimesFilter extends BaseFilter {
   // Unique sequence number that can be used to order asynchronous api requests.
   draw: number;
 }
 
-export interface TaskRunsFilter {
+export interface TaskRunsFilter extends BaseFilter {
   // Unique sequence number that can be used to order asynchronous api requests.
   draw: number;
 }
