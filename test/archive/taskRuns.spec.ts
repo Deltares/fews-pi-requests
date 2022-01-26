@@ -15,12 +15,12 @@ describe("tasks/ID/taskruns", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("https://fewswebservices/rest/fewspiservice/v1/tasks/roadmapmc00:000001170/taskruns?documentFormat=PI_JSON", {
+    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/roadmapmc00:000001170/taskruns?documentFormat=PI_JSON", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
 
-    const provider = new PiWebserviceProvider("https://mock.dev")
+    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
     const doneCallback = jest.fn();
 
     const validate = function(results: TaskRunsResponse): void {

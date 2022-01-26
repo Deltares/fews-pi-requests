@@ -14,12 +14,12 @@ describe("archive/parameters", function() {
   });
 
   it("gets called when done", async function() {
-    mock.get("http://fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
+    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
       status: 200,
       body: JSON.stringify(expectedResponse)
     });
 
-    const provider = new PiWebserviceProvider("http://mock.dev")
+    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
     const doneCallback = jest.fn();
 
     const validate = function(results: ParametersResponse): void {
