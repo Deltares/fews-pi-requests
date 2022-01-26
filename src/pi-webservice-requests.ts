@@ -22,6 +22,7 @@ import { requestJson, splitUrl } from './utils/requests'
 import { filterToParams } from './utils/filter'
 import { ScheduledTasksResponse } from './response/tasks/scheduled'
 import { ModuleRuntimesResponse, TaskRunsResponse } from './response'
+import { getAbsoluteUrl } from './utils/absoluteUrl'
 
 const attributesForKey: { [key: string]: string } = {
   parameterIds: 'long_name',
@@ -32,18 +33,20 @@ const MAX_URL_LENGTH = 1000
 export class PiWebserviceProvider {
   baseUrl: URL
   maxUrlLength?: number
-  readonly API_ENDPOINT = '/FewsWebServices/rest/fewspiservice/v1'
+  readonly API_ENDPOINT = 'rest/fewspiservice/v1'
 
 /**
  * Constructor for PiWebserviceProvider
  *
  * @param url the base url where the PI servive is available
  */
-  constructor(url: string, maxUrlLength?: number ) {
-    this.baseUrl = new URL('', url)
-    this.maxUrlLength = maxUrlLength
+ constructor(url: string, maxUrlLength?: number ) {
+  if (!url.endsWith("/")) {
+    url += "/"
   }
-
+  this.baseUrl = getAbsoluteUrl(url)
+  this.maxUrlLength = maxUrlLength
+}
 
 /**
  * Request parameters
