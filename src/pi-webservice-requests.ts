@@ -7,6 +7,9 @@ import {
   TimeSeriesGridFilter,
   ExternalForecastsFilter,
   DocumentFormat,
+  ScheduledTasksFilter,
+  ModuleRuntimesFilter,
+  TaskRunsFilter,
 } from './interfaces/filters'
 import {
   ParametersResponse,
@@ -17,6 +20,8 @@ import {
 } from './interfaces/response'
 import { requestJson, splitUrl } from './utils/requests'
 import { filterToParams } from './utils/filter'
+import { ScheduledTasksResponse } from './response/tasks/scheduled'
+import { ModuleRuntimesResponse, TaskRunsResponse } from './response'
 
 const attributesForKey: { [key: string]: string } = {
   parameterIds: 'long_name',
@@ -163,6 +168,48 @@ getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
 }
 
 /**
+ * Request scheduled tasks
+ *
+ * @param filter an object with request query parameters
+ * @returns Time Series Grid PI API response
+ */
+ getScheduledTasks(filter: ScheduledTasksFilter): Promise<ScheduledTasksResponse> {
+  const defaults: Partial<ScheduledTasksFilter> = {}
+  const filterWithDefaults = { ...defaults, ...filter }
+  const queryParameters = filterToParams(filterWithDefaults)
+  const url = this.scheduledTasksUrl(queryParameters)
+  return requestJson<ScheduledTasksResponse>(url)
+}
+
+/**
+ * Request scheduled tasks
+ *
+ * @param filter an object with request query parameters
+ * @returns Time Series Grid PI API response
+ */
+ getTaskRuns(taskId: string, filter: TaskRunsFilter): Promise<TaskRunsResponse> {
+  const defaults: Partial<TaskRunsFilter> = {}
+  const filterWithDefaults = { ...defaults, ...filter }
+  const queryParameters = filterToParams(filterWithDefaults)
+  const url = this.taskRunsUrl(taskId,queryParameters)
+  return requestJson<TaskRunsResponse>(url)
+}
+
+/**
+ * Request scheduled tasks
+ *
+ * @param filter an object with request query parameters
+ * @returns Time Series Grid PI API response
+ */
+ getModuleRuntimes(filter: ModuleRuntimesFilter): Promise<ModuleRuntimesResponse> {
+  const defaults: Partial<ModuleRuntimesFilter> = {}
+  const filterWithDefaults = { ...defaults, ...filter }
+  const queryParameters = filterToParams(filterWithDefaults)
+  const url = this.moduleRunTimesUrl(queryParameters)
+  return requestJson<ModuleRuntimesResponse>(url)
+}
+
+/**
  * Construct URL for locations request
  *
  * @param queryParameters query string
@@ -244,4 +291,46 @@ getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
     )
     return url
   }
+
+/**
+ * Construct URL for scheduled tasks request
+ *
+ * @param queryParameters query string
+ * @returns complete url for making a request
+ */
+ scheduledTasksUrl(queryParameters: string): URL {
+  const url = new URL(
+    `${this.baseUrl.pathname}${this.API_ENDPOINT}/tasks/scheduled${queryParameters}`,
+    this.baseUrl
+  )
+  return url
+}
+
+/**
+ * Construct URL for module run times request
+ *
+ * @param queryParameters query string
+ * @returns complete url for making a request
+ */
+ moduleRunTimesUrl(queryParameters: string): URL {
+  const url = new URL(
+    `${this.baseUrl.pathname}${this.API_ENDPOINT}/tasks/moduleruntimes${queryParameters}`,
+    this.baseUrl
+  )
+  return url
+}
+
+/**
+ * Construct URL for module run times request
+ *
+ * @param queryParameters query string
+ * @returns complete url for making a request
+ */
+ taskRunsUrl(taskId: string, queryParameters: string): URL {
+  const url = new URL(
+    `${this.baseUrl.pathname}${this.API_ENDPOINT}/tasks/${taskId}/taskruns${queryParameters}`,
+    this.baseUrl
+  )
+  return url
+}
 }

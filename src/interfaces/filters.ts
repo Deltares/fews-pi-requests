@@ -205,3 +205,39 @@ export interface TimeSeriesGridFilter extends BaseTimeSeriesFilter {
   // (double, required): y postion on the map in EPSG:3857 format.
   y?: number;
 }
+
+export interface ScheduledTasksFilter extends BaseFilter {
+  // Filter option to hide one-off tasks. Default is false.
+  hideOneOffTask?: boolean;
+  // Filter option to hide finished tasks. Default is false.
+  hideFinishedTask?: boolean;
+  // Filter option to hide scheduled tasks. Default is false.
+  hideScheduledTask?: boolean;
+  // Filter option to show the current forecast dispatch time. The currentForecastDispatchTimeBackgroundColor will be returned as well if configured using the ForecastManagement.xml configuration. Default is false.
+  showCurrentForecastDispatchTime?: boolean;
+  // Unique sequence number that can be used to order asynchronous api requests.
+  draw?: number;
+  // Start index of the requested result.
+  start?: number;
+  // Length of the requested result.
+  length?: number;
+  // Name of the first column that should be used for sorting the results.
+  order?: [OrderBy];
+}
+
+export interface ModuleRuntimesFilter extends BaseFilter {
+  // Unique sequence number that can be used to order asynchronous api requests.
+  draw?: number;
+}
+
+export interface TaskRunsFilter extends BaseFilter {
+  // Unique sequence number that can be used to order asynchronous api requests.
+  draw?: number;
+}
+
+export interface OrderBy {
+  // Name of the first column that should be used for sorting the results
+  column: string;
+  // Direction the first column should be sorted. Value is either asc (ascending) or desc (descending).
+  dir: 'asc' | 'desc';
+}
