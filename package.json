@@ -10,6 +10,7 @@
     "FEWS",
     "PI REST Service"
   ],
+  "license": "MIT",
   "main": "./dist/fews-pi-requests.umd.js",
   "typings": "./dist/types/index.d.ts",
   "private": false,
