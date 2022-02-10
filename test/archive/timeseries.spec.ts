@@ -1,6 +1,7 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {TimeSeriesFilter, DocumentFormat, TimeSeriesResponse, TimeSeriesType} from '../../src/interfaces'
+import {TimeSeriesFilter, DocumentFormat, TimeSeriesType} from '../../src/interfaces'
+import {TimeSeriesResponse} from '../../src/response'
 
 import expectedResponse from './mock/timeseries.json'
 

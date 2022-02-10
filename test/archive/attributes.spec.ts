@@ -1,6 +1,7 @@
 import mock from "xhr-mock";
 import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {DocumentFormat, AttributesFilter, AttributesResponse} from '../../src/interfaces'
+import {DocumentFormat, AttributesFilter} from '../../src/interfaces'
+import {AttributesResponse} from '../../src/response'
 
 import expectedResponse from './mock/locations.json'
 
