@@ -17,11 +17,12 @@ import {
   AttributesResponse,
   TimeSeriesResponse,
   ExternalForecastsResponse,
-} from './interfaces/response'
+  ModuleRuntimesResponse,
+  TaskRunsResponse
+} from './response'
 import { requestJson, splitUrl } from './utils/requests'
 import { filterToParams } from './utils/filter'
-import { ScheduledTasksResponse } from './response/tasks/scheduled'
-import { ModuleRuntimesResponse, TaskRunsResponse } from './response'
+import { ScheduledTasksResponse } from './response/tasks/scheduledTaskstResponse'
 import { getAbsoluteUrl } from './utils/absoluteUrl'
 
 const attributesForKey: { [key: string]: string } = {

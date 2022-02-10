@@ -1,13 +1,8 @@
-import { Records } from "../records";
 import { TaskStatus } from "./taskStatus";
 
 /**
  * The tasks/{taskid}/taskruns resource is used to get all taskruns for a specified task id.
  */
-export interface TaskRunsResponse extends Records {
-  taskRuns:        TaskRun[];
-}
-
 export interface TaskRun {
   // Id of the task run
   taskRunId:             string;
