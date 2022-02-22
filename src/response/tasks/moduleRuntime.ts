@@ -1,4 +1,4 @@
-import { Records } from "../records";
+import { Records } from "./records";
 
 /**
  * The tasks/moduleruntimes resource is used to get all expected runtimes for workflows per module instance id.
@@ -11,9 +11,7 @@ import { Records } from "../records";
  * the expected pending duration time and the expected running time. For triggered tasks,
  * the expected start time and end time won’t be available until the task is actually started.
  */
-export interface ModuleRuntimesResponse extends Records {
-  moduleRunTimes:  ModuleRunTime[];
-}
+
 
 export interface ModuleRunTime {
   // Id of Master Controller
