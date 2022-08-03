@@ -1,40 +1,30 @@
-import mock from "xhr-mock";
-import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {DocumentFormat, ScheduledTasksFilter} from '../../src/interfaces'
+import {PiWebserviceProvider} from '../../src/piWebserviceRequests'
+import {DocumentFormat, ScheduledTasksFilter} from '../../src/requestParameters'
 
 import expectedResponse from './mock/scheduledTasks.json'
-import { ScheduledTasksResponse } from "../../src/response";
+import {ScheduledTasksResponse} from "../../src/response";
+import 'cross-fetch/polyfill';
+import fetchMock from "fetch-mock";
 
-describe("scheduledTasks", function() {
-  beforeEach(function() {
-    mock.setup();
-  });
-
-  afterAll(function() {
-    mock.teardown();
-  });
-
-  it("gets called when done", async function() {
-    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/scheduled?documentFormat=PI_JSON", {
-      status: 200,
-      body: JSON.stringify(expectedResponse)
+describe("scheduledTasks", function () {
+    afterAll(function () {
+        fetchMock.restore();
     });
 
-    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-    const doneCallback = jest.fn();
+    it("gets called when done", async function () {
+        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/scheduled?documentFormat=PI_JSON", {
+            status: 200,
+            body: JSON.stringify(expectedResponse)
+        });
 
-    const validate = function(results: ScheduledTasksResponse): void {
-      expect(results).toStrictEqual(expectedResponse);
-    }
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-    const filter: ScheduledTasksFilter = {
-      documentFormat: DocumentFormat.PI_JSON,
-    }
-    await provider.getScheduledTasks(filter).then((results) => {
-      validate(results)
-      doneCallback()
-    })
-
-    expect(doneCallback).toHaveBeenCalled();
-  });
+        const filter: ScheduledTasksFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const results: ScheduledTasksResponse = await provider.getScheduledTasks(filter);
+        expect(results).toStrictEqual(expectedResponse);
+        expect("tasks" in results).toBe(true);
+        expect(results.tasks.length).toBe(40);
+    });
 });

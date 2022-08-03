@@ -1,41 +1,32 @@
-import mock from "xhr-mock";
-import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {DocumentFormat, TaskRunsFilter} from '../../src/interfaces'
+import {PiWebserviceProvider} from '../../src/piWebserviceRequests'
 
-import expectedResponse from './mock/scheduledTasks.json'
-import { TaskRunsResponse } from "../../src/response";
+import expectedResponse from './mock/taskRuns.json'
+import {TaskRunsResponse} from "../../src/response";
+import 'cross-fetch/polyfill';
+import fetchMock from "fetch-mock";
+import {DocumentFormat} from "../../src";
+import {TaskRunsFilter} from "../../src/requestParameters/taskRunsFilter";
 
-describe("tasks/ID/taskruns", function() {
-  beforeEach(function() {
-    mock.setup();
-  });
-
-  afterAll(function() {
-    mock.teardown();
-  });
-
-  it("gets called when done", async function() {
-    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/roadmapmc00:000001170/taskruns?documentFormat=PI_JSON", {
-      status: 200,
-      body: JSON.stringify(expectedResponse)
+describe("tasks/ID/taskruns", function () {
+    afterAll(function () {
+        fetchMock.restore();
     });
 
-    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-    const doneCallback = jest.fn();
+    it("gets called when done", async function () {
+        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/roadmapmc00:000001170/taskruns?documentFormat=PI_JSON", {
+            status: 200,
+            body: JSON.stringify(expectedResponse)
+        });
 
-    const validate = function(results: TaskRunsResponse): void {
-      expect(results).toStrictEqual(expectedResponse);
-    }
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-    const id = 'roadmapmc00:000001170'
-    const filter: TaskRunsFilter = {
-      documentFormat: DocumentFormat.PI_JSON,
-    }
-    await provider.getTaskRuns(id, filter).then((results) => {
-      validate(results)
-      doneCallback()
-    })
-
-    expect(doneCallback).toHaveBeenCalled();
-  });
+        const id = 'roadmapmc00:000001170'
+        const filter: TaskRunsFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const results: TaskRunsResponse = await provider.getTaskRuns(id, filter);
+        expect(results).toStrictEqual(expectedResponse);
+        expect("taskRuns" in results).toBe(true);
+        expect(results.taskRuns.length).toBe(176);
+    });
 });

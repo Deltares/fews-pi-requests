@@ -1,4 +1,4 @@
-import { splitUrl } from '../../../src/utils/requests'
+import { splitUrl } from '../../../src/utils/splitUrl'
 
 describe("split url", function() {
 

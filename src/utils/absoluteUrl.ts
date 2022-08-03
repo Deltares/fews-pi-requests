@@ -1,4 +1,4 @@
-export function getAbsoluteUrl(urlString: string): URL {
+export function absoluteUrl(urlString: string): URL {
   let url!: URL
   try {
     url = new URL(urlString)
