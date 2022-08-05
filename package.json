@@ -37,6 +37,8 @@
     "typescript": "^4.4.0",
     "webpack": "^5.59.0",
     "webpack-cli": "^4.9.1",
+    "cross-fetch": "^3.1.5",
+    "fetch-mock": "^9.11.0",
     "xhr-mock": "^2.5.1"
   },
   "jest-junit": {

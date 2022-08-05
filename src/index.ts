@@ -1,2 +1,2 @@
-export * from './interfaces'
-export * from './pi-webservice-requests'
+export * from './requestParameters'
+export * from './piWebserviceRequests'

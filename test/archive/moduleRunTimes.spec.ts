@@ -1,40 +1,31 @@
-import mock from "xhr-mock";
-import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {DocumentFormat, ModuleRuntimesFilter } from '../../src/interfaces'
+import {PiWebserviceProvider} from '../../src/piWebserviceRequests'
 
 import expectedResponse from './mock/moduleRunTimes.json'
-import { ModuleRuntimesResponse } from "../../src/response";
+import {ModuleRuntimesResponse} from "../../src/response";
+import 'cross-fetch/polyfill';
+import fetchMock from 'fetch-mock';
+import {ModuleRuntimesFilter} from "../../src/requestParameters/moduleRunTimesFilter";
+import {DocumentFormat} from "../../src";
 
-describe("moduleruntimes", function() {
-  beforeEach(function() {
-    mock.setup();
-  });
-
-  afterAll(function() {
-    mock.teardown();
-  });
-
-  it("gets called when done", async function() {
-    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/moduleruntimes?documentFormat=PI_JSON", {
-      status: 200,
-      body: JSON.stringify(expectedResponse)
+describe("moduleruntimes", function () {
+    afterAll(function () {
+        fetchMock.restore();
     });
 
-    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-    const doneCallback = jest.fn();
+    it("gets called when done", async function () {
+        fetchMock.mock("https://mock.dev/fewswebservices/rest/fewspiservice/v1/tasks/moduleruntimes?documentFormat=PI_JSON", {
+            status: 200,
+            body: JSON.stringify(expectedResponse)
+        });
 
-    const validate = function(results: ModuleRuntimesResponse): void {
-      expect(results).toStrictEqual(expectedResponse);
-    }
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-    const filter: ModuleRuntimesFilter = {
-      documentFormat: DocumentFormat.PI_JSON,
-    }
-    await provider.getModuleRuntimes(filter).then((results) => {
-      validate(results)
-      doneCallback()
-    })
-
-    expect(doneCallback).toHaveBeenCalled();
-  });
+        const filter: ModuleRuntimesFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const results: ModuleRuntimesResponse = await provider.getModuleRuntimes(filter);
+        expect(results).toStrictEqual(expectedResponse);
+        expect("moduleRunTimes" in results).toBe(true)
+        expect(results.moduleRunTimes.length).toBe(16)
+    });
 });

@@ -1,41 +1,30 @@
-import mock from "xhr-mock";
-import {PiWebserviceProvider} from '../../src/pi-webservice-requests'
-import {ParametersFilter, DocumentFormat} from '../../src/interfaces'
+import {PiWebserviceProvider} from '../../src/piWebserviceRequests'
+import {ParametersFilter, DocumentFormat} from '../../src/requestParameters'
 import {ParametersResponse} from '../../src/response'
+import 'cross-fetch/polyfill';
+import fetchMock from 'fetch-mock';
 
 import expectedResponse from './mock/parameters.json'
 
-describe("archive/parameters", function() {
-  beforeEach(function() {
-    mock.setup();
-  });
-
-  afterAll(function() {
-    mock.teardown();
-  });
-
-  it("gets called when done", async function() {
-    mock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
-      status: 200,
-      body: JSON.stringify(expectedResponse)
+describe("archive/parameters", function () {
+    afterAll(function () {
+        fetchMock.restore();
     });
 
-    const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-    const doneCallback = jest.fn();
+    it("gets called when done", async function () {
+        fetchMock.mock("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
+            status: 200,
+            body: JSON.stringify(expectedResponse)
+        });
 
-    const validate = function(results: ParametersResponse): void {
-      expect(results).toStrictEqual(expectedResponse);
-    }
-
-    const filter: ParametersFilter = {
-      documentFormat: DocumentFormat.PI_JSON,
-      locationIds: "delfzijl"
-    }
-    await provider.getParameters(filter).then((results) => {
-      validate(results)
-      doneCallback()
-    })
-
-    expect(doneCallback).toHaveBeenCalled();
-  });
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const filter: ParametersFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+            locationIds: "delfzijl"
+        }
+        const results: ParametersResponse = await provider.getParameters(filter);
+        expect(results).toStrictEqual(expectedResponse);
+        expect("parameters" in results).toBe(true);
+        expect(results.parameters.length).toBe(13);
+    });
 });
