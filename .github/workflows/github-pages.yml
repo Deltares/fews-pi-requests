@@ -38,8 +38,8 @@ jobs:
         with:
           name: pages
           path: docs
+      - uses: actions/configure-pages@v1
       - uses: actions/upload-pages-artifact@v1
         with:
           path: docs
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - uses: actions/deploy-pages@main
