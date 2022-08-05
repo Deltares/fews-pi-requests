@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm i
       - run: npx typedoc --theme github-wiki src/index.ts
       - uses: actions/upload-artifact@v3
         with:
