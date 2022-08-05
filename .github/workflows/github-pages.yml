@@ -16,9 +16,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm install typedoc typedoc-plugin-markdown typedoc-github-wiki-theme --save-dev
-      - run: ls -l
-      - run: npx typedoc src/index.ts
+      - run: npm ci
+      - run: npx typedoc --theme github-wiki src/index.ts
       - uses: actions/upload-artifact@v3
         with:
           name: pages
