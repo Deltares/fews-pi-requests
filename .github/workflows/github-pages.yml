@@ -1,0 +1,49 @@
+name: Github Pages
+
+on:
+  push:
+    branches:
+      - main
+      - 27-docs
+  release:
+    types: [created]
+
+jobs:
+  build-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npx typedoc --theme github-wiki src/index.ts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pages
+          path: docs
+
+  deploy-pages:
+    needs: build-pages
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/download-artifact@v3
+        with:
+          name: pages
+          path: docs
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
