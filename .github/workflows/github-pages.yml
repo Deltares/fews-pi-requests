@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npx typedoc --theme github-wiki src/index.ts
+      - run: npx typedoc src/index.ts
       - uses: actions/upload-artifact@v3
         with:
           name: pages
@@ -37,7 +37,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: https://registry.npmjs.org/
       - uses: actions/download-artifact@v3
         with:
           name: pages
