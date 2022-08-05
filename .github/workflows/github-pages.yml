@@ -39,7 +39,5 @@ jobs:
       - uses: actions/configure-pages@v1
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: docs
+          path: '.'
       - uses: actions/deploy-pages@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
