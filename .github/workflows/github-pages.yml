@@ -25,6 +25,9 @@ jobs:
 
   deploy-pages:
     needs: build-pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
