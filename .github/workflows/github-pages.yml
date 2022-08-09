@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 16
       - run: npm i
-      - run: npx typedoc --theme github-wiki src/index.ts
+      - run: npx typedoc src/index.ts
       - uses: actions/upload-artifact@v3
         with:
           name: pages
