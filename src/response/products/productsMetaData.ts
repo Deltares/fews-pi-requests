@@ -6,7 +6,7 @@ export interface ProductsMetaData {
     sourceId:                 string;
     relativePathMetaDataFile: string;
     relativePathProducts:     string[];
-    dataSetCreationTime:      Date;
-    timeZero:                 Date;
+    dataSetCreationTime:      string;
+    timeZero:                 string;
     attributes:               Attribute[];
 }
