@@ -5,9 +5,10 @@ import {
     AttributesFilter,
     DocumentFormat,
     ExternalForecastsFilter,
-    ParametersFilter
+    ParametersFilter,
+    ProductsMetaDataFilter
 } from "./requestParameters";
-import {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters} from "./response";
+import {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ProductsMetaDataResponse} from "./response";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 
 
@@ -158,6 +159,33 @@ export class PiArchiveWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/netcdfstorageforecasts${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Request product metadata from archive
+     *
+     * @param filter an object with request query parameters
+     * @returns ProductsMetaData PI API response
+     */
+    async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ProductsMetaDataResponse> {
+        const queryParameters = filterToParams(filter);
+        const url = this.productsMetaDataUrl(queryParameters);
+        const res = await this.webservice.getData<ProductsMetaDataResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Construct URL for locations request
+     *
+     * @param queryParameters query string
+     * @param useArchive whether to use the archive or not
+     * @returns complete url for making a request
+     */
+    productsMetaDataUrl(queryParameters: string): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/productsmetadata${queryParameters}`,
             this.baseUrl
         )
     }
