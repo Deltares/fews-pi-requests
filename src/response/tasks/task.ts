@@ -1,6 +1,6 @@
 import { FailoverPolicy } from "./failoverPolicy";
 import { TaskStatus } from "./taskStatus";
-import { WhatifID } from "./whatIfId";
+import { WhatifID } from "./whatIfID";
 
 export interface Task {
     // Id
