@@ -1,4 +1,4 @@
-import BaseFilter from "@/requestParameters/baseFilter";
+import { BaseFilter } from "./baseFilter";
 
 export interface BaseTimeSeriesFilter extends BaseFilter {
     // (dateTime: yyyy-MM-ddTHH:mm:ssZ): End time of search period that looks for time series values that lie within this period.
