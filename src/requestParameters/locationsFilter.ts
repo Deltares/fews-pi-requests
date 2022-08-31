@@ -1,4 +1,4 @@
-import BaseFilter from "@/requestParameters/baseFilter";
+import { BaseFilter } from "./baseFilter";
 
 export interface LocationsFilter extends BaseFilter {
     filterId: string;

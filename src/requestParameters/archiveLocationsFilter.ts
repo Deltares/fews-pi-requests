@@ -1,5 +1,5 @@
-import BaseFilter from "@/requestParameters/baseFilter";
-import {AttributeQueryParameter} from "@/requestParameters/attributeQueryParameter";
+import { BaseFilter } from "./baseFilter";
+import { AttributeQueryParameter } from "./attributeQueryParameter";
 
 export interface ArchiveLocationsFilter extends BaseFilter {
     /**
