@@ -1,11 +1,11 @@
-import {PiWebserviceProvider} from '../../src/piWebserviceRequests'
-import {TimeSeriesResponse} from '../../src/response'
+import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
+import {TimeSeriesResponse} from '../../../src/response'
 
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import expectedResponse from './mock/timeseriesgrid.json'
-import {TimeSeriesGridFilter} from "../../src/requestParameters/timeSeriesGridFilter";
-import {DocumentFormat} from "../../src";
+import expectedResponse from '../mock/timeseriesgrid.json'
+import {TimeSeriesGridFilter} from "../../../src/requestParameters/timeSeriesGridFilter";
+import {DocumentFormat} from "../../../src";
 
 
 describe("archive/locations", function () {

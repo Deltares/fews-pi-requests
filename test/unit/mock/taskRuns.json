@@ -1,0 +1,32 @@
+{
+  "taskRuns": [
+    {
+      "id": "nlrimc00:010730768",
+      "forecast": true,
+      "current": true,
+      "status": "approved",
+      "workflowId": "Radar_Nowcast_Det",
+      "dispatchTime": "2021-12-20T11:29:33Z",
+      "completionTime": "2021-12-20T11:30:53Z",
+      "time0": "2021-12-20T11:20:00Z",
+      "description": "Radar Nowcast (deterministisch)",
+      "fssId": "1040",
+      "outputStartTime": "2021-12-20T11:15:00Z",
+      "outputEndTime": "2021-12-20T11:20:00Z"
+    },
+    {
+      "id": "nlrimc00:011064815",
+      "forecast": true,
+      "current": true,
+      "status": "approved",
+      "workflowId": "Radar_Nowcast_Det",
+      "dispatchTime": "2022-08-31T14:10:43Z",
+      "completionTime": "2022-08-31T14:12:05Z",
+      "time0": "2022-08-31T13:55:00Z",
+      "description": "Radar Nowcast (deterministisch)",
+      "fssId": "29980",
+      "outputStartTime": "2022-08-29T13:55:00Z",
+      "outputEndTime": "2022-09-03T13:55:00Z"
+    }
+  ]
+}

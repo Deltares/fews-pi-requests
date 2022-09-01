@@ -1,6 +1,14 @@
 import { BaseFilter } from "./baseFilter";
 
 export interface TaskRunsFilter extends BaseFilter {
-    // Unique sequence number that can be used to order asynchronous api requests.
-    draw?: number;
+    onlyCurrent?: boolean;
+    startDispatchTime?: string;
+    endDispatchTime?: string;
+    startForecastTime?: string;
+    endForecastTime?: string;
+    workflowId?: string;
+    scenarioId?: string;
+    mcId?: string;
+    taskRunStatusIds?: string | string[];
+
 }
