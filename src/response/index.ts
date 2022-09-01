@@ -1,4 +1,5 @@
 export * from './attributes'
+export * from './base'
 export * from './externalForecasts'
 export * from './locations'
 export * from './parameters'
