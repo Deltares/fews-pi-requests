@@ -1,6 +1,6 @@
 {
   "name": "@deltares/fews-pi-requests",
-  "version": "0.5.8",
+  "version": "0.5.5",
   "description": "Library for making requests to the FEWS PI webservice",
   "author": {
     "name": "Werner Kramer",
