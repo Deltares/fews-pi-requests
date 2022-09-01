@@ -194,15 +194,15 @@ export class PiWebserviceProvider {
     /**
      * Request scheduled tasks
      *
-     * @param taskId the id of the task
      * @param filter an object with request query parameters
      * @returns Time Series Grid PI API response
      */
-    async getTaskRuns(taskId: string, filter: TaskRunsFilter): Promise<TaskRunsResponse> {
+    async getTaskRuns(filter: TaskRunsFilter): Promise<TaskRunsResponse> {
         const defaults: Partial<TaskRunsFilter> = {}
         const filterWithDefaults = {...defaults, ...filter}
-        const queryParameters = filterToParams(filterWithDefaults)
-        const url = this.taskRunsUrl(taskId, queryParameters)
+        let queryParameters = filterToParams(filterWithDefaults)
+        queryParameters = queryParameters + "&documentFormat=PI_JSON"
+        const url = this.taskRunsUrl(queryParameters)
         const res = await this.webservice.getData<TaskRunsResponse>(url.toString());
         return res.data;
     }
@@ -331,13 +331,12 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for module run times request
      *
-     * @param taskId the id of the task
      * @param queryParameters query string
      * @returns complete url for making a request
      */
-    taskRunsUrl(taskId: string, queryParameters: string): URL {
+    taskRunsUrl(queryParameters: string): URL {
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/tasks/${taskId}/taskruns${queryParameters}`,
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
             this.baseUrl
         )
     }

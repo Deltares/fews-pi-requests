@@ -1,0 +1,29 @@
+{
+    "parameters" : [ {
+      "parameterId" : "h_obs_analysed"
+    }, {
+      "parameterId" : "h_sim_analysed"
+    }, {
+      "parameterId" : "h_sim_analysed_fc"
+    }, {
+      "parameterId" : "perf_bias"
+    }, {
+      "parameterId" : "perf_bias_fc"
+    }, {
+      "parameterId" : "perf_rmse"
+    }, {
+      "parameterId" : "perf_rmse_fc"
+    }, {
+      "parameterId" : "perf_std"
+    }, {
+      "parameterId" : "perf_std_fc"
+    }, {
+      "parameterId" : "waterlevel_stat_bias"
+    }, {
+      "parameterId" : "waterlevel_stat_nsamples"
+    }, {
+      "parameterId" : "waterlevel_stat_rmse"
+    }, {
+      "parameterId" : "waterlevel_stat_stddev"
+    } ]
+  }

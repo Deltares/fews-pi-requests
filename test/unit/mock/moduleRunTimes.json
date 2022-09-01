@@ -1,0 +1,151 @@
+{
+    "draw": 0,
+    "recordsTotal": 16,
+    "recordsFiltered": 16,
+    "moduleRunTimes": [
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_DWD_COSMO_LEPS",
+            "moduleInstanceId": "HBV_Meuse_PBC_DWD_COSMO_LEPS",
+            "expectedPendingDuration": 2734,
+            "expectedRunningDuration": 1375,
+            "expectedStartTime": 1640783702734,
+            "expectedCompletionTime": 1640783704109
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_ECMWF_ENS",
+            "moduleInstanceId": "Ensemble_Dressing_Pexc_Custom_Meuse_ECMWF_ENS",
+            "expectedPendingDuration": 4215092,
+            "expectedRunningDuration": 63,
+            "expectedStartTime": 1640783415092,
+            "expectedCompletionTime": 1640783415155
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_ECMWF_ENS",
+            "moduleInstanceId": "HBV_Meuse_PBC_ECMWF_ENS",
+            "expectedPendingDuration": 1879,
+            "expectedRunningDuration": 954,
+            "expectedStartTime": 1640779201879,
+            "expectedCompletionTime": 1640779202833
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_ECMWF_HRES",
+            "moduleInstanceId": "Export_Matroos_Netcdf_ECMWF_Maas",
+            "expectedPendingDuration": 70375,
+            "expectedRunningDuration": 62,
+            "expectedStartTime": 1640782870375,
+            "expectedCompletionTime": 1640782870437
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_ECMWF_HRES",
+            "moduleInstanceId": "HBV_Meuse_PBC_ECMWF_HRES",
+            "expectedPendingDuration": 3057,
+            "expectedRunningDuration": 156,
+            "expectedStartTime": 1640782803057,
+            "expectedCompletionTime": 1640782803213
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_ECMWF_HRES",
+            "moduleInstanceId": "Maas_SpatialInterpolationECMWF_HRES",
+            "expectedPendingDuration": 807,
+            "expectedRunningDuration": 2015,
+            "expectedStartTime": 1640782800807,
+            "expectedCompletionTime": 1640782802822
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_FLEX-Topo_Forecast",
+            "moduleInstanceId": "Export_FLEX-Topo_Meuse_Forecast",
+            "expectedPendingDuration": 152598,
+            "expectedRunningDuration": 125,
+            "expectedStartTime": 1640774552598,
+            "expectedCompletionTime": 1640774552723
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Meuse_FLEX-Topo_Forecast",
+            "moduleInstanceId": "HYRAS_Temperature_DEM",
+            "expectedPendingDuration": 14081,
+            "expectedRunningDuration": 8250,
+            "expectedStartTime": 1640774414081,
+            "expectedCompletionTime": 1640774422331
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_DWD_COSMO_LEPS",
+            "moduleInstanceId": "HBV_Rhine_PBC_DWD_COSMO_LEPS",
+            "expectedPendingDuration": 1364,
+            "expectedRunningDuration": 1740793,
+            "expectedStartTime": 1640783701364,
+            "expectedCompletionTime": 1640785442157
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_ECMWF_ENS",
+            "moduleInstanceId": "Ensemble_Dressing_Pexc_Custom_Rhine_ECMWF_ENS",
+            "expectedPendingDuration": 11069123,
+            "expectedRunningDuration": 250,
+            "expectedStartTime": 1640790269123,
+            "expectedCompletionTime": 1640790269373
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_ECMWF_ENS",
+            "moduleInstanceId": "HBV_Rhine_PBC_ECMWF_ENS",
+            "expectedPendingDuration": 2516,
+            "expectedRunningDuration": 11066842,
+            "expectedStartTime": 1640779202516,
+            "expectedCompletionTime": 1640790269358
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_ECMWF_HRES",
+            "moduleInstanceId": "Export_Matroos_Netcdf_ECMWF_Rijn",
+            "expectedPendingDuration": 198293,
+            "expectedRunningDuration": 63,
+            "expectedStartTime": 1640782998293,
+            "expectedCompletionTime": 1640782998356
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_ECMWF_HRES",
+            "moduleInstanceId": "HBV_Rhine_PBC_ECMWF_HRES",
+            "expectedPendingDuration": 2808,
+            "expectedRunningDuration": 219,
+            "expectedStartTime": 1640782802808,
+            "expectedCompletionTime": 1640782803027
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_ECMWF_HRES",
+            "moduleInstanceId": "Rijn_SpatialInterpolationECMWF_HRES",
+            "expectedPendingDuration": 777,
+            "expectedRunningDuration": 1359,
+            "expectedStartTime": 1640782800777,
+            "expectedCompletionTime": 1640782802136
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_WFLOW_HBV_Forecast",
+            "moduleInstanceId": "HYRAS_Temperature_DEM",
+            "expectedPendingDuration": 19446,
+            "expectedRunningDuration": 1648,
+            "expectedStartTime": 1640773819446,
+            "expectedCompletionTime": 1640773821094
+        },
+        {
+            "mcId": "roadmapmc00",
+            "workflowId": "Rhine_WFLOW_HBV_Forecast",
+            "moduleInstanceId": "Rhine_WFLOW_HBV_Forecast",
+            "expectedPendingDuration": 36109,
+            "expectedRunningDuration": 417115,
+            "expectedStartTime": 1640773836109,
+            "expectedCompletionTime": 1640774253224
+        }
+    ]
+}

@@ -20,25 +20,43 @@
     "doc": "typedoc --out doc src",
     "lint": "eslint src/**.ts",
     "lint:fix": "eslint src/**.ts --fix",
-    "test": "jest"
+    "test:unit": "jest unit --collect-coverage",
+    "test:e2e": "jest e2e",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "isomorphic-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@types/jest": "^28.0.0",
+    "@types/fetch-mock": "^7.3.5",
+    "fetch-mock": "^9.11.0",
+    "jest-fetch-mock": "^3.0.3",
+    "@types/jsdom": "^16.2.14",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "cross-fetch": "^3.1.5",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.0",
     "eslint": "^6.8.0",
-    "fetch-mock": "^9.11.0",
-    "jest": "^28.0.0",
+    "jest": "^28.0.1",
+    "jest-environment-jsdom": "^29.0.1",
     "jest-junit": "^13.0.0",
+    "jest-teamcity-reporter": "^0.9.0",
+    "jsdom": "^19.0.0",
     "shx": "^0.3.2",
-    "ts-jest": "^28.0.0",
-    "ts-loader": "^9.3.1",
-    "typedoc": "^0.23.12",
-    "typescript": "^4.8.2",
+    "ts-jest": "^28.0.8",
+    "typedoc": "^0.22.6",
+    "typescript": "^4.4.0",
     "webpack": "^5.59.0",
-    "webpack-cli": "^4.9.1",
-    "xhr-mock": "^2.5.1"
+    "webpack-cli": "^4.9.1"
+  },
+  "jest": {
+    "projects": [
+      "<rootDir>/test/unit",
+      "<rootDir>/test/e2e"
+    ]
   },
   "jest-junit": {
     "outputDirectory": "reports/",
