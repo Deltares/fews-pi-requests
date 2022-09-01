@@ -20,7 +20,7 @@ import {
     TimeSeriesFilter,
     TimeSeriesGridFilter,
     LocationsFilter
-} from "../src/requestParameters";
+} from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
 
 const attributesForKey: { [key: string]: string } = {
