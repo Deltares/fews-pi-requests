@@ -11,7 +11,7 @@ describe("archive/attributes", function () {
     });
 
     it("gets called when done", async function () {
-        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source', {
+        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterId=waterlevel_stat_bias&locationId=delfzijl&attributes=source', {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });
@@ -20,9 +20,9 @@ describe("archive/attributes", function () {
 
         const filter: AttributesFilter = {
             documentFormat: DocumentFormat.PI_JSON,
-            parameterIds: "waterlevel_stat_bias",
-            locationIds: "delfzijl",
-            attributes: 'source',
+            parameterId: "waterlevel_stat_bias",
+            locationId: "delfzijl",
+            attributes: ['source'],
         }
         const results: AttributesResponse = await provider.getAttributes(filter) as AttributesResponse;
         expect("archiveAttributes" in results).toBe(true)
