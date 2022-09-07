@@ -21,7 +21,8 @@ describe("tasks/ID/taskruns", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: TaskRunsFilter = {
-            onlyCurrent: true
+            onlyCurrent: true,
+            documentFormat: DocumentFormat.PI_JSON
         }
         const results: TaskRunsResponse = await provider.getTaskRuns(filter);
         expect(results).toStrictEqual(expectedResponse);

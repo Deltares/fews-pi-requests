@@ -1,5 +1,5 @@
 import 'cross-fetch/polyfill';
-import {PiWebserviceProvider, TaskRunsFilter} from "../../src";
+import {DocumentFormat, PiWebserviceProvider, TaskRunsFilter} from "../../src";
 import {TaskRunsResponse} from "../../src/response";
 
 const baseUrl = process.env.TEST_URL || "";
@@ -13,7 +13,8 @@ describe("pi webservice provider", function () {
         const taskRunFilter: TaskRunsFilter = {
             taskRunStatusIds: ["A"],
             workflowId: "Radar_Nowcast_Det",
-            onlyCurrent: true
+            onlyCurrent: true,
+            documentFormat: DocumentFormat.PI_JSON
         };
         const res: TaskRunsResponse = await provider.getTaskRuns(taskRunFilter);
         expect(res.taskRuns.length).toBeGreaterThan(0);

@@ -333,8 +333,6 @@ export class PiWebserviceProvider {
      */
     taskRunsUrl(filter: TaskRunsFilter): URL {
         let queryParameters = filterToParams(filter)
-        // TODO: TaskRunsFilter should probably get a documentFormat member...
-        queryParameters = queryParameters + "&documentFormat=PI_JSON"
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
             this.baseUrl
