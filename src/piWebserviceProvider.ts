@@ -202,8 +202,10 @@ export class PiWebserviceProvider {
         const filterWithDefaults = {...defaults, ...filter}
         let queryParameters = filterToParams(filterWithDefaults)
         queryParameters = queryParameters + "&documentFormat=PI_JSON"
-        const url = this.taskRunsUrl(queryParameters)
-        const res = await this.webservice.getData<TaskRunsResponse>(url.toString());
+        const url = this.taskRunsUrl(queryParameters);
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
+        const res = await this.webservice.getDataWithRequestInit<TaskRunsResponse>(url.toString(), requestInit);
         return res.data;
     }
 

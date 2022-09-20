@@ -12,6 +12,11 @@ export default class PiRestService {
     public async getData<T>(url: string): Promise<DataRequestResult<T>> {
         const dataRequestResult = {} as DataRequestResult<T>;
         const res = await fetch(url);
+        return await this.processResponse(dataRequestResult, res, url);
+    }
+
+
+    private async processResponse<T>(dataRequestResult: DataRequestResult<T>, res: Response, url: string): Promise<DataRequestResult<T>> {
         dataRequestResult.responseCode = res.status;
         if (res.status != 200) {
             dataRequestResult.errorMessage = res.statusText;
@@ -26,23 +31,9 @@ export default class PiRestService {
         return dataRequestResult;
     }
 
-
-    public async getDataWithParser<T>(url: string, requestOption: RequestOptions, parser: ResponseParser<T>): Promise<DataRequestResult<T>> {
-        const requestUrl = requestOption.relativeUrl ? this.webserviceUrl + url : url;
-        const options = requestOption.generateOptions();
+    public async getDataWithRequestInit<T>(url: string, requestInit: RequestInit): Promise<DataRequestResult<T>> {
         const dataRequestResult = {} as DataRequestResult<T>;
-        const res = await fetch(requestUrl);
-        dataRequestResult.responseCode = res.status;
-        if (res.status != 200) {
-            dataRequestResult.errorMessage = res.statusText;
-            return dataRequestResult;
-        }
-        try {
-            dataRequestResult.data = await parser.parse(res);
-        } catch (e: any) {
-            e.message += `\n When loading ${url}.`
-            throw e;
-        }
-        return dataRequestResult;
+        const res = await fetch(url, requestInit);
+        return await this.processResponse(dataRequestResult, res, url);
     }
 }
