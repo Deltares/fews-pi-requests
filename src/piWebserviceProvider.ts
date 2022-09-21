@@ -23,7 +23,7 @@ import {
     LocationsFilter
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
-import DataRequestResult from "./restservice/dataRequestResult";
+import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -211,6 +211,12 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getTopologyNodes(): Promise<TopologyNodeResponse> {
+        const url = this.topologyNodesUrl();
+        const res = await this.webservice.getData<TopologyNodeResponse>(url.toString());
+        return res.data;
+    }
+
     async getImportStatus(): Promise<ImportStatusResponse> {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.importStatusUrl(queryParameters);
@@ -353,6 +359,7 @@ export class PiWebserviceProvider {
             this.baseUrl
         )
     }
+
     /**
      * Construct URL for import status request
      *
@@ -362,6 +369,19 @@ export class PiWebserviceProvider {
     importStatusUrl(queryParameters: string): URL {
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for topology nodes request
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    topologyNodesUrl(): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
             this.baseUrl
         )
     }
