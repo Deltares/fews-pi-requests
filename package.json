@@ -25,6 +25,7 @@
     "test": "jest --coverage"
   },
   "devDependencies": {
+    "@deltares/fews-ssd-requests": "^0.2.3",
     "@types/jest": "^28.0.0",
     "@types/jsdom": "^16.2.14",
     "@typescript-eslint/eslint-plugin": "^2.18.0",

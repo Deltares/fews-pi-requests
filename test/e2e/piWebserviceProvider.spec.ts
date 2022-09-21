@@ -1,6 +1,7 @@
 import 'cross-fetch/polyfill';
-import {ImportStatusResponse, PiWebserviceProvider, TaskRunsFilter} from "../../src";
+import {PiWebserviceProvider, TaskRunsFilter} from "../../src";
 import {TaskRunsResponse} from "../../src/response";
+import {TopologyNodeResponse} from "../../src/response/topology/topologyNodeResponse";
 
 const baseUrl = process.env.TEST_URL || "";
 
@@ -9,8 +10,10 @@ describe("pi webservice provider", function () {
     it("gets called when done", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
-        const res: ImportStatusResponse = await provider.getImportStatus();
-        expect(res.importStatus.length).toBeGreaterThan(0);
+        const res: TopologyNodeResponse = await provider.getTopologyNodes();
+        expect(res.topologyNodes.length).toBeGreaterThan(0);
+        const children = res.topologyNodes;
+        expect(children.length).toBeGreaterThan(0)
 
     })
 
