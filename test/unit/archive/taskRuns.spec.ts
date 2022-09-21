@@ -13,7 +13,7 @@ describe("tasks/ID/taskruns", function () {
     });
 
     it("gets called when done", async function () {
-        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/taskruns?onlyCurrent=true&documentFormat=PI_JSON", {
+        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/taskruns?onlyCurrent=true&onlyForecasts=false&documentFormat=PI_JSON", {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });
@@ -21,7 +21,8 @@ describe("tasks/ID/taskruns", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: TaskRunsFilter = {
-            onlyCurrent: true
+            onlyCurrent: true,
+            onlyForecasts: false
         }
         const results: TaskRunsResponse = await provider.getTaskRuns(filter);
         expect(results).toStrictEqual(expectedResponse);

@@ -5,6 +5,7 @@ import {
     ModuleRuntimesResponse,
     ParametersResponse, ScheduledTasksResponse,
     TaskRunsResponse,
+    ImportStatusResponse,
     TimeSeriesResponse
 } from './response'
 import PiRestService from "./restservice/piRestService";
@@ -209,6 +210,15 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getImportStatus() {
+        const queryParameters = "documentFormat=PI_JSON"
+        const url = this.importStatusUrl(queryParameters);
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
+        const res = await this.webservice.getDataWithRequestInit<ImportStatusResponse>(url.toString(), requestInit);
+        return res.data;
+    }
+
     /**
      * Request scheduled tasks
      *
@@ -331,7 +341,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Construct URL for module run times request
+     * Construct URL for task runs request
      *
      * @param queryParameters query string
      * @returns complete url for making a request
@@ -339,6 +349,18 @@ export class PiWebserviceProvider {
     taskRunsUrl(queryParameters: string): URL {
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
+            this.baseUrl
+        )
+    }
+    /**
+     * Construct URL for import status request
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    importStatusUrl(queryParameters: string): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
             this.baseUrl
         )
     }

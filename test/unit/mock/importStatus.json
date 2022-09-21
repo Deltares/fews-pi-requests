@@ -1,0 +1,786 @@
+{
+  "importStatus" : [ {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_BOS-Brabant_verwachting",
+    "lastImportTime" : "2022-09-21T03:00:10Z",
+    "lastFileImported" : "2022-09-20 22:30:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_BOS_Brabant_verwachting_ens",
+    "lastImportTime" : "2022-09-21T03:00:11Z",
+    "lastFileImported" : "2022-09-20 22:30:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\DWD_COSMO_LEPS",
+    "dataFeed" : "1_DWD-COSMO-LEPS_verwachting",
+    "lastImportTime" : "2022-09-20T21:29:13Z",
+    "lastFileImported" : "cosmo_leps2hm_2022092012_9",
+    "fileRead" : 20,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "1_FEWS-Vecht_metingen",
+    "lastImportTime" : "2022-09-21T08:28:51Z",
+    "lastFileImported" : "202209210800_export_fews_vecht_obs.nc",
+    "fileRead" : 3,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "1_FEWS-Vecht_verwachtingen",
+    "lastImportTime" : "2022-09-21T08:28:51Z",
+    "lastFileImported" : "202209210800_export_fews_vecht_forecast.nc",
+    "fileRead" : 3,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HIC",
+    "dataFeed" : "1_HIC_metingen_verwachtingen",
+    "lastImportTime" : "2022-09-21T08:01:08Z",
+    "lastFileImported" : "8121042.wml2",
+    "fileRead" : 45,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\IJGREEVESLUIS",
+    "dataFeed" : "1_IJsselmeergebied_Reevesluis_metingen",
+    "lastImportTime" : "2020-07-16T13:09:27Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\IJG_KLEPSTANDEN",
+    "dataFeed" : "1_IJsselmeergebied_metingen",
+    "lastImportTime" : "2022-09-21T08:28:47Z",
+    "lastFileImported" : "ftp_spui_09-21-2022_10-11-01.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\ECMWF_HRES",
+    "dataFeed" : "1_KNMI-ECMWF-DET_verwachting",
+    "lastImportTime" : "2022-09-21T07:08:33Z",
+    "lastFileImported" : "WMCN_ECMWF_HRES_Set_1_2022092100_240_GB",
+    "fileRead" : 125,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_HARMONIE_EPS",
+    "dataFeed" : "1_KNMI-HARMONIE_EPS_verwachting",
+    "lastImportTime" : "2022-06-23T09:38:58Z",
+    "lastFileImported" : "HA40_N25_010_202206230600_04800_GB",
+    "fileRead" : 539,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_HARMONIE",
+    "dataFeed" : "1_KNMI-HARMONIE_verwachting",
+    "lastImportTime" : "2022-09-21T05:58:51Z",
+    "lastFileImported" : "WAQM_L25_202209210300_04800_GB",
+    "fileRead" : 49,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_KNMI-NOOS_verwachting",
+    "lastImportTime" : "2022-09-21T04:02:28Z",
+    "lastFileImported" : "2022-09-20 22:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://sip-lmw.rws.nl",
+    "dataFeed" : "1_LMW_metingen",
+    "lastImportTime" : "2022-09-21T08:28:40Z",
+    "lastFileImported" : "2022-09-21 08:20:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://sip-lmw.rws.nl",
+    "dataFeed" : "1_LMW_verwachtingen",
+    "lastImportTime" : "2022-09-21T06:28:39Z",
+    "lastFileImported" : "sip-lmw.rws.nl",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_Matroos_RMM_metingen",
+    "lastImportTime" : "2022-09-21T08:28:43Z",
+    "lastFileImported" : "2022-09-21 08:20:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_Matroos_metingen",
+    "lastImportTime" : "2022-09-21T08:28:40Z",
+    "lastFileImported" : "2022-09-21 08:20:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_Matroos_verwachting",
+    "lastImportTime" : "2022-09-21T08:01:24Z",
+    "lastFileImported" : "direct",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\PZEM\\historie",
+    "dataFeed" : "1_PZEM_metingen",
+    "lastImportTime" : "2020-07-17T01:00:02Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\PZEM\\forecast",
+    "dataFeed" : "1_PZEM_verwachtingen",
+    "lastImportTime" : "2020-07-17T01:00:02Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\RWS_BOPA",
+    "dataFeed" : "1_RWSBOPA_metingen",
+    "lastImportTime" : "2020-07-16T13:09:28Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\RWS_Groningen",
+    "dataFeed" : "1_RWSProvincieGroningen_metingen",
+    "lastImportTime" : "2020-07-16T13:09:28Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-Meren_verwachtingen",
+    "lastImportTime" : "2022-09-21T04:04:36Z",
+    "lastFileImported" : "2022-09-20 18:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-Noordzee_verwachting",
+    "lastImportTime" : "2022-09-21T02:04:59Z",
+    "lastFileImported" : "2022-09-20 12:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-RMM_verwachting",
+    "lastImportTime" : "2022-09-21T08:02:24Z",
+    "lastFileImported" : "2022-09-21 04:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-Rivieren_verwachting",
+    "lastImportTime" : "2022-09-21T06:00:21Z",
+    "lastFileImported" : "2022-09-21 05:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-Waterbeheer_metingen",
+    "lastImportTime" : "2021-12-15T02:03:54Z",
+    "lastFileImported" : "2021-12-13 23:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "1_RWsOS-Waterbeheer_verwachting",
+    "lastImportTime" : "2022-09-21T06:02:05Z",
+    "lastFileImported" : "matroos.rws.nl",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\IJMUIDEN_SCADA",
+    "dataFeed" : "1_SCADA_IJmuiden_metingen",
+    "lastImportTime" : "2022-09-20T10:28:53Z",
+    "lastFileImported" : "20220920_115501-Measurement.xml",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ff0000"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://wiwb.hydronet.com",
+    "dataFeed" : "1_WIWB-(Realtime IRC 5min)",
+    "lastImportTime" : "2022-09-21T08:28:04Z",
+    "lastFileImported" : "2022-09-21 08:15:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\Noorderzijlvest",
+    "dataFeed" : "1_WaterschapNoorderzijlvest_metingen",
+    "lastImportTime" : "2020-07-16T13:09:28Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ff0000"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\AQUALARM",
+    "dataFeed" : "2_Aqualarm_meting",
+    "lastImportTime" : "2022-09-21T08:28:51Z",
+    "lastFileImported" : "2022-09-21T082052_LOBI_temperatuur_buiten_hach.nc",
+    "fileRead" : 6,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FOEN",
+    "dataFeed" : "2_BAFU_FOEN_metingen",
+    "lastImportTime" : "2022-09-21T08:01:11Z",
+    "lastFileImported" : "BAFU_2615_PegelPneumatik_1h.csv",
+    "fileRead" : 3,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "2_FEWS_Vecht_EPS",
+    "lastImportTime" : "2022-08-25T10:26:30Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "2_FEWS_Vecht_p10",
+    "lastImportTime" : "2022-08-25T10:26:30Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "2_FEWS_Vecht_p90",
+    "lastImportTime" : "2022-08-25T10:26:30Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\Friesland",
+    "dataFeed" : "2_Friesland_metingen",
+    "lastImportTime" : "2021-09-06T06:08:51Z",
+    "lastFileImported" : "WFWaterstanden 2021090607.csv",
+    "fileRead" : 3,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HMC_GREVELINGEN",
+    "dataFeed" : "2_GM_metingen",
+    "lastImportTime" : "2022-09-20T10:39:03Z",
+    "lastFileImported" : "Qbroz_o.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HMC_GREVELINGEN",
+    "dataFeed" : "2_GM_verwachtingen",
+    "lastImportTime" : "2022-09-20T10:39:03Z",
+    "lastFileImported" : "Qbros_fc.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HDSR",
+    "dataFeed" : "2_HDSR_metingen",
+    "lastImportTime" : "2022-09-21T08:28:50Z",
+    "lastFileImported" : "202209210900_Q60.csv",
+    "fileRead" : 8,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HHNK",
+    "dataFeed" : "2_HHNK_metingen",
+    "lastImportTime" : "2021-10-06T14:28:43Z",
+    "lastFileImported" : "Export_debieten_HHNK.xml",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\Historie",
+    "dataFeed" : "2_Historie_metingen",
+    "lastImportTime" : "2020-07-16T13:09:29Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HOLLANDSEDELTA",
+    "dataFeed" : "2_HollandseDelta_metingen",
+    "lastImportTime" : "2021-07-20T04:29:15Z",
+    "lastFileImported" : "pi_intouch_20210718_060000.xml",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\Modules\\IVSNEXT",
+    "dataFeed" : "2_IVS_NEXT_verwachting",
+    "lastImportTime" : "2022-01-27T15:49:13Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\ECMWF_ENS_EXT",
+    "dataFeed" : "2_KNMI-ECMWF-ENS-EXT_verwachting",
+    "lastImportTime" : "2022-06-07T09:08:27Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\ECMWF_ENS",
+    "dataFeed" : "2_KNMI-ECMWF-ENS_verwachting",
+    "lastImportTime" : "2022-09-21T07:59:49Z",
+    "lastFileImported" : "WMCN_ECMWF_EPS_Set_2_2022092100_360_GB",
+    "fileRead" : 85,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_EV",
+    "dataFeed" : "2_KNMI-EVP_metingen",
+    "lastImportTime" : "2022-09-20T14:08:03Z",
+    "lastFileImported" : "20220915_ev24_v1all.dat",
+    "fileRead" : 2,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_IRIS",
+    "dataFeed" : "2_KNMI-IRIS_metingen",
+    "lastImportTime" : "2022-09-21T02:08:04Z",
+    "lastFileImported" : "irisgegevens_20220920.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_RADAR24H",
+    "dataFeed" : "2_KNMI-RADAR24_metingen",
+    "lastImportTime" : "2022-09-20T14:38:04Z",
+    "lastFileImported" : "RAD_NL25_RAC_24H_202209200800.h5",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_RADAR3H",
+    "dataFeed" : "2_KNMI-RADAR_metingen",
+    "lastImportTime" : "2022-09-21T06:38:03Z",
+    "lastFileImported" : "RAD_NL25_RAC_03H_202209210600.h5",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\KNMI_SYNOP1H",
+    "dataFeed" : "2_KNMI-SYNOPS_metingen",
+    "lastImportTime" : "2022-09-21T07:48:03Z",
+    "lastFileImported" : "2022092107_decoded_synops_NL.txt",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "D:\\fews\\fss\\101\\temp\\session\\%IMPORT_FOLDER%\\LB_OBJECTEN",
+    "dataFeed" : "2_LB_Objecten_metingen",
+    "lastImportTime" : "2020-07-16T13:09:27Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ff0000"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\NRW",
+    "dataFeed" : "2_NRW_metingen",
+    "lastImportTime" : "2022-09-21T08:01:03Z",
+    "lastFileImported" : "messwerte.txt",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\OVERIJSSEL",
+    "dataFeed" : "2_Overijssel_metingen",
+    "lastImportTime" : "2022-09-21T07:18:51Z",
+    "lastFileImported" : "Y velocity.txt",
+    "fileRead" : 94,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RWSOS_RV",
+    "dataFeed" : "2_RWsOS-Rivieren_verwachting",
+    "lastImportTime" : "2022-09-20T21:29:13Z",
+    "lastFileImported" : "202209202000_fews_riv_ecmwf_ens_sobek3_maxrtk_ens_dres.nc",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RWSOS_WV",
+    "dataFeed" : "2_RWsOS-Waterbeheer_verwachting",
+    "lastImportTime" : "2022-09-20T08:08:48Z",
+    "lastFileImported" : "IJsselmeer_rivierafvoer_empirisch_ECMWF_ENS_EXT.xml",
+    "fileRead" : 6,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#ffffff"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://matroos.rws.nl",
+    "dataFeed" : "2_RWsOS_RMM_verwachting",
+    "lastImportTime" : "2022-09-21T07:00:05Z",
+    "lastFileImported" : "2022-09-21 06:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\WDOD",
+    "dataFeed" : "2_ReestenWieden_metingen",
+    "lastImportTime" : "2022-09-21T06:08:51Z",
+    "lastFileImported" : "Reeve.zrxp",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RIJNENIJSSEL",
+    "dataFeed" : "2_RijnEnIJssel_metingen",
+    "lastImportTime" : "2022-09-21T08:28:44Z",
+    "lastFileImported" : "202209211015_file.xml",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RIJNLAND",
+    "dataFeed" : "2_Rijnland_metingen",
+    "lastImportTime" : "2022-09-21T08:28:50Z",
+    "lastFileImported" : "inzet_202209210905.csv",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\LIMBURG",
+    "dataFeed" : "2_RoerEnOvermaas_metingen",
+    "lastImportTime" : "2022-09-20T22:18:52Z",
+    "lastFileImported" : "20220920_1200RoerOvermaas_LMW.XML",
+    "fileRead" : 12,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\SCHELDESTROMEN",
+    "dataFeed" : "2_Scheldestromen_metingen",
+    "lastImportTime" : "2022-09-20T10:19:00Z",
+    "lastFileImported" : "WS_DEB_20220920_0900.xml",
+    "fileRead" : 130,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HMC_VEERSEMEER",
+    "dataFeed" : "2_VM_verwachtingen",
+    "lastImportTime" : "2022-09-20T08:18:58Z",
+    "lastFileImported" : "Hvm4_fc.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HMC_VZM",
+    "dataFeed" : "2_VZM_metingen",
+    "lastImportTime" : "2022-09-21T08:18:51Z",
+    "lastFileImported" : "wisp_data_20220921101850.csv",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HMC_VZM",
+    "dataFeed" : "2_VZM_verwachtingen",
+    "lastImportTime" : "2022-09-21T07:18:58Z",
+    "lastFileImported" : "Qzoom.dat",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\VALLEIENVELUWE",
+    "dataFeed" : "2_ValleiEnVeluwe_metingen",
+    "lastImportTime" : "2022-09-21T08:28:44Z",
+    "lastFileImported" : "202209210802_Export_Vallei_Veluwe.xml",
+    "fileRead" : 2,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\VECHTSTROMEN",
+    "dataFeed" : "2_Vechtstromen_metingen",
+    "lastImportTime" : "2022-09-21T07:38:47Z",
+    "lastFileImported" : "E220914-486S20040.zrx",
+    "fileRead" : 745,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\Waternet",
+    "dataFeed" : "2_Waternet_metingen",
+    "lastImportTime" : "2022-03-17T06:48:59Z",
+    "lastFileImported" : "AGV_CAW_202205281450.xml",
+    "fileRead" : 0,
+    "fileFailed" : 1,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\ZUIDERZEELAND",
+    "dataFeed" : "2_Zuiderzeeland_metingen",
+    "lastImportTime" : "2022-09-20T09:29:18Z",
+    "lastFileImported" : "20220920_0832Zuiderzeeland_IJG.XML",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RMM\\LPH",
+    "dataFeed" : "3_RWsOS_RMM_LPH2012",
+    "lastImportTime" : "2022-06-20T06:19:01Z",
+    "lastFileImported" : "202206200500_RMM_series_sobek3_lph2012_forecast.nc",
+    "fileRead" : 19,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RMM\\LPH",
+    "dataFeed" : "3_RWsOS_RMM_LPH2012_HA",
+    "lastImportTime" : "2022-06-20T06:19:03Z",
+    "lastFileImported" : "202206200500_RMM_series_sobek3_lph2012_ha_forecast.nc",
+    "fileRead" : 20,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RWSOS_RMM\\LPH",
+    "dataFeed" : "3_RWsOS_RMM_LPH2012_NONEQUIDISTANT",
+    "lastImportTime" : "2022-09-21T06:19:18Z",
+    "lastFileImported" : "202209210600_IWP_export_HVL_spui_oppervlak.nc",
+    "fileRead" : 18,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RMM\\LPH",
+    "dataFeed" : "3_RWsOS_RMM_LPH84",
+    "lastImportTime" : "2022-06-20T06:19:05Z",
+    "lastFileImported" : "202206200500_RMM_series_sobek3_lph84_forecast.nc",
+    "fileRead" : 19,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RMM\\LPH",
+    "dataFeed" : "3_RWsOS_RMM_Spuiperiodes",
+    "lastImportTime" : "2021-12-02T11:59:53Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#d0e9c6"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\BC2000",
+    "dataFeed" : "BC2000",
+    "lastImportTime" : "2022-08-25T10:26:12Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\BSH_MARNET",
+    "dataFeed" : "BSH_MARNET",
+    "lastImportTime" : "2022-08-25T10:26:12Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\PEGELONLINE",
+    "dataFeed" : "PEGELONLINE",
+    "lastImportTime" : "2022-08-25T10:33:01Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\RIJNENIJSSEL",
+    "dataFeed" : "RIJNENIJSSEL",
+    "lastImportTime" : "2022-08-25T10:33:03Z",
+    "lastFileImported" : "202208251215_file.xml",
+    "fileRead" : 48,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\SPW",
+    "dataFeed" : "SPW",
+    "lastImportTime" : "2022-08-25T10:33:03Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\UKMO",
+    "dataFeed" : "UKMO",
+    "lastImportTime" : "2022-08-25T10:33:03Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\VECHTSTROMEN",
+    "dataFeed" : "VECHTSTROMEN",
+    "lastImportTime" : "2022-08-25T10:33:38Z",
+    "lastFileImported" : "E220818-486S20040.zrx",
+    "fileRead" : 58543,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\WDOD",
+    "dataFeed" : "WDOD",
+    "lastImportTime" : "2022-08-25T10:33:38Z",
+    "lastFileImported" : "Reeve.zrxp",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "critical_FEWS_VECHT_OBS",
+    "lastImportTime" : "2022-08-25T10:26:24Z",
+    "lastFileImported" : "202208250930_export_fews_vecht_obs.nc",
+    "fileRead" : 105,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FEWS_VECHT",
+    "dataFeed" : "noncritical_FEWS_VECHT_FORECAST",
+    "lastImportTime" : "2022-08-25T10:26:30Z",
+    "lastFileImported" : "202208250930_export_fews_vecht_forecast.nc",
+    "fileRead" : 105,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\FRIESLAND",
+    "dataFeed" : "noncritical_FRIESLAND",
+    "lastImportTime" : "2022-08-25T10:26:30Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\HHNK",
+    "dataFeed" : "noncritical_HHNK",
+    "lastImportTime" : "2022-08-25T10:32:26Z",
+    "lastFileImported" : "none",
+    "fileRead" : 0,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "https://opendata.munisense.net",
+    "dataFeed" : "server",
+    "lastImportTime" : "2022-08-25T10:33:00Z",
+    "lastFileImported" : "2022-08-24 14:00:00:000",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  }, {
+    "mcId" : "nlrimc00",
+    "directory" : "\\\\dfs-trusted.directory.intra\\dfs\\nlrimc00\\tofss\\Import\\NRW",
+    "dataFeed" : "to be determined",
+    "lastImportTime" : "2022-08-25T10:33:00Z",
+    "lastFileImported" : "messwerte.txt",
+    "fileRead" : 1,
+    "fileFailed" : 0,
+    "lastImportTimeBackgroundColor" : "#f2dede"
+  } ]
+}
