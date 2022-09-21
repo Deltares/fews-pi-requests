@@ -12,7 +12,6 @@ describe("pi webservice provider", function () {
         const res: ImportStatusResponse = await provider.getImportStatus();
         expect(res.importStatus.length).toBeGreaterThan(0);
 
-
     })
 
     it("gets called when done", async function () {
@@ -30,7 +29,6 @@ describe("pi webservice provider", function () {
         for (const taskRun of res.taskRuns) {
             expect(taskRun.workflowId).toBe("Radar_Nowcast_Det")
         }
-
 
     });
 })
