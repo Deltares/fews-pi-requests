@@ -23,6 +23,7 @@ import {
     LocationsFilter
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
+import DataRequestResult from "./restservice/dataRequestResult";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -210,7 +211,7 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
-    async getImportStatus() {
+    async getImportStatus(): Promise<ImportStatusResponse> {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.importStatusUrl(queryParameters);
         const requestInit = {} as RequestInit;
