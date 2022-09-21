@@ -2,6 +2,7 @@ import { BaseFilter } from "./baseFilter";
 
 export interface TaskRunsFilter extends BaseFilter {
     onlyCurrent?: boolean;
+    onlyForecasts?: boolean;
     startDispatchTime?: string;
     endDispatchTime?: string;
     startForecastTime?: string;
