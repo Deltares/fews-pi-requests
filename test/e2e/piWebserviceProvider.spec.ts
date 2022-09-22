@@ -2,11 +2,23 @@ import 'cross-fetch/polyfill';
 import {PiWebserviceProvider, TaskRunsFilter} from "../../src";
 import {TaskRunsResponse} from "../../src/response";
 import {TopologyNodeResponse} from "../../src/response/topology/topologyNodeResponse";
+import {DisplayGroupsFilter} from "../../src/requestParameters/DisplayGroupsFilter";
+import {DisplayGroupsResponse} from "../../src/response/displaygroups/displayGroupsResponse";
 
 const baseUrl = process.env.TEST_URL || "";
 
 
 describe("pi webservice provider", function () {
+    it("gets called when done", async function () {
+
+        const provider = new PiWebserviceProvider(baseUrl);
+        const filter = {} as DisplayGroupsFilter;
+        filter.nodeId = "LB-Overzicht_BovenMaas";
+        const res: DisplayGroupsResponse = await provider.getDisplayGroupsTimeSeriesInfo(filter);
+        expect(res.results.length).toBeGreaterThan(0);
+
+    })
+
     it("gets called when done", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
