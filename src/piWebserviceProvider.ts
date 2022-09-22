@@ -24,6 +24,8 @@ import {
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
 import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
+import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
+import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -227,6 +229,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the time series info for a certain topology node
+     *
+     * @param nodeId
+     * @returns Display groups API response
+     */
+    async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<DisplayGroupsResponse> {
+        const queryParameters = filterToParams(filter)
+        const url = this.displayGroupsUrl(queryParameters)
+        const res = await this.webservice.getData<DisplayGroupsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Request scheduled tasks
      *
      * @param filter an object with request query parameters
@@ -343,6 +358,19 @@ export class PiWebserviceProvider {
     moduleRunTimesUrl(queryParameters: string): URL {
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/tasks/moduleruntimes${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for display groups request
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    displayGroupsUrl(queryParameters: string): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
             this.baseUrl
         )
     }

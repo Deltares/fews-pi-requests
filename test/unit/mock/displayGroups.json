@@ -1,0 +1,277 @@
+{
+  "results" : [ {
+    "type" : "PI",
+    "requests" : [ {
+      "key" : "4a4b",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Eijsden&parameterIds=Q.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a4d",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=StPieter&parameterIds=Q.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a4f",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Bunde&parameterIds=H.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a51",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Echt&parameterIds=H.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a53",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Maaseik&parameterIds=Q.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=3600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a55",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Heel_boven&parameterIds=H.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a57",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Roermond_boven&parameterIds=H.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a59",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Belfeld_boven&parameterIds=H.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    }, {
+      "key" : "4a5b",
+      "request" : "rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Venlo&parameterIds=Q.meting&moduleInstanceIds=Import_LMW&qualifierIds=NONE&timeStepMillis=600000&endForecastTime=2022-09-22T07%3A39%3A07Z&startTime=2022-09-20T07%3A39%3A07Z&endTime=2022-09-22T07%3A39%3A07Z&useDisplayUnits=true&documentFormat=PI_JSON"
+    } ],
+    "config" : {
+      "timeSeriesDisplay" : {
+        "title" : "Boven Maas",
+        "subplots" : [ {
+          "items" : [ {
+            "type" : "line",
+            "legend" : "Debiet Eijsden-grens",
+            "color" : "#ff0000",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Eijsden",
+            "yAxis" : {
+              "axisPosition" : "right",
+              "axisLabel" : "Debiet (m3/s)"
+            },
+            "request" : "4a4b"
+          }, {
+            "type" : "line",
+            "legend" : "Debiet St. Pieter Noord",
+            "color" : "#00ff00",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "StPieter",
+            "yAxis" : {
+              "axisPosition" : "right",
+              "axisLabel" : "Debiet (m3/s)"
+            },
+            "request" : "4a4d"
+          }, {
+            "type" : "line",
+            "legend" : "Waterstand Bunde (Julianakanaal)",
+            "color" : "#0000ff",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Bunde",
+            "yAxis" : {
+              "axisPosition" : "left",
+              "axisLabel" : "Waterstand (m)"
+            },
+            "thresholds" : [ {
+              "value" : 43.9,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 44.05,
+              "label" : "STREEFPEIL [2]",
+              "color" : "#00ff00"
+            }, {
+              "value" : 44.2,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 44.2,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 43.9,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a4f"
+          }, {
+            "type" : "line",
+            "legend" : "Waterstand Echt (Julianakanaal)",
+            "color" : "#43b7ba",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Echt",
+            "yAxis" : {
+              "axisPosition" : "left",
+              "axisLabel" : "Waterstand (m)"
+            },
+            "thresholds" : [ {
+              "value" : 32.5,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 32.65,
+              "label" : "STREEFPEIL [2]",
+              "color" : "#00ff00"
+            }, {
+              "value" : 33.0,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 33.0,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 32.5,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a51"
+          }, {
+            "type" : "line",
+            "legend" : "Debiet Maaseik (B)",
+            "color" : "#980517",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Maaseik",
+            "yAxis" : {
+              "axisPosition" : "right",
+              "axisLabel" : "Debiet (m3/s)"
+            },
+            "thresholds" : [ {
+              "value" : 0.001,
+              "label" : "Wel debiet",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a53"
+          }, {
+            "type" : "line",
+            "legend" : "Waterstand Heel boven",
+            "color" : "#578693",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Heel_boven",
+            "yAxis" : {
+              "axisPosition" : "left",
+              "axisLabel" : "Waterstand (m)"
+            },
+            "thresholds" : [ {
+              "value" : 20.75,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 20.8,
+              "label" : "STREEFPEIL [2]",
+              "color" : "#00ff00"
+            }, {
+              "value" : 20.95,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 20.95,
+              "label" : "Eerste hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 21.25,
+              "label" : "Tweede hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 20.75,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 20.7,
+              "label" : "Tweede laag-alarmgrens",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a55"
+          }, {
+            "type" : "line",
+            "legend" : "Waterstand Roermond boven",
+            "color" : "#f76541",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Roermond_boven",
+            "yAxis" : {
+              "axisPosition" : "left",
+              "axisLabel" : "Waterstand (m)"
+            },
+            "thresholds" : [ {
+              "value" : 16.7,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 16.85,
+              "label" : "STREEFPEIL [2]",
+              "color" : "#00ff00"
+            }, {
+              "value" : 16.95,
+              "label" : "Tweede hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 16.7,
+              "label" : "Eerste laag-alarmgrens",
+              "color" : "#f87a17"
+            }, {
+              "value" : 16.7,
+              "label" : "Tweede laag-alarmgrens",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a57"
+          }, {
+            "type" : "line",
+            "legend" : "Waterstand Belfeld boven",
+            "color" : "#151b8d",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Belfeld_boven",
+            "yAxis" : {
+              "axisPosition" : "left",
+              "axisLabel" : "Waterstand (m)"
+            },
+            "thresholds" : [ {
+              "value" : 14.1,
+              "label" : "STREEFPEIL [2]",
+              "color" : "#00ff00"
+            }, {
+              "value" : 14.25,
+              "label" : "Tweede hoog-alarmgrens",
+              "color" : "#c22817"
+            }, {
+              "value" : 14.05,
+              "label" : "Tweede laag-alarmgrens",
+              "color" : "#f87a17"
+            } ],
+            "request" : "4a59"
+          }, {
+            "type" : "line",
+            "legend" : "Debiet Venlo",
+            "color" : "#00ffff",
+            "lineStyle" : "solid",
+            "lineWidth" : 1.0,
+            "markerStyle" : "circle",
+            "markerSize" : 3,
+            "locationId" : "Venlo",
+            "yAxis" : {
+              "axisPosition" : "right",
+              "axisLabel" : "Debiet (m3/s)"
+            },
+            "request" : "4a5b"
+          } ]
+        } ]
+      }
+    }
+  } ]
+}

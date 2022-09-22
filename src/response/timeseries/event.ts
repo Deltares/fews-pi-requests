@@ -5,7 +5,7 @@ export interface Event {
     startTime?: string;
     endDate?: string;
     endTime?: string;
-    value?: string; // number
+    value: string; // number
     minValue?: string; // number
     maxValue?: string; // number
     flag?: string; // number; related to quality
