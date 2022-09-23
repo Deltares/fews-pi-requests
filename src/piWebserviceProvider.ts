@@ -138,8 +138,7 @@ export class PiWebserviceProvider {
     async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
         const requestInit = {} as RequestInit;
         requestInit.cache = "no-cache";
-        const urlString = this.baseUrl + "/" + relativeUrl;
-        const url = new URL(urlString);
+        const url = new URL(relativeUrl, this.baseUrl);
         const res = await this.webservice.getDataWithRequestInit<TimeSeriesResponse>(url.toString(), requestInit);
         return res.data;
     }
