@@ -130,6 +130,19 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    /**
+     * Request time series with a relative url
+     * @param relativeUrl
+     * @returns time series api response
+     */
+    async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
+        const urlString = this.baseUrl + "/" + relativeUrl;
+        const url = new URL(urlString);
+        const res = await this.webservice.getDataWithRequestInit<TimeSeriesResponse>(url.toString(), requestInit);
+        return res.data;
+    }
 
     /**
      * Request Time Series
@@ -199,7 +212,7 @@ export class PiWebserviceProvider {
      * Request scheduled tasks
      *
      * @param filter an object with request query parameters
-     * @returns Time Series Grid PI API response
+     * @returns task runs PI API response
      */
     async getTaskRuns(filter: TaskRunsFilter): Promise<TaskRunsResponse> {
         const defaults: Partial<TaskRunsFilter> = {}
@@ -213,12 +226,22 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    /**
+     * Get all the topology nodes of FEWS
+     *
+     * @returns all the topology nodes configured in FEWS
+     */
     async getTopologyNodes(): Promise<TopologyNodeResponse> {
         const url = this.topologyNodesUrl();
         const res = await this.webservice.getData<TopologyNodeResponse>(url.toString());
         return res.data;
     }
 
+    /**
+     * Get the import status of FEWS
+     *
+     * @returns import status API response
+     */
     async getImportStatus(): Promise<ImportStatusResponse> {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.importStatusUrl(queryParameters);
@@ -231,7 +254,7 @@ export class PiWebserviceProvider {
     /**
      * Get the time series info for a certain topology node
      *
-     * @param nodeId
+     * @param filter search options for the displays (nodeId)
      * @returns Display groups API response
      */
     async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<DisplayGroupsResponse> {
