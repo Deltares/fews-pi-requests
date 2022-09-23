@@ -1,5 +1,5 @@
 import 'cross-fetch/polyfill';
-import {PiWebserviceProvider, TaskRunsFilter} from "../../src";
+import {PiWebserviceProvider, TaskRunsFilter, TimeSeriesResponse} from "../../src";
 import {TaskRunsResponse} from "../../src/response";
 import {TopologyNodeResponse} from "../../src/response/topology/topologyNodeResponse";
 import {DisplayGroupsFilter} from "../../src/requestParameters/DisplayGroupsFilter";
@@ -9,6 +9,16 @@ const baseUrl = process.env.TEST_URL || "";
 
 
 describe("pi webservice provider", function () {
+    it("gets called when done", async function () {
+
+        const provider = new PiWebserviceProvider(baseUrl);
+        const res: TimeSeriesResponse = await provider.getTimeSeriesWithRelativeUrl("rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Lith_beneden&parameterIds=H.meting&documentFormat=PI_JSON");
+        expect(res.timeSeries.length).toBeGreaterThan(0);
+        for (const timeSeries of res.timeSeries) {
+            expect(timeSeries.header.parameterId).toBe("H.meting")
+            expect(timeSeries.header.locationId).toBe("Lith_beneden")
+        }
+    })
     it("gets called when done", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
