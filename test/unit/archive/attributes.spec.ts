@@ -4,6 +4,7 @@ import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/attributes.json'
 import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
 import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
+import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 
 describe("archive/attributes", function () {
     afterAll(function () {
@@ -16,7 +17,7 @@ describe("archive/attributes", function () {
             body: JSON.stringify(expectedResponse)
         });
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: AttributesFilter = {
             documentFormat: DocumentFormat.PI_JSON,

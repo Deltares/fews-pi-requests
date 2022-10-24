@@ -5,6 +5,7 @@ import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
 import expectedResponse from '../mock/parameters.json'
+import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 
 describe("archive/parameters", function () {
     afterAll(function () {
@@ -17,7 +18,7 @@ describe("archive/parameters", function () {
             body: JSON.stringify(expectedResponse)
         });
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
         const filter: ParametersFilter = {
             documentFormat: DocumentFormat.PI_JSON,
             locationIds: "delfzijl"

@@ -1,5 +1,12 @@
 import 'cross-fetch/polyfill';
-import {PiWebserviceProvider, TaskRunsFilter, TimeSeriesResponse} from "../../src";
+import {
+    DocumentFormat,
+    LocationsFilter,
+    LocationsResponse,
+    PiWebserviceProvider,
+    TaskRunsFilter,
+    TimeSeriesResponse
+} from "../../src";
 import {TaskRunsResponse} from "../../src/response";
 import {TopologyNodeResponse} from "../../src/response/topology/topologyNodeResponse";
 import {DisplayGroupsFilter} from "../../src/requestParameters/DisplayGroupsFilter";
@@ -9,6 +16,14 @@ const baseUrl = process.env.TEST_URL || "";
 
 
 describe("pi webservice provider", function () {
+    it("get locations", async function () {
+        const provider = new PiWebserviceProvider(baseUrl);
+        const filter = {} as LocationsFilter;
+        filter.documentFormat = DocumentFormat.PI_JSON;
+        const res: LocationsResponse = await provider.getLocations(filter);
+        expect(res.locations.length).toBeGreaterThan(0);
+    })
+
     it("gets called when done", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
@@ -45,6 +60,7 @@ describe("pi webservice provider", function () {
         const taskRunFilter: TaskRunsFilter = {
             taskRunStatusIds: ["A"],
             onlyForecasts: false,
+            documentFormat: DocumentFormat.PI_JSON,
             workflowId: "Radar_Nowcast_Det",
             onlyCurrent: true
         };
