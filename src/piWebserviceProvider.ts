@@ -17,11 +17,9 @@ import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
 import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
-const MAX_URL_LENGTH = 1000
-
 export class PiWebserviceProvider {
     baseUrl: URL
-    maxUrlLength?: number
+    maxUrlLength: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     webservice: PiRestService;
 
@@ -35,7 +33,7 @@ export class PiWebserviceProvider {
             url += "/"
         }
         this.baseUrl = absoluteUrl(url)
-        this.maxUrlLength = maxUrlLength;
+        this.maxUrlLength = maxUrlLength ?? Infinity;
         this.webservice = new PiRestService(url);
     }
 
@@ -78,12 +76,12 @@ export class PiWebserviceProvider {
         const filterWithDefaults = {...defaults, ...filter};
         const queryParameters = filterToParams(filterWithDefaults);
         const url = this.timeSeriesUrl(queryParameters);
-        if (url.toString().length <= MAX_URL_LENGTH) {
+        if (url.toString().length <= this.maxUrlLength) {
             const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
             return res.data;
         } else {
             const urls = splitUrl(url, this.maxUrlLength);
-            const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(url.toString()));
+            const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()));
             return Promise.all(promises).then((responses) => {
                 const response = responses[0].data;
                 if (response.timeSeries !== undefined) {
