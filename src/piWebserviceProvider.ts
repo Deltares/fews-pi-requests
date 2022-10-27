@@ -143,8 +143,7 @@ export class PiWebserviceProvider {
      * @returns import status API response
      */
     async getImportStatus(): Promise<ImportStatusResponse> {
-        const queryParameters = "documentFormat=PI_JSON"
-        const url = this.importStatusUrl(queryParameters);
+        const url = this.importStatusUrl();
         const requestInit = {} as RequestInit;
         requestInit.cache = "no-cache";
         const res = await this.webservice.getDataWithRequestInit<ImportStatusResponse>(url.toString(), requestInit);
@@ -236,10 +235,10 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for import status request
      *
-     * @param queryParameters query string
      * @returns complete url for making a request
      */
-    importStatusUrl(queryParameters: string): URL {
+    importStatusUrl(): URL {
+        const queryParameters = "documentFormat=PI_JSON"
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
             this.baseUrl
