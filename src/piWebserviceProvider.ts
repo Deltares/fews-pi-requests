@@ -14,7 +14,7 @@ import {
     LocationsFilter
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
-import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
+import {TopologyNodeResponse} from "./response";
 import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
@@ -28,6 +28,7 @@ export class PiWebserviceProvider {
      * Constructor for PiWebserviceProvider
      *
      * @param url the base url where the PI servive is available
+     * @param maxUrlLength if the length of the url is larger than specified, the requests will be split up.
      */
     constructor(url: string, maxUrlLength?: number) {
         if (!url.endsWith("/")) {

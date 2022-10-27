@@ -22,7 +22,8 @@
     "lint:fix": "eslint src/**.ts --fix",
     "test:unit": "jest unit --collect-coverage",
     "test:e2e": "jest e2e",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "json2ts": "curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_importstatus.json | json2ts > src/response/importStatus/importStatus.ts"
   },
   "devDependencies": {
     "@types/jest": "^28.0.0",
@@ -38,6 +39,7 @@
     "jest-junit": "^13.0.0",
     "jest-teamcity-reporter": "^0.9.0",
     "jsdom": "^19.0.0",
+    "json-schema-to-typescript": "^11.0.2",
     "shx": "^0.3.2",
     "ts-jest": "^28.0.8",
     "ts-loader": "^9.3.1",
