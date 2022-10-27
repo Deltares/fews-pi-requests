@@ -14,7 +14,7 @@ import {
     LocationsFilter
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
-import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
+import {TopologyNodeResponse} from "./response";
 import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
@@ -28,6 +28,7 @@ export class PiWebserviceProvider {
      * Constructor for PiWebserviceProvider
      *
      * @param url the base url where the PI servive is available
+     * @param maxUrlLength if the length of the url is larger than specified, the requests will be split up.
      */
     constructor(url: string, maxUrlLength?: number) {
         if (!url.endsWith("/")) {
@@ -36,7 +37,6 @@ export class PiWebserviceProvider {
         this.baseUrl = absoluteUrl(url)
         this.maxUrlLength = maxUrlLength ?? Infinity;
         this.webservice = new PiRestService(url);
-
         //todo check version.
     }
 
@@ -196,19 +196,6 @@ export class PiWebserviceProvider {
         const path = 'locations';
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/${path}${queryParameters}`,
-            this.baseUrl
-        )
-    }
-
-    /**
-     * Construct URL for parameters request
-     *
-     * @param queryParameters query string
-     * @returns complete url for making a request
-     */
-    parametersUrl(queryParameters: string): URL {
-        return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,
             this.baseUrl
         )
     }

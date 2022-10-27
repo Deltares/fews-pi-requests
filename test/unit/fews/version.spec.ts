@@ -1,7 +1,7 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
+import {PiWebserviceProvider} from '../../../src'
 
 import expectedResponse from '../mock/version.json'
-import {VersionResponse} from "../../../src/response";
+import {VersionResponse} from "../../../src";
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 
