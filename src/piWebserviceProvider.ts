@@ -2,6 +2,7 @@ import {
     LocationsResponse,
     TaskRunsResponse,
     ImportStatusResponse,
+    VersionResponse,
     TimeSeriesResponse
 } from './response'
 import PiRestService from "./restservice/piRestService";
@@ -157,6 +158,20 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the import status of FEWS
+     *
+     * @returns import status API response
+     */
+    async getVersion(): Promise<VersionResponse> {
+        const queryParameters = "documentFormat=PI_JSON"
+        const url = this.versionUrl(queryParameters);
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
+        const res = await this.webservice.getDataWithRequestInit<VersionResponse>(url.toString(), requestInit);
+        return res.data;
+    }
+
+    /**
      * Get the time series info for a certain topology node
      *
      * @param filter search options for the displays (nodeId)
@@ -248,6 +263,19 @@ export class PiWebserviceProvider {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
             this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for version information
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    versionUrl(queryParameters: string): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this.baseUrl
         )
     }
 
