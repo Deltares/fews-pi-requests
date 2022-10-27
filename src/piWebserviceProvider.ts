@@ -44,8 +44,7 @@ export class PiWebserviceProvider {
      * @returns Locations PI API response
      */
     async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
-        const queryParameters = filterToParams(filter);
-        const url = this.locationsUrl(queryParameters);
+        const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
         return res.data;
     }
@@ -74,8 +73,7 @@ export class PiWebserviceProvider {
             documentFormat: DocumentFormat.PI_JSON,
         }
         const filterWithDefaults = {...defaults, ...filter};
-        const queryParameters = filterToParams(filterWithDefaults);
-        const url = this.timeSeriesUrl(queryParameters);
+        const url = this.timeSeriesUrl(filterWithDefaults);
         if (url.toString().length <= this.maxUrlLength) {
             const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
             return res.data;
@@ -106,8 +104,7 @@ export class PiWebserviceProvider {
             documentFormat: DocumentFormat.PI_JSON,
         }
         const filterWithDefaults = {...defaults, ...filter};
-        const queryParameters = filterToParams(filterWithDefaults);
-        const url = this.timeSeriesGridUrl(queryParameters);
+        const url = this.timeSeriesGridUrl(filterWithDefaults);
         const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
         return res.data;
     }
@@ -121,8 +118,7 @@ export class PiWebserviceProvider {
     async getTaskRuns(filter: TaskRunsFilter): Promise<TaskRunsResponse> {
         const defaults: Partial<TaskRunsFilter> = {}
         const filterWithDefaults = {...defaults, ...filter}
-        const queryParameters = filterToParams(filterWithDefaults)
-        const url = this.taskRunsUrl(queryParameters);
+        const url = this.taskRunsUrl(filterWithDefaults);
         const requestInit = {} as RequestInit;
         requestInit.cache = "no-cache";
         const res = await this.webservice.getDataWithRequestInit<TaskRunsResponse>(url.toString(), requestInit);
@@ -162,23 +158,21 @@ export class PiWebserviceProvider {
      * @returns Display groups API response
      */
     async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<DisplayGroupsResponse> {
-        const queryParameters = filterToParams(filter)
-        const url = this.displayGroupsUrl(queryParameters)
+        const url = this.displayGroupsUrl(filter)
         const res = await this.webservice.getData<DisplayGroupsResponse>(url.toString());
         return res.data;
     }
 
-
     /**
      * Construct URL for locations request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    locationsUrl(queryParameters: string): URL {
-        const path = 'locations';
+    locationsUrl(filter: LocationsFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/${path}${queryParameters}`,
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
             this.baseUrl
         )
     }
@@ -186,10 +180,11 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for time series request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    timeSeriesUrl(queryParameters: string): URL {
+     timeSeriesUrl(filter: TimeSeriesFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
             this.baseUrl
@@ -199,10 +194,11 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for time series grid request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    timeSeriesGridUrl(queryParameters: string): URL {
+     timeSeriesGridUrl(filter: TimeSeriesGridFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
             this.baseUrl
@@ -212,10 +208,11 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for display groups request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    displayGroupsUrl(queryParameters: string): URL {
+    displayGroupsUrl(filter: DisplayGroupsFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
             this.baseUrl
@@ -223,12 +220,13 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Construct URL for task runs request
+     * Construct URL for module run times request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    taskRunsUrl(queryParameters: string): URL {
+     taskRunsUrl(filter: TaskRunsFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
             this.baseUrl

@@ -45,8 +45,7 @@ export class PiArchiveWebserviceProvider {
      * @returns Parameters PI API response
      */
     async getParameters(filter: ParametersFilter): Promise<ParametersResponse> {
-        const queryParameters = filterToParams(filter);
-        const url = this.parametersUrl(queryParameters);
+        const url = this.parametersUrl(filter);
         const res = await this.webservice.getData<ParametersResponse>(url.toString());
         return res.data;
     }
@@ -54,10 +53,11 @@ export class PiArchiveWebserviceProvider {
     /**
      * Construct URL for parameters request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    parametersUrl(queryParameters: string): URL {
+     parametersUrl(filter: ParametersFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,
             this.baseUrl
@@ -71,8 +71,7 @@ export class PiArchiveWebserviceProvider {
      * @returns Locations PI API response
      */
     async getLocations(filter: ArchiveLocationsFilter): Promise<LocationsResponse> {
-        const queryParameters = filterToParams(filter);
-        const url = this.locationsUrl(queryParameters);
+        const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
         return res.data;
     }
@@ -80,13 +79,14 @@ export class PiArchiveWebserviceProvider {
     /**
      * Construct URL for locations request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
+     * @param useArchive whether to use the archive or not
      * @returns complete url for making a request
      */
-    locationsUrl(queryParameters: string): URL {
-        const path = "archive/locations";
+     locationsUrl(filter: ArchiveLocationsFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/${path}${queryParameters}`,
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,
             this.baseUrl
         )
     }
@@ -98,8 +98,7 @@ export class PiArchiveWebserviceProvider {
      * @returns Attributes PI API response
      */
     async getAttributes(filter: AttributesFilter): Promise<AttributesResponse> {
-        const queryParameters = filterToParams(filter);
-        const url = this.attributesUrl(queryParameters);
+        const url = this.attributesUrl(filter);
         const res = await this.webservice.getData<AttributesResponse>(url.toString());
         return res.data;
     }
@@ -107,10 +106,11 @@ export class PiArchiveWebserviceProvider {
     /**
      * Construct URL for attribute request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    attributesUrl(queryParameters: string): URL {
+     attributesUrl(filter: AttributesFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/attributes${queryParameters}`,
             this.baseUrl
@@ -136,8 +136,7 @@ export class PiArchiveWebserviceProvider {
             documentFormat: DocumentFormat.PI_JSON,
         }
         const filterWithDefaults = {...mappedFilter, ...defaults}
-        const queryParameters = filterToParams(filterWithDefaults)
-        const url = this.externalForecastsUrl(queryParameters)
+        const url = this.externalForecastsUrl(filterWithDefaults)
         const res = await this.webservice.getData<ExternalForecastsResponse>(url.toString());
         return res.data;
     }
@@ -145,15 +144,14 @@ export class PiArchiveWebserviceProvider {
     /**
      * Construct URL for external forecast request
      *
-     * @param queryParameters query string
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    externalForecastsUrl(queryParameters: string): URL {
+     externalForecastsUrl(filter: ExternalForecastsFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/netcdfstorageforecasts${queryParameters}`,
             this.baseUrl
         )
     }
-
-
 }
