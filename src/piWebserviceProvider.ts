@@ -184,19 +184,6 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Construct URL for parameters request
-     *
-     * @param queryParameters query string
-     * @returns complete url for making a request
-     */
-    parametersUrl(queryParameters: string): URL {
-        return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,
-            this.baseUrl
-        )
-    }
-
-    /**
      * Construct URL for time series request
      *
      * @param queryParameters query string
