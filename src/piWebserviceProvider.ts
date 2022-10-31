@@ -18,7 +18,7 @@ import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
 export class PiWebserviceProvider {
-    baseUrl: URL
+    private _baseUrl: URL
     maxUrlLength: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     webservice: PiRestService;
@@ -32,9 +32,15 @@ export class PiWebserviceProvider {
         if (!url.endsWith("/")) {
             url += "/"
         }
-        this.baseUrl = absoluteUrl(url)
+        this._baseUrl = absoluteUrl(url)
         this.maxUrlLength = maxUrlLength ?? Infinity;
         this.webservice = new PiRestService(url);
+
+    }
+
+
+    set oath2Token(value: string) {
+        this.webservice.oauth2Token = value;
     }
 
     /**
@@ -57,7 +63,7 @@ export class PiWebserviceProvider {
     async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
         const requestInit = {} as RequestInit;
         requestInit.cache = "no-cache";
-        const url = new URL(relativeUrl, this.baseUrl);
+        const url = new URL(relativeUrl, this._baseUrl);
         const res = await this.webservice.getDataWithRequestInit<TimeSeriesResponse>(url.toString(), requestInit);
         return res.data;
     }
@@ -171,8 +177,8 @@ export class PiWebserviceProvider {
     locationsUrl(filter: LocationsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -185,8 +191,8 @@ export class PiWebserviceProvider {
      timeSeriesUrl(filter: TimeSeriesFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -199,8 +205,8 @@ export class PiWebserviceProvider {
      timeSeriesGridUrl(filter: TimeSeriesGridFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -213,8 +219,8 @@ export class PiWebserviceProvider {
     displayGroupsUrl(filter: DisplayGroupsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -227,8 +233,8 @@ export class PiWebserviceProvider {
      taskRunsUrl(filter: TaskRunsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -240,8 +246,8 @@ export class PiWebserviceProvider {
     importStatusUrl(): URL {
         const queryParameters = "documentFormat=PI_JSON"
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
+            this._baseUrl
         )
     }
 
@@ -252,8 +258,8 @@ export class PiWebserviceProvider {
      */
     topologyNodesUrl(): URL {
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
+            this._baseUrl
         )
     }
 }
