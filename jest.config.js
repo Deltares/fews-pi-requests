@@ -8,5 +8,6 @@ module.exports = {
     reporters: [ "default", "jest-junit" ],
     "testResultsProcessor": "jest-teamcity-reporter",
     setupFiles: ["./.env.test"],
-    "coverageReporters": ["lcov", "text", "teamcity"]
+    "coverageReporters": ["lcov", "text", "teamcity"],
+    testTimeout: 30 * 1000
 }
