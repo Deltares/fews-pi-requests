@@ -37,6 +37,6 @@ describe("archive/locations", function () {
         const results: TimeSeriesResponse = await provider.getTimeSeries(filter);
         expect(results).toStrictEqual(expectedResponse);
         expect("timeSeries" in results).toBe(true);
-        expect(results.timeSeries.length).toBe(4);
+        expect(results?.timeSeries?.length).toBe(4);
     });
 });
