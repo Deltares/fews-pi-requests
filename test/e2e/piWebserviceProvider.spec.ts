@@ -28,10 +28,11 @@ describe("pi webservice provider", function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
         const res: TimeSeriesResponse = await provider.getTimeSeriesWithRelativeUrl("rest/fewspiservice/v1/timeseries?timeSeriesType=EXTERNAL_HISTORICAL&locationIds=Lith_beneden&parameterIds=H.meting&documentFormat=PI_JSON");
-        expect(res.timeSeries.length).toBeGreaterThan(0);
-        for (const timeSeries of res.timeSeries) {
-            expect(timeSeries.header.parameterId).toBe("H.meting")
-            expect(timeSeries.header.locationId).toBe("Lith_beneden")
+        expect(res?.timeSeries?.length).toBeGreaterThan(0);
+        for (let i = 0; res.timeSeries && i < res.timeSeries.length; i++){
+            const timeSeries = res.timeSeries[i];
+            expect(timeSeries?.header?.parameterId).toBe("H.meting")
+            expect(timeSeries?.header?.locationId).toBe("Lith_beneden")
         }
     })
     it("gets called when done", async function () {

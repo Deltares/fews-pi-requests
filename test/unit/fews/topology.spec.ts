@@ -22,7 +22,7 @@ describe("topology", function () {
 
         const nodes: TopologyNodeResponse = await provider.getTopologyNodes();
         expect(nodes).toStrictEqual(expectedResponseTopology);
-        expect(nodes.topologyNodes.length).toBe(14)
+        expect(nodes.topologyNodes?.length).toBe(14)
         expect(nodes.topologyNodes[0].id).toBe("Algemeen")
         expect(nodes.topologyNodes[0].name).toBe("Algemeen")
         expect(nodes.topologyNodes[0].workflowId).toBeUndefined()

@@ -3,7 +3,7 @@ import {
     TaskRunsResponse,
     ImportStatusResponse,
     VersionResponse,
-    TimeSeriesResponse
+    TimeSeriesResponse, Version
 } from './response'
 import PiRestService from "./restservice/piRestService";
 import {
@@ -93,7 +93,7 @@ export class PiWebserviceProvider {
                 if (response.timeSeries !== undefined) {
                     for (let i = 1; i < responses.length; i++) {
                         if (responses[i].data.timeSeries === undefined) continue
-                        response.timeSeries.push(...responses[i].data.timeSeries)
+                        response.timeSeries.push(...responses[i].data.timeSeries || [])
                     }
                 }
                 return response;
