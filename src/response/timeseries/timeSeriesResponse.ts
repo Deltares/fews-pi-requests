@@ -67,11 +67,11 @@ export interface TimeSeriesResponse {
 }
 export interface TimeSeriesResult {
   header?: Header;
-  properties?: Property[];
+  properties?: TimeSeriesProperty[];
   /**
    * Events
    */
-  events?: Event[];
+  events?: TimeSeriesEvent[];
   /**
    * Domains
    */
@@ -328,13 +328,13 @@ export interface Product {
 /**
  * Property
  */
-export interface Property {
+export interface TimeSeriesProperty {
   [k: string]: unknown;
 }
 /**
  * Timeseries event
  */
-export interface Event {
+export interface TimeSeriesEvent {
   /**
    * Date
    */

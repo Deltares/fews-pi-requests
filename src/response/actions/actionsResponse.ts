@@ -13,10 +13,11 @@ export interface ActionsResponse {
   /**
    * ActionsResults
    */
-  results: Action[];
+  results: ActionResult[];
 }
-export interface Action {
-  type: "PI";
+export interface ActionResult {
+  type: "PI" | "SSD" | "PDF" | "URL" | "WMS";
+  title?: string;
   /**
    * ActionRequests
    */
@@ -24,15 +25,20 @@ export interface Action {
   config?: ActionRequestConfig;
 }
 export interface ActionRequest {
-  key: string;
+  key?: string;
   request: string;
 }
 export interface ActionRequestConfig {
   timeSeriesDisplay: TimeSeriesDisplayConfig;
 }
 export interface TimeSeriesDisplayConfig {
-  title: string;
-  subplots: TimeSeriesDisplaySubplot[];
+  /**
+   * Error in case a not supported configuration is used.
+   */
+  error?: string;
+  title?: string;
+  forecastLegend?: string;
+  subplots?: TimeSeriesDisplaySubplot[];
 }
 export interface TimeSeriesDisplaySubplot {
   items: TimeSeriesDisplaySubplotItem[];
@@ -43,14 +49,29 @@ export interface TimeSeriesDisplaySubplotItem {
   color?: string;
   lineStyle?: string;
   lineWidth?: number;
+  opaquenessPercentage?: number;
+  markerStyle?: string;
+  markerSize?: number;
   locationId?: string;
-  yAxis?: TimeSeriesDisplaySubplotAxis;
+  yAxis?: TimeSeriesDisplaySubplotItemAxis;
+  thresholds?: TimeSeriesDisplaySubplotItemThreshold;
   /**
-   * Key of the request
+   * Key of the request. Only used if there is only one request.
    */
-  request: string;
+  request?: string;
+  /**
+   * Array with the keys of the requests. Only used if there are multiple requests.
+   */
+  requests?: string[];
 }
-export interface TimeSeriesDisplaySubplotAxis {
-  axisPosition: string;
-  axisLabel: string;
+export interface TimeSeriesDisplaySubplotItemAxis {
+  axisPosition?: string;
+  axisLabel?: string;
+  axisMinValue?: number;
+  axisMaxValue?: number;
+}
+export interface TimeSeriesDisplaySubplotItemThreshold {
+  value?: number;
+  label?: string;
+  color?: string;
 }
