@@ -275,8 +275,8 @@ export class PiWebserviceProvider {
      */
     versionUrl(queryParameters: string): URL {
         return new URL(
-            `${this.baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
-            this.baseUrl
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
         )
     }
 
