@@ -46,9 +46,13 @@ export interface TimeSeriesParameter {
   displayUnit?: string;
   usesDatum?: UseDatum;
   /**
-   * The parameter group this parameter is a member of
+   * The id of the parameter group this parameter is a member of
    */
   parameterGroup?: string;
+  /**
+   * The name of parameter group this parameter is a member of
+   */
+  parameterGroupName?: string;
   /**
    * The parameter group this parameter is a member of
    */
