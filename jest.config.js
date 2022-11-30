@@ -10,4 +10,5 @@ module.exports = {
     setupFiles: ["./.env.test"],
     "coverageReporters": ["lcov", "text", "teamcity"],
     testTimeout: 30 * 1000
+
 }

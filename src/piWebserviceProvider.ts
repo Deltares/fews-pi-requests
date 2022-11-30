@@ -5,7 +5,7 @@ import {
     VersionResponse,
     TimeSeriesResponse, Version
 } from './response'
-import PiRestService from "./restservice/piRestService";
+
 import {
     DocumentFormat,
     TaskRunsFilter,
@@ -17,6 +17,8 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils";
 import {TopologyNodeResponse} from "./response";
 import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
+import {PiRestService} from "@deltares/fews-web-oc-utils";
+
 
 export class PiWebserviceProvider {
     private _baseUrl: URL

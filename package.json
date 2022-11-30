@@ -25,6 +25,9 @@
     "test": "jest --coverage",
     "json2ts": "curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_importstatus.json | json2ts > src/response/importStatus/importStatusResponse.ts & curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_timeseries.json | json2ts > src/response/timeseries/timeSeriesResponse.ts & curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_parameters.json | json2ts > src/response/timeseriesparameters/timeSeriesParametersResponse.ts & curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_actions.json | json2ts > src/response/actions/actionsResponse.ts & curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_topology_nodes.json | json2ts > src/response/topology/topologyNodeResponse.ts & curl https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest/pi_rest_locations.json | json2ts > src/response/locations/locationsResponse.ts"
   },
+  "dependencies": {
+    "@deltares/fews-web-oc-utils": "^0.1.7"
+  },
   "devDependencies": {
     "@types/jest": "^28.0.0",
     "@types/jsdom": "^16.2.14",

@@ -1,4 +1,4 @@
-import PiRestService from "./restservice/piRestService";
+
 import {absoluteUrl, filterToParams} from "./utils";
 import {
     ArchiveLocationsFilter,
@@ -8,6 +8,8 @@ import {
     ParametersFilter
 } from "./requestParameters";
 import {AttributesResponse, ExternalForecastsResponse, LocationsResponse, ParametersResponse} from "./response";
+import {PiRestService} from "@deltares/fews-web-oc-utils";
+
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
