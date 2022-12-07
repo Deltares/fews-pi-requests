@@ -7,7 +7,7 @@ import {
     ExternalForecastsFilter,
     ParametersFilter
 } from "./requestParameters";
-import {AttributesResponse, ExternalForecastsResponse, LocationsResponse, ParametersResponse} from "./response";
+import {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters} from "./response";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 
 
@@ -34,6 +34,7 @@ export class PiArchiveWebserviceProvider {
      * Constructor for PiArchiveWebserviceProvider
      *
      * @param url the base url where the PI servive is available
+     * @param maxUrlLength
      */
     constructor(url: string, maxUrlLength?: number) {
         if (!url.endsWith("/")) {
@@ -50,9 +51,9 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Parameters PI API response
      */
-    async getParameters(filter: ParametersFilter): Promise<ParametersResponse> {
+    async getParameters(filter: ParametersFilter): Promise<ArchiveParameters> {
         const url = this.parametersUrl(filter);
-        const res = await this.webservice.getData<ParametersResponse>(url.toString());
+        const res = await this.webservice.getData<ArchiveParameters>(url.toString());
         return res.data;
     }
 
@@ -76,9 +77,9 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Locations PI API response
      */
-    async getLocations(filter: ArchiveLocationsFilter): Promise<LocationsResponse> {
+    async getLocations(filter: ArchiveLocationsFilter): Promise<ArchiveLocations> {
         const url = this.locationsUrl(filter);
-        const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        const res = await this.webservice.getData<ArchiveLocations>(url.toString());
         return res.data;
     }
 
@@ -103,9 +104,9 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Attributes PI API response
      */
-    async getAttributes(filter: AttributesFilter): Promise<AttributesResponse> {
+    async getAttributes(filter: AttributesFilter): Promise<ArchiveAttributes> {
         const url = this.attributesUrl(filter);
-        const res = await this.webservice.getData<AttributesResponse>(url.toString());
+        const res = await this.webservice.getData<ArchiveAttributes>(url.toString());
         return res.data;
     }
 
@@ -129,7 +130,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns External Forecasts PI API response
      */
-    async getExternalForecasts(filter: ExternalForecastsFilter): Promise<ExternalForecastsResponse> {
+    async getExternalForecasts(filter: ExternalForecastsFilter): Promise<ArchiveExternalNetCDFStorageForecasts> {
         const mappedFilter: { [key: string]: unknown } = {}
         for (const [key, value] of Object.entries(filter)) {
             if (key in Object.keys(attributesForKey)) {
@@ -143,7 +144,7 @@ export class PiArchiveWebserviceProvider {
         }
         const filterWithDefaults = {...mappedFilter, ...defaults}
         const url = this.externalForecastsUrl(filterWithDefaults)
-        const res = await this.webservice.getData<ExternalForecastsResponse>(url.toString());
+        const res = await this.webservice.getData<ArchiveExternalNetCDFStorageForecasts>(url.toString());
         return res.data;
     }
 

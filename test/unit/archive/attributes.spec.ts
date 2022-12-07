@@ -1,5 +1,5 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
-import {AttributesResponse} from '../../../src/response'
+import {ArchiveAttributes} from '../../../src/response'
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/attributes.json'
 import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
@@ -25,7 +25,7 @@ describe("archive/attributes", function () {
             locationIds: "delfzijl",
             attributes: 'source',
         }
-        const results: AttributesResponse = await provider.getAttributes(filter) as AttributesResponse;
+        const results: ArchiveAttributes = await provider.getAttributes(filter) as ArchiveAttributes;
         expect("archiveAttributes" in results).toBe(true)
         expect(results.archiveAttributes.length).toBe(5)
         expect(results).toStrictEqual(expectedResponse);

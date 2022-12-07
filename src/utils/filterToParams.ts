@@ -2,10 +2,10 @@ function filterArgToStrings(key: string, value: any ): string[] {
     const result: string[] = []
     if (value instanceof Array) {
         for (const item of value) {
-            result.push(`${key}=${encodeURIComponent(item)}`)
+            result.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`)
         }
     } else {
-        result.push(`${key}=${encodeURIComponent(value)}`)
+        result.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
     }
     return result
 }
@@ -21,7 +21,7 @@ export function filterToParams(filter: object ): string {
             }
         } else if ( parameter === 'qualifierIds') {
             for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${parameter}=${key}`, value)
+                const strings = filterArgToStrings(`${parameter}`,`${key}=` + value)
                 filterArgs.push(...strings)
             }
         } else if (parameter === 'bbox') {
