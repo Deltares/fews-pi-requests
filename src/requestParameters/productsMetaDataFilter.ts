@@ -12,4 +12,7 @@ export interface ProductsMetaDataFilter {
 
     // (dateTime: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for time series produced by forecasts that have their forecast time within this period.
     startForecastTime?: string;
+
+    // versionKey: List of attributes as keys that are part of the returned version
+    versionKey?: string[];
 }
