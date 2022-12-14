@@ -6,21 +6,15 @@
  */
 
 /**
- * TopologyNodes PI_JSON
+ * ArchiveAttributesResponse PI_JSON
  */
-export interface TopologyNodeResponse {
+export interface ArchiveAttributes {
   /**
-   * TopologyNodes
+   * ArchiveAttributes
    */
-  topologyNodes: TopologyNode[];
+  archiveAttributes: ArchiveAttribute[];
 }
-export interface TopologyNode {
-  id: string;
+export interface ArchiveAttribute {
   name: string;
-  workflowId?: string;
-  localRun?: boolean;
-  /**
-   * TopologyNodes
-   */
-  topologyNodes?: TopologyNode[];
+  value: string;
 }

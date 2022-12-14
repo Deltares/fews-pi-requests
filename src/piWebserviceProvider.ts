@@ -2,9 +2,10 @@ import {
     LocationsResponse,
     TaskRunsResponse,
     ImportStatusResponse,
-    TimeSeriesResponse
+    VersionResponse,
+    TimeSeriesResponse, Version
 } from './response'
-import PiRestService from "./restservice/piRestService";
+
 import {
     DocumentFormat,
     TaskRunsFilter,
@@ -13,9 +14,11 @@ import {
     LocationsFilter
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
-import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
+import {TopologyNodeResponse} from "./response";
 import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
+import {PiRestService} from "@deltares/fews-web-oc-utils";
+
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -27,6 +30,7 @@ export class PiWebserviceProvider {
      * Constructor for PiWebserviceProvider
      *
      * @param url the base url where the PI servive is available
+     * @param maxUrlLength if the length of the url is larger than specified, the requests will be split up.
      */
     constructor(url: string, maxUrlLength?: number) {
         if (!url.endsWith("/")) {
@@ -91,7 +95,7 @@ export class PiWebserviceProvider {
                 if (response.timeSeries !== undefined) {
                     for (let i = 1; i < responses.length; i++) {
                         if (responses[i].data.timeSeries === undefined) continue
-                        response.timeSeries.push(...responses[i].data.timeSeries)
+                        response.timeSeries.push(...responses[i].data.timeSeries || [])
                     }
                 }
                 return response;
@@ -153,6 +157,20 @@ export class PiWebserviceProvider {
         const requestInit = {} as RequestInit;
         requestInit.cache = "no-cache";
         const res = await this.webservice.getDataWithRequestInit<ImportStatusResponse>(url.toString(), requestInit);
+        return res.data;
+    }
+
+    /**
+     * Get the import status of FEWS
+     *
+     * @returns import status API response
+     */
+    async getVersion(): Promise<VersionResponse> {
+        const queryParameters = "documentFormat=PI_JSON"
+        const url = this.versionUrl(queryParameters);
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
+        const res = await this.webservice.getDataWithRequestInit<VersionResponse>(url.toString(), requestInit);
         return res.data;
     }
 
@@ -247,6 +265,19 @@ export class PiWebserviceProvider {
         const queryParameters = "documentFormat=PI_JSON"
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for version information
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    versionUrl(queryParameters: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
             this._baseUrl
         )
     }

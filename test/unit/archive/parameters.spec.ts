@@ -1,6 +1,6 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 import {ParametersFilter, DocumentFormat} from '../../../src/requestParameters'
-import {ParametersResponse} from '../../../src/response'
+import {ArchiveParameters} from '../../../src/response'
 import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
@@ -23,7 +23,7 @@ describe("archive/parameters", function () {
             documentFormat: DocumentFormat.PI_JSON,
             locationIds: "delfzijl"
         }
-        const results: ParametersResponse = await provider.getParameters(filter);
+        const results: ArchiveParameters = await provider.getParameters(filter);
         expect(results).toStrictEqual(expectedResponse);
         expect("parameters" in results).toBe(true);
         expect(results.parameters.length).toBe(13);

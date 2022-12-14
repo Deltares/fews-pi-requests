@@ -1,1 +1,0 @@
-export type DomainAxis = object
