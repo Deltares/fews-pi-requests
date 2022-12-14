@@ -15,6 +15,6 @@ export interface ArchiveAreas {
   areas: ArchiveArea[];
 }
 export interface ArchiveArea {
-  areaId: string;
-  areaName: string;
+  id: string;
+  name: string;
 }
