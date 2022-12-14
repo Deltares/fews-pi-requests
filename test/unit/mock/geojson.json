@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [6.929999828338623, 53.33000183105469]
+      },
+      "properties": {
+        "locationId": "delfzijl",
+        "locationName": "Delfzijl"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.75, 52.970001220703125]
+      },
+      "properties": {
+        "locationId": "den_helder",
+        "locationName": "Den Helder"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.670000076293945, 51.81999969482422]
+      },
+      "properties": {
+        "locationId": "dordrecht",
+        "locationName": "Dordrecht"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.409999847412109, 53.18000030517578]
+      },
+      "properties": {
+        "locationId": "harlingen",
+        "locationName": "Harlingen"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.119999885559082, 51.97999954223633]
+      },
+      "properties": {
+        "locationId": "hoekvanholland",
+        "locationName": "Hoek van Holland"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.5999999046325684, 51.439998626708984]
+      },
+      "properties": {
+        "locationId": "vlissingen",
+        "locationName": "Vlissingen"
+      }
+    }
+  ]
+}

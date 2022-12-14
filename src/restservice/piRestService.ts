@@ -25,7 +25,6 @@ export default class PiRestService {
         return await this.processResponse(dataRequestResult, res, url);
     }
 
-
     private async processResponse<T>(dataRequestResult: DataRequestResult<T>, res: Response, url: string): Promise<DataRequestResult<T>> {
         dataRequestResult.responseCode = res.status;
         if (res.status != 200) {

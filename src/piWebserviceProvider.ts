@@ -2,7 +2,8 @@ import {
     LocationsResponse,
     TaskRunsResponse,
     ImportStatusResponse,
-    TimeSeriesResponse
+    TimeSeriesResponse,
+    GeoJSONResponse
 } from './response'
 import PiRestService from "./restservice/piRestService";
 import {
@@ -10,7 +11,8 @@ import {
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
-    LocationsFilter
+    LocationsFilterPiJSON,
+    LocationsFilterGeoJSON
 } from "./requestParameters";
 import {absoluteUrl, filterToParams, splitUrl} from "./utils";
 import {TopologyNodeResponse} from "./response/topology/topologyNodeResponse";
@@ -43,15 +45,17 @@ export class PiWebserviceProvider {
         this.webservice.oauth2Token = value;
     }
 
+    async getLocations(filter: LocationsFilterPiJSON): Promise<LocationsResponse>;
+    async getLocations(filter: LocationsFilterGeoJSON): Promise<GeoJSONResponse>;
     /**
      * Request locations
      *
      * @param filter an object with request query parameters
      * @returns Locations PI API response
      */
-    async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
+    async getLocations(filter: any): Promise<any> {
         const url = this.locationsUrl(filter);
-        const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        const res = await this.webservice.getData(url.toString());
         return res.data;
     }
 
@@ -174,7 +178,7 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    locationsUrl(filter: LocationsFilter): URL {
+    locationsUrl(filter: LocationsFilterPiJSON | LocationsFilterGeoJSON): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,

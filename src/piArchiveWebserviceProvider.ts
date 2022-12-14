@@ -1,13 +1,14 @@
 import PiRestService from "./restservice/piRestService";
 import {absoluteUrl, filterToParams} from "./utils";
 import {
-    ArchiveLocationsFilter,
+    ArchiveLocationsFilterGeoJSON,
+    ArchiveLocationsFilterPiJSON,
     AttributesFilter,
     DocumentFormat,
     ExternalForecastsFilter,
     ParametersFilter
 } from "./requestParameters";
-import {AttributesResponse, ExternalForecastsResponse, LocationsResponse, ParametersResponse} from "./response";
+import {AttributesResponse, ExternalForecastsResponse, GeoJSONResponse, LocationsResponse, ParametersResponse} from "./response";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -68,15 +69,17 @@ export class PiArchiveWebserviceProvider {
         )
     }
 
+    async getLocations(filter: ArchiveLocationsFilterPiJSON): Promise<LocationsResponse>
+    async getLocations(filter: ArchiveLocationsFilterGeoJSON): Promise<GeoJSONResponse>
     /**
      * Request locations from the archive
      *
      * @param filter an object with request query parameters
      * @returns Locations PI API response
      */
-    async getLocations(filter: ArchiveLocationsFilter): Promise<LocationsResponse> {
+    async getLocations(filter: any): Promise<any> {
         const url = this.locationsUrl(filter);
-        const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        const res = await this.webservice.getData(url.toString());
         return res.data;
     }
 
@@ -87,7 +90,7 @@ export class PiArchiveWebserviceProvider {
      * @param useArchive whether to use the archive or not
      * @returns complete url for making a request
      */
-     locationsUrl(filter: ArchiveLocationsFilter): URL {
+     locationsUrl(filter: ArchiveLocationsFilterPiJSON | ArchiveLocationsFilterGeoJSON): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,

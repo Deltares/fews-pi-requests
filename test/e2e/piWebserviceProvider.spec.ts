@@ -18,8 +18,9 @@ const baseUrl = process.env.TEST_URL || "";
 describe("pi webservice provider", function () {
     it("get locations", async function () {
         const provider = new PiWebserviceProvider(baseUrl);
-        const filter = {} as LocationsFilter;
-        filter.documentFormat = DocumentFormat.PI_JSON;
+        const filter: LocationsFilter = {
+            documentFormat: DocumentFormat.PI_JSON
+        };
         const res: LocationsResponse = await provider.getLocations(filter);
         expect(res.locations.length).toBeGreaterThan(0);
     })
