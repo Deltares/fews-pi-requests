@@ -1,24 +1,22 @@
-import {
-    LocationsResponse,
-    TaskRunsResponse,
-    ImportStatusResponse,
-    VersionResponse,
-    TimeSeriesResponse, Version
-} from './response'
+import type {TimeSeriesResponse} from './response/timeseries'
+import type {TaskRunsResponse} from './response/tasks'
+import type {LocationsResponse} from './response/locations'
+import type {ImportStatusResponse} from './response/importStatus'
+import type {VersionResponse} from './response/version'
 
-import {
-    DocumentFormat,
+import type {
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
     LocationsFilter
 } from "./requestParameters";
-import {absoluteUrl, filterToParams, splitUrl} from "./utils";
-import {TopologyNodeResponse} from "./response";
-import {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
-import {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
-import {PiRestService} from "@deltares/fews-web-oc-utils";
+import type {TopologyNodeResponse} from "./response/topology";
+import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
+import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
+import {absoluteUrl, filterToParams, splitUrl} from "./utils";
+import {PiRestService} from "@deltares/fews-web-oc-utils";
+import {DocumentFormat} from './requestParameters'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL

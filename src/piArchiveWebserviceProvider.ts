@@ -1,14 +1,14 @@
 
 import {absoluteUrl, filterToParams} from "./utils";
-import {
+import type {
     ArchiveLocationsFilter,
     AttributesFilter,
-    DocumentFormat,
     ExternalForecastsFilter,
     ParametersFilter,
     ProductsMetaDataFilter
 } from "./requestParameters";
-import {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ProductsMetaDataResponse} from "./response";
+import type {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ArchiveProductsMetadata } from "./response";
+import { DocumentFormat } from "./requestParameters";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 
 
@@ -169,10 +169,10 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns ProductsMetaData PI API response
      */
-    async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ProductsMetaDataResponse> {
+    async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
         const queryParameters = filterToParams(filter);
         const url = this.productsMetaDataUrl(queryParameters);
-        const res = await this.webservice.getData<ProductsMetaDataResponse>(url.toString());
+        const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString());
         return res.data;
     }
 

@@ -1,4 +1,4 @@
-import {AttributeQueryParameter} from "@/requestParameters/attributeQueryParameter";
+import { AttributeQueryParameter } from "./attributeQueryParameter";
 
 export interface ProductsMetaDataFilter {
     /**

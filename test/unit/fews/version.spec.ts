@@ -1,7 +1,6 @@
 import {PiWebserviceProvider} from '../../../src'
 
 import expectedResponse from '../mock/version.json'
-import {VersionResponse} from "../../../src";
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 
@@ -18,7 +17,7 @@ describe("version", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-        const results: VersionResponse = await provider.getVersion();
+        const results = await provider.getVersion();
         expect(results).toStrictEqual(expectedResponse);
         expect(results.version.implementation).toBe('2017.02');
         expect(results.version.buildNumber).toBe(12345);

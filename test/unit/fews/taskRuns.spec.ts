@@ -1,7 +1,6 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
 import expectedResponse from '../mock/taskRuns.json'
-import {TaskRunsResponse} from "../../../src/response";
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {DocumentFormat} from "../../../src";
@@ -25,7 +24,7 @@ describe("tasks/ID/taskruns", function () {
             documentFormat: DocumentFormat.PI_JSON,
             onlyForecasts: false
         }
-        const results: TaskRunsResponse = await provider.getTaskRuns(filter);
+        const results = await provider.getTaskRuns(filter);
         expect(results).toStrictEqual(expectedResponse);
         expect("taskRuns" in results).toBe(true);
         expect(results.taskRuns.length).toBe(2);

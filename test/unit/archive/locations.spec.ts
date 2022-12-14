@@ -1,4 +1,3 @@
-import {ArchiveLocations} from '../../../src/response'
 import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
@@ -24,7 +23,7 @@ describe("archive/locations", function () {
             documentFormat: DocumentFormat.PI_JSON,
             parameterIds: "waterlevel_stat_bias"
         }
-        const results: ArchiveLocations = await provider.getLocations(filter);
+        const results = await provider.getLocations(filter);
         expect(results).toStrictEqual(expectedResponse);
         expect("locations" in results).toBe(true)
         expect(results.locations.length).toBe(6)
