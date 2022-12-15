@@ -1,1 +1,1 @@
-export * from './ArchiveExternalNetCdfStorageForecastsResponse'
+export * from './ArchiveExternalNetCdfStorageForecastsResponse.js'

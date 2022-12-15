@@ -1,5 +1,5 @@
-import { Records } from "./records";
-import { Task } from "./task";
+import type { Records } from "./records";
+import type { Task } from "./task";
 
 export interface ScheduledTasksResponse extends Records {
   tasks:             Task[];

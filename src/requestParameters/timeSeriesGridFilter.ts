@@ -1,4 +1,4 @@
-import { BaseTimeSeriesFilter } from "./baseTimeSeriesFilter";
+import type { BaseTimeSeriesFilter } from "./baseTimeSeriesFilter";
 
 export interface TimeSeriesGridFilter extends BaseTimeSeriesFilter {
     // (string, required): bounding box of map that is viewed in , separated EPSG:3857 format. The order of the coordinates is as follows: bottom left X, bottom left Y, top right X, top right Y. For example:

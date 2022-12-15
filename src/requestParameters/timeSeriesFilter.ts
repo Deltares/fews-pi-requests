@@ -1,6 +1,6 @@
-import { BaseTimeSeriesFilter } from "./baseTimeSeriesFilter";
-import { QualifierIdsQueryParameter } from "./qualifierIdsQueryParameter";
-import { TimeSeriesType } from "./timeSeriesType";
+import type { BaseTimeSeriesFilter } from "./baseTimeSeriesFilter";
+import type { QualifierIdsQueryParameter } from "./qualifierIdsQueryParameter";
+import type { TimeSeriesType } from "./timeSeriesType";
 
 export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     // (boolean): Convert values from relative location height to absolute height values.

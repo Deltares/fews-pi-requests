@@ -1,1 +1,1 @@
-export * from './ArchiveLocationsResponse'
+export * from './ArchiveLocationsResponse.js'

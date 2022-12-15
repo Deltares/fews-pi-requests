@@ -1,3 +1,3 @@
-export * from './piWebserviceProvider'
-export * from './requestParameters'
-export * from './response'
+export * from './piWebserviceProvider.js'
+export * from './requestParameters/index.js'
+export * from './response/index.js'

@@ -1,5 +1,5 @@
 
-import {absoluteUrl, filterToParams} from "./utils";
+import {absoluteUrl, filterToParams} from "./utils/index.js";
 import type {
     ArchiveLocationsFilter,
     AttributesFilter,
@@ -8,7 +8,7 @@ import type {
     ProductsMetaDataFilter
 } from "./requestParameters";
 import type {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ArchiveProductsMetadata } from "./response";
-import { DocumentFormat } from "./requestParameters";
+import { DocumentFormat } from "./requestParameters/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 
 

@@ -1,13 +1,12 @@
 import 'cross-fetch/polyfill';
-import { PiArchiveWebserviceProvider } from '../../src/piArchiveWebserviceProvider'
-import {
-    ArchiveLocationsFilter,
-    AttributesFilter,
-    DocumentFormat,
-    ExternalForecastsFilter,
-    ParametersFilter,
-    ProductsMetaDataFilter
-} from "../../src";
+import { PiArchiveWebserviceProvider } from '../../src/piArchiveWebserviceProvider.js'
+import type { ArchiveLocationsFilter } from '../../src/requestParameters/archiveLocationsFilter.js';
+import type { AttributesFilter } from '../../src/requestParameters/attributesFilter.js';
+import { DocumentFormat } from '../../src/requestParameters/documentFormat.js';
+import type { ExternalForecastsFilter } from '../../src/requestParameters/externalForecastFilter.js';
+import type { ParametersFilter } from '../../src/requestParameters/parametersFilter.js';
+import type { ProductsMetaDataFilter } from '../../src/requestParameters/productsMetaDataFilter.js';
+
 
 const baseUrl = process.env.TEST_ARCHIVE_URL ?? "";
 

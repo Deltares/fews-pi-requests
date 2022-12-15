@@ -1,5 +1,3 @@
-import {TaskStatus} from "./taskStatus";
-
 /**
  * The tasks/{taskid}/taskruns resource is used to get all taskruns for a specified task id.
  */
@@ -29,8 +27,6 @@ export interface TaskRun {
     //the start of the period for which data was created in the run
     outputStartTime: string;
     //the end of the period for which data was created in the run
-    outputEndTime: string;
-
-
+    outputEndTime: string
 }
 

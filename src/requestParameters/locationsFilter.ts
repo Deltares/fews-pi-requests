@@ -1,4 +1,4 @@
-import { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from "./baseFilter";
 
 export interface LocationsFilter extends BaseFilter {
     filterId?: string;

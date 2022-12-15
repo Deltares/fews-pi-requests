@@ -1,4 +1,4 @@
-import { duplicates } from './duplicates'
+import { duplicates } from './duplicates.js'
 
 function mostFrequentParameter(url: URL): string {
     const duplicateEntries = duplicates(Array.from(url.searchParams.keys()))
