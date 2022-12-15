@@ -17,10 +17,10 @@ const attributesForKey: { [key: string]: string } = {
 }
 
 export class PiArchiveWebserviceProvider {
-    baseUrl: URL
-    maxUrlLength?: number
+    private baseUrl: URL
+    private maxUrlLength?: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
-    webservice: PiRestService;
+    private webservice: PiRestService;
 
     set oath2Token(value: string) {
         this.webservice.oauth2Token = value;
