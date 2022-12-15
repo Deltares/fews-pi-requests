@@ -6,15 +6,20 @@
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "dist/types",
-    "outDir": "./dist/lib",
+    "declarationDir": "lib/types",
+    "outDir": "lib/esm",
     "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "lib": [
       "esnext",
       "dom",
@@ -24,10 +29,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
