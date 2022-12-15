@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import expectedResponse from '../mock/productsMetadata.json'
+import expectedResponse from '../mock/productsMetaData.json'
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 import { ProductsMetaDataFilter } from '../../../src';
 
