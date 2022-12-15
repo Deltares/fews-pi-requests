@@ -1,5 +1,4 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
-import {TimeSeriesResponse} from '../../../src/response'
 
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
@@ -33,7 +32,7 @@ describe("archive/locations", function () {
             importFromExternalDataSource: true,
             externalForecastTime: '2020-12-20T21:00:00.000Z'
         }
-        const results: TimeSeriesResponse = await provider.getTimeSeriesGrid(filter);
+        const results = await provider.getTimeSeriesGrid(filter);
         expect(results).toStrictEqual(expectedResponse);
         expect("timeSeries" in results).toBe(true);
         expect(results?.timeSeries?.length).toBe(1);

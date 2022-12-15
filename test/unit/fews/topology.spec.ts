@@ -1,7 +1,6 @@
 import fetchMock from "fetch-mock";
 import {
-    PiWebserviceProvider,
-    TopologyNodeResponse
+    PiWebserviceProvider
 } from "../../../src";
 import expectedResponseTopology from '../mock/topology.json'
 
@@ -20,7 +19,7 @@ describe("topology", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-        const nodes: TopologyNodeResponse = await provider.getTopologyNodes();
+        const nodes = await provider.getTopologyNodes();
         expect(nodes).toStrictEqual(expectedResponseTopology);
         expect(nodes.topologyNodes?.length).toBe(14)
         expect(nodes.topologyNodes[0].id).toBe("Algemeen")

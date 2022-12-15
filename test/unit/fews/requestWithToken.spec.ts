@@ -1,7 +1,6 @@
 import fetchMock from "fetch-mock";
-import {ImportStatusResponse, PiWebserviceProvider} from "../../../src";
+import {PiWebserviceProvider} from "../../../src";
 import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsFilter";
-import {DisplayGroupsResponse} from "../../../src/response/displaygroups/displayGroupsResponse";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
@@ -22,7 +21,7 @@ describe("archive/locations", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
         provider.oath2Token = "123"
 
-        const results: ImportStatusResponse = await provider.getImportStatus();
+        const results = await provider.getImportStatus();
         expect(results).toStrictEqual(expectedImportStatusResponse);
         expect("importStatus" in results).toBe(true);
         expect(results.importStatus.length).toBe(87);
@@ -44,7 +43,7 @@ describe("archive/locations", function () {
 
         const filter = {} as DisplayGroupsFilter;
         filter.nodeId = "test";
-        const response: DisplayGroupsResponse = await provider.getDisplayGroupsTimeSeriesInfo(filter);
+        const response = await provider.getDisplayGroupsTimeSeriesInfo(filter);
         expect(response).toStrictEqual(expectedResponseDisplayGroups);
         expect(response.results.length).toBe(1);
         expect(response.results[0].requests.length).toBe(9);

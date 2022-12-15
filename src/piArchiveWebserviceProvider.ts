@@ -1,13 +1,14 @@
 
 import {absoluteUrl, filterToParams} from "./utils";
-import {
+import type {
     ArchiveLocationsFilter,
     AttributesFilter,
-    DocumentFormat,
     ExternalForecastsFilter,
-    ParametersFilter
+    ParametersFilter,
+    ProductsMetaDataFilter
 } from "./requestParameters";
-import {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters} from "./response";
+import type {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ArchiveProductsMetadata } from "./response";
+import { DocumentFormat } from "./requestParameters";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 
 
@@ -16,10 +17,10 @@ const attributesForKey: { [key: string]: string } = {
 }
 
 export class PiArchiveWebserviceProvider {
-    baseUrl: URL
-    maxUrlLength?: number
+    private baseUrl: URL
+    private maxUrlLength?: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
-    webservice: PiRestService;
+    private webservice: PiRestService;
 
     set oath2Token(value: string) {
         this.webservice.oauth2Token = value;
@@ -158,6 +159,33 @@ export class PiArchiveWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/netcdfstorageforecasts${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Request product metadata from archive
+     *
+     * @param filter an object with request query parameters
+     * @returns ProductsMetaData PI API response
+     */
+    async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
+        const queryParameters = filterToParams(filter);
+        const url = this.productsMetaDataUrl(queryParameters);
+        const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Construct URL for locations request
+     *
+     * @param queryParameters query string
+     * @param useArchive whether to use the archive or not
+     * @returns complete url for making a request
+     */
+    productsMetaDataUrl(queryParameters: string): URL {
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/productsmetadata${queryParameters}`,
             this.baseUrl
         )
     }

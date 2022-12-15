@@ -3,7 +3,6 @@ import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsFilter";
-import {DisplayGroupsResponse} from "../../../src/response/displaygroups/displayGroupsResponse";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 
 
@@ -23,7 +22,7 @@ describe("archive/locations", function () {
 
         const filter = {} as DisplayGroupsFilter;
         filter.nodeId = "test";
-        const response: DisplayGroupsResponse = await provider.getDisplayGroupsTimeSeriesInfo(filter);
+        const response = await provider.getDisplayGroupsTimeSeriesInfo(filter);
         expect(response).toStrictEqual(expectedResponseDisplayGroups);
         expect(response.results.length).toBe(1);
         expect(response.results[0].requests.length).toBe(9);

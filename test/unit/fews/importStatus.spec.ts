@@ -1,7 +1,6 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
 import expectedResponse from '../mock/importStatus.json'
-import {ImportStatusResponse} from "../../../src/response";
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 
@@ -18,7 +17,7 @@ describe("import/status", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-        const results: ImportStatusResponse = await provider.getImportStatus();
+        const results = await provider.getImportStatus();
         expect(results).toStrictEqual(expectedResponse);
         expect("importStatus" in results).toBe(true);
         expect(results.importStatus.length).toBe(87);
