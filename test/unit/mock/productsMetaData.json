@@ -1,0 +1,57 @@
+{
+    "productsMetadata": [{
+        "version": 1,
+        "areaId": "meren",
+        "sourceId": "RWS",
+        "relativePathMetaDataFile": "2022/12/meren/12/product/meren_table_waterschappen_kunstwerken/2022_12_12_T_20_00_00/RWS_20221212222450/metaData.xml",
+        "relativePathProducts": ["2022/12/meren/12/product/meren_table_waterschappen_kunstwerken/2022_12_12_T_20_00_00/RWS_20221212222450/meren_table_waterschappen_kunstwerken.html"],
+        "dataSetCreationTime": "2022-12-12T22:24:51Z",
+        "timeZero": "2022-12-12T20:00:00Z",
+        "attributes": [{
+            "key": "product_id",
+            "value": "meren_table_waterschappen_kunstwerken"
+        }, {
+            "key": "area_id",
+            "value": "meren"
+        }, {
+            "key": "source_id",
+            "value": "RWS"
+        }, {
+            "key": "status",
+            "value": "draft"
+        }, {
+            "key": "group",
+            "value": "status"
+        }, {
+            "key": "title",
+            "value": "Waterschappen kunstwerken"
+        }]
+    }, {
+        "version": 2,
+        "areaId": "meren",
+        "sourceId": "RWS",
+        "relativePathMetaDataFile": "2022/12/meren/12/product/meren_figure_meteo_summary/2022_12_12_T_20_00_00/RWS_20221212222450/metaData.xml",
+        "relativePathProducts": ["2022/12/meren/12/product/meren_figure_meteo_summary/2022_12_12_T_20_00_00/RWS_20221212222450/meren_figure_meteo_summary.html"],
+        "dataSetCreationTime": "2022-12-12T22:24:51Z",
+        "timeZero": "2022-12-12T20:00:00Z",
+        "attributes": [{
+            "key": "product_id",
+            "value": "meren_figure_meteo_summary"
+        }, {
+            "key": "area_id",
+            "value": "meren"
+        }, {
+            "key": "source_id",
+            "value": "RWS"
+        }, {
+            "key": "status",
+            "value": "draft"
+        }, {
+            "key": "group",
+            "value": "status"
+        }, {
+            "key": "title",
+            "value": "Meteo overzicht"
+        }]
+    }]
+}
