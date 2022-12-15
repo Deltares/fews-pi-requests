@@ -32,8 +32,7 @@ describe("pi webservice provider", function () {
         const res = await provider.getParameters(filter);
         expect(res.parameters.length).toBeGreaterThan(0);
     })
-    
-    
+
     it("get external forecasts", async function () {
         const provider = new PiArchiveWebserviceProvider(baseUrl);
         const filter: ExternalForecastsFilter = {
@@ -43,7 +42,7 @@ describe("pi webservice provider", function () {
             endTime: "2022-12-14T00:00:00Z",
             attribute: {
                 'long_name': 'waterlevel_stat_bias',
-                system: 'nz' 
+                system: 'nz'
             }
         };
         const res = await provider.getExternalForecasts(filter);
@@ -56,7 +55,7 @@ describe("pi webservice provider", function () {
         const filter: AttributesFilter = {
             documentFormat: DocumentFormat.PI_JSON,
             attribute: {
-                'long_name': 'Wave_he10_stat_bias',                
+                'long_name': 'Wave_he10_stat_bias',
                 system: 'nz'
             }
         };
