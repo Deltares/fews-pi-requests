@@ -1,2 +1,2 @@
-export * from './VersionResponse'
-export * from './Version'
+export * from './VersionResponse.js'
+export * from './Version.js'

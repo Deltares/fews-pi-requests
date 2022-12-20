@@ -1,4 +1,4 @@
-import { DocumentFormat } from "./documentFormat";
+import { DocumentFormat } from "./documentFormat.js";
 
 export interface BaseFilter {
     /** File format version 1.9 or up */

@@ -1,5 +1,5 @@
-import { Records } from "./records";
-import { TaskRun } from "./taskRun";
+import type { Records } from "./records";
+import type { TaskRun } from "./taskRun";
 
 export interface TaskRunsResponse extends Records {
     taskRuns: TaskRun[];

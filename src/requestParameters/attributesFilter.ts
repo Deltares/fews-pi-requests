@@ -1,5 +1,5 @@
-import { BaseFilter } from "./baseFilter";
-import { AttributeQueryParameter } from "./attributeQueryParameter";
+import type { BaseFilter } from "./baseFilter";
+import type { AttributeQueryParameter } from "./attributeQueryParameter";
 
 export interface AttributesFilter extends BaseFilter {
     /**

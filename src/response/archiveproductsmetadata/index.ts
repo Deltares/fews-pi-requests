@@ -1,1 +1,1 @@
-export * from './ArchiveProductsMetaDataResponse'
+export * from './ArchiveProductsMetaDataResponse.js'

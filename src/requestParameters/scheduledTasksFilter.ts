@@ -1,5 +1,5 @@
-import { BaseFilter } from "./baseFilter";
-import { OrderBy } from "./orderBy";
+import type { BaseFilter } from "./baseFilter";
+import type { OrderBy } from "./orderBy";
 
 export interface ScheduledTasksFilter extends BaseFilter {
     // Filter option to hide one-off tasks. Default is false.

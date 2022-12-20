@@ -1,6 +1,6 @@
-import { FailoverPolicy } from "./failoverPolicy";
-import { TaskStatus } from "./taskStatus";
-import { WhatifID } from "./whatIfID";
+import type { FailoverPolicy } from "./failoverPolicy";
+import type { TaskStatus } from "./taskStatus";
+import type { WhatifID } from "./whatIfID";
 
 export interface Task {
     // Id
@@ -48,5 +48,4 @@ export interface Task {
     currentForecastDispatchTimeBackgroundColor: null;
     // The failover policy ot the task. Only relevant for multi Master Controller systems. Default is RUN_DUTY.
     failoverPolicy:                             FailoverPolicy;
-  }
-  
+}

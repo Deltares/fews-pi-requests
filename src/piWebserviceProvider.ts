@@ -14,9 +14,9 @@ import type {TopologyNodeResponse} from "./response/topology";
 import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
 
-import {absoluteUrl, filterToParams, splitUrl} from "./utils";
+import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
-import {DocumentFormat} from './requestParameters'
+import {DocumentFormat} from './requestParameters/index.js'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL

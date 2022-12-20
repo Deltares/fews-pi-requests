@@ -1,1 +1,1 @@
-export * from './timeSeriesResponse'
+export * from './timeSeriesResponse.js'
