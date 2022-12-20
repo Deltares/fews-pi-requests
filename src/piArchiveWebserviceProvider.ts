@@ -7,10 +7,18 @@ import type {
     ParametersFilter,
     ProductsMetaDataFilter
 } from "./requestParameters";
-import type {ArchiveAttributes, ArchiveExternalNetCDFStorageForecasts, ArchiveLocations, ArchiveParameters, ArchiveProductsMetadata } from "./response";
+import type {
+    ArchiveAreas,
+    ArchiveAttributes,
+    ArchiveExternalNetCDFStorageForecasts,
+    ArchiveLocations,
+    ArchiveParameters,
+    ArchiveProductsMetadata
+} from "./response";
 import { DocumentFormat } from "./requestParameters/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
-
+import {BaseFilter} from "./requestParameters/baseFilter";
+import {ArchiveSources} from "./response/archivesources";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -88,13 +96,64 @@ export class PiArchiveWebserviceProvider {
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
-     * @param useArchive whether to use the archive or not
      * @returns complete url for making a request
      */
      locationsUrl(filter: ArchiveLocationsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Request areas from the archive
+     *
+     * @param filter an object with request query parameters
+     * @returns ArchiveAreas PI API response
+     */
+    async getAreas(filter: BaseFilter): Promise<ArchiveAreas> {
+        const url = this.areasUrl(filter);
+        const res = await this.webservice.getData<ArchiveAreas>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Construct URL for archive areas request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    areasUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/areas${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Request sources from the archive
+     *
+     * @param filter an object with request query parameters
+     * @returns ArchiveSources PI API response
+     */
+    async getSources(filter: BaseFilter): Promise<ArchiveSources> {
+        const url = this.sourcesUrl(filter);
+        const res = await this.webservice.getData<ArchiveSources>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Construct URL for archive sources request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    sourcesUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/sources${queryParameters}`,
             this.baseUrl
         )
     }
@@ -180,7 +239,6 @@ export class PiArchiveWebserviceProvider {
      * Construct URL for locations request
      *
      * @param queryParameters query string
-     * @param useArchive whether to use the archive or not
      * @returns complete url for making a request
      */
     productsMetaDataUrl(queryParameters: string): URL {
