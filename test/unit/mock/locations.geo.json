@@ -1,0 +1,634 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "EPSG",
+    "properties": {
+      "code": 4326
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.4,
+          51.98
+        ]
+      },
+      "properties": {
+        "locationId": "amerongen_beneden",
+        "locationName": "amerongen beneden",
+        "description": "amerongen beneden",
+        "shortName": "amerongen beneden",
+        "lat": "51.98",
+        "lon": "5.4",
+        "x": "5.4",
+        "y": "51.98",
+        "z": "0.0",
+        "attributes": [
+          {
+            "name": "ID",
+            "type": "text",
+            "id": "ID",
+            "value": "amerongen_beneden"
+          },
+          {
+            "name": "NAME",
+            "description": "Naam in FEWS interface",
+            "type": "text",
+            "id": "NAME",
+            "value": "amerongen beneden"
+          },
+          {
+            "name": "ID_MATROOS",
+            "description": "ID in Matroos",
+            "type": "text",
+            "id": "ID_MATROOS",
+            "value": "amerongen beneden"
+          },
+          {
+            "name": "MATROOS_SRC",
+            "description": "Display selector",
+            "type": "text",
+            "id": "MATROOS_SRC",
+            "value": "Observed"
+          },
+          {
+            "name": "PERF",
+            "description": "Display selector",
+            "type": "text",
+            "id": "PERF",
+            "value": "Observed"
+          },
+          {
+            "name": "RWS_PRED",
+            "description": "RWS predicition - water level",
+            "type": "text",
+            "id": "RWS_PRED",
+            "value": "rws_pred"
+          },
+          {
+            "name": "WATERLEVEL",
+            "description": "Real time water level",
+            "type": "text",
+            "id": "WATERLEVEL",
+            "value": "waterlevel"
+          },
+          {
+            "name": "WATERLEVEL_PERF",
+            "description": "Real time water level",
+            "type": "text",
+            "id": "WATERLEVEL_PERF",
+            "value": "waterlevel"
+          },
+          {
+            "name": "RIV_DISCHARGE",
+            "description": "Fews Rivieren discharge",
+            "type": "text",
+            "id": "RIV_DISCHARGE",
+            "value": "discharge"
+          },
+          {
+            "name": "RIV_WATERLEVEL",
+            "description": "Fews Rivieren waterlevel",
+            "type": "text",
+            "id": "RIV_WATERLEVEL",
+            "value": "waterlevel"
+          },
+          {
+            "name": "VOORW",
+            "description": "Voorwaarschuwingspeil",
+            "type": "number",
+            "id": "VOORW",
+            "value": "0.0"
+          },
+          {
+            "name": "WAARS",
+            "description": "Waarschuwingspeil",
+            "type": "number",
+            "id": "WAARS",
+            "value": "0.0"
+          },
+          {
+            "name": "ALARM",
+            "description": "Alarmpeil",
+            "type": "number",
+            "id": "ALARM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_Z",
+            "description": "Q_Z",
+            "type": "number",
+            "id": "Q_Z",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_ZLR",
+            "description": "Q_ZLR",
+            "type": "number",
+            "id": "Q_ZLR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_Z2",
+            "description": "Q_Z2",
+            "type": "number",
+            "id": "Q_Z2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_S",
+            "description": "Q_S",
+            "type": "number",
+            "id": "Q_S",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SLR",
+            "description": "Q_SLR",
+            "type": "number",
+            "id": "Q_SLR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_S2",
+            "description": "Q_S2",
+            "type": "number",
+            "id": "Q_S2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_E",
+            "description": "Q_E",
+            "type": "number",
+            "id": "Q_E",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_ELR",
+            "description": "Q_ELR",
+            "type": "number",
+            "id": "Q_ELR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_E2",
+            "description": "Q_E2",
+            "type": "number",
+            "id": "Q_E2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_LH",
+            "description": "Q_LH",
+            "type": "number",
+            "id": "Q_LH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SH",
+            "description": "Q_SH",
+            "type": "number",
+            "id": "Q_SH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_DH",
+            "description": "Q_DH",
+            "type": "number",
+            "id": "Q_DH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_DM",
+            "description": "Q_DM",
+            "type": "number",
+            "id": "Q_DM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_FM",
+            "description": "Q_FM",
+            "type": "number",
+            "id": "Q_FM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_LS",
+            "description": "Q_LS",
+            "type": "number",
+            "id": "Q_LS",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_FL",
+            "description": "Q_FL",
+            "type": "number",
+            "id": "Q_FL",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SS",
+            "description": "Q_SS",
+            "type": "number",
+            "id": "Q_SS",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_DCSM",
+            "description": "Bias correction for DCSMv6 model results",
+            "type": "number",
+            "id": "BIAS_DCSM",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_ZUNO",
+            "description": "Bias correction for DCSMv6-ZuNov4 model results",
+            "type": "number",
+            "id": "BIAS_ZUNO",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_DCSM_T",
+            "description": "Bias correction for DCSMv6 model results",
+            "type": "text",
+            "id": "BIAS_DCSM_T",
+            "value": "0"
+          },
+          {
+            "name": "BIAS_ZUNO_T",
+            "description": "Bias correction for DCSMv6-ZuNov4 model results",
+            "type": "text",
+            "id": "BIAS_ZUNO_T",
+            "value": "0"
+          },
+          {
+            "name": "dateTimeAttribute",
+            "type": "dateTime",
+            "id": "dateTimeAttribute",
+            "value": "2018-09-03T14:02:00+0000"
+          },
+          {
+            "name": "MultiValuedNumber",
+            "type": "number",
+            "id": "MultiValuedNumber",
+            "value": "3.0"
+          },
+          {
+            "name": "MultiValuedNumber",
+            "type": "number",
+            "id": "MultiValuedNumber",
+            "value": "33.0"
+          },
+          {
+            "name": "MultiValuedText",
+            "type": "text",
+            "id": "MultiValuedText",
+            "value": "textA1"
+          },
+          {
+            "name": "MultiValuedText",
+            "type": "text",
+            "id": "MultiValuedText",
+            "value": "textA2"
+          }
+        ],
+        "relations": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.41,
+          51.98
+        ]
+      },
+      "properties": {
+        "locationId": "amerongen_boven",
+        "locationName": "amerongen boven",
+        "description": "amerongen boven",
+        "shortName": "amerongen boven",
+        "lat": "51.98",
+        "lon": "5.41",
+        "x": "5.41",
+        "y": "51.98",
+        "z": "0.0",
+        "attributes": [
+          {
+            "name": "ID",
+            "type": "text",
+            "id": "ID",
+            "value": "amerongen_boven"
+          },
+          {
+            "name": "NAME",
+            "description": "Naam in FEWS interface",
+            "type": "text",
+            "id": "NAME",
+            "value": "amerongen boven"
+          },
+          {
+            "name": "ID_MATROOS",
+            "description": "ID in Matroos",
+            "type": "text",
+            "id": "ID_MATROOS",
+            "value": "amerongen boven"
+          },
+          {
+            "name": "MATROOS_SRC",
+            "description": "Display selector",
+            "type": "text",
+            "id": "MATROOS_SRC",
+            "value": "Observed"
+          },
+          {
+            "name": "PERF",
+            "description": "Display selector",
+            "type": "text",
+            "id": "PERF",
+            "value": "Observed"
+          },
+          {
+            "name": "RWS_PRED",
+            "description": "RWS predicition - water level",
+            "type": "text",
+            "id": "RWS_PRED",
+            "value": "rws_pred"
+          },
+          {
+            "name": "WATERLEVEL",
+            "description": "Real time water level",
+            "type": "text",
+            "id": "WATERLEVEL",
+            "value": "waterlevel"
+          },
+          {
+            "name": "WATERLEVEL_PERF",
+            "description": "Real time water level",
+            "type": "text",
+            "id": "WATERLEVEL_PERF",
+            "value": "waterlevel"
+          },
+          {
+            "name": "RIV_DISCHARGE",
+            "description": "Fews Rivieren discharge",
+            "type": "text",
+            "id": "RIV_DISCHARGE",
+            "value": "discharge"
+          },
+          {
+            "name": "RIV_WATERLEVEL",
+            "description": "Fews Rivieren waterlevel",
+            "type": "text",
+            "id": "RIV_WATERLEVEL",
+            "value": "waterlevel"
+          },
+          {
+            "name": "VOORW",
+            "description": "Voorwaarschuwingspeil",
+            "type": "number",
+            "id": "VOORW",
+            "value": "0.0"
+          },
+          {
+            "name": "WAARS",
+            "description": "Waarschuwingspeil",
+            "type": "number",
+            "id": "WAARS",
+            "value": "0.0"
+          },
+          {
+            "name": "ALARM",
+            "description": "Alarmpeil",
+            "type": "number",
+            "id": "ALARM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_Z",
+            "description": "Q_Z",
+            "type": "number",
+            "id": "Q_Z",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_ZLR",
+            "description": "Q_ZLR",
+            "type": "number",
+            "id": "Q_ZLR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_Z2",
+            "description": "Q_Z2",
+            "type": "number",
+            "id": "Q_Z2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_S",
+            "description": "Q_S",
+            "type": "number",
+            "id": "Q_S",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SLR",
+            "description": "Q_SLR",
+            "type": "number",
+            "id": "Q_SLR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_S2",
+            "description": "Q_S2",
+            "type": "number",
+            "id": "Q_S2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_E",
+            "description": "Q_E",
+            "type": "number",
+            "id": "Q_E",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_ELR",
+            "description": "Q_ELR",
+            "type": "number",
+            "id": "Q_ELR",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_E2",
+            "description": "Q_E2",
+            "type": "number",
+            "id": "Q_E2",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_LH",
+            "description": "Q_LH",
+            "type": "number",
+            "id": "Q_LH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SH",
+            "description": "Q_SH",
+            "type": "number",
+            "id": "Q_SH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_DH",
+            "description": "Q_DH",
+            "type": "number",
+            "id": "Q_DH",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_DM",
+            "description": "Q_DM",
+            "type": "number",
+            "id": "Q_DM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_FM",
+            "description": "Q_FM",
+            "type": "number",
+            "id": "Q_FM",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_LS",
+            "description": "Q_LS",
+            "type": "number",
+            "id": "Q_LS",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_FL",
+            "description": "Q_FL",
+            "type": "number",
+            "id": "Q_FL",
+            "value": "0.0"
+          },
+          {
+            "name": "Q_SS",
+            "description": "Q_SS",
+            "type": "number",
+            "id": "Q_SS",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_DCSM",
+            "description": "Bias correction for DCSMv6 model results",
+            "type": "number",
+            "id": "BIAS_DCSM",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_ZUNO",
+            "description": "Bias correction for DCSMv6-ZuNov4 model results",
+            "type": "number",
+            "id": "BIAS_ZUNO",
+            "value": "0.0"
+          },
+          {
+            "name": "BIAS_DCSM_T",
+            "description": "Bias correction for DCSMv6 model results",
+            "type": "text",
+            "id": "BIAS_DCSM_T",
+            "value": "0"
+          },
+          {
+            "name": "BIAS_ZUNO_T",
+            "description": "Bias correction for DCSMv6-ZuNov4 model results",
+            "type": "text",
+            "id": "BIAS_ZUNO_T",
+            "value": "0"
+          },
+          {
+            "name": "dateTimeAttribute",
+            "type": "dateTime",
+            "id": "dateTimeAttribute",
+            "value": "2018-09-04T14:02:00+0000"
+          },
+          {
+            "name": "MultiValuedNumber",
+            "type": "number",
+            "id": "MultiValuedNumber",
+            "value": "10.0"
+          },
+          {
+            "name": "MultiValuedNumber",
+            "type": "number",
+            "id": "MultiValuedNumber",
+            "value": "20.0"
+          },
+          {
+            "name": "MultiValuedNumber",
+            "type": "number",
+            "id": "MultiValuedNumber",
+            "value": "30.0"
+          },
+          {
+            "name": "MultiValuedText",
+            "type": "text",
+            "id": "MultiValuedText",
+            "value": "textB1"
+          },
+          {
+            "name": "MultiValuedText",
+            "type": "text",
+            "id": "MultiValuedText",
+            "value": "textB2"
+          },
+          {
+            "name": "MultiValuedText",
+            "type": "text",
+            "id": "MultiValuedText",
+            "value": "textB3"
+          }
+        ],
+        "relations": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.0,
+          1.0
+        ]
+      },
+      "properties": {
+        "locationId": "locF",
+        "locationName": "F",
+        "shortName": "F",
+        "lat": "1.0",
+        "lon": "1.0",
+        "x": "1.0",
+        "y": "1.0",
+        "z": "1.0",
+        "attributes": [
+          {
+            "name": "TEST_ATTRIBUTE",
+            "type": "text",
+            "id": "TEST_ATTRIBUTE",
+            "value": "F"
+          }
+        ],
+        "relations": []
+      }
+    }
+  ]
+}

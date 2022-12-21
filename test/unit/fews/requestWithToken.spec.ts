@@ -4,7 +4,7 @@ import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsF
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
-describe("archive/locations", function () {
+describe("bearer token", function () {
     afterAll(function () {
         fetchMock.restore();
     });

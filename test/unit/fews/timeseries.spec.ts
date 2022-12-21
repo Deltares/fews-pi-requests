@@ -6,7 +6,7 @@ import {TimeSeriesFilter} from "../../../src/requestParameters/timeSeriesFilter"
 import {DocumentFormat} from "../../../src";
 import {TimeSeriesType} from "../../../src/requestParameters/timeSeriesType";
 
-describe("archive/locations", function () {
+describe("timeseries", function () {
     afterAll(function () {
         fetchMock.restore();
     });
