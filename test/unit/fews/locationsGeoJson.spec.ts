@@ -20,7 +20,7 @@ describe("locations geojson", function () {
         const locationsFilter: LocationsFilter = {
             documentFormat: DocumentFormat.GEO_JSON
         }
-        const results = await provider.getGeoJsonLocations(locationsFilter);
+        const results = await provider.getLocations(locationsFilter);
         expect(results).toStrictEqual(expectedResponse);
         expect(results.type).toBe('FeatureCollection');
         expect("features" in results).toBe(true);

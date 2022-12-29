@@ -8,7 +8,9 @@ import type {
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
-    LocationsFilter
+    LocationsFilter,
+    LocationsFilterGeoJSON,
+    LocationsFilterPiJSON
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
@@ -51,21 +53,11 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Locations PI API response
      */
-    async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
+    async getLocations(filter: LocationsFilterPiJSON): Promise<LocationsResponse>
+    async getLocations(filter: LocationsFilterGeoJSON): Promise<LocationsResponseGeoJson>
+    async getLocations(filter: LocationsFilter): Promise<unknown> {
         const url = this.locationsUrl(filter);
-        const res = await this.webservice.getData<LocationsResponse>(url.toString());
-        return res.data;
-    }
-
-    /**
-     * Request geojson locations
-     *
-     * @param filter an object with request query parameters
-     * @returns Locations PI API response
-     */
-    async getGeoJsonLocations(filter: LocationsFilter): Promise<LocationsResponseGeoJson> {
-        const url = this.locationsUrl(filter);
-        const res = await this.webservice.getData<LocationsResponseGeoJson>(url.toString());
+        const res = await this.webservice.getData(url.toString());
         return res.data;
     }
 
