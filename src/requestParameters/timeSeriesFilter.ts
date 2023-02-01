@@ -11,6 +11,8 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     endForecastTime?: string;
     // (string): Ensemble identifier of for time series
     ensembleId?: string;
+    // (string): Ensemble Member identifier of for time series. Since 2022.02
+    ensembleMemberId?: string;
     // (dateTime format: yyyy-MM-ddTHH:mm:ssZ): Time value of external forecast time. This parameter has to be duplicated to specify multiple multiple externalForecastTimes.
     externalForecastTimes?: string | string[];
     // (string): An existing subfilter of the default filter id. N.B. Can be used in combination with taskRunIds since 2020.01.
