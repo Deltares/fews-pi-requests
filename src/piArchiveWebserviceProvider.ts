@@ -1,5 +1,5 @@
 
-import {absoluteUrl, filterToParams} from "./utils/index.js";
+import { absoluteUrl, filterToParams } from "./utils/index.js";
 import type {
     ArchiveLocationsFilter,
     AttributesFilter,
@@ -16,9 +16,9 @@ import type {
     ArchiveProductsMetadata
 } from "./response";
 import { DocumentFormat } from "./requestParameters/index.js";
-import {PiRestService} from "@deltares/fews-web-oc-utils";
-import {BaseFilter} from "./requestParameters/baseFilter";
-import {ArchiveSources} from "./response/archivesources";
+import { PiRestService } from "@deltares/fews-web-oc-utils";
+import { BaseFilter } from "./requestParameters/baseFilter";
+import { ArchiveSources } from "./response/archivesources";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -72,7 +72,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-     parametersUrl(filter: ParametersFilter): URL {
+    parametersUrl(filter: ParametersFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,
@@ -98,7 +98,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-     locationsUrl(filter: ArchiveLocationsFilter): URL {
+    locationsUrl(filter: ArchiveLocationsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,
@@ -176,7 +176,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-     attributesUrl(filter: AttributesFilter): URL {
+    attributesUrl(filter: AttributesFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/attributes${queryParameters}`,
@@ -202,7 +202,7 @@ export class PiArchiveWebserviceProvider {
         const defaults: ExternalForecastsFilter = {
             documentFormat: DocumentFormat.PI_JSON,
         }
-        const filterWithDefaults = {...mappedFilter, ...defaults}
+        const filterWithDefaults = { ...mappedFilter, ...defaults }
         const url = this.externalForecastsUrl(filterWithDefaults)
         const res = await this.webservice.getData<ArchiveExternalNetCDFStorageForecasts>(url.toString());
         return res.data;
@@ -214,7 +214,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-     externalForecastsUrl(filter: ExternalForecastsFilter): URL {
+    externalForecastsUrl(filter: ExternalForecastsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/netcdfstorageforecasts${queryParameters}`,
@@ -229,9 +229,11 @@ export class PiArchiveWebserviceProvider {
      * @returns ProductsMetaData PI API response
      */
     async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
+        const requestInit = {} as RequestInit;
+        requestInit.cache = "no-cache";
         const queryParameters = filterToParams(filter);
         const url = this.productsMetaDataUrl(queryParameters);
-        const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString());
+        const res = await this.webservice.getDataWithRequestInit<ArchiveProductsMetadata>(url.toString(), requestInit);
         return res.data;
     }
 
