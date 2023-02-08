@@ -1,1 +1,1 @@
-export * from './actionsResponse'
+export * from './actionsResponse.js'
