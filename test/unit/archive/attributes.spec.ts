@@ -1,5 +1,3 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
-import {ArchiveAttributes} from '../../../src/response'
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/attributes.json'
 import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
@@ -12,7 +10,7 @@ describe("archive/attributes", function () {
     });
 
     it("gets called when done", async function () {
-        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source', {
+        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterId=waterlevel_stat_bias&locationId=delfzijl&attributes=source', {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });
@@ -21,11 +19,11 @@ describe("archive/attributes", function () {
 
         const filter: AttributesFilter = {
             documentFormat: DocumentFormat.PI_JSON,
-            parameterIds: "waterlevel_stat_bias",
-            locationIds: "delfzijl",
+            parameterId: "waterlevel_stat_bias",
+            locationId: "delfzijl",
             attributes: 'source',
         }
-        const results: ArchiveAttributes = await provider.getAttributes(filter) as ArchiveAttributes;
+        const results = await provider.getAttributes(filter);
         expect("archiveAttributes" in results).toBe(true)
         expect(results.archiveAttributes.length).toBe(5)
         expect(results).toStrictEqual(expectedResponse);
