@@ -10,9 +10,9 @@
  */
 export interface LocationsResponseGeoJson {
   /**
-   * PI Version
+   * Type
    */
-  type: string;
+  type: "FeatureCollection";
   crs: LocationGeoJsonCrs;
   /**
    * LocationGeoJsonFeatures
@@ -40,18 +40,18 @@ export interface LocationGeoJsonFeature {
    * the id of the location
    */
   type: string;
-  geometry: LocationGeoJsonGeometryFeature;
+  geometry: LocationGeoJsonGeometry;
   properties: LocationGeoJsonFeatureProperties;
 }
-export interface LocationGeoJsonGeometryFeature {
+/**
+ * GeoJSon geometry
+ */
+export interface LocationGeoJsonGeometry {
   /**
-   * the id of the location
+   * the geometry type
    */
-  type: string;
-  /**
-   * GeometryCoordinates
-   */
-  coordinates: number[];
+  type: "Point";
+  [k: string]: unknown;
 }
 export interface LocationGeoJsonFeatureProperties {
   /**
@@ -105,7 +105,7 @@ export interface LocationGeoJsonFeatureProperties {
   /**
    * Related Locations
    */
-  relations?: LocationGeJsonRelation[];
+  relations?: LocationGeoJsonRelation[];
   /**
    * Id of the parent location
    */
@@ -141,7 +141,7 @@ export interface LocationGeoJsonAttributes {
    */
   value?: string;
 }
-export interface LocationGeJsonRelation {
+export interface LocationGeoJsonRelation {
   /**
    * Id
    */
