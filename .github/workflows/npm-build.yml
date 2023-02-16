@@ -17,9 +17,6 @@ jobs:
       matrix:
         node-version: [16, 18.3]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        include:
-          - node-version: 18.3
-            NODE_OPTIONS: "--openssl-legacy-provider"
 
     steps:
       - uses: actions/checkout@v3
