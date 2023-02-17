@@ -16,6 +16,7 @@ import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroups
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
+import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
 
 export class PiWebserviceProvider {
@@ -27,16 +28,20 @@ export class PiWebserviceProvider {
     /**
      * Constructor for PiWebserviceProvider
      *
-     * @param url the base url where the PI servive is available
-     * @param maxUrlLength if the length of the url is larger than specified, the requests will be split up.
+     * @param url the base url where the PI service is available
+     * @param {Object} [options] Optional constructor options
+     * @param {number} [options.maxUrlLength] A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
+     * @param {TransformRequestFunction} [options.transformRequestFn] A function that can be used to modify the Request
+     * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
+     * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, maxUrlLength?: number) {
+    constructor(url: string, options: {maxUrlLength?: number; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this._baseUrl = absoluteUrl(url)
-        this.maxUrlLength = maxUrlLength ?? Infinity;
-        this.webservice = new PiRestService(url);
+        this.maxUrlLength = options.maxUrlLength ?? Infinity;
+        this.webservice = new PiRestService(url, options.transformRequestFn);
 
     }
 

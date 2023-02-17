@@ -17,6 +17,7 @@ import type {
 } from "./response";
 import { DocumentFormat } from "./requestParameters/index.js";
 import { PiRestService } from "@deltares/fews-web-oc-utils";
+import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import { BaseFilter } from "./requestParameters/baseFilter";
 import { ArchiveSources } from "./response/archivesources";
 
@@ -43,15 +44,19 @@ export class PiArchiveWebserviceProvider {
      * Constructor for PiArchiveWebserviceProvider
      *
      * @param url the base url where the PI servive is available
-     * @param maxUrlLength
+     * @param {Object} [options] Optional constructor options
+     * @param {number} [options.maxUrlLength] A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
+     * @param {TransformRequestFunction} [options.transformRequestFn] A function that can be used to modify the Request
+     * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
+     * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, maxUrlLength?: number) {
+    constructor(url: string, options: {maxUrlLength?: number; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this.baseUrl = absoluteUrl(url)
-        this.maxUrlLength = maxUrlLength;
-        this.webservice = new PiRestService(url);
+        this.maxUrlLength = options.maxUrlLength ?? Infinity;
+        this.webservice = new PiRestService(url, options.transformRequestFn);
     }
 
     /**
