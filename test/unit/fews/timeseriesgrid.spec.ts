@@ -7,7 +7,7 @@ import {TimeSeriesGridFilter} from "../../../src/requestParameters/timeSeriesGri
 import {DocumentFormat} from "../../../src";
 
 
-describe("archive/locations", function () {
+describe("timeseries/grid", function () {
 
     afterAll(function () {
         fetchMock.restore();

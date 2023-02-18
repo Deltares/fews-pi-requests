@@ -2,19 +2,23 @@
 import { absoluteUrl, filterToParams } from "./utils/index.js";
 import type {
     ArchiveLocationsFilter,
+    ArchiveLocationsFilterGeoJSON,
+    ArchiveLocationsFilterPiJSON,
     AttributesFilter,
     ExternalForecastsFilter,
     ParametersFilter,
     ProductsMetaDataFilter
-} from "./requestParameters";
+} from "./requestParameters/index.js";
 import type {
     ArchiveAreas,
     ArchiveAttributes,
     ArchiveExternalNetCDFStorageForecasts,
     ArchiveLocations,
     ArchiveParameters,
-    ArchiveProductsMetadata
-} from "./response";
+    ArchiveProductsMetadata,
+    LocationsResponse,
+    LocationsResponseGeoJson
+} from "./response/index.js";
 import { DocumentFormat } from "./requestParameters/index.js";
 import { PiRestService } from "@deltares/fews-web-oc-utils";
 import { BaseFilter } from "./requestParameters/baseFilter";
@@ -86,7 +90,9 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Locations PI API response
      */
-    async getLocations(filter: ArchiveLocationsFilter): Promise<ArchiveLocations> {
+    async getLocations(filter: ArchiveLocationsFilterPiJSON): Promise<LocationsResponse>
+    async getLocations(filter: ArchiveLocationsFilterGeoJSON): Promise<LocationsResponseGeoJson>
+    async getLocations(filter: ArchiveLocationsFilter): Promise<unknown> {
         const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<ArchiveLocations>(url.toString());
         return res.data;

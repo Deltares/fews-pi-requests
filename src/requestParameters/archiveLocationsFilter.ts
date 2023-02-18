@@ -1,7 +1,9 @@
-import type { BaseFilter } from "./baseFilter";
-import type { AttributeQueryParameter } from "./attributeQueryParameter";
+import type { BaseFilter } from "./baseFilter.js";
+import type { AttributeQueryParameter } from "./attributeQueryParameter.js";
+import { DocumentFormat } from "./documentFormat.js";
 
-export interface ArchiveLocationsFilter extends BaseFilter {
+
+export interface ArchiveLocationsFilterParameters extends BaseFilter {
     /**
      * Subset of locations for which to retrieve parameters.
      * This parameter has to be duplicated to specify multiple locations.
@@ -13,3 +15,12 @@ export interface ArchiveLocationsFilter extends BaseFilter {
      */
     attribute?: AttributeQueryParameter;
 }
+export interface ArchiveLocationsFilterPiJSON extends ArchiveLocationsFilterParameters {
+    documentFormat: DocumentFormat.PI_JSON;
+}
+
+export interface ArchiveLocationsFilterGeoJSON extends ArchiveLocationsFilterParameters {
+    documentFormat: DocumentFormat.GEO_JSON;
+}
+
+export type ArchiveLocationsFilter = ArchiveLocationsFilterPiJSON | ArchiveLocationsFilterGeoJSON
