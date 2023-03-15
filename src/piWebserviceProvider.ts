@@ -18,6 +18,7 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
+import {WebOcConfigurationResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -164,6 +165,12 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getWebOcConfiguration(): Promise<WebOcConfigurationResponse> {
+        const url = this.webOcConfigurationUrl();
+        const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
+        return res.data;
+    }
+
     /**
      * Get the time series info for a certain topology node
      *
@@ -268,6 +275,27 @@ export class PiWebserviceProvider {
     versionUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    webOcConfigurationUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/configuration`,
+            this._baseUrl
+        )
+    }
+
+    webOcResourcesUrl(queryParameters: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    webOcPublicResourcesUrl(queryParameters: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/public?${queryParameters}`,
             this._baseUrl
         )
     }
