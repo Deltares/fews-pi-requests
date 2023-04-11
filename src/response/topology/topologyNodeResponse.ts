@@ -19,6 +19,9 @@ export interface TopologyNode {
   name: string;
   workflowId?: string;
   localRun?: boolean;
+  url?: string;
+  displayId?: string;
+  displayGroupId?: string;
   /**
    * TopologyNodes
    */
