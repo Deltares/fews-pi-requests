@@ -230,11 +230,9 @@ export class PiArchiveWebserviceProvider {
      * @returns ProductsMetaData PI API response
      */
     async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
         const queryParameters = filterToParams(filter);
         const url = this.productsMetaDataUrl(queryParameters);
-        const res = await this.webservice.getDataWithRequestInit<ArchiveProductsMetadata>(url.toString(), requestInit);
+        const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString());
         return res.data;
     }
 

@@ -63,10 +63,8 @@ export class PiWebserviceProvider {
      * @returns time series api response
      */
     async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
         const url = new URL(relativeUrl, this._baseUrl);
-        const res = await this.webservice.getDataWithRequestInit<TimeSeriesResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
         return res.data;
     }
 
@@ -127,9 +125,7 @@ export class PiWebserviceProvider {
         const defaults: Partial<TaskRunsFilter> = {}
         const filterWithDefaults = {...defaults, ...filter}
         const url = this.taskRunsUrl(filterWithDefaults);
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<TaskRunsResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<TaskRunsResponse>(url.toString());
         return res.data;
     }
 
@@ -152,9 +148,7 @@ export class PiWebserviceProvider {
      */
     async getImportStatus(): Promise<ImportStatusResponse> {
         const url = this.importStatusUrl();
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<ImportStatusResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<ImportStatusResponse>(url.toString());
         return res.data;
     }
 
@@ -166,9 +160,7 @@ export class PiWebserviceProvider {
     async getVersion(): Promise<VersionResponse> {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.versionUrl(queryParameters);
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<VersionResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<VersionResponse>(url.toString());
         return res.data;
     }
 
