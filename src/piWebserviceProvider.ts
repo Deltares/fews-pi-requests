@@ -45,11 +45,6 @@ export class PiWebserviceProvider {
 
     }
 
-
-    set oath2Token(value: string) {
-        this.webservice.oauth2Token = value;
-    }
-
     /**
      * Request locations
      *

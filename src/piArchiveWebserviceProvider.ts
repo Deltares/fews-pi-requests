@@ -31,10 +31,6 @@ export class PiArchiveWebserviceProvider {
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     private webservice: PiRestService;
 
-    set oath2Token(value: string) {
-        this.webservice.oauth2Token = value;
-    }
-
     addPiJsonFormat(queryParameters: string): string {
         const preFix = queryParameters.length == 0 ? "?" : "&";
         return queryParameters + preFix + "documentFormat=" + DocumentFormat.PI_JSON;

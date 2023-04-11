@@ -4,6 +4,18 @@ import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsF
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
+async function transformRequest(request: Request): Promise<Request> {
+    const requestInit: RequestInit = {
+        // Only some of the properties of RequestInit are used by fetch-mock, such as 'headers'.
+        headers: { 
+            'Content-Type': "application/json",
+            'Authorization': "Bearer 123"
+        },
+    }
+    const newRequest = new Request(request, requestInit)
+    return newRequest
+}
+
 describe("archive/locations", function () {
     afterAll(function () {
         fetchMock.restore();
@@ -18,8 +30,7 @@ describe("archive/locations", function () {
             }
         });
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-        provider.oath2Token = "123"
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {transformRequestFn: transformRequest})
 
         const results = await provider.getImportStatus();
         expect(results).toStrictEqual(expectedImportStatusResponse);
@@ -38,8 +49,7 @@ describe("archive/locations", function () {
             }
         });
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
-        provider.oath2Token = "123"
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {transformRequestFn: transformRequest})
 
         const filter = {} as DisplayGroupsFilter;
         filter.nodeId = "test";
