@@ -16,6 +16,7 @@ import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroups
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
+import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
 
 export class PiWebserviceProvider {
@@ -27,22 +28,21 @@ export class PiWebserviceProvider {
     /**
      * Constructor for PiWebserviceProvider
      *
-     * @param url the base url where the PI servive is available
-     * @param maxUrlLength if the length of the url is larger than specified, the requests will be split up.
+     * @param url the base url where the PI service is available
+     * @param {Object} [options] Optional constructor options
+     * @param {number} [options.maxUrlLength] A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
+     * @param {TransformRequestFunction} [options.transformRequestFn] A function that can be used to modify the Request
+     * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
+     * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, maxUrlLength?: number) {
+    constructor(url: string, options: {maxUrlLength?: number; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this._baseUrl = absoluteUrl(url)
-        this.maxUrlLength = maxUrlLength ?? Infinity;
-        this.webservice = new PiRestService(url);
+        this.maxUrlLength = options.maxUrlLength ?? Infinity;
+        this.webservice = new PiRestService(url, options.transformRequestFn);
 
-    }
-
-
-    set oath2Token(value: string) {
-        this.webservice.oauth2Token = value;
     }
 
     /**
@@ -63,10 +63,8 @@ export class PiWebserviceProvider {
      * @returns time series api response
      */
     async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
         const url = new URL(relativeUrl, this._baseUrl);
-        const res = await this.webservice.getDataWithRequestInit<TimeSeriesResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
         return res.data;
     }
 
@@ -127,9 +125,7 @@ export class PiWebserviceProvider {
         const defaults: Partial<TaskRunsFilter> = {}
         const filterWithDefaults = {...defaults, ...filter}
         const url = this.taskRunsUrl(filterWithDefaults);
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<TaskRunsResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<TaskRunsResponse>(url.toString());
         return res.data;
     }
 
@@ -152,9 +148,7 @@ export class PiWebserviceProvider {
      */
     async getImportStatus(): Promise<ImportStatusResponse> {
         const url = this.importStatusUrl();
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<ImportStatusResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<ImportStatusResponse>(url.toString());
         return res.data;
     }
 
@@ -166,9 +160,7 @@ export class PiWebserviceProvider {
     async getVersion(): Promise<VersionResponse> {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.versionUrl(queryParameters);
-        const requestInit = {} as RequestInit;
-        requestInit.cache = "no-cache";
-        const res = await this.webservice.getDataWithRequestInit<VersionResponse>(url.toString(), requestInit);
+        const res = await this.webservice.getData<VersionResponse>(url.toString());
         return res.data;
     }
 

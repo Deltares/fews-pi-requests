@@ -1,3 +1,4 @@
+import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/productsMetaData.json'
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";

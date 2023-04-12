@@ -1,3 +1,4 @@
+import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/externalForecasts.json'
 import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
