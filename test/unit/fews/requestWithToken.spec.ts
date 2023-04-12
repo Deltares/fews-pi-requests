@@ -1,3 +1,4 @@
+import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {PiWebserviceProvider} from "../../../src";
 import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsFilter";

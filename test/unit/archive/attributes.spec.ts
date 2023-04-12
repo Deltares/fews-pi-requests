@@ -1,5 +1,5 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 import {ArchiveAttributes} from '../../../src/response'
+import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/attributes.json'
 import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
