@@ -5,6 +5,7 @@ import type {ImportStatusResponse} from './response/importStatus'
 import type {VersionResponse} from './response/version'
 
 import type {
+    BaseFilter,
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
@@ -171,7 +172,10 @@ export class PiWebserviceProvider {
      * @returns Web OC configuration API response
      */
     async getWebOcConfiguration(): Promise<WebOcConfigurationResponse> {
-        const url = this.webOcConfigurationUrl();
+        const defaults: BaseFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const url = this.webOcConfigurationUrl(defaults);
         const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
         return res.data;
     }
@@ -289,9 +293,10 @@ export class PiWebserviceProvider {
      *
      * @returns complete url for making a request
      */
-    webOcConfigurationUrl(): URL {
+    webOcConfigurationUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/configuration`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config${queryParameters}`,
             this._baseUrl
         )
     }

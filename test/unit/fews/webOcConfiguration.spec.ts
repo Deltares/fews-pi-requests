@@ -11,7 +11,7 @@ describe("webOcConfig", function () {
     });
 
     it("tests fetch Web OC config", async function () {
-        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/configuration", {
+        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/weboc/config?documentFormat=PI_JSON", {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });
