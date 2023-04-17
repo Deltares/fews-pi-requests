@@ -165,6 +165,11 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    /**
+     * Get the configuration of FEWS related to the Web OC.
+     *
+     * @returns Web OC configuration API response
+     */
     async getWebOcConfiguration(): Promise<WebOcConfigurationResponse> {
         const url = this.webOcConfigurationUrl();
         const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
@@ -279,6 +284,11 @@ export class PiWebserviceProvider {
         )
     }
 
+    /**
+     * Construct URL for Web OC configuration
+     *
+     * @returns complete url for making a request
+     */
     webOcConfigurationUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/configuration`,
@@ -286,6 +296,12 @@ export class PiWebserviceProvider {
         )
     }
 
+    /**
+     * Construct URL for Web OC configuration resources
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
     webOcResourcesUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources?${queryParameters}`,
@@ -293,6 +309,12 @@ export class PiWebserviceProvider {
         )
     }
 
+    /**
+     * Construct URL for Web OC configuration public resources
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
     webOcPublicResourcesUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/public?${queryParameters}`,
