@@ -302,32 +302,6 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Construct URL for Web OC configuration resources
-     *
-     * @param queryParameters query string
-     * @returns complete url for making a request
-     */
-    webOcResourcesUrl(queryParameters: string): URL {
-        return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources?${queryParameters}`,
-            this._baseUrl
-        )
-    }
-
-    /**
-     * Construct URL for Web OC configuration public resources
-     *
-     * @param queryParameters query string
-     * @returns complete url for making a request
-     */
-    webOcPublicResourcesUrl(queryParameters: string): URL {
-        return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/public?${queryParameters}`,
-            this._baseUrl
-        )
-    }
-
-    /**
      * Construct URL for topology nodes request
      *
      * @returns complete url for making a request
