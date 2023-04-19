@@ -5,6 +5,7 @@ import type {ImportStatusResponse} from './response/importStatus'
 import type {VersionResponse} from './response/version'
 
 import type {
+    BaseFilter,
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
@@ -18,6 +19,7 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
+import {WebOcConfigurationResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -165,6 +167,20 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the configuration of FEWS related to the Web OC.
+     *
+     * @returns Web OC configuration API response
+     */
+    async getWebOcConfiguration(): Promise<WebOcConfigurationResponse> {
+        const defaults: BaseFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const url = this.webOcConfigurationUrl(defaults);
+        const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Get the time series info for a certain topology node
      *
      * @param filter search options for the displays (nodeId)
@@ -268,6 +284,19 @@ export class PiWebserviceProvider {
     versionUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for Web OC configuration
+     *
+     * @returns complete url for making a request
+     */
+    webOcConfigurationUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config${queryParameters}`,
             this._baseUrl
         )
     }

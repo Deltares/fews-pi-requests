@@ -1,3 +1,4 @@
+export * from './baseFilter.js'
 export * from './DisplayGroupsFilter.js'
 export * from './archiveLocationsFilter.js'
 export * from './attributeQueryParameter.js'

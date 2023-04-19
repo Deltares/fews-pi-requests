@@ -1,0 +1,42 @@
+{
+  "general": {
+    "title": "my title",
+    "icons": {
+      "logo": "mylogo.png",
+      "favicon": "https://mydomain.com/images/myfavicon.ico"
+    }
+  },
+  "components": [
+    {
+      "id": "spatialDisplay",
+      "type": "SpatialDisplay",
+      "title": "My Spatial Display"
+    },
+    {
+      "id": "schematicStatusDisplay",
+      "type": "SchematicStatusDisplay",
+      "title": "My Schematic Status Display"
+    },
+    {
+      "id": "spatialDisplay",
+      "type": "spatialDisplay",
+      "title": "My Time Series Display"
+    },
+    {
+      "id": "systemMonitor",
+      "type": "SystemMonitor",
+      "title": "My System Monitor"
+    },
+    {
+      "id": "archiveDisplay",
+      "type": "ArchiveDisplay",
+      "title": "My Archive Display"
+    },
+    {
+      "id": "dataViewer",
+      "type": "DataViewer",
+      "title": "My Data Viewer",
+      "editPermissions": true
+    }
+  ]
+}
