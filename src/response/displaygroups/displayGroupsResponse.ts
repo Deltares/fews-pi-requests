@@ -1,4 +1,5 @@
-import {ActionResult} from "../actions/index.js";
+import type {ActionResult} from "../actions";
+
 export interface DisplayGroupsResponse {
     resultsNotAvailableForRequest: boolean;
     results: ActionResult[];

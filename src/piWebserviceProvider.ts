@@ -14,12 +14,13 @@ import type {
 import type {TopologyNodeResponse} from "./response/topology";
 import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
 import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
+import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
+import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
-import {DisplayGroupsNodesResponse, WebOcConfigurationResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
