@@ -13,7 +13,7 @@ import type {
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
-import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
+import type {ActionsResponse} from "./response/actions/actionsResponse";
 import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
 import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
 
@@ -187,9 +187,9 @@ export class PiWebserviceProvider {
      * @param filter search options for the displays (nodeId)
      * @returns Display groups API response
      */
-    async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<DisplayGroupsResponse> {
+    async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<ActionsResponse> {
         const url = this.displayGroupsUrl(filter)
-        const res = await this.webservice.getData<DisplayGroupsResponse>(url.toString());
+        const res = await this.webservice.getData<ActionsResponse>(url.toString());
         return res.data;
     }
 
