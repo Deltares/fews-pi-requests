@@ -22,9 +22,24 @@ describe("topology", function () {
 
         const nodes = await provider.getTopologyNodes();
         expect(nodes).toStrictEqual(expectedResponseTopology);
-        expect(nodes.topologyNodes?.length).toBe(14)
-        expect(nodes.topologyNodes[0].id).toBe("Algemeen")
-        expect(nodes.topologyNodes[0].name).toBe("Algemeen")
+        expect(nodes.topologyNodes?.length).toBe(4)
+        expect(nodes.topologyNodes[0].id).toBe("Information_Sources")
+        expect(nodes.topologyNodes[0].name).toBe("Information Sources")
         expect(nodes.topologyNodes[0].workflowId).toBeUndefined()
+        expect(nodes.topologyNodes[0].topologyNodes?.length).toBe(4)
+        if (nodes.topologyNodes[0].topologyNodes?.length == 4) {
+            expect(nodes.topologyNodes[0].topologyNodes[0].displayGroups?.length).toBe(1)
+            if (nodes.topologyNodes[0].topologyNodes[0].displayGroups?.length == 1) {
+                expect(nodes.topologyNodes[0].topologyNodes[0].workflowId).toBe('Test Workflow ID')
+                expect(nodes.topologyNodes[0].topologyNodes[0].url).toBe('https://publicwiki.deltares.nl/display/FEWSDOC/Home')
+                expect(nodes.topologyNodes[0].topologyNodes[0].displayGroups[0].displayGroupId).toBe('Test Display Group ID1')
+                expect(nodes.topologyNodes[0].topologyNodes[0].displayGroups[0].plotNodes?.length).toBe(13)
+                if (nodes.topologyNodes[0].topologyNodes[0].displayGroups[0].plotNodes?.length == 13) {
+                    expect(nodes.topologyNodes[0].topologyNodes[0].displayGroups[0]?.plotNodes[0].displayId).toBe('0')
+                    expect(nodes.topologyNodes[0].topologyNodes[0].displayGroups[0]?.plotNodes[0].displayName).toBe('L\'Elnes')
+                }
+            }
+
+        }
     });
 })

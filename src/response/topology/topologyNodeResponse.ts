@@ -21,9 +21,23 @@ export interface TopologyNode {
   localRun?: boolean;
   url?: string;
   displayId?: string;
-  displayGroupId?: string;
+  /**
+   * Display group item
+   */
+  displayGroups?: TopologyDisplayGroupItem[];
   /**
    * TopologyNodes
    */
   topologyNodes?: TopologyNode[];
+}
+export interface TopologyDisplayGroupItem {
+  displayGroupId: string;
+  /**
+   * TopologyDisplayGroupPlotNode
+   */
+  plotNodes?: TopologyDisplayGroupPlotNode[];
+}
+export interface TopologyDisplayGroupPlotNode {
+  displayId: string;
+  displayName?: string;
 }

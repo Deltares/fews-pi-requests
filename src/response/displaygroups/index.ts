@@ -1,2 +1,2 @@
 export * from './displayGroupsResponse.js'
-export * from './result.js'
+export * from './displayGroupsNodesResponse.js'

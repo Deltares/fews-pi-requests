@@ -19,7 +19,7 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
-import {WebOcConfigurationResponse} from "@/response";
+import {DisplayGroupsNodesResponse, WebOcConfigurationResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -192,6 +192,12 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getDisplayGroupsNodes(): Promise<DisplayGroupsNodesResponse> {
+        const url = this.displayGroupsNodesUrl()
+        const res = await this.webservice.getData<DisplayGroupsNodesResponse>(url.toString());
+        return res.data;
+    }
+
     /**
      * Construct URL for locations request
      *
@@ -244,6 +250,18 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for display group nodes request
+     *
+     * @returns complete url for making a request
+     */
+    displayGroupsNodesUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/displaygroups/nodes`,
             this._baseUrl
         )
     }

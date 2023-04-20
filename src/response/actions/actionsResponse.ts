@@ -46,8 +46,11 @@ export interface TimeSeriesDisplaySubplot {
 export interface TimeSeriesDisplaySubplotItem {
   type: string;
   legend?: string;
-  color?: string;
+  color: string;
   lineStyle?: string;
+  visibleInLegend: boolean;
+  visibleInPlot: boolean;
+  visibleInTable: boolean;
   lineWidth?: number;
   opaquenessPercentage?: number;
   markerStyle?: string;

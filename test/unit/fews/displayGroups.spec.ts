@@ -6,7 +6,7 @@ import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsF
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 
 
-describe("archive/locations", function () {
+describe("/displaygroups", function () {
 
     afterAll(function () {
         fetchMock.restore();
