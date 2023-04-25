@@ -4,11 +4,10 @@ import {
     LocationsFilter,
     PiWebserviceProvider,
     TaskRunsFilter,
+    TopologyActionsFilter
 } from "../../src";
-import {TopologyActionsFilter} from "../../src/requestParameters/TopologyActionsFilter";
 
 const baseUrl = process.env.TEST_URL || "";
-
 
 describe("pi webservice provider", function () {
     it("get locations", async function () {
