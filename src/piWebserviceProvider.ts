@@ -12,14 +12,15 @@ import type {
     LocationsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
-import type {DisplayGroupsFilter} from "./requestParameters/DisplayGroupsFilter";
-import type {DisplayGroupsResponse} from "./response/displaygroups/displayGroupsResponse";
+import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
+import type {ActionsResponse} from "./response/actions/actionsResponse";
+import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
+import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
-import {WebOcConfigurationResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -186,9 +187,15 @@ export class PiWebserviceProvider {
      * @param filter search options for the displays (nodeId)
      * @returns Display groups API response
      */
-    async getDisplayGroupsTimeSeriesInfo(filter: DisplayGroupsFilter): Promise<DisplayGroupsResponse> {
-        const url = this.displayGroupsUrl(filter)
-        const res = await this.webservice.getData<DisplayGroupsResponse>(url.toString());
+    async getTopologyActions(filter: TopologyActionFilter): Promise<ActionsResponse> {
+        const url = this.topologyActionsUrl(filter)
+        const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
+    async getDisplayGroupsNodes(): Promise<DisplayGroupsNodesResponse> {
+        const url = this.displayGroupsNodesUrl()
+        const res = await this.webservice.getData<DisplayGroupsNodesResponse>(url.toString());
         return res.data;
     }
 
@@ -240,10 +247,22 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    displayGroupsUrl(filter: DisplayGroupsFilter): URL {
+    topologyActionsUrl(filter: TopologyActionFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/displaygroups${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/actions${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for display group nodes request
+     *
+     * @returns complete url for making a request
+     */
+    displayGroupsNodesUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/displaygroups/nodes`,
             this._baseUrl
         )
     }

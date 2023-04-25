@@ -1,0 +1,36 @@
+{
+  "displayGroups" : [ {
+    "displayGroupId" : "PI_Display_Group",
+    "plotNodes" : [ {
+      "displayId" : "0",
+      "displayName" : "amerongen beneden"
+    } ]
+  }, {
+    "displayGroupId" : "PI_Display_Group_Public",
+    "plotNodes" : [ {
+      "displayId" : "0",
+      "displayName" : "amerongen beneden"
+    } ]
+  }, {
+    "displayGroupId" : "PI_Display_Group_Private",
+    "plotNodes" : [ {
+      "displayId" : "0",
+      "displayName" : "amerongen beneden"
+    } ]
+  }, {
+    "displayGroupId" : "PI_Display_Group2",
+    "plotNodes" : [ {
+      "displayId" : "0",
+      "displayName" : "amerongen beneden"
+    } ]
+  }, {
+    "displayGroupId" : "test",
+    "plotNodes" : [ {
+      "displayId" : "0",
+      "displayName" : "test name"
+    }, {
+      "displayId" : "1",
+      "displayName" : "no name"
+    } ]
+  } ]
+}

@@ -1,7 +1,7 @@
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {PiWebserviceProvider} from "../../../src";
-import {DisplayGroupsFilter} from "../../../src/requestParameters/DisplayGroupsFilter";
+import {TopologyActionFilter} from "../../../src/requestParameters/topologyActionFilter";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
@@ -41,7 +41,7 @@ describe("archive/locations", function () {
     it("test token", async function () {
 
 
-        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/displaygroups?nodeId=test", {
+        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/topology/actions?nodeId=test", {
             status: 200,
             body: JSON.stringify(expectedResponseDisplayGroups)
         }, {
@@ -52,9 +52,9 @@ describe("archive/locations", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {transformRequestFn: transformRequest})
 
-        const filter = {} as DisplayGroupsFilter;
+        const filter = {} as TopologyActionFilter;
         filter.nodeId = "test";
-        const response = await provider.getDisplayGroupsTimeSeriesInfo(filter);
+        const response = await provider.getTopologyActions(filter);
         expect(response).toStrictEqual(expectedResponseDisplayGroups);
         expect(response.results.length).toBe(1);
         expect(response.results[0].requests.length).toBe(9);
