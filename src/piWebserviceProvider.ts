@@ -12,7 +12,7 @@ import type {
     LocationsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
-import type {TopologyActionsFilter} from "./requestParameters/TopologyActionsFilter";
+import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
 import type {ActionsResponse} from "./response/actions/actionsResponse";
 import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
 import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
@@ -187,7 +187,7 @@ export class PiWebserviceProvider {
      * @param filter search options for the displays (nodeId)
      * @returns Display groups API response
      */
-    async getTopologyActions(filter: TopologyActionsFilter): Promise<ActionsResponse> {
+    async getTopologyActions(filter: TopologyActionFilter): Promise<ActionsResponse> {
         const url = this.topologyActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
         return res.data;
@@ -247,7 +247,7 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    topologyActionsUrl(filter: TopologyActionsFilter): URL {
+    topologyActionsUrl(filter: TopologyActionFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/actions${queryParameters}`,

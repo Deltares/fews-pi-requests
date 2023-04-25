@@ -1,7 +1,7 @@
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {PiWebserviceProvider} from "../../../src";
-import {TopologyActionsFilter} from "../../../src/requestParameters/topologyActionsFilter";
+import {TopologyActionFilter} from "../../../src/requestParameters/topologyActionFilter";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
@@ -52,7 +52,7 @@ describe("archive/locations", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {transformRequestFn: transformRequest})
 
-        const filter = {} as TopologyActionsFilter;
+        const filter = {} as TopologyActionFilter;
         filter.nodeId = "test";
         const response = await provider.getTopologyActions(filter);
         expect(response).toStrictEqual(expectedResponseDisplayGroups);

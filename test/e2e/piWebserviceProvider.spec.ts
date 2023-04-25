@@ -4,7 +4,7 @@ import {
     LocationsFilter,
     PiWebserviceProvider,
     TaskRunsFilter,
-    TopologyActionsFilter
+    TopologyActionFilter
 } from "../../src";
 
 const baseUrl = process.env.TEST_URL || "";
@@ -32,7 +32,7 @@ describe("pi webservice provider", function () {
     it("get topology actions", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
-        const filter = {} as TopologyActionsFilter;
+        const filter = {} as TopologyActionFilter;
         filter.nodeId = "LB-Overzicht_BovenMaas";
         const res = await provider.getTopologyActions(filter);
         expect(res.results.length).toBeGreaterThan(0);

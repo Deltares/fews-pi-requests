@@ -2,7 +2,7 @@ import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import {TopologyActionsFilter} from "../../../src/requestParameters/TopologyActionsFilter";
+import {TopologyActionFilter} from "../../../src/requestParameters/topologyActionFilter";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 
 
@@ -20,7 +20,7 @@ describe("/topology/actions", function () {
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
-        const filter = {} as TopologyActionsFilter;
+        const filter = {} as TopologyActionFilter;
         filter.nodeId = "test";
         const response = await provider.getTopologyActions(filter);
         expect(response).toStrictEqual(expectedResponseDisplayGroups);
