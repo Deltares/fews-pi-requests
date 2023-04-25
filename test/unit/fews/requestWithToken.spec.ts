@@ -1,7 +1,7 @@
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {PiWebserviceProvider} from "../../../src";
-import {TopologyActionsFilter} from "../../../src/requestParameters/TopologyActionsFilter";
+import {TopologyActionsFilter} from "../../../src/requestParameters/topologyActionsFilter";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 

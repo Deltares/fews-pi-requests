@@ -5,7 +5,7 @@ import {
     PiWebserviceProvider,
     TaskRunsFilter,
 } from "../../src";
-import {TopologyActionsFilter} from "../../src/requestParameters/TopologyActionsFilter";
+import {TopologyActionsFilter} from "../../src/requestParameters/topologyActionsFilter";
 
 const baseUrl = process.env.TEST_URL || "";
 

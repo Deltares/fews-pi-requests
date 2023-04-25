@@ -1,5 +1,5 @@
 export * from './baseFilter.js'
-export * from './TopologyActionsFilter'
+export * from './topologyActionsFilter'
 export * from './archiveLocationsFilter.js'
 export * from './attributeQueryParameter.js'
 export * from './attributesFilter.js'
