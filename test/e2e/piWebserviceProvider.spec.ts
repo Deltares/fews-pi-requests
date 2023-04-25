@@ -5,7 +5,7 @@ import {
     PiWebserviceProvider,
     TaskRunsFilter,
 } from "../../src";
-import {DisplayGroupsFilter} from "../../src/requestParameters/DisplayGroupsFilter";
+import {TopologyActionsFilter} from "../../src/requestParameters/TopologyActionsFilter";
 
 const baseUrl = process.env.TEST_URL || "";
 
@@ -30,12 +30,12 @@ describe("pi webservice provider", function () {
             expect(timeSeries?.header?.locationId).toBe("Lith_beneden")
         }
     })
-    it("get display groups info", async function () {
+    it("get topology actions", async function () {
 
         const provider = new PiWebserviceProvider(baseUrl);
-        const filter = {} as DisplayGroupsFilter;
+        const filter = {} as TopologyActionsFilter;
         filter.nodeId = "LB-Overzicht_BovenMaas";
-        const res = await provider.getDisplayGroupsTimeSeriesInfo(filter);
+        const res = await provider.getTopologyActions(filter);
         expect(res.results.length).toBeGreaterThan(0);
 
     })
