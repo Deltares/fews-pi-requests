@@ -57,7 +57,10 @@ export interface TimeSeriesDisplaySubplotItem {
   markerSize?: number;
   locationId?: string;
   yAxis?: TimeSeriesDisplaySubplotItemAxis;
-  thresholds?: TimeSeriesDisplaySubplotItemThreshold;
+  /**
+   * Thresholds
+   */
+  thresholds?: TimeSeriesDisplaySubplotItemThreshold[];
   /**
    * Key of the request. Only used if there is only one request.
    */
@@ -73,6 +76,9 @@ export interface TimeSeriesDisplaySubplotItemAxis {
   axisMinValue?: number;
   axisMaxValue?: number;
 }
+/**
+ * Threshold
+ */
 export interface TimeSeriesDisplaySubplotItemThreshold {
   value?: number;
   label?: string;
