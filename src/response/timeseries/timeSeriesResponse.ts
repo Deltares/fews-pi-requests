@@ -31,6 +31,40 @@ export type TimeStep =
        */
       minutes: string;
     };
+export type OriginalReliable = "0";
+export type CorrectedReliable = "1";
+export type CompletedReliable = "2";
+export type OriginalDoubtful = "3";
+export type CorrectedDoubtful = "4";
+export type CompletedDoubtful = "5";
+export type OriginalUnreliable = "6";
+export type CorrectedUnreliable = "7";
+export type CompletedUnreliable = "8";
+export type OriginalMissing = "9";
+export type Deleted = "10";
+export type SetOriginalReliable = "11";
+export type SetOriginalUnreliable = "12";
+export type ArchiveMissing = "13";
+export type MANUAL = "MAN";
+export type IMPORTED = "IMP";
+export type MODIFIER = "MOD";
+export type SOFT_MIN = "SN";
+export type HARD_MIN = "HN";
+export type SOFT_MAX = "SX";
+export type HARD_MAX = "HX";
+export type RATE_OF_RISE = "ROR";
+export type RATE_OF_FALL = "ROF";
+export type SAME_READING = "SR";
+export type TEMPORARY_SHIFT = "TS";
+export type SERIES_COMPARISON = "SC";
+export type FLAGS_COMPARISON = "FC";
+export type SPATIAL_HOMOGENEITY = "SH";
+export type MANN_KENDALL = "MK";
+export type START_FLAG_PERSISTENCY = "SFP";
+export type SECONDARY_VALIDATION_FLAG_PERSISTENCY = "SVP";
+export type CONDITIONAL_AGGREGATION = "CA";
+export type OSCILLATION = "OSC";
+export type NONE = null;
 /**
  * array of strings
  */
@@ -378,11 +412,45 @@ export interface TimeSeriesEvent {
   /**
    * Flag
    */
-  flag: string;
+  flag:
+    | OriginalReliable
+    | CorrectedReliable
+    | CompletedReliable
+    | OriginalDoubtful
+    | CorrectedDoubtful
+    | CompletedDoubtful
+    | OriginalUnreliable
+    | CorrectedUnreliable
+    | CompletedUnreliable
+    | OriginalMissing
+    | Deleted
+    | SetOriginalReliable
+    | SetOriginalUnreliable
+    | ArchiveMissing;
   /**
-   * Flag
+   * Flag Source
    */
-  flagSource?: string;
+  flagSource?:
+    | MANUAL
+    | IMPORTED
+    | MODIFIER
+    | SOFT_MIN
+    | HARD_MIN
+    | SOFT_MAX
+    | HARD_MAX
+    | RATE_OF_RISE
+    | RATE_OF_FALL
+    | SAME_READING
+    | TEMPORARY_SHIFT
+    | SERIES_COMPARISON
+    | FLAGS_COMPARISON
+    | SPATIAL_HOMOGENEITY
+    | MANN_KENDALL
+    | START_FLAG_PERSISTENCY
+    | SECONDARY_VALIDATION_FLAG_PERSISTENCY
+    | CONDITIONAL_AGGREGATION
+    | OSCILLATION
+    | NONE;
   /**
    * Flag Source Column
    */
