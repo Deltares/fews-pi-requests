@@ -31,40 +31,6 @@ export type TimeStep =
        */
       minutes: string;
     };
-export type OriginalReliable = "0";
-export type CorrectedReliable = "1";
-export type CompletedReliable = "2";
-export type OriginalDoubtful = "3";
-export type CorrectedDoubtful = "4";
-export type CompletedDoubtful = "5";
-export type OriginalUnreliable = "6";
-export type CorrectedUnreliable = "7";
-export type CompletedUnreliable = "8";
-export type OriginalMissing = "9";
-export type Deleted = "10";
-export type SetOriginalReliable = "11";
-export type SetOriginalUnreliable = "12";
-export type ArchiveMissing = "13";
-export type MANUAL = "MAN";
-export type IMPORTED = "IMP";
-export type MODIFIER = "MOD";
-export type SOFT_MIN = "SN";
-export type HARD_MIN = "HN";
-export type SOFT_MAX = "SX";
-export type HARD_MAX = "HX";
-export type RATE_OF_RISE = "ROR";
-export type RATE_OF_FALL = "ROF";
-export type SAME_READING = "SR";
-export type TEMPORARY_SHIFT = "TS";
-export type SERIES_COMPARISON = "SC";
-export type FLAGS_COMPARISON = "FC";
-export type SPATIAL_HOMOGENEITY = "SH";
-export type MANN_KENDALL = "MK";
-export type START_FLAG_PERSISTENCY = "SFP";
-export type SECONDARY_VALIDATION_FLAG_PERSISTENCY = "SVP";
-export type CONDITIONAL_AGGREGATION = "CA";
-export type OSCILLATION = "OSC";
-export type NONE = null;
 /**
  * array of strings
  */
@@ -410,47 +376,33 @@ export interface TimeSeriesEvent {
    */
   detection?: string;
   /**
-   * Flag
+   * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing.
    */
-  flag:
-    | OriginalReliable
-    | CorrectedReliable
-    | CompletedReliable
-    | OriginalDoubtful
-    | CorrectedDoubtful
-    | CompletedDoubtful
-    | OriginalUnreliable
-    | CorrectedUnreliable
-    | CompletedUnreliable
-    | OriginalMissing
-    | Deleted
-    | SetOriginalReliable
-    | SetOriginalUnreliable
-    | ArchiveMissing;
+  flag: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13";
   /**
-   * Flag Source
+   * Flag Source. Possible values are: MAN=MANUAL, IMP=IMPORTED, MOD=MODIFIER, SN=SOFT_MIN, HN=HARD_MIN, SX=SOFT_MAX, HX=HARD_MAX, ROR=RATE_OF_RISE, ROF=RATE_OF_FALL, SR=SAME_READING, TS=TEMPORARY_SHIFT, SC=SERIES_COMPARISON, FC=FLAGS_COMPARISON, SH=SPATIAL_HOMOGENEITY, MK=MANN_KENDALL, SFP=START_FLAG_PERSISTENCY, SVP=SECONDARY_VALIDATION_FLAG_PERSISTENCY, CA=CONDITIONAL_AGGREGATION, OSC=OSCILLATION, null
    */
   flagSource?:
-    | MANUAL
-    | IMPORTED
-    | MODIFIER
-    | SOFT_MIN
-    | HARD_MIN
-    | SOFT_MAX
-    | HARD_MAX
-    | RATE_OF_RISE
-    | RATE_OF_FALL
-    | SAME_READING
-    | TEMPORARY_SHIFT
-    | SERIES_COMPARISON
-    | FLAGS_COMPARISON
-    | SPATIAL_HOMOGENEITY
-    | MANN_KENDALL
-    | START_FLAG_PERSISTENCY
-    | SECONDARY_VALIDATION_FLAG_PERSISTENCY
-    | CONDITIONAL_AGGREGATION
-    | OSCILLATION
-    | NONE;
+    | "MAN"
+    | "IMP"
+    | "MOD"
+    | "SN"
+    | "HN"
+    | "SX"
+    | "HX"
+    | "ROR"
+    | "ROF"
+    | "SR"
+    | "TS"
+    | "SC"
+    | "FC"
+    | "SH"
+    | "MK"
+    | "SFP"
+    | "SVP"
+    | "CA"
+    | "OSC"
+    | null;
   /**
    * Flag Source Column
    */
