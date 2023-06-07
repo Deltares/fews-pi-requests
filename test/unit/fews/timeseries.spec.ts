@@ -3,7 +3,7 @@ import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedResponse from '../mock/timeseries.json'
 import {TimeSeriesFilter} from "../../../src/requestParameters/timeSeriesFilter";
-import {DocumentFormat, MANUAL} from "../../../src";
+import {DocumentFormat} from "../../../src";
 import {TimeSeriesType} from "../../../src/requestParameters/timeSeriesType";
 
 describe("timeseries", function () {

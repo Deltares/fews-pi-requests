@@ -1,0 +1,45 @@
+{
+  "flags" : [ {
+    "flag" : 0,
+    "name" : "original reliable"
+  }, {
+    "flag" : 1,
+    "name" : "corrected reliable"
+  }, {
+    "flag" : 2,
+    "name" : "completed reliable"
+  }, {
+    "flag" : 3,
+    "name" : "original doubtful"
+  }, {
+    "flag" : 4,
+    "name" : "corrected doubtful"
+  }, {
+    "flag" : 5,
+    "name" : "completed doubtful"
+  }, {
+    "flag" : 6,
+    "name" : "original unreliable"
+  }, {
+    "flag" : 7,
+    "name" : "corrected unreliable"
+  }, {
+    "flag" : 8,
+    "name" : "completed unreliable"
+  }, {
+    "flag" : 9,
+    "name" : "original missing"
+  }, {
+    "flag" : 10,
+    "name" : "deleted"
+  }, {
+    "flag" : 11,
+    "name" : "set flag only to original reliable"
+  }, {
+    "flag" : 12,
+    "name" : "set flag only to original unreliable"
+  }, {
+    "flag" : 13,
+    "name" : "archive missing"
+  } ]
+}

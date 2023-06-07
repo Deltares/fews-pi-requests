@@ -16,6 +16,8 @@ import type {TopologyActionFilter} from "./requestParameters/topologyActionFilte
 import type {ActionsResponse} from "./response/actions/actionsResponse";
 import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
 import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
+import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
+import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService} from "@deltares/fews-web-oc-utils";
@@ -199,6 +201,18 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getFlags(): Promise<TimeSeriesFlagsResponse> {
+        const url = this.flagsUrl()
+        const res = await this.webservice.getData<TimeSeriesFlagsResponse>(url.toString());
+        return res.data;
+    }
+
+    async getFlagSources(): Promise<TimeSeriesFlagSourcesResponse> {
+        const url = this.flagSourcesUrl()
+        const res = await this.webservice.getData<TimeSeriesFlagSourcesResponse>(url.toString());
+        return res.data;
+    }
+
     /**
      * Construct URL for locations request
      *
@@ -331,4 +345,25 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+    flagsUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/flags`,
+            this._baseUrl
+        )
+    }
+
+    flagSourcesUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/flagsources`,
+            this._baseUrl
+        )
+    }
+    timeSeriesEditUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/edit`,
+            this._baseUrl
+        )
+    }
+
 }
