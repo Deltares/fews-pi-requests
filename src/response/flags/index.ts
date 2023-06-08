@@ -1,2 +1,2 @@
-export * from './timeSeriesFlagSourcesResponse.js'
-export * from './timeSeriesFlagsResponse.js'
+export * from './TimeSeriesFlagSourcesResponse.js'
+export * from './TimeSeriesFlagsResponse.js'
