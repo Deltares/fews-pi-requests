@@ -20,4 +20,6 @@ export interface TimeSeriesFlag {
    * Name of the flag
    */
   name: string;
+  source: "ORIGINAL" | "CORRECTED" | "COMPLETED" | null;
+  quality: "RELIABLE" | "DOUBTFUL" | "UNRELIABLE" | null;
 }
