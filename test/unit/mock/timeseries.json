@@ -36,7 +36,8 @@
       "date" : "2020-10-16",
       "time" : "00:00:00",
       "value" : "-0.107307345",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     }, {
       "date" : "2020-10-16",
       "time" : "06:00:00",
@@ -150,27 +151,32 @@
       "date" : "2020-10-16",
       "time" : "00:00:00",
       "value" : "0.022410657",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     }, {
       "date" : "2020-10-16",
       "time" : "06:00:00",
       "value" : "0.0075783106",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     }, {
       "date" : "2020-10-16",
       "time" : "12:00:00",
       "value" : "-0.020486796",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     }, {
       "date" : "2020-10-16",
       "time" : "18:00:00",
       "value" : "-0.036977153",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     }, {
       "date" : "2020-10-17",
       "time" : "00:00:00",
       "value" : "-0.04424969",
-      "flag" : "0"
+      "flag" : "0",
+      "flagSource": "MAN"
     } ]
   }, {
     "header" : {

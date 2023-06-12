@@ -16,6 +16,7 @@ export interface DisplayGroupsNodesResponse {
 }
 export interface DisplayGroupsNodes {
   displayGroupId: string;
+  displayGroupName?: string;
   /**
    * DisplayGroupsPlotNode
    */
