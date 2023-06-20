@@ -359,6 +359,7 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
     timeSeriesEditUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/edit`,
