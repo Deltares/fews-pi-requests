@@ -1,12 +1,12 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
+import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider.js'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedResponse from '../mock/timeseries.json'
-import {TimeSeriesFilter} from "../../../src/requestParameters/timeSeriesFilter";
+import type { TimeSeriesFilter } from "../../../src/requestParameters/timeSeriesFilter";
 import {DocumentFormat} from "../../../src";
-import {TimeSeriesType} from "../../../src/requestParameters/timeSeriesType";
+import { TimeSeriesType } from "../../../src/requestParameters/timeSeriesType";
 
-describe("timeseries", function () {
+describe("archive timeseries", function () {
     afterAll(function () {
         fetchMock.restore();
     });
@@ -17,7 +17,7 @@ describe("timeseries", function () {
             body: JSON.stringify(expectedResponse)
         });
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: TimeSeriesFilter = {
             documentFormat: DocumentFormat.PI_JSON,

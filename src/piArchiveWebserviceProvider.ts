@@ -1,11 +1,12 @@
 
-import { absoluteUrl, filterToParams } from "./utils/index.js";
+import { absoluteUrl, filterToParams, splitUrl } from "./utils/index.js";
 import type {
     ArchiveLocationsFilter,
     AttributesFilter,
     ExternalForecastsFilter,
     ParametersFilter,
-    ProductsMetaDataFilter
+    ProductsMetaDataFilter,
+    TimeSeriesFilter
 } from "./requestParameters";
 import type {
     ArchiveAreas,
@@ -13,7 +14,8 @@ import type {
     ArchiveExternalNetCDFStorageForecasts,
     ArchiveLocations,
     ArchiveParameters,
-    ArchiveProductsMetadata
+    ArchiveProductsMetadata,
+    TimeSeriesResponse
 } from "./response";
 import { DocumentFormat } from "./requestParameters/index.js";
 import { PiRestService } from "@deltares/fews-web-oc-utils";
@@ -27,7 +29,7 @@ const attributesForKey: { [key: string]: string } = {
 
 export class PiArchiveWebserviceProvider {
     private baseUrl: URL
-    private maxUrlLength?: number
+    private maxUrlLength: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     private webservice: PiRestService;
 
@@ -245,6 +247,51 @@ export class PiArchiveWebserviceProvider {
     productsMetaDataUrl(queryParameters: string): URL {
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/productsmetadata${queryParameters}`,
+            this.baseUrl
+        )
+    }
+
+    /**
+     * Request Time Series
+     *
+     * @param filter an object with request query parameters
+     * @returns Time Series PI API response
+     */
+    async getTimeSeries(filter: TimeSeriesFilter): Promise<TimeSeriesResponse> {
+        const defaults: TimeSeriesFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const filterWithDefaults = {...defaults, ...filter};
+        const url = this.timeSeriesUrl(filterWithDefaults);
+        if (url.toString().length <= this.maxUrlLength) {
+            const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
+            return res.data;
+        } else {
+            const urls = splitUrl(url, this.maxUrlLength);
+            const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()));
+            return Promise.all(promises).then((responses) => {
+                const response = responses[0].data;
+                if (response.timeSeries !== undefined) {
+                    for (let i = 1; i < responses.length; i++) {
+                        if (responses[i].data.timeSeries === undefined) continue
+                        response.timeSeries.push(...responses[i].data.timeSeries || [])
+                    }
+                }
+                return response;
+            })
+        }
+    }
+
+    /**
+     * Construct URL for time series request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    timeSeriesUrl(filter: TimeSeriesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
             this.baseUrl
         )
     }

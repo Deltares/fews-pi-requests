@@ -35,4 +35,6 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     taskRunIds?: string;
     // (string): filter time series by the timestep that has been configured in the TimeSteps.xml. (since 2018.02). N.B.: It is not required to use the timeStepId's in the filter configurations to be able to use them as long as they have been configured in the TimeSteps.xml.
     timeStepId?: string;
+    // (number): Default value is -1 in which case the index is not used.
+    timeSeriesSetIndex?: number;
 }
