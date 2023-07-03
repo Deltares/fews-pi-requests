@@ -29,11 +29,11 @@ export interface WebOcDataViewerConfig {
   /**
    * id of the component
    */
-  id: "dataViewer";
+  id: string;
   /**
    * Type of the component
    */
-  type: "DataViewer";
+  type: string;
   /**
    * Title of the component
    */
@@ -46,11 +46,11 @@ export interface WebOcSpatialDisplayConfig {
   /**
    * id of the component
    */
-  id: "spatialDisplay";
+  id: string;
   /**
    * Type of the component
    */
-  type: "SpatialDisplay";
+  type: string;
   /**
    * Title of the component
    */
@@ -63,11 +63,11 @@ export interface WebOcSchematicStatusDisplayConfig {
   /**
    * id of the component
    */
-  id: "schematicStatusDisplay";
+  id: string;
   /**
    * Type of the component
    */
-  type: "SchematicStatusDisplay";
+  type: string;
   /**
    * Title of the component
    */
@@ -80,11 +80,11 @@ export interface WebOcTimeSeriesDisplayConfig {
   /**
    * id of the component
    */
-  id: "timeSeriesDisplay";
+  id: string;
   /**
    * Type of the component
    */
-  type: "TimeSeriesDisplay";
+  type: string;
   /**
    * Title of the component
    */
@@ -101,11 +101,11 @@ export interface WebOcSystemMonitorConfig {
   /**
    * id of the component
    */
-  id: "systemMonitor";
+  id: string;
   /**
    * Type of the component
    */
-  type: "SystemMonitor";
+  type: string;
   /**
    * Title of the component
    */
@@ -118,11 +118,11 @@ export interface WebOcArchiveDisplayConfig {
   /**
    * id of the component
    */
-  id: "archiveDisplay";
+  id: string;
   /**
    * Type of the component
    */
-  type: "ArchiveDisplay";
+  type: string;
   /**
    * Title of the component
    */

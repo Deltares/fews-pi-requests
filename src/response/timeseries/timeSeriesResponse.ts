@@ -376,13 +376,33 @@ export interface TimeSeriesEvent {
    */
   detection?: string;
   /**
-   * Flag
+   * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing.
    */
-  flag: string;
+  flag: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13";
   /**
-   * Flag
+   * Flag Source. Possible values are: MAN=MANUAL, IMP=IMPORTED, MOD=MODIFIER, SN=SOFT_MIN, HN=HARD_MIN, SX=SOFT_MAX, HX=HARD_MAX, ROR=RATE_OF_RISE, ROF=RATE_OF_FALL, SR=SAME_READING, TS=TEMPORARY_SHIFT, SC=SERIES_COMPARISON, FC=FLAGS_COMPARISON, SH=SPATIAL_HOMOGENEITY, MK=MANN_KENDALL, SFP=START_FLAG_PERSISTENCY, SVP=SECONDARY_VALIDATION_FLAG_PERSISTENCY, CA=CONDITIONAL_AGGREGATION, OSC=OSCILLATION, null
    */
-  flagSource?: string;
+  flagSource?:
+    | "MAN"
+    | "IMP"
+    | "MOD"
+    | "SN"
+    | "HN"
+    | "SX"
+    | "HX"
+    | "ROR"
+    | "ROF"
+    | "SR"
+    | "TS"
+    | "SC"
+    | "FC"
+    | "SH"
+    | "MK"
+    | "SFP"
+    | "SVP"
+    | "CA"
+    | "OSC"
+    | null;
   /**
    * Flag Source Column
    */

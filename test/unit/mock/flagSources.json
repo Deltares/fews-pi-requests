@@ -1,0 +1,63 @@
+{
+  "flagSources" : [ {
+    "id" : null,
+    "name" : "NONE"
+  }, {
+    "id" : "MAN",
+    "name" : "MANUAL"
+  }, {
+    "id" : "IMP",
+    "name" : "IMPORTED"
+  }, {
+    "id" : "MOD",
+    "name" : "MODIFIER"
+  }, {
+    "id" : "SN",
+    "name" : "SOFT_MIN"
+  }, {
+    "id" : "HN",
+    "name" : "HARD_MIN"
+  }, {
+    "id" : "SX",
+    "name" : "SOFT_MAX"
+  }, {
+    "id" : "HX",
+    "name" : "HARD_MAX"
+  }, {
+    "id" : "ROR",
+    "name" : "RATE_OF_RISE"
+  }, {
+    "id" : "ROF",
+    "name" : "RATE_OF_FALL"
+  }, {
+    "id" : "SR",
+    "name" : "SAME_READING"
+  }, {
+    "id" : "TS",
+    "name" : "TEMPORARY_SHIFT"
+  }, {
+    "id" : "SC",
+    "name" : "SERIES_COMPARISON"
+  }, {
+    "id" : "FC",
+    "name" : "FLAGS_COMPARISON"
+  }, {
+    "id" : "SH",
+    "name" : "SPATIAL_HOMOGENEITY"
+  }, {
+    "id" : "MK",
+    "name" : "MANN_KENDALL"
+  }, {
+    "id" : "SFP",
+    "name" : "START_FLAG_PERSISTENCY"
+  }, {
+    "id" : "SVP",
+    "name" : "SECONDARY_VALIDATION_FLAG_PERSISTENCY"
+  }, {
+    "id" : "CA",
+    "name" : "CONDITIONAL_AGGREGATION"
+  }, {
+    "id" : "OSC",
+    "name" : "OSCILLATION"
+  } ]
+}
