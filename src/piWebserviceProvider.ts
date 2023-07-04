@@ -20,6 +20,7 @@ import type {WebOcConfigurationResponse} from "./response/configuration/WebOcCon
 import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
 import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
 import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
+import {type ParameterGroupsOutput, type ParameterOutputOptions, type ParameterGroupsOutputOptions, convertToParameterGroups} from "./output/parameterGroupsOutput";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
@@ -69,11 +70,18 @@ export class PiWebserviceProvider {
      * Request parameters
      *
      * @param filter an object with request query parameters
+     * @param output options to convert output
      * @returns Parmeters PI API response
      */
-    async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse> {
+    async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse>
+    async getParameters(filter: ParametersFilter, output?: ParameterGroupsOutputOptions): Promise<ParameterGroupsOutput>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async getParameters(filter: ParametersFilter, output?: ParameterOutputOptions): Promise<ParameterGroupsOutput|TimeSeriesParametersResponse> {
         const url = this.parametersUrl(filter);
         const res = await this.webservice.getData<TimeSeriesParametersResponse>(url.toString());
+        if (output?.type === 'parameterGroups') {
+            return convertToParameterGroups(res.data)
+        }
         return res.data;
     }
 
