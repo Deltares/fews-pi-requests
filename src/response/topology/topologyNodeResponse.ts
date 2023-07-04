@@ -21,6 +21,7 @@ export interface TopologyNode {
   localRun?: boolean;
   url?: string;
   displayId?: string;
+  mainPanel?: string;
   /**
    * Display group item
    */

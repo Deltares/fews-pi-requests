@@ -1,71 +1,73 @@
 {
   "flags" : [ {
-    "flag" : 0,
+    "flag" : "0",
     "name" : "original reliable",
     "source" : "ORIGINAL",
-    "quality" : "RELIABLE"
+    "quality" : "RELIABLE",
+    "backgroundColor" : "#FFFFFF",
+    "foregroundColor" : "#000000"
   }, {
-    "flag" : 1,
+    "flag" : "1",
     "name" : "corrected reliable",
     "source" : "CORRECTED",
     "quality" : "RELIABLE"
   }, {
-    "flag" : 2,
+    "flag" : "2",
     "name" : "completed reliable",
     "source" : "COMPLETED",
     "quality" : "RELIABLE"
   }, {
-    "flag" : 3,
+    "flag" : "3",
     "name" : "original doubtful",
     "source" : "ORIGINAL",
     "quality" : "DOUBTFUL"
   }, {
-    "flag" : 4,
+    "flag" : "4",
     "name" : "corrected doubtful",
     "source" : "CORRECTED",
     "quality" : "DOUBTFUL"
   }, {
-    "flag" : 5,
+    "flag" : "5",
     "name" : "completed doubtful",
     "source" : "COMPLETED",
     "quality" : "DOUBTFUL"
   }, {
-    "flag" : 6,
+    "flag" : "6",
     "name" : "original unreliable",
     "source" : "ORIGINAL",
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 7,
+    "flag" : "7",
     "name" : "corrected unreliable",
     "source" : "CORRECTED",
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 8,
+    "flag" : "8",
     "name" : "completed unreliable",
     "source" : "COMPLETED",
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 9,
+    "flag" : "9",
     "name" : "original missing",
     "source" : "ORIGINAL",
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 10,
+    "flag" : "10",
     "name" : "deleted",
     "source" : null,
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 11,
+    "flag" : "11",
     "name" : "set flag only to original reliable",
     "source" : "ORIGINAL",
     "quality" : "RELIABLE"
   }, {
-    "flag" : 12,
+    "flag" : "12",
     "name" : "set flag only to original unreliable",
     "source" : "ORIGINAL",
     "quality" : "UNRELIABLE"
   }, {
-    "flag" : 13,
+    "flag" : "13",
     "name" : "archive missing",
     "source" : "COMPLETED",
     "quality" : "UNRELIABLE"

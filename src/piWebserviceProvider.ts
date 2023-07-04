@@ -20,9 +20,10 @@ import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResp
 import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
-import {PiRestService} from "@deltares/fews-web-oc-utils";
+import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import {DocumentFormat} from './requestParameters/index.js'
+import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -214,6 +215,20 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Post time series edits.
+     *
+     */
+    async postTimeSeriesEdit(editUrl: string, timeSeriesEvents: TimeSeriesResponse): Promise<unknown> {
+        const requestOptions = new RequestOptions()
+        requestOptions.relativeUrl = !editUrl.toString().startsWith("http")
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const res = await this.webservice.postDataWithParser<DataRequestResult<string>>(editUrl, requestOptions, new PlainTextParser(), JSON.stringify(timeSeriesEvents), headers);
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -356,13 +371,6 @@ export class PiWebserviceProvider {
     flagSourcesUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/flagsources`,
-            this._baseUrl
-        )
-    }
-
-    timeSeriesEditUrl(): URL {
-        return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/edit`,
             this._baseUrl
         )
     }

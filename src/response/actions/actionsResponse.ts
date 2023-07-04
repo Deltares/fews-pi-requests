@@ -27,6 +27,14 @@ export interface ActionResult {
 export interface ActionRequest {
   key?: string;
   request: string;
+  /**
+   * URL to post changes to the timeseries. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests.
+   */
+  editRequest?: string;
+  /**
+   * URL to show of the timeseries. The time parameter has to be added to show the history. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests.
+   */
+  historyRequest?: string;
 }
 export interface ActionRequestConfig {
   timeSeriesDisplay: TimeSeriesDisplayConfig;
