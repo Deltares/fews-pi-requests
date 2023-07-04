@@ -219,12 +219,12 @@ export class PiWebserviceProvider {
      *
      */
     async postTimeSeriesEdit(editUrl: string, timeSeriesEvents: TimeSeriesResponse): Promise<unknown> {
-        const requestOption = new RequestOptions()
-        requestOption.relativeUrl = !editUrl.toString().startsWith("http")
+        const requestOptions = new RequestOptions()
+        requestOptions.relativeUrl = !editUrl.toString().startsWith("http")
         const headers = {
             'Content-Type': "application/json"
         }
-        const res = await this.webservice.postDataWithParser<DataRequestResult<string>>(editUrl, requestOption, new PlainTextParser(), JSON.stringify(timeSeriesEvents), headers);
+        const res = await this.webservice.postDataWithParser<DataRequestResult<string>>(editUrl, requestOptions, new PlainTextParser(), JSON.stringify(timeSeriesEvents), headers);
         return res.data;
     }
 
