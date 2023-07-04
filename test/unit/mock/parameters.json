@@ -1,0 +1,54 @@
+{
+  "version" : "1.33",
+  "timeSeriesParameters" : [ {
+    "id" : "P.obs",
+    "name" : "Observed Rainfall",
+    "parameterType" : "accumulative",
+    "unit" : "mm",
+    "displayUnit" : "mm",
+    "usesDatum" : "false",
+    "parameterGroup" : "Rainfall",
+    "parameterGroupName" : "Rainfall",
+    "shortName" : "P.obs"
+  }, {
+    "id" : "H.obs",
+    "name" : "Observed Water Level",
+    "parameterType" : "instantaneous",
+    "unit" : "m",
+    "displayUnit" : "m",
+    "usesDatum" : "true",
+    "parameterGroup" : "Water Level",
+    "parameterGroupName" : "Water Level",
+    "shortName" : "H.obs"
+  }, {
+    "id" : "H.obs.proc",
+    "name" : "Processed Water Level",
+    "parameterType" : "instantaneous",
+    "unit" : "m",
+    "displayUnit" : "m",
+    "usesDatum" : "true",
+    "parameterGroup" : "Water Level",
+    "parameterGroupName" : "Water Level",
+    "shortName" : "H.obs.proc"
+  }, {
+    "id" : "Q.obs",
+    "name" : "Observed Discharge",
+    "parameterType" : "instantaneous",
+    "unit" : "m3/s",
+    "displayUnit" : "ML/d",
+    "usesDatum" : "false",
+    "parameterGroup" : "Discharge",
+    "parameterGroupName" : "Discharge",
+    "shortName" : "Q.obs"
+  }, {
+    "id" : "Q.obs.proc",
+    "name" : "Processed Discharge",
+    "parameterType" : "instantaneous",
+    "unit" : "m3/s",
+    "displayUnit" : "ML/d",
+    "usesDatum" : "false",
+    "parameterGroup" : "Discharge",
+    "parameterGroupName" : "Discharge",
+    "shortName" : "Q.obs.proc"
+  }]
+}
