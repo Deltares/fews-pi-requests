@@ -10,7 +10,7 @@ describe("history edit", function () {
     });
 
     it("timeseries json response", async function () {
-        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries/history/?times=aaa&times=bbb&locationId=locationId&timeSeriesSetIndex=4", {
+        fetchMock.get("https://mock.dev/fewswebservices/myRelativePath&times=aaa&times=bbb", {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });
@@ -18,8 +18,7 @@ describe("history edit", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
         const filter: HistoryEditsFilter = {
             times: ["aaa", "bbb"],
-            locationId: "locationId",
-            timeSeriesSetIndex: 4,
+            editUrl: "myRelativePath",
         }
         const results = await provider.getHistoryEdits(filter);
         expect(results).toStrictEqual(expectedResponse);

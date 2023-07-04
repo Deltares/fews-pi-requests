@@ -77,8 +77,11 @@ export class PiWebserviceProvider {
      * @returns Locations PI API response
      */
     async getHistoryEdits(filter: HistoryEditsFilter): Promise<HistoryEditsResponse> {
-        const url = this.historyEditsUrl(filter);
-        const res = await this.webservice.getData<HistoryEditsResponse>(url.toString());
+        let url = filter.editUrl;
+        for (const time in filter.times) {
+            url = url + "&times=" + filter.times[time];
+        }
+        const res = await this.webservice.getData<HistoryEditsResponse>(url);
         return res.data;
     }
 
