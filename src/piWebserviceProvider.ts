@@ -26,6 +26,8 @@ import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './out
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {DocumentFormat} from './requestParameters/index.js'
+import {HistoryEditsFilter} from "@/requestParameters/historyEditsFilter";
+import {HistoryEditsResponse} from "@/response/timeseries/HistoryEditsResponse";
 
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
@@ -66,6 +68,17 @@ export class PiWebserviceProvider {
     async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
         const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        return res.data;
+    }
+    /**
+     * Request the history of the edits
+     *
+     * @param filter an object with request query parameters
+     * @returns Locations PI API response
+     */
+    async getHistoryEdits(filter: HistoryEditsFilter): Promise<HistoryEditsResponse> {
+        const url = this.historyEditsUrl(filter);
+        const res = await this.webservice.getData<HistoryEditsResponse>(url.toString());
         return res.data;
     }
 
@@ -263,6 +276,19 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
+            this._baseUrl
+        )
+    }
+    /**
+     * Construct URL for history edits request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    historyEditsUrl(filter: HistoryEditsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/history/${queryParameters}`,
             this._baseUrl
         )
     }
