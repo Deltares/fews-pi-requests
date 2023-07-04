@@ -20,7 +20,7 @@ import type {WebOcConfigurationResponse} from "./response/configuration/WebOcCon
 import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
 import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
 import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
-import {type ParameterGroupsOutput, type ParameterOutputOptions, type ParameterGroupsOutputOptions, convertToParameterGroups} from "./output/parameterGroupsOutput";
+import {type ParameterGroupsOutput, type ParameterOutputOptions, type ParameterGroupsOutputOptions, convertToParameterGroups} from "./output/parameterGroupsOutput.js";
 
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
