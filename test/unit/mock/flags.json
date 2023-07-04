@@ -3,7 +3,9 @@
     "flag" : 0,
     "name" : "original reliable",
     "source" : "ORIGINAL",
-    "quality" : "RELIABLE"
+    "quality" : "RELIABLE",
+    "backgroundColor" : "#FFFFFF",
+    "foregroundColor" : "#000000"
   }, {
     "flag" : 1,
     "name" : "corrected reliable",

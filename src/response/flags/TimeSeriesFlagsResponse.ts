@@ -15,11 +15,19 @@ export interface TimeSeriesFlag {
   /**
    * the name of the flag
    */
-  flag: number;
+  flag: string;
   /**
    * Name of the flag
    */
   name: string;
   source: "ORIGINAL" | "CORRECTED" | "COMPLETED" | null;
   quality: "RELIABLE" | "DOUBTFUL" | "UNRELIABLE" | null;
+  /**
+   * Hex RGB value of the flag foreground color
+   */
+  foregroundColor?: string;
+  /**
+   * Hex RGB value of the flag background color
+   */
+  backgroundColor?: string;
 }

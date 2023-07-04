@@ -22,5 +22,9 @@ describe("/flags", function () {
         const response = await provider.getFlags();
         expect(response).toStrictEqual(expectedFlagsResponse);
         expect(response.flags?.length).toBe(14)
+        if (response.flags && response.flags.length == 14) {
+            expect(response.flags[0].backgroundColor).toBe('#FFFFFF')
+            expect(response.flags[0].foregroundColor).toBe('#000000')
+        }
     })
 });
