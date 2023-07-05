@@ -1,1 +1,1 @@
-export * from './parameterGroupsOutput.js'
+export * from './parameters/index.js'

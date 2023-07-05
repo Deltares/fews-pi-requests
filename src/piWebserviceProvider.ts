@@ -20,12 +20,15 @@ import type {WebOcConfigurationResponse} from "./response/configuration/WebOcCon
 import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
 import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
 import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
-import {type ParameterGroupsOutput, type ParameterOutputOptions, type ParameterGroupsOutputOptions, convertToParameterGroups} from "./output/parameterGroupsOutput.js";
+import type {ParameterGroupsOutput} from "./output/parameters/parameterGroupsOutput";
+import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
 
+import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
+import {DocumentFormat} from './requestParameters/index.js'
+
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
-import {DocumentFormat} from './requestParameters/index.js'
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 
 export class PiWebserviceProvider {

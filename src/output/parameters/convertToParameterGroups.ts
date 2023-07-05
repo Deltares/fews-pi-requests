@@ -1,44 +1,34 @@
-import type { TimeSeriesParameter, TimeSeriesParametersResponse } from "@/response/timeseriesparameters/timeSeriesParametersResponse";
-import { TimeSeriesType } from "..";
+import type { TimeSeriesParametersResponse } from "@/response/timeseriesparameters/timeSeriesParametersResponse"
+import type { ParameterGroupsOutput } from "./parameterGroupsOutput"
+import type { Parameter } from "./parameter"
+import type { ParameterGroup } from "./parameterGroup"
 
-export type ParameterOutputType= "raw" | "parameterGroups"
-
-export interface ParameterGroupsOutput {
-    parameters: (ParameterGroup|Parameter)[];
-}
-
-export interface ParameterGroup {
-    id:              string;
-    parameterType:   "instantaneous" | "accumulative";
-    unit:            string;
-    // valueResolution: number;
-    parameters:      Parameter[];
-    displayUnit?:    string;
-    usesDatum?:      boolean;
-}
-
-export interface Parameter {
-    id:        string;
-    name:      string;
-    shortName: string;
-}
-
-export interface ParameterOutputOptions {
-  type: ParameterOutputType;
-}
-
-export interface ParameterGroupsOutputOptions extends ParameterOutputOptions {
-  type: "parameterGroups";
-}
-
+/**
+ * Checks if the provided value is of type Parameter.
+ *
+ * @param {Parameter | any} parameter - The value to be checked.
+ * @returns {boolean} True if the value is of type Parameter, false otherwise.
+ */
 function isParameter(parameter: Parameter | any): parameter is Parameter {
   return (parameter as Parameter).name !== undefined
 }
 
+/**
+ * Checks if the provided value is of type ParameterGroup.
+ *
+ * @param {ParameterGroup | any} parameter - The value to be checked.
+ * @returns {boolean} True if the value is of type ParameterGroup, false otherwise.
+ */
 function isParameterGroup(parameter: ParameterGroup | any): parameter is ParameterGroup {
   return (parameter as ParameterGroup).parameters !== undefined
 }
 
+/**
+ * Converts the response from a TimeSeriesParameters API call to the ParameterGroupsOutput format.
+ *
+ * @param {TimeSeriesParametersResponse} response - The response from the TimeSeriesParameters API call.
+ * @returns {ParameterGroupsOutput} The converted output in the ParameterGroupsOutput format.
+ */
 export function convertToParameterGroups(response: TimeSeriesParametersResponse): ParameterGroupsOutput {
   const groupIds: string[] = []
   const result: ParameterGroupsOutput = {
@@ -58,7 +48,7 @@ export function convertToParameterGroups(response: TimeSeriesParametersResponse)
       }
     } else if(parameterGroupId !== undefined) {
       groupIds.push(parameterGroupId)
-      const parameterGroup: ParameterGroup = { 
+      const parameterGroup: ParameterGroup = {
         id: parameterGroupId,
         parameterType: tsParameter.parameterType === "instantaneous" ? "instantaneous" : "accumulative",
         unit: tsParameter.unit ?? '',
