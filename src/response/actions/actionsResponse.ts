@@ -28,11 +28,7 @@ export interface ActionRequest {
   key?: string;
   request: string;
   /**
-<<<<<<< HEAD
-   * URL to post changes to the timeseries. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests.
-=======
    * URL to post changes to the timeseries. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests. If the timeSeries is not editable, the editRequest is missing.
->>>>>>> cb67043 (add action response)
    */
   editRequest?: string;
   /**
