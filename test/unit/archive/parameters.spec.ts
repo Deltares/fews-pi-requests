@@ -1,10 +1,9 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 import {ParametersFilter, DocumentFormat} from '../../../src/requestParameters'
 import {ArchiveParameters} from '../../../src/response'
 import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
-import expectedResponse from '../mock/parameters.json'
+import expectedResponse from '../mock/archive/parameters.json'
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 
 describe("archive/parameters", function () {

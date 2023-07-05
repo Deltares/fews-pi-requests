@@ -9,7 +9,8 @@ import type {
     TaskRunsFilter,
     TimeSeriesFilter,
     TimeSeriesGridFilter,
-    LocationsFilter
+    LocationsFilter,
+    ParametersFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -18,11 +19,16 @@ import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayG
 import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
 import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
 import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
+import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
+import type {ParameterGroupsOutput} from "./output/parameters/parameterGroupsOutput";
+import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
 
+import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
+import {DocumentFormat} from './requestParameters/index.js'
+
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
-import {DocumentFormat} from './requestParameters/index.js'
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 
 export class PiWebserviceProvider {
@@ -60,6 +66,25 @@ export class PiWebserviceProvider {
     async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
         const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Request parameters
+     *
+     * @param filter an object with request query parameters
+     * @param output options to convert output
+     * @returns Parmeters PI API response
+     */
+    async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse>
+    async getParameters(filter: ParametersFilter, output?: ParameterGroupsOutputOptions): Promise<ParameterGroupsOutput>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async getParameters(filter: ParametersFilter, output?: ParameterOutputOptions): Promise<ParameterGroupsOutput|TimeSeriesParametersResponse> {
+        const url = this.parametersUrl(filter);
+        const res = await this.webservice.getData<TimeSeriesParametersResponse>(url.toString());
+        if (output?.type === 'parameterGroups') {
+            return convertToParameterGroups(res.data)
+        }
         return res.data;
     }
 
@@ -241,6 +266,22 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+
+    /**
+     * Construct URL for parameters request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    parametersUrl(filter: ParametersFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/parameters${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
 
     /**
      * Construct URL for time series request
