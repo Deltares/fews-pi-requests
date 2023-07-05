@@ -1,0 +1,23 @@
+{
+  "historyEdits" : [ {
+    "time" : "2013-12-30T00:00:00Z",
+    "edits" : [ {
+      "workflowOrUserId" : "?",
+      "value" : "20.0",
+      "flag" : "0",
+      "flagSource" : "1",
+      "valueSource" : "1",
+      "comments" : "test"
+    } ]
+  }, {
+    "time" : "2013-12-30T01:00:00Z",
+    "edits" : [ {
+      "workflowOrUserId" : "?",
+      "value" : "22.0",
+      "flag" : "0",
+      "flagSource" : "0",
+      "valueSource" : "0",
+      "comments" : "test2"
+    } ]
+  } ]
+}
