@@ -364,9 +364,9 @@ export interface TimeSeriesEvent {
    */
   value: string;
   /**
-   * Value source. Possible value: MAN, otherwise not set.
+   * Value source. Possible values are: MAN (manual), MOD (modifier), CYC (cyclic) and PER (persistent).
    */
-  valueSource?: string;
+  valueSource?: "MAN" | "MOD" | "CYC" | "PER";
   /**
    * Minimum Value
    */

@@ -31,6 +31,7 @@ export interface ActionRequest {
    * URL to post changes to the timeseries. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests. If the timeSeries is not editable, the editRequest is missing.
    */
   editRequest?: string;
+  editPermissions?: ("values" | "comments" | "flags")[];
   /**
    * URL to show of the timeseries. The time parameter has to be added to show the history. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests.
    */
