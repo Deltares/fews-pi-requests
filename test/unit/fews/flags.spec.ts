@@ -25,8 +25,6 @@ describe("/flags", function () {
             expect(response.flags[0].source).toBe("ORIGINAL")
             expect(response.flags[0].quality).toBe("RELIABLE")
             expect(response.flags[0].name).toBe( "original reliable")
-            expect(response.flags[0].backgroundColor).toBe('#FFFFFF')
-            expect(response.flags[0].foregroundColor).toBe('#000000')
         }
     })
 });

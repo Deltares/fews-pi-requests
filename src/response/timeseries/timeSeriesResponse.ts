@@ -364,6 +364,10 @@ export interface TimeSeriesEvent {
    */
   value: string;
   /**
+   * Value source. Possible values are: MAN (manual), MOD (modifier), CYC (cyclic) and PER (persistent).
+   */
+  valueSource?: "MAN" | "MOD" | "CYC" | "PER";
+  /**
    * Minimum Value
    */
   minValue?: string;
@@ -372,9 +376,9 @@ export interface TimeSeriesEvent {
    */
   maxValue?: string;
   /**
-   * Detection Symbol
+   * Detection Symbol. One of < (below detection range), > (above detection range) or ~ (varying)
    */
-  detection?: string;
+  detection?: "<" | ">" | "~";
   /**
    * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing.
    */
@@ -409,6 +413,10 @@ export interface TimeSeriesEvent {
   flagSourceColumn?: {
     [k: string]: unknown;
   };
+  /**
+   * State. Possible values are: dried, inundated, ice
+   */
+  state?: "dried" | "inundated" | "ice";
   /**
    * Comment
    */

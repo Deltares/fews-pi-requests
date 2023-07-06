@@ -40,6 +40,8 @@ describe("timeseries", function () {
         if (results?.timeSeries?.length === 4 && results?.timeSeries[0].events?.length === 5) {
             expect(results.timeSeries[0].events[0].flagSource).toBe("MAN");
             expect(results.timeSeries[0].events[0].flag).toBe("0");
+            expect(results.timeSeries[0].events[0].valueSource).toBe("MAN");
+            expect(results.timeSeries[0].events[0].state).toBe("dried");
         }
     });
 });
