@@ -22,6 +22,8 @@ export interface TopologyNode {
   url?: string;
   displayId?: string;
   mainPanel?: string;
+  filterIds?: string[];
+  gridDisplaySelection?: GridDisplaySelection;
   /**
    * Display group item
    */
@@ -30,6 +32,12 @@ export interface TopologyNode {
    * TopologyNodes
    */
   topologyNodes?: TopologyNode[];
+}
+/**
+ * Selectesd grid display
+ */
+export interface GridDisplaySelection {
+  plotId: string;
 }
 export interface TopologyDisplayGroupItem {
   displayGroupId: string;
