@@ -226,6 +226,20 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the configuration of FEWS related to the Web OC that is always available.
+     *
+     * @returns Web OC public configuration API response
+     */
+    async getWebOcPublicConfiguration(): Promise<WebOcConfigurationResponse> {
+        const defaults: BaseFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const url = this.webOcPublicConfigurationUrl(defaults);
+        const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Get the time series info for a certain topology node
      *
      * @param filter search options for the displays (nodeId)
@@ -415,6 +429,19 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for Web OC configuration
+     *
+     * @returns complete url for making a request
+     */
+    webOcPublicConfigurationUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config/public${queryParameters}`,
             this._baseUrl
         )
     }
