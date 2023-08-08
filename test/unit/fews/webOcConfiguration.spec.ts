@@ -34,11 +34,20 @@ describe("webOcConfig", function () {
             status: 200,
             body: JSON.stringify(expectedPublicResponse)
         });
-
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
         const results = await provider.getWebOcPublicConfiguration();
         expect(results).toStrictEqual(expectedPublicResponse);
         expect(results.general.title).toBe('my public title');
         expect(results.components).toBeUndefined();
+    })
+    it("get static resource", async function () {
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const results = await provider.resourcesStaticUrl('css/style.css')
+        expect(results.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/css/style.css");
+    })
+    it("get static image", async function () {
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const results = await provider.resourcesImagesUrl('test.png')
+        expect(results.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/images/test.png");
     })
 });

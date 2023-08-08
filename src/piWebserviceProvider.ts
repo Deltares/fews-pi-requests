@@ -447,6 +447,31 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Construct URL for image resources from the Delft-FEWS IconFiles configuration folder.
+     *
+     * @returns complete url for making a request
+     */
+    resourcesImagesUrl(path: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/images/${path}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     *
+     * Construct URL for static resources from the Delft-FEWS WebResources configuration folder.
+     *
+     * @returns complete url for making a request
+     */
+    resourcesStaticUrl(path: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/static/${path}`,
+            this._baseUrl
+        )
+    }
+
+    /**
      * Construct URL for topology nodes request
      *
      * @returns complete url for making a request
