@@ -1,0 +1,9 @@
+{
+  "general": {
+    "title": "my public title",
+    "icons": {
+      "logo": "mypubliclogo.png",
+      "favicon": "https://mydomainpublic.com/images/myfavicon.ico"
+    }
+  }
+}
