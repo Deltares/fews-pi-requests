@@ -1,6 +1,6 @@
 {
   "name": "@deltares/fews-pi-requests",
-  "version": "0.6.3-beta.6",
+  "version": "0.6.3-beta.7",
   "description": "Library for making requests to the FEWS PI webservice",
   "author": {
     "name": "Werner Kramer",
@@ -35,7 +35,10 @@
     "json2ts-archive": "curl %npm_package_config_url%/pi_rest_archive_areas.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archivearea/ArchiveAreasResponse.ts & curl %npm_package_config_url%/pi_rest_archive_attributes.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archiveattributes/ArchiveAttributesResponse.ts & curl %npm_package_config_url%/pi_rest_archive_externalnetcdfstorageforecasts.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archivenetcdfstorageforecasts/ArchiveExternalNetCdfStorageForecastsResponse.ts & curl %npm_package_config_url%/pi_rest_archive_locations.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archivelocations/ArchiveLocationsResponse.ts & curl %npm_package_config_url%/pi_rest_archive_parameters.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archiveparameters/ArchiveParametersResponse.ts & curl %npm_package_config_url%/pi_rest_archive_productsmetadata.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archiveproductsmetadata/ArchiveProductsMetaDataResponse.ts & curl %npm_package_config_url%/pi_rest_archive_sources.json | json2ts --bannerComment \"%npm_package_config_message%\"  > src/response/archivesources/ArchiveSourcesResponse.ts",
     "sonar": "sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_KEY -Dsonar.projectName='Delft-FEWS Web OC PI Requests'"
   },
-  "config" : { "url": "https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest", "message": "/* tslint:disable */" },
+  "config": {
+    "url": "https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest",
+    "message": "/* tslint:disable */"
+  },
   "dependencies": {
     "@deltares/fews-web-oc-utils": "^0.2.1-alpha.1"
   },
