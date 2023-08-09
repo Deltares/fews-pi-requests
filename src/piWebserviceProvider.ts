@@ -454,7 +454,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     resourcesStaticUrl(resource: string): URL {
-        if (resource.startsWith("http")) return new URL(resource)
+        if (resource.startsWith("http://") || resource.startsWith("https://") ) return new URL(resource)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/static/${resource}`,
             this._baseUrl
