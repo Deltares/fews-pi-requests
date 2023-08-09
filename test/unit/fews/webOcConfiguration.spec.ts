@@ -48,5 +48,12 @@ describe("webOcConfig", function () {
 
         const resultsAbsolute = await provider.resourcesStaticUrl('https://mydomain.com/css/style.css')
         expect(resultsAbsolute.toString()).toStrictEqual("https://mydomain.com/css/style.css");
+
+        const resultsHttpsPath = await provider.resourcesStaticUrl('https/css/style.css')
+        expect(resultsHttpsPath.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/https/css/style.css");
+
+        const resultsHttpPath = await provider.resourcesStaticUrl('http/css/style.css')
+        expect(resultsHttpPath.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/http/css/style.css");
+
     })
 });
