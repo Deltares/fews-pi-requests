@@ -448,7 +448,7 @@ export class PiWebserviceProvider {
 
     /**
      *
-     * Construct URL for static resources from the Delft-FEWS WebResources configuration folder.
+     * Construct URL for static resources from the Delft-FEWS WebResourceFiles configuration folder.
      * In case an absolute URL is passed, the passed path will be returned as URL.
      *
      * @returns complete url for making a request
