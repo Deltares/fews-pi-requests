@@ -133,11 +133,11 @@ export interface WebOcGeneralConfig {
  */
 export interface WebOcIconsConfig {
   /**
-   * URL or resource id from the WebResources folder or any of its sub folder
+   * URL or resource id from the WebResourceFiles folder or any of its sub folder
    */
   logo?: string;
   /**
-   * URL or resource id from the WebResources folder or any of its sub folder
+   * URL or resource id from the WebResourceFiles folder or any of its sub folder
    */
   favicon?: string;
 }
@@ -146,7 +146,7 @@ export interface WebOcIconsConfig {
  */
 export interface WebOcLoginConfig {
   /**
-   * URL or resource id from the WebResources folder or any of its sub folder with the background image that will be used on the login screen
+   * URL or resource id from the WebResourceFiles folder or any of its sub folder with the background image that will be used on the login screen
    */
   backgroundImage?: string;
 }
