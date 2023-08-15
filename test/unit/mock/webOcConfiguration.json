@@ -35,8 +35,13 @@
     {
       "id": "dataViewer",
       "type": "DataViewer",
-      "title": "My Data Viewer",
-      "editPermissions": true
+      "title": "My Data Viewer"
+    },
+    {
+      "id": "topologyDisplay",
+      "type": "TopologyDisplay",
+      "title": "My Topology Display"
     }
+
   ]
 }

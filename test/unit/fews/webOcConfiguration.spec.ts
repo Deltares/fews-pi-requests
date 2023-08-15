@@ -4,7 +4,7 @@ import expectedResponse from '../mock/webOcConfiguration.json'
 import expectedPublicResponse from '../mock/webOcPublicConfiguration.json'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import {WebOcArchiveDisplayConfig} from "../../../src";
+import {WebOcArchiveDisplayConfig, WebOcTopologyDisplayConfig} from "../../../src";
 
 describe("webOcConfig", function () {
     afterAll(function () {
@@ -26,7 +26,13 @@ describe("webOcConfig", function () {
             expect(archiveDisplay.id).toBe("archiveDisplay")
             expect(archiveDisplay.title).toBe("My Archive Display")
         }
-        expect(results.components.length).toBe(6)
+        if (results.components[6].type === "TopologyDisplay") {
+            const topologyDisplay: WebOcTopologyDisplayConfig = results.components[6];
+            expect(topologyDisplay.id).toBe("archiveDisplay")
+            expect(topologyDisplay.title).toBe("My Archive Display")
+        }
+
+        expect(results.components.length).toBe(7)
     });
 
     it("tests fetch Web OC Public config", async function () {

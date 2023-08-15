@@ -14,6 +14,7 @@ export interface WebOcConfigurationResponse {
     | WebOcTimeSeriesDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcArchiveDisplayConfig
+    | WebOcTopologyDisplayConfig
   )[];
   general: WebOcGeneralConfig;
 }
@@ -110,6 +111,23 @@ export interface WebOcSystemMonitorConfig {
  * Archive Display Configuration
  */
 export interface WebOcArchiveDisplayConfig {
+  /**
+   * id of the component
+   */
+  id: string;
+  /**
+   * Type of the component
+   */
+  type: string;
+  /**
+   * Title of the component
+   */
+  title?: string;
+}
+/**
+ * Topology Display Configuration
+ */
+export interface WebOcTopologyDisplayConfig {
   /**
    * id of the component
    */
