@@ -28,8 +28,8 @@ describe("webOcConfig", function () {
         }
         if (results.components[6].type === "TopologyDisplay") {
             const topologyDisplay: WebOcTopologyDisplayConfig = results.components[6];
-            expect(topologyDisplay.id).toBe("archiveDisplay")
-            expect(topologyDisplay.title).toBe("My Archive Display")
+            expect(topologyDisplay.id).toBe("topologyDisplay")
+            expect(topologyDisplay.title).toBe("My Topology Display")
         }
 
         expect(results.components.length).toBe(7)
