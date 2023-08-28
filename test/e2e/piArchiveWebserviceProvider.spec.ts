@@ -66,10 +66,10 @@ describe("pi webservice provider", function () {
 
         const provider = new PiArchiveWebserviceProvider(baseUrl);
         const filter: ProductsMetaDataFilter = {
-            startForecastTime: "2022-12-12T20:30:00Z",
-            endForecastTime: "2022-12-14T20:30:00Z",
+            startForecastTime: "2023-08-01T00:00:00Z",
+            endForecastTime: "2023-08-31T00:00:00Z",
             attribute: {
-                'area_id': 'meren'
+                'area_id': 'rivieren'
             }
         }
         const res = await provider.getProductsMetaData(filter);
