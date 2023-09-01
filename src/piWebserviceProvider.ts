@@ -10,7 +10,8 @@ import type {
     TimeSeriesFilter,
     TimeSeriesGridFilter,
     LocationsFilter,
-    ParametersFilter
+    ParametersFilter,
+    ProcessDataFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -483,6 +484,14 @@ export class PiWebserviceProvider {
     flagSourcesUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/flagsources`,
+            this._baseUrl
+        )
+    }
+
+    processDataUrl(filter: ProcessDataFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/processdata${queryParameters}`,
             this._baseUrl
         )
     }
