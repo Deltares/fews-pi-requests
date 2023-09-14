@@ -8,6 +8,7 @@ import {
 } from "../../src";
 
 const baseUrl = process.env.TEST_URL || "";
+const baseUrlWQPS = process.env.TEST_URL_WQPS || "";
 
 describe("pi webservice provider", function () {
     it("get locations", async function () {
@@ -66,5 +67,20 @@ describe("pi webservice provider", function () {
             expect(taskRun.workflowId).toBe("Plateau3_KGT")
         }
 
+    });
+
+    it("get timeseries grid actions", async function () {
+            
+        const provider = new PiWebserviceProvider(baseUrlWQPS);
+        const res = await provider.getTimeSeriesGridActions({
+            layers: "oceanographic_water_level_cmems",
+            x: 6460661.450297602,
+            y: 1767631.7612143594,
+            startTime: "2023-08-28T12:00:00.000Z",
+            endTime: "2023-08-30T12:00:00.000Z",
+            bbox: [1770893.0713109637,-410925.46406110685,8521811.409457732,5459438.308240431]
+        });
+
+        expect(res.results.length).toBeGreaterThan(0);        
     });
 })

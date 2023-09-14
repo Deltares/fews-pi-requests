@@ -11,7 +11,9 @@ import type {
     TimeSeriesGridFilter,
     LocationsFilter,
     ParametersFilter,
-    ProcessDataFilter
+    ProcessDataFilter,
+    timeSeriesGridActionsFilter,
+    filterActionsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -164,6 +166,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Request Time Series Grid Actions
+     *
+     * @param filter an object with request query parameters
+     * @returns Time Series Grid Actions PI API response
+     */
+
+    async getTimeSeriesGridActions(filter: timeSeriesGridActionsFilter): Promise<ActionsResponse> {
+        const url = this.timeSeriesGridActionsUrl(filter)
+        const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Request scheduled tasks
      *
      * @param filter an object with request query parameters
@@ -270,6 +285,12 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async getFilterActions(filter: filterActionsFilter): Promise<ActionsResponse> {
+        const url = this.filterActionsUrl(filter)
+        const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
     /**
      * Post time series edits.
      *
@@ -365,6 +386,33 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/actions${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for time series grid actions request
+     * @param filter an object with request query parameters
+     * @returns 
+     */
+    timeSeriesGridActionsUrl(filter: timeSeriesGridActionsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid/actions${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for filter actions request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    filterActionsUrl(filter: filterActionsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/filters/actions${queryParameters}`,
             this._baseUrl
         )
     }
