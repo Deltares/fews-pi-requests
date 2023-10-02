@@ -45,7 +45,13 @@ export interface TimeSeriesDisplayConfig {
   subplots?: TimeSeriesDisplaySubplot[];
 }
 export interface TimeSeriesDisplaySubplot {
+  xAxis?: TimeSeriesDisplaySubplotItemXAxis;
   items: TimeSeriesDisplaySubplotItem[];
+}
+export interface TimeSeriesDisplaySubplotItemXAxis {
+  axisLabel: string;
+  axisMinValue?: number;
+  axisMaxValue?: number;
 }
 export interface TimeSeriesDisplaySubplotItem {
   type: string;
