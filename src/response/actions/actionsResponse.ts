@@ -45,10 +45,10 @@ export interface TimeSeriesDisplayConfig {
   subplots?: TimeSeriesDisplaySubplot[];
 }
 export interface TimeSeriesDisplaySubplot {
-  xAxis?: TimeSeriesDisplaySubplotItemXAxis;
+  xAxis?: TimeSeriesDisplayPlotItemXAxis;
   items: TimeSeriesDisplaySubplotItem[];
 }
-export interface TimeSeriesDisplaySubplotItemXAxis {
+export interface TimeSeriesDisplayPlotItemXAxis {
   axisLabel: string;
   axisMinValue?: number;
   axisMaxValue?: number;
