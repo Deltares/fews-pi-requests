@@ -4,7 +4,12 @@ import expectedResponse from '../mock/webOcConfiguration.json'
 import expectedPublicResponse from '../mock/webOcPublicConfiguration.json'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import {WebOcArchiveDisplayConfig, WebOcTopologyDisplayConfig} from "../../../src";
+import {WebOcTopologyDisplayConfig, WebOcSpatialDisplayConfig, WebOcSchematicStatusDisplayConfig, WebOcSystemMonitorConfig} from "../../../src";
+import {
+    isSchematicStatusDisplay,
+    isSpatialDisplay, isSystemMonitor,
+    isTopologyDisplay
+} from "../../../src/utils/webOcCompontentsTypeGuards";
 
 describe("webOcConfig", function () {
     afterAll(function () {
@@ -20,19 +25,39 @@ describe("webOcConfig", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
         const results = await provider.getWebOcConfiguration();
         expect(results).toStrictEqual(expectedResponse);
-        expect(results.general.title).toBe('my title');
-        if (results.components[0].type === "ArchiveDisplay") {
-            const archiveDisplay: WebOcArchiveDisplayConfig = results.components[0];
-            expect(archiveDisplay.id).toBe("archiveDisplay")
-            expect(archiveDisplay.title).toBe("My Archive Display")
-        }
-        if (results.components[6].type === "TopologyDisplay") {
-            const topologyDisplay: WebOcTopologyDisplayConfig = results.components[6];
+        expect(results.general.title).toBe('UAE Meteorological and Oceanographic Modelling and Prediction System');
+        expect(isTopologyDisplay(results.components[0])).toBeTruthy();
+        expect(isSpatialDisplay(results.components[1])).toBeTruthy();
+        expect(isSystemMonitor(results.components[2])).toBeTruthy();
+        expect(isSchematicStatusDisplay(results.components[3])).toBeTruthy();
+        if (isTopologyDisplay(results.components[0])) {
+            const topologyDisplay = results.components[0] as WebOcTopologyDisplayConfig;
             expect(topologyDisplay.id).toBe("topologyDisplay")
-            expect(topologyDisplay.title).toBe("My Topology Display")
+            expect(topologyDisplay.title).toBe("Topology Display")
+            if (topologyDisplay.defaultPath) {
+                expect(topologyDisplay.defaultPath.nodeId).toBe("test")
+            }
         }
-
-        expect(results.components.length).toBe(7)
+        if (isSpatialDisplay(results.components[1])) {
+            const spatialDisplay = results.components[1] as WebOcSpatialDisplayConfig;
+            if (spatialDisplay.defaultPath) {
+                expect(spatialDisplay.defaultPath.gridPlotId).toBe("test")
+            }
+        }
+        if (isSystemMonitor(results.components[2])) {
+            const systemMonitor = results.components[2] as WebOcSystemMonitorConfig;
+            expect(systemMonitor.title).toBe("System Monitor Title")
+        }
+        if (isSchematicStatusDisplay(results.components[3])) {
+            const ssd = results.components[3] as WebOcSchematicStatusDisplayConfig;
+            expect(ssd.id).toBe("schematicStatusDisplay")
+            expect(ssd.title).toBe("SSD Title")
+            if (ssd.defaultPath) {
+                expect(ssd.defaultPath.groupId).toBe("panelGroup");
+                expect(ssd.defaultPath.panelId).toBe("panelName");
+            }
+        }
+        expect(results.components.length).toBe(4)
     });
 
     it("tests fetch Web OC Public config", async function () {

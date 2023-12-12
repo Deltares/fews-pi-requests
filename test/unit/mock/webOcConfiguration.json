@@ -1,47 +1,41 @@
 {
   "general": {
-    "title": "my title",
-    "icons": {
-      "logo": "mylogo.png",
-      "favicon": "https://mydomain.com/images/myfavicon.ico"
-    }
+    "title": "UAE Meteorological and Oceanographic Modelling and Prediction System",
+    "defaultComponent": "schematicStatusDisplay",
+    "customStyleSheet": "../../test.css",
+    "splashScreen": "../../splash.html"
   },
   "components": [
     {
+      "id": "topologyDisplay",
+      "type": "TopologyDisplay",
+      "title": "Topology Display",
+      "showLeafNodesAsButtons": true,
+      "defaultPath": {
+        "nodeId": "test"
+      }
+    },
+    {
       "id": "spatialDisplay",
       "type": "SpatialDisplay",
-      "title": "My Spatial Display"
-    },
-    {
-      "id": "schematicStatusDisplay",
-      "type": "SchematicStatusDisplay",
-      "title": "My Schematic Status Display"
-    },
-    {
-      "id": "spatialDisplay",
-      "type": "spatialDisplay",
-      "title": "My Time Series Display"
+      "defaultPath": {
+        "gridPlotId": "test"
+      },
+      "title": "Spatial Display"
     },
     {
       "id": "systemMonitor",
       "type": "SystemMonitor",
-      "title": "My System Monitor"
+      "title": "System Monitor Title"
     },
     {
-      "id": "archiveDisplay",
-      "type": "ArchiveDisplay",
-      "title": "My Archive Display"
-    },
-    {
-      "id": "dataViewer",
-      "type": "DataViewer",
-      "title": "My Data Viewer"
-    },
-    {
-      "id": "topologyDisplay",
-      "type": "TopologyDisplay",
-      "title": "My Topology Display"
+      "id": "schematicStatusDisplay",
+      "type": "SchematicStatusDisplay",
+      "title": "SSD Title",
+      "defaultPath": {
+        "groupId": "panelGroup",
+        "panelId": "panelName"
+      }
     }
-
   ]
 }
