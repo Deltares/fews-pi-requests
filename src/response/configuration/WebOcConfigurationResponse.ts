@@ -8,32 +8,12 @@ export interface WebOcConfigurationResponse {
    * WebOcComponents
    */
   components: (
-    | WebOcDataViewerConfig
     | WebOcSpatialDisplayConfig
     | WebOcSchematicStatusDisplayConfig
-    | WebOcTimeSeriesDisplayConfig
     | WebOcSystemMonitorConfig
-    | WebOcArchiveDisplayConfig
     | WebOcTopologyDisplayConfig
   )[];
   general: WebOcGeneralConfig;
-}
-/**
- * Data Viewer Configuration
- */
-export interface WebOcDataViewerConfig {
-  /**
-   * id of the component
-   */
-  id: string;
-  /**
-   * Type of the component
-   */
-  type: string;
-  /**
-   * Title of the component
-   */
-  title?: string;
 }
 /**
  * Spatial Display Configuration
@@ -51,6 +31,16 @@ export interface WebOcSpatialDisplayConfig {
    * Title of the component
    */
   title?: string;
+  defaultPath?: SpatialDisplayDefaultPath;
+}
+/**
+ * Default spatial display
+ */
+export interface SpatialDisplayDefaultPath {
+  /**
+   * Grid Plot id
+   */
+  gridPlotId: string;
 }
 /**
  * Schematic Status Display Configuration
@@ -68,49 +58,25 @@ export interface WebOcSchematicStatusDisplayConfig {
    * Title of the component
    */
   title?: string;
+  defaultPath?: SchematicStatusDisplayDefaultPath;
 }
 /**
- * Time Series Display Configuration
+ * Default schematic status display
  */
-export interface WebOcTimeSeriesDisplayConfig {
+export interface SchematicStatusDisplayDefaultPath {
   /**
-   * id of the component
+   * groupId Id
    */
-  id: string;
+  groupId: string;
   /**
-   * Type of the component
+   * Panel Id
    */
-  type: string;
-  /**
-   * Title of the component
-   */
-  title?: string;
-  /**
-   * Set to true when edit permissions are allowed
-   */
-  editPermissions?: boolean;
+  panelId: string;
 }
 /**
  * System Monitor Configuration
  */
 export interface WebOcSystemMonitorConfig {
-  /**
-   * id of the component
-   */
-  id: string;
-  /**
-   * Type of the component
-   */
-  type: string;
-  /**
-   * Title of the component
-   */
-  title?: string;
-}
-/**
- * Archive Display Configuration
- */
-export interface WebOcArchiveDisplayConfig {
   /**
    * id of the component
    */
@@ -140,9 +106,26 @@ export interface WebOcTopologyDisplayConfig {
    * Title of the component
    */
   title?: string;
+  /**
+   * If this option is set to true. The leaf nodes are not displayed in the topology tree but as buttons in map.
+   */
+  showLeafNodesAsButtons?: boolean;
+  defaultPath?: TopologyDisplayDefaultPath;
+}
+/**
+ * Default grid display
+ */
+export interface TopologyDisplayDefaultPath {
+  /**
+   * Node Id
+   */
+  nodeId: string;
 }
 export interface WebOcGeneralConfig {
   title?: string;
+  defaultComponent?: string;
+  customStyleSheet?: string;
+  splashScreen?: string;
   icons?: WebOcIconsConfig;
   login?: WebOcLoginConfig;
 }

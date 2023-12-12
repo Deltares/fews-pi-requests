@@ -62,7 +62,7 @@ export interface TimeSeriesResponse {
 }
 export interface TimeSeriesResult {
   header?: Header;
-  properties?: TimeSeriesProperty[];
+  properties?: PropertiesPeriod[];
   /**
    * Events
    */
@@ -321,10 +321,17 @@ export interface Product {
   }[];
 }
 /**
- * Property
+ * Properties for a period
  */
-export interface TimeSeriesProperty {
-  [k: string]: unknown;
+export interface PropertiesPeriod {
+  period: {
+    startDate: FewsDate;
+    endDate: FewsDate;
+    [k: string]: unknown;
+  };
+  properties: {
+    [k: string]: unknown;
+  };
 }
 /**
  * Timeseries event
