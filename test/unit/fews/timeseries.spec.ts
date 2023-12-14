@@ -63,14 +63,10 @@ describe("timeseries with transform request", function () {
         });
 
         async function transformRequest(request: Request): Promise<Request> {
-            const requestInit: RequestInit = {
-                // Only some of the properties of RequestInit are used by fetch-mock, such as 'headers'.
-                headers: { 
-                    'Content-Type': "application/json",
-                    'Authorization': "Bearer 123"
-                },
-            }
-            const newRequest = new Request(request, requestInit)
+            const newRequest = new Request(request)
+            // Only some of the properties of RequestInit are used by fetch-mock, such as 'headers'.
+            newRequest.headers.set('Authorization', 'Bearer 123')
+            newRequest.headers.set('Content-Type', 'application/json')
             return newRequest
         }
 

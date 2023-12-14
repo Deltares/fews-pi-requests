@@ -141,16 +141,14 @@ describe("timeseries/edit with transformRequest", function () {
             body: 'uploaded'
         }, {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 123'
             }
         });
 
         async function transformRequest(request: Request): Promise<Request> {
-            const requestInit: RequestInit = {
-                // Only some of the properties of RequestInit are used by fetch-mock, such as 'headers'.
-                headers: { },
-            }
-            const newRequest = new Request(request, requestInit)
+            const newRequest = new Request(request)
+            newRequest.headers.set('Authorization', 'Bearer 123')
             return newRequest
         }
 
