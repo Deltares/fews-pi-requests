@@ -128,6 +128,14 @@ export interface WebOcGeneralConfig {
   splashScreen?: string;
   icons?: WebOcIconsConfig;
   login?: WebOcLoginConfig;
+  /**
+   * set to false if it is also possible to use edit functionality
+   */
+  readonlyMode?: boolean;
+  /**
+   * Set to true if permissions are applied as used in the Permissions.xml and UserGroups.xml configurations. Als required if using OIDC integration with the web service.
+   */
+  permissionsEnabled?: boolean;
 }
 /**
  * Icons Configuration
