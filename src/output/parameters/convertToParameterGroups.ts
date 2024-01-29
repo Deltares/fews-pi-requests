@@ -1,4 +1,4 @@
-import type { TimeSeriesParametersResponse } from "@/response/timeseriesparameters/timeSeriesParametersResponse"
+import type { TimeSeriesParametersResponse } from "../../response/timeseriesparameters/timeSeriesParametersResponse"
 import type { ParameterGroupsOutput } from "./parameterGroupsOutput"
 import type { Parameter } from "./parameter"
 import type { ParameterGroup } from "./parameterGroup"
