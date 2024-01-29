@@ -3,7 +3,7 @@ import {
   WebOcSpatialDisplayConfig,
   WebOcSystemMonitorConfig,
   WebOcTopologyDisplayConfig
-} from "@/response";
+} from "../response";
 
 export function isSchematicStatusDisplay(component: (
     | WebOcSpatialDisplayConfig
