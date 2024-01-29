@@ -30,7 +30,7 @@ import { convertToParameterGroups } from './output/parameters/convertToParameter
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {DocumentFormat} from './requestParameters/index.js'
 import {HistoryEditsFilter} from "@/requestParameters/historyEditsFilter";
-import {HistoryEditsResponse} from "@/response/timeseries/HistoryEditsResponse";
+import {HistoryEditsResponse} from "@/response/timeseries/historyEditsResponse";
 
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
