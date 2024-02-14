@@ -15,7 +15,9 @@ export interface TopologyNode {
   workflowId?: string;
   localRun?: boolean;
   url?: string;
+  plotId?: string;
   displayId?: string;
+  locationIds?: string[];
   mainPanel?: string;
   filterIds?: string[];
   gridDisplaySelection?: GridDisplaySelection;
