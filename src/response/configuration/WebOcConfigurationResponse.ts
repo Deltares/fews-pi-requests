@@ -12,6 +12,7 @@ export interface WebOcConfigurationResponse {
     | WebOcSchematicStatusDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcTopologyDisplayConfig
+    | WebOcDataDownloadDisplayConfig
   )[];
   general: WebOcGeneralConfig;
 }
@@ -32,6 +33,10 @@ export interface WebOcSpatialDisplayConfig {
    */
   title?: string;
   defaultPath?: SpatialDisplayDefaultPath;
+  /**
+   * Show in navigation menu.
+   */
+  showInNavigationMenu?: boolean;
 }
 /**
  * Default spatial display
@@ -59,6 +64,10 @@ export interface WebOcSchematicStatusDisplayConfig {
    */
   title?: string;
   defaultPath?: SchematicStatusDisplayDefaultPath;
+  /**
+   * Show in navigation menu.
+   */
+  showInNavigationMenu?: boolean;
 }
 /**
  * Default schematic status display
@@ -89,6 +98,10 @@ export interface WebOcSystemMonitorConfig {
    * Title of the component
    */
   title?: string;
+  /**
+   * Show in navigation menu.
+   */
+  showInNavigationMenu?: boolean;
 }
 /**
  * Topology Display Configuration
@@ -111,6 +124,10 @@ export interface WebOcTopologyDisplayConfig {
    */
   showLeafNodesAsButtons?: boolean;
   defaultPath?: TopologyDisplayDefaultPath;
+  /**
+   * Show in navigation menu.
+   */
+  showInNavigationMenu?: boolean;
 }
 /**
  * Default grid display
@@ -120,6 +137,27 @@ export interface TopologyDisplayDefaultPath {
    * Node Id
    */
   nodeId: string;
+}
+/**
+ * Data Download Display Configuration
+ */
+export interface WebOcDataDownloadDisplayConfig {
+  /**
+   * id of the component
+   */
+  id: string;
+  /**
+   * Type of the component
+   */
+  type: string;
+  /**
+   * Title of the component
+   */
+  title?: string;
+  /**
+   * Show in navigation menu.
+   */
+  showInNavigationMenu?: boolean;
 }
 export interface WebOcGeneralConfig {
   title?: string;

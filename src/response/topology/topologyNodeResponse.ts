@@ -29,6 +29,10 @@ export interface TopologyNode {
    * TopologyNodes
    */
   topologyNodes?: TopologyNode[];
+  /**
+   * Secondary workflows
+   */
+  secondaryWorkflows?: SecondaryWorkflowGroupItem[];
 }
 /**
  * Selectesd grid display
@@ -46,4 +50,21 @@ export interface TopologyDisplayGroupItem {
 export interface TopologyDisplayGroupPlotNode {
   displayId: string;
   displayName?: string;
+}
+export interface SecondaryWorkflowGroupItem {
+  secondaryWorkflowId: string;
+  description: string;
+  /**
+   * SecondaryWorkflowProperties
+   */
+  properties?: SecondaryWorkflowProperties[];
+}
+export interface SecondaryWorkflowProperties {
+  type: "string" | "float" | "bool" | "double" | "int" | "dateTime";
+  key: string;
+  description?: string;
+  editable?: boolean;
+  value?: string;
+  date?: string;
+  time?: string;
 }
