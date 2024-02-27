@@ -4,8 +4,15 @@ import expectedResponse from '../mock/webOcConfiguration.json'
 import expectedPublicResponse from '../mock/webOcPublicConfiguration.json'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import {WebOcTopologyDisplayConfig, WebOcSpatialDisplayConfig, WebOcSchematicStatusDisplayConfig, WebOcSystemMonitorConfig} from "../../../src";
 import {
+    WebOcTopologyDisplayConfig,
+    WebOcSpatialDisplayConfig,
+    WebOcSchematicStatusDisplayConfig,
+    WebOcSystemMonitorConfig,
+    WebOcDataDownloadDisplayConfig
+} from "../../../src";
+import {
+    isDataDownloadDisplay,
     isSchematicStatusDisplay,
     isSpatialDisplay, isSystemMonitor,
     isTopologyDisplay
@@ -57,7 +64,13 @@ describe("webOcConfig", function () {
                 expect(ssd.defaultPath.panelId).toBe("panelName");
             }
         }
-        expect(results.components.length).toBe(4)
+        if (isDataDownloadDisplay(results.components[4])) {
+            const ddd = results.components[4] as WebOcDataDownloadDisplayConfig;
+            expect(ddd.id).toBe("dataDownloadDisplay")
+            expect(ddd.title).toBe("My Data Download")
+            expect(ddd.showInNavigationMenu).toBeTruthy()
+        }
+        expect(results.components.length).toBe(5)
     });
 
     it("tests fetch Web OC Public config", async function () {
