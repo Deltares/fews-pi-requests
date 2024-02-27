@@ -2,8 +2,7 @@ import {
   WebOcSchematicStatusDisplayConfig,
   WebOcSpatialDisplayConfig,
   WebOcSystemMonitorConfig,
-  WebOcTopologyDisplayConfig,
-  WebOcDataDownloadDisplayConfig
+  WebOcTopologyDisplayConfig
 } from "../response";
 
 export function isSchematicStatusDisplay(component: (
@@ -11,19 +10,8 @@ export function isSchematicStatusDisplay(component: (
     | WebOcSchematicStatusDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcTopologyDisplayConfig
-    | WebOcDataDownloadDisplayConfig
     )): component is WebOcSchematicStatusDisplayConfig {
   return component.type === 'SchematicStatusDisplay';
-}
-
-export function isDataDownloadDisplay(component: (
-    | WebOcSpatialDisplayConfig
-    | WebOcSchematicStatusDisplayConfig
-    | WebOcSystemMonitorConfig
-    | WebOcTopologyDisplayConfig
-    | WebOcDataDownloadDisplayConfig
-    )): component is WebOcDataDownloadDisplayConfig {
-  return component.type === 'DataDownloadDisplay';
 }
 
 export function isTopologyDisplay(component: (
@@ -31,7 +19,6 @@ export function isTopologyDisplay(component: (
     | WebOcSchematicStatusDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcTopologyDisplayConfig
-    | WebOcDataDownloadDisplayConfig
     )): component is WebOcTopologyDisplayConfig {
   return component.type === 'TopologyDisplay';
 }
@@ -41,7 +28,6 @@ export function isSpatialDisplay(component: (
     | WebOcSchematicStatusDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcTopologyDisplayConfig
-    | WebOcDataDownloadDisplayConfig
     )): component is WebOcSpatialDisplayConfig {
   return component.type === 'SpatialDisplay';
 }
@@ -51,7 +37,6 @@ export function isSystemMonitor(component: (
     | WebOcSchematicStatusDisplayConfig
     | WebOcSystemMonitorConfig
     | WebOcTopologyDisplayConfig
-    | WebOcDataDownloadDisplayConfig
     )): component is WebOcSystemMonitorConfig {
   return component.type === 'SystemMonitor';
 }

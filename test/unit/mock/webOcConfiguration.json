@@ -40,13 +40,6 @@
         "panelId": "panelName"
       },
       "showInNavigationMenu": true
-    },
-    {
-      "id": "dataDownloadDisplay",
-      "type": "DataDownloadDisplay",
-      "title": "My Data Download",
-      "showInNavigationMenu": true
     }
-
   ]
 }

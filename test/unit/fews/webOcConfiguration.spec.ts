@@ -8,11 +8,9 @@ import {
     WebOcTopologyDisplayConfig,
     WebOcSpatialDisplayConfig,
     WebOcSchematicStatusDisplayConfig,
-    WebOcSystemMonitorConfig,
-    WebOcDataDownloadDisplayConfig
+    WebOcSystemMonitorConfig
 } from "../../../src";
 import {
-    isDataDownloadDisplay,
     isSchematicStatusDisplay,
     isSpatialDisplay, isSystemMonitor,
     isTopologyDisplay
@@ -64,13 +62,7 @@ describe("webOcConfig", function () {
                 expect(ssd.defaultPath.panelId).toBe("panelName");
             }
         }
-        if (isDataDownloadDisplay(results.components[4])) {
-            const ddd = results.components[4] as WebOcDataDownloadDisplayConfig;
-            expect(ddd.id).toBe("dataDownloadDisplay")
-            expect(ddd.title).toBe("My Data Download")
-            expect(ddd.showInNavigationMenu).toBeTruthy()
-        }
-        expect(results.components.length).toBe(5)
+        expect(results.components.length).toBe(4)
     });
 
     it("tests fetch Web OC Public config", async function () {
