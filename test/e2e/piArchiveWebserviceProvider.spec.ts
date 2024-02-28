@@ -4,7 +4,6 @@ import type { ArchiveLocationsFilter } from '../../src/requestParameters/archive
 import type { AttributesFilter } from '../../src/requestParameters/attributesFilter.js';
 import { DocumentFormat } from '../../src/requestParameters/documentFormat.js';
 import type { ExternalForecastsFilter } from '../../src/requestParameters/externalForecastFilter.js';
-import type { ParametersFilter } from '../../src/requestParameters/parametersFilter.js';
 import type { ProductsMetaDataFilter } from '../../src/requestParameters/productsMetaDataFilter.js';
 import {ArchiveParametersFilter} from "../../src/requestParameters/archiveParametersFilter";
 
