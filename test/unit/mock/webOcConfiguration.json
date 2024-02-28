@@ -13,7 +13,8 @@
       "showLeafNodesAsButtons": true,
       "defaultPath": {
         "nodeId": "test"
-      }
+      },
+      "showInNavigationMenu": true
     },
     {
       "id": "spatialDisplay",
@@ -21,12 +22,14 @@
       "defaultPath": {
         "gridPlotId": "test"
       },
-      "title": "Spatial Display"
+      "title": "Spatial Display",
+      "showInNavigationMenu": true
     },
     {
       "id": "systemMonitor",
       "type": "SystemMonitor",
-      "title": "System Monitor Title"
+      "title": "System Monitor Title",
+      "showInNavigationMenu": true
     },
     {
       "id": "schematicStatusDisplay",
@@ -35,7 +38,8 @@
       "defaultPath": {
         "groupId": "panelGroup",
         "panelId": "panelName"
-      }
+      },
+      "showInNavigationMenu": true
     }
   ]
 }

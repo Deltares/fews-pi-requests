@@ -4,7 +4,12 @@ import expectedResponse from '../mock/webOcConfiguration.json'
 import expectedPublicResponse from '../mock/webOcPublicConfiguration.json'
 import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
-import {WebOcTopologyDisplayConfig, WebOcSpatialDisplayConfig, WebOcSchematicStatusDisplayConfig, WebOcSystemMonitorConfig} from "../../../src";
+import {
+    WebOcTopologyDisplayConfig,
+    WebOcSpatialDisplayConfig,
+    WebOcSchematicStatusDisplayConfig,
+    WebOcSystemMonitorConfig
+} from "../../../src";
 import {
     isSchematicStatusDisplay,
     isSpatialDisplay, isSystemMonitor,
