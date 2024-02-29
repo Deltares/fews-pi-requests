@@ -41,6 +41,7 @@ export interface TimeSeriesDisplayConfig {
    */
   error?: string;
   title?: string;
+  index?: number;
   forecastLegend?: string;
   subplots?: TimeSeriesDisplaySubplot[];
 }

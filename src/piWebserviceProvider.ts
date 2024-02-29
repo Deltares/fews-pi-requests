@@ -13,6 +13,7 @@ import type {
     ParametersFilter,
     ProcessDataFilter,
     timeSeriesGridActionsFilter,
+    TimeSeriesTopologyActionsFilter,
     filterActionsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
@@ -124,12 +125,31 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Time Series PI API response
      */
+    async getTimeSeriesTopologyActions(filter: TimeSeriesTopologyActionsFilter): Promise<TimeSeriesResponse> {
+        const defaults: TimeSeriesFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const filterWithDefaults = {...defaults, ...filter};
+        const url = this.timeSeriesTopologyActionsUrl(filterWithDefaults);
+        return await this.getTimeSeriesResponse(url);
+    }
+
+    /**
+     * Request Time Series
+     *
+     * @param filter an object with request query parameters
+     * @returns Time Series PI API response
+     */
     async getTimeSeries(filter: TimeSeriesFilter): Promise<TimeSeriesResponse> {
         const defaults: TimeSeriesFilter = {
             documentFormat: DocumentFormat.PI_JSON,
         }
         const filterWithDefaults = {...defaults, ...filter};
         const url = this.timeSeriesUrl(filterWithDefaults);
+        return await this.getTimeSeriesResponse(url);
+    }
+
+    private async getTimeSeriesResponse(url: URL) {
         if (url.toString().length <= this.maxUrlLength) {
             const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
             return res.data;
@@ -518,6 +538,14 @@ export class PiWebserviceProvider {
     topologyNodesUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
+            this._baseUrl
+        )
+    }
+
+    timeSeriesTopologyActionsUrl(filter: TimeSeriesTopologyActionsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/topology/actions${queryParameters}`,
             this._baseUrl
         )
     }
