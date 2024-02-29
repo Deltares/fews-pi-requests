@@ -22,6 +22,7 @@ import { PiRestService } from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import { BaseFilter } from "./requestParameters/baseFilter";
 import { ArchiveSources } from "./response/archivesources";
+import {ArchiveParametersFilter} from "@/requestParameters/archiveParametersFilter";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -63,7 +64,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns Parameters PI API response
      */
-    async getParameters(filter: ParametersFilter): Promise<ArchiveParameters> {
+    async getParameters(filter: ArchiveParametersFilter): Promise<ArchiveParameters> {
         const url = this.parametersUrl(filter);
         const res = await this.webservice.getData<ArchiveParameters>(url.toString());
         return res.data;
@@ -75,7 +76,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    parametersUrl(filter: ParametersFilter): URL {
+    parametersUrl(filter: ArchiveParametersFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,

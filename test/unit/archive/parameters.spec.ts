@@ -1,10 +1,11 @@
-import {ParametersFilter, DocumentFormat} from '../../../src/requestParameters'
 import {ArchiveParameters} from '../../../src/response'
 import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
 import expectedResponse from '../mock/archive/parameters.json'
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
+import {ArchiveParametersFilter} from "../../../src/requestParameters/archiveParametersFilter";
+import {DocumentFormat} from "../../../src";
 
 describe("archive/parameters", function () {
     afterAll(function () {
@@ -18,7 +19,7 @@ describe("archive/parameters", function () {
         });
 
         const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
-        const filter: ParametersFilter = {
+        const filter: ArchiveParametersFilter = {
             documentFormat: DocumentFormat.PI_JSON,
             locationIds: "delfzijl"
         }

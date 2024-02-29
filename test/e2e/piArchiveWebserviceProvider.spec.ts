@@ -4,8 +4,8 @@ import type { ArchiveLocationsFilter } from '../../src/requestParameters/archive
 import type { AttributesFilter } from '../../src/requestParameters/attributesFilter.js';
 import { DocumentFormat } from '../../src/requestParameters/documentFormat.js';
 import type { ExternalForecastsFilter } from '../../src/requestParameters/externalForecastFilter.js';
-import type { ParametersFilter } from '../../src/requestParameters/parametersFilter.js';
 import type { ProductsMetaDataFilter } from '../../src/requestParameters/productsMetaDataFilter.js';
+import {ArchiveParametersFilter} from "../../src/requestParameters/archiveParametersFilter";
 
 
 const baseUrl = process.env.TEST_ARCHIVE_URL ?? "";
@@ -22,7 +22,7 @@ describe("pi webservice provider", function () {
 
     it("get parameters", async function () {
         const provider = new PiArchiveWebserviceProvider(baseUrl);
-        const filter: ParametersFilter = {
+        const filter: ArchiveParametersFilter = {
             documentFormat: DocumentFormat.PI_JSON,
             attribute: {
                 system: 'nz'
