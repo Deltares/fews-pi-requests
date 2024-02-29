@@ -37,4 +37,6 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     timeStepId?: string;
     // (number): Default value is -1 in which case the index is not used.
     timeSeriesSetIndex?: number;
+    // donwload as attachment.
+    downloadAsFile?: boolean;
 }
