@@ -31,6 +31,7 @@
     } ],
     "config" : {
       "timeSeriesDisplay" : {
+        "index": 0,
         "title" : "Boven Maas",
         "subplots" : [ {
           "items" : [ {

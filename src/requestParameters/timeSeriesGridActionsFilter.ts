@@ -13,6 +13,7 @@ export interface timeSeriesGridActionsFilter {
   ensembleId?: string;
   ensembleMemberId?: string;
   importFromExternalDataSource?: boolean;
+  downloadAsFile?: boolean;
   documentFormat?: string;
   documentVersion?: string;
 }
