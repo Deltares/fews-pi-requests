@@ -531,6 +531,21 @@ export class PiWebserviceProvider {
     }
 
     /**
+     *
+     * Construct URL for icon files from the Delft-FEWS IconFiles configuration folder.
+     * In case an absolute URL is passed, the passed path will be returned as URL.
+     *
+     * @returns complete url for making a request
+     */
+    resourcesIconsUrl(resource: string): URL {
+        if (resource.startsWith("http://") || resource.startsWith("https://") ) return new URL(resource)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/icons/${resource}`,
+            this._baseUrl
+        )
+    }
+
+    /**
      * Construct URL for topology nodes request
      *
      * @returns complete url for making a request

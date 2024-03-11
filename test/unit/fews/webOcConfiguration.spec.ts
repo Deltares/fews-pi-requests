@@ -92,4 +92,13 @@ describe("webOcConfig", function () {
         expect(resultsHttpPath.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/http/css/style.css");
 
     })
+
+    it("get icons", async function () {
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+        const results = await provider.resourcesIconsUrl('icon.png')
+        expect(results.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/icons/icon.png");
+
+    })
+
+
 });
