@@ -152,6 +152,7 @@ export interface WebOcGeneralConfig {
    * Set to true if permissions are applied as used in the Permissions.xml and UserGroups.xml configurations. Als required if using OIDC integration with the web service.
    */
   permissionsEnabled?: boolean;
+  timeSettings?: TimeSettingsViewPeriodPresets;
 }
 /**
  * Icons Configuration
@@ -174,4 +175,34 @@ export interface WebOcLoginConfig {
    * URL or resource id from the WebResourceFiles folder or any of its sub folder with the background image that will be used on the login screen
    */
   backgroundImage?: string;
+}
+/**
+ * View Period Presets
+ */
+export interface TimeSettingsViewPeriodPresets {
+  /**
+   * View period presets
+   */
+  viewPeriodPresets?: TimeSettingsViewPeriodPreset[];
+}
+/**
+ * View Period
+ */
+export interface TimeSettingsViewPeriodPreset {
+  /**
+   * Unit of the view period
+   */
+  unit: "second" | "minute" | "hour" | "day" | "week";
+  /**
+   * Label of the view period
+   */
+  label: string;
+  /**
+   * Start of the view period. Optional.
+   */
+  start?: string;
+  /**
+   * End of the view period. Optional.
+   */
+  end?: string;
 }

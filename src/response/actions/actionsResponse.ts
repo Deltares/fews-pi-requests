@@ -17,6 +17,7 @@ export interface ActionResult {
    * ActionRequests
    */
   requests: ActionRequest[];
+  period?: ActionPeriod;
   config?: ActionRequestConfig;
 }
 export interface ActionRequest {
@@ -31,6 +32,23 @@ export interface ActionRequest {
    * URL to show of the timeseries. The time parameter has to be added to show the history. In case of an ensemble the ensembleMemberId has to be added. Only relevant for PI requests.
    */
   historyRequest?: string;
+}
+export interface ActionPeriod {
+  startDate: ActionsPeriodDate;
+  endDate: ActionsPeriodDate;
+}
+/**
+ * Date
+ */
+export interface ActionsPeriodDate {
+  /**
+   * Date
+   */
+  date: string;
+  /**
+   * Time
+   */
+  time: string;
 }
 export interface ActionRequestConfig {
   timeSeriesDisplay: TimeSeriesDisplayConfig;
