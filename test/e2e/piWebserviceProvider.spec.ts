@@ -1,10 +1,11 @@
 import 'cross-fetch/polyfill';
 import {
     DocumentFormat,
-    LocationsFilter,
+    type LocationsFilter,
     PiWebserviceProvider,
-    TaskRunsFilter,
-    TopologyActionFilter
+    type TaskRunsFilter,
+    type TimeSeriesResponse,
+    type TopologyActionFilter
 } from "../../src";
 
 const baseUrl = process.env.TEST_URL || "";
@@ -83,4 +84,16 @@ describe("pi webservice provider", function () {
 
         expect(res.results.length).toBeGreaterThan(0);        
     });
+
+    it("timeseries edit", async function () {
+        const provider = new PiWebserviceProvider(baseUrl);
+        const timeSeries: TimeSeriesResponse = {
+           "version":"1.32","timeZone":"0.0","timeSeries":[{"events":[{"date":"2023-12-12","time":"11:50:00","value":"15","flag":"1","flagSource":"MAN"}]}]
+        };
+        const editUrl = `${baseUrl}/rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=2958&locationId=Belfeld_boven`
+        const res = await provider.postTimeSeriesEdit(editUrl, timeSeries);
+
+        expect(res).toEqual('data was uploaded successfully')
+    })
+    
 })
