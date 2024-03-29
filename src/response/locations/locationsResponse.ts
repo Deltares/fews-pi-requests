@@ -74,6 +74,10 @@ export interface Location {
    * Id of the parent location
    */
   parentLocationId?: string;
+  /**
+   * Since 2024.01: Name of the location icon. Can be used with the resource /icons/{iconName} endpoint to get the icon
+   */
+  iconName?: string;
 }
 export interface Attributes {
   /**
