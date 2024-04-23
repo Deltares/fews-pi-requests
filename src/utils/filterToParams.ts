@@ -14,9 +14,14 @@ export function filterToParams(filter: object ): string {
     const filterArgs: string[] = []
     for (const [parameter, values] of Object.entries(filter)) {
         if (values === undefined) continue
-        if ( parameter === 'attribute') {
+        if ( parameter === 'attribute' || parameter === 'properties') {
+            const prefixMap = {
+                'attribute': 'attribute',
+                'properties': 'property'
+            }
+            const prefix = prefixMap[parameter]
             for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${parameter}(${key})`, value)
+                const strings = filterArgToStrings(`${prefix}(${key})`, value)
                 filterArgs.push(...strings)
             }
         } else if ( parameter === 'qualifierIds') {

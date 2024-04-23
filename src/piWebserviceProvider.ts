@@ -12,6 +12,7 @@ import type {
     LocationsFilter,
     ParametersFilter,
     ProcessDataFilter,
+    RunTaskFilter,
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
     filterActionsFilter
@@ -326,6 +327,27 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Runs a workflow task for a given workflowId.
+     *
+     * @param filter an object with request query parameters
+     * @param piParametersXmlContent URL Encoded model parameters content that validates against the
+     *                               following xsd: https://fewsdocs.deltares.nl/schemas/version1.0/pi-schemas/pi_modelparameters.xsd
+     *
+     * @returns the taskId of the submitted job.
+     */
+    async postRunTask(filter: RunTaskFilter, piParametersXmlContent: string): Promise<string> {
+        const url = this.runTaskUrl(filter)
+        const requestOptions = new RequestOptions()
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, new PlainTextParser(), piParametersXmlContent, headers);
+        return res.data
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -587,4 +609,11 @@ export class PiWebserviceProvider {
         )
     }
 
+    runTaskUrl(filter: RunTaskFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/runtask${queryParameters}`,
+            this._baseUrl
+        )
+    }
 }
