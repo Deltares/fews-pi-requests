@@ -382,7 +382,7 @@ export interface TimeSeriesEvent {
    */
   detection?: "<" | ">" | "~";
   /**
-   * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing.
+   * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing, 14=accumulation reset.
    */
   flag: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13";
   /**
@@ -409,6 +409,14 @@ export interface TimeSeriesEvent {
     | "CA"
     | "OSC"
     | null;
+  /**
+   * Only used when editing timeseries. Original flag has to be be passed. Reliable: Change Flag to 0, 1, 2, with Flag Source MAN
+   * Doubtful: Change Flag to 3, 4, 5 with Flag Source MAN
+   * Unreliable: Change Flag to 6, 7, 8, with Flag Source MAN
+   * Persistent Unreliable: Change Flag to 6, 7, 8, with Flag Source SFP
+   * Accumulation Reset: Change Flag to 14, with Flag Source MAN
+   */
+  flagEdit?: "Reliable" | "Doubtful" | "Unreliable" | "Persistent Unreliable" | "Accumulation Reset";
   /**
    * Flag Source Column
    */
