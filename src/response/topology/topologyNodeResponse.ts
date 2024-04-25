@@ -78,8 +78,8 @@ export interface SecondaryWorkflowProperties {
  * Data download display
  */
 export interface DataDownloadDisplayItem {
-  showLocationName: string;
-  showParameterName: string;
+  showLocationName: "id" | "short name" | "name";
+  showParameterName: "id" | "short name" | "name";
   /**
    * Attributes
    */
