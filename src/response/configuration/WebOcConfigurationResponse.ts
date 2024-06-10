@@ -127,6 +127,10 @@ export interface WebOcTopologyDisplayConfig {
    * Show in navigation menu.
    */
   showInNavigationMenu?: boolean;
+  /**
+   * Enable the task runs button in the topology display
+   */
+  enableTaskRuns?: boolean;
 }
 /**
  * Default grid display
@@ -153,6 +157,7 @@ export interface WebOcGeneralConfig {
    */
   permissionsEnabled?: boolean;
   timeSettings?: TimeSettingsViewPeriodPresets;
+  agreeToTermsAndConditions?: TermsAndConditions;
 }
 /**
  * Icons Configuration
@@ -205,4 +210,13 @@ export interface TimeSettingsViewPeriodPreset {
    * End of the view period. Optional.
    */
   end?: string;
+}
+/**
+ * Set to true if the user has to agree to the terms and conditions before using the application
+ */
+export interface TermsAndConditions {
+  /**
+   * Enable terms and conditions
+   */
+  enabled?: boolean;
 }
