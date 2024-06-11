@@ -37,6 +37,7 @@ import {HistoryEditsResponse} from "./response/timeseries/historyEditsResponse";
 import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
+import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -196,6 +197,18 @@ export class PiWebserviceProvider {
     async getTimeSeriesGridActions(filter: timeSeriesGridActionsFilter): Promise<ActionsResponse> {
         const url = this.timeSeriesGridActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Request time series maximum values for a WMS layer.
+     *
+     * @param filter an object with request query parameters
+     * @returns Time series with maximum values for a WMS layer.
+     */
+    async getTimeSeriesGridMaxValues(filter: TimeSeriesGridMaxValuesFilter): Promise<TimeSeriesResponse> {
+        const url = this.timeSeriesGridMaxValuesUrl(filter);
+        const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
         return res.data;
     }
 
@@ -414,6 +427,20 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Constructs URL for time series grid max values request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    timeSeriesGridMaxValuesUrl(filter: TimeSeriesGridMaxValuesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid/maxvalues${queryParameters}`,
             this._baseUrl
         )
     }
