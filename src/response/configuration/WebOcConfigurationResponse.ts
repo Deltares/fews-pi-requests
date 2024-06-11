@@ -131,6 +131,10 @@ export interface WebOcTopologyDisplayConfig {
    * Enable the task runs button in the topology display
    */
   enableTaskRuns?: boolean;
+  /**
+   * Enable the task runs button in the topology display
+   */
+  showActiveThresholdCrossingsForFilters?: boolean;
 }
 /**
  * Default grid display
