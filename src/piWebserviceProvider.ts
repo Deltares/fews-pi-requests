@@ -38,6 +38,7 @@ import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
+import { TopologyThresholdNodeResponse } from '@/response/topology/thresholdsNodeResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -235,6 +236,17 @@ export class PiWebserviceProvider {
     async getTopologyNodes(): Promise<TopologyNodeResponse> {
         const url = this.topologyNodesUrl();
         const res = await this.webservice.getData<TopologyNodeResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get all the active thresholds for the topology nodes 
+     *
+     * @returns all the active thresholds for the topology nodes
+     */
+    async getTopologyThresholds(): Promise<TopologyThresholdNodeResponse> {
+        const url = this.topologyThresholdsUrl()
+        const res = await this.webservice.getData<TopologyThresholdNodeResponse>(url.toString());
         return res.data;
     }
 
@@ -602,6 +614,18 @@ export class PiWebserviceProvider {
     topologyNodesUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for topology thresholds request
+     *
+     * @returns complete url for making a request
+     */
+    topologyThresholdsUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/thresholds`,
             this._baseUrl
         )
     }
