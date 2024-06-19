@@ -7,14 +7,10 @@ export interface TopologyThresholdNodeResponse {
   /**
    * TopologyThresholds
    */
-  topologyNodes: TopologyNode[];
+  topologyThresholdNodes: TopologyThresholdNode[];
 }
-export interface TopologyNode {
+export interface TopologyThresholdNode {
   id: string;
   topologyLocationIcon?: string;
   filterLocationsCount?: number;
-  /**
-   * TopologyNodes
-   */
-  topologyNodes?: TopologyNode[];
 }
