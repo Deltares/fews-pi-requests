@@ -7,7 +7,7 @@ export interface TopologyThresholdNodeResponse {
   /**
    * TopologyThresholds
    */
-  topologyThresholdNodes: TopologyThresholdNode[];
+  topologyNodes: TopologyThresholdNode[];
 }
 export interface TopologyThresholdNode {
   id: string;
