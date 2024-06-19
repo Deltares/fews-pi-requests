@@ -1,0 +1,32 @@
+{
+  "topologyNodes": [
+    {
+      "id": "viewer_rivers",
+      "filterLocationsCount": 1
+    },
+    {
+      "id": "viewer_coastal",
+      "topologyLocationIcon": "coastal_site_data_red.gif"
+    },
+    {
+      "id": "viewer_rivers_critical_points",
+      "filterLocationsCount": 1
+    },
+    {
+      "id": "viewer_coastal_waves",
+      "topologyLocationIcon": "coastal_site_data_red.gif"
+    },
+    {
+      "id": "viewer_rivers_critical_points_forecast",
+      "filterLocationsCount": 1
+    },
+    {
+      "id": "viewer_coastal_waves_swan_BND_02",
+      "topologyLocationIcon": "coastal_site_data_red.gif"
+    },
+    {
+      "id": "viewer_coastal_waves_swan_BND_03",
+      "topologyLocationIcon": "coastal_site_data_red.gif"
+    }
+  ]
+}

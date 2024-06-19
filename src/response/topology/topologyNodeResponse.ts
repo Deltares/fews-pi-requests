@@ -15,7 +15,6 @@ export interface TopologyNode {
   workflowId?: string;
   localRun?: boolean;
   url?: string;
-  activeThresholds?: ActiveThresholdsItem;
   plotId?: string;
   displayId?: string;
   locationIds?: string[];
@@ -35,9 +34,6 @@ export interface TopologyNode {
    */
   secondaryWorkflows?: SecondaryWorkflowGroupItem[];
   dataDownloadDisplay?: DataDownloadDisplayItem;
-}
-export interface ActiveThresholdsItem {
-  icon: string;
 }
 /**
  * Selectesd grid display
