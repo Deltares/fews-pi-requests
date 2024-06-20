@@ -4,7 +4,7 @@ export interface LocationsFilter extends BaseFilter {
     filterId?: string;
     showAttributes?: boolean;
     showParentLocations?: boolean;
-    showTresholds?: boolean;
+    showThresholds?: boolean;
     includeLocationRelations?: boolean;
     includeTimeDependency?: boolean;
     includeIconNames?: boolean;
