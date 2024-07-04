@@ -34,6 +34,7 @@ export interface TopologyNode {
    */
   secondaryWorkflows?: SecondaryWorkflowGroupItem[];
   dataDownloadDisplay?: DataDownloadDisplayItem;
+  reportDisplay?: ReportDisplayItem;
 }
 /**
  * Selectesd grid display
@@ -77,11 +78,23 @@ export interface DataDownloadDisplayItem {
   showLocationName: "id" | "short name" | "name";
   showParameterName: "id" | "short name" | "name";
   /**
-   * Attributes
+   * DataDownloadDisplayItemAttributes
    */
-  attributes: AttributeItem[];
+  attributes: DataDownloadDisplayAttributeItem[];
 }
-export interface AttributeItem {
+export interface DataDownloadDisplayAttributeItem {
   id: string;
   name: string;
+}
+/**
+ * Report display
+ */
+export interface ReportDisplayItem {
+  /**
+   * ReportDisplayItemDetails
+   */
+  reports: ReportDisplayItemDetails[];
+}
+export interface ReportDisplayItemDetails {
+  moduleInstanceId: string;
 }

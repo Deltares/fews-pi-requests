@@ -12,6 +12,7 @@ import type {
     LocationsFilter,
     ParametersFilter,
     ProcessDataFilter,
+    ReportsFilter,
     RunTaskFilter,
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
@@ -39,6 +40,7 @@ import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
+import {ReportsResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -372,6 +374,13 @@ export class PiWebserviceProvider {
         return res.data
     }
 
+    async getReports(filter: ReportsFilter): Promise<ReportsResponse> {
+        const url = this.reportsUrl(filter)
+        const res = await this.webservice.getData<ReportsResponse>(url.toString());
+        return res.data;
+    }
+
+
     /**
      * Construct URL for locations request
      *
@@ -667,4 +676,14 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+    reportsUrl(filter: ReportsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/reports${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+
 }
