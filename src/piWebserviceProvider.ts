@@ -40,7 +40,7 @@ import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
-import {ReportsResponse} from "@/response";
+import type { ReportsResponse } from './response/reports/reportsResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
