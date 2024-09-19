@@ -20,6 +20,7 @@ export interface TopologyNode {
   locationIds?: string[];
   mainPanel?: string;
   filterIds?: string[];
+  documentFile?: string;
   gridDisplaySelection?: GridDisplaySelection;
   /**
    * Display group item
@@ -35,6 +36,10 @@ export interface TopologyNode {
   secondaryWorkflows?: SecondaryWorkflowGroupItem[];
   dataDownloadDisplay?: DataDownloadDisplayItem;
   reportDisplay?: ReportDisplayItem;
+  /**
+   * id of the scada panel which is coupled to this topology node
+   */
+  scadaPanelId?: string;
 }
 /**
  * Selectesd grid display

@@ -10,6 +10,7 @@ import type {
     TimeSeriesFilter,
     TimeSeriesGridFilter,
     LocationsFilter,
+    LocationsTooltipFilter,
     ParametersFilter,
     ProcessDataFilter,
     ReportsFilter,
@@ -79,6 +80,19 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
         return res.data;
     }
+
+    /**
+     * Request locations
+     *
+     * @param filter an object with request query parameters
+     * @returns LocationsTooltip API response
+     */
+    async getLocationsTooltip(filter: LocationsTooltipFilter): Promise<string> {
+        const url = this.locationsTooltipUrl(filter);
+        const res = await this.webservice.getData<string>(url.toString());
+        return res.data;
+    }
+
     /**
      * Request the history of the edits
      *
@@ -394,6 +408,21 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+    /**
+     * Construct URL for locations tooltip request
+     *
+     * @param filter an object with request query parameters
+     * @returns complete url for making a request
+     */
+    locationsTooltipUrl(filter: LocationsTooltipFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations/tooltip${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
     /**
      * Construct URL for history edits request
      *
