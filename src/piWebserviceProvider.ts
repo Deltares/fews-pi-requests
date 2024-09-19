@@ -88,8 +88,11 @@ export class PiWebserviceProvider {
      * @returns LocationsTooltip API response
      */
     async getLocationsTooltip(filter: LocationsTooltipFilter): Promise<string> {
-        const url = this.locationsTooltipUrl(filter);
-        const res = await this.webservice.getData<string>(url.toString());
+        const url = this.locationsTooltipUrl(filter).toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser);
         return res.data;
     }
 
