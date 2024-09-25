@@ -28,6 +28,7 @@ describe("reports", function () {
         if (results?.reports?.length === 1) {
             const report = results.reports[0]
             expect(report?.moduleInstanceId).toBe("GenerateReport")
+            expect(report?.moduleInstanceName).toBe("GenerateReportName")
             expect(report?.mimeType).toBe("application/pdf")
             expect(report?.items?.length).toBe(1);
             if (report?.items.length === 1) {

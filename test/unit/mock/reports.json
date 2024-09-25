@@ -1,6 +1,7 @@
 {
   "reports" : [ {
     "moduleInstanceId" : "GenerateReport",
+    "moduleInstanceName" : "GenerateReportName",
     "mimeType" : "application/pdf",
     "items" : [ {
       "moduleInstanceId" : "GenerateReport",

@@ -13,6 +13,10 @@ export interface Report {
    */
   moduleInstanceId: string;
   /**
+   * the module instance name
+   */
+  moduleInstanceName?: string;
+  /**
    * the mime type of the report
    */
   mimeType: string;
