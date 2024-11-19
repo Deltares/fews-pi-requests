@@ -36,6 +36,14 @@ export interface WebOcSpatialDisplayConfig {
    * Show in navigation menu.
    */
   showInNavigationMenu?: boolean;
+  /**
+   * Configure an icon from the IconFiles config folder
+   */
+  icon?: string;
+  /**
+   * The id of the icon to use, for example an mdi icon
+   */
+  iconId?: string;
 }
 /**
  * Default spatial display
@@ -67,6 +75,8 @@ export interface WebOcSchematicStatusDisplayConfig {
    * Show in navigation menu.
    */
   showInNavigationMenu?: boolean;
+  icon?: string;
+  iconId?: string;
 }
 /**
  * Default schematic status display
@@ -101,6 +111,8 @@ export interface WebOcSystemMonitorConfig {
    * Show in navigation menu.
    */
   showInNavigationMenu?: boolean;
+  icon?: string;
+  iconId?: string;
 }
 /**
  * Topology Display Configuration
@@ -135,6 +147,8 @@ export interface WebOcTopologyDisplayConfig {
    * Enable the task runs button in the topology display
    */
   showActiveThresholdCrossingsForFilters?: boolean;
+  icon?: string;
+  iconId?: string;
 }
 /**
  * Default grid display
