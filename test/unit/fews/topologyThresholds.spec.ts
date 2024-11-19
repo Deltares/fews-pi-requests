@@ -27,5 +27,6 @@ describe("topology tresholds", function () {
         expect(thresholds.topologyNodes[0].filterLocationsCount).toBe(1)
         expect(thresholds.topologyNodes[1].id).toBe("viewer_coastal")
         expect(thresholds.topologyNodes[1].topologyLocationIcon).toBe("coastal_site_data_red.gif")
+        // another test
     });
 })
