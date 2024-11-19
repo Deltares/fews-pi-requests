@@ -14,7 +14,10 @@ export interface TopologyNode {
   name: string;
   workflowId?: string;
   localRun?: boolean;
+  icon?: string;
+  iconId?: string;
   url?: string;
+  embedUrl?: string;
   plotId?: string;
   displayId?: string;
   locationIds?: string[];
