@@ -42,6 +42,7 @@ import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
 import type { ReportsResponse } from './response/reports/reportsResponse'
+import {LogsDisplaysResponse} from "@/response";
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -78,6 +79,17 @@ export class PiWebserviceProvider {
     async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
         const url = this.locationsUrl(filter);
         const res = await this.webservice.getData<LocationsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Request log displays
+     *
+     * @returns Locations PI API response
+     */
+    async getLogDisplays(): Promise<LogsDisplaysResponse> {
+        const url = this.logDisplaysUrl();
+        const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString());
         return res.data;
     }
 
@@ -408,6 +420,18 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for log displays request
+     *
+     * @returns complete url for making a request
+     */
+    logDisplaysUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays`,
             this._baseUrl
         )
     }
