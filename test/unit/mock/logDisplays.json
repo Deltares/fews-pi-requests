@@ -1,0 +1,45 @@
+{
+  "logDisplays" : [ {
+    "id" : "admin.log",
+    "name" : "Admin Log",
+    "userAlerts" : {
+      "showMessagePopUp" : true,
+      "showUnreadMessageIconsInTopology" : true
+    },
+    "systemLog" : {
+      "logLevels" : [ "INFO", "WARN", "ERROR" ],
+      "eventCodes" : [ "test.code", "syslog.*" ]
+    },
+    "manualLog" : {
+      "noteGroupId" : "template1"
+    },
+    "logDissemination" : {
+      "disseminationActions" : [ {
+        "id" : "sms",
+        "description" : "This action sends an SMS to all operator",
+        "iconId" : "message.svg",
+        "manualLog" : true,
+        "systemLog" : false
+      }, {
+        "id" : "email",
+        "description" : "This action sends an email to the Stuurgroep",
+        "iconId" : "mdi-email",
+        "manualLog" : true,
+        "systemLog" : true
+      }, {
+        "id" : "whatsapp",
+        "description" : "another description",
+        "iconId" : "mdi-whatsapp",
+        "manualLog" : false,
+        "systemLog" : true
+      } ]
+    }
+  }, {
+    "id" : "operator.log",
+    "name" : "Operator Log",
+    "userAlerts" : {
+      "showMessagePopUp" : false,
+      "showUnreadMessageIconsInTopology" : false
+    }
+  } ]
+}
