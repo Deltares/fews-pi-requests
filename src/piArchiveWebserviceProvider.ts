@@ -4,7 +4,6 @@ import type {
     ArchiveLocationsFilter,
     AttributesFilter,
     ExternalForecastsFilter,
-    ParametersFilter,
     ProductsMetaDataFilter,
     TimeSeriesFilter
 } from "./requestParameters";
@@ -63,6 +62,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Parameters PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getParameters(filter: ArchiveParametersFilter): Promise<ArchiveParameters> {
         const url = this.parametersUrl(filter);
@@ -89,6 +89,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Locations PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getLocations(filter: ArchiveLocationsFilter): Promise<ArchiveLocations> {
         const url = this.locationsUrl(filter);
@@ -115,6 +116,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns ArchiveAreas PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getAreas(filter: BaseFilter): Promise<ArchiveAreas> {
         const url = this.areasUrl(filter);
@@ -141,6 +143,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns ArchiveSources PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getSources(filter: BaseFilter): Promise<ArchiveSources> {
         const url = this.sourcesUrl(filter);
@@ -167,6 +170,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Attributes PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getAttributes(filter: AttributesFilter): Promise<ArchiveAttributes> {
         const url = this.attributesUrl(filter);
@@ -193,6 +197,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns External Forecasts PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getExternalForecasts(filter: ExternalForecastsFilter): Promise<ArchiveExternalNetCDFStorageForecasts> {
         const mappedFilter: { [key: string]: unknown } = {}
@@ -231,6 +236,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns ProductsMetaData PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
         const queryParameters = filterToParams(filter);
@@ -257,6 +263,7 @@ export class PiArchiveWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Time Series PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeries(filter: TimeSeriesFilter): Promise<TimeSeriesResponse> {
         const defaults: TimeSeriesFilter = {

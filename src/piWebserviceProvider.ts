@@ -75,6 +75,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Locations PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getLocations(filter: LocationsFilter): Promise<LocationsResponse> {
         const url = this.locationsUrl(filter);
@@ -86,6 +87,7 @@ export class PiWebserviceProvider {
      * Request log displays
      *
      * @returns Locations PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getLogDisplays(): Promise<LogsDisplaysResponse> {
         const url = this.logDisplaysUrl();
@@ -98,6 +100,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns LocationsTooltip API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getLocationsTooltip(filter: LocationsTooltipFilter): Promise<string> {
         const url = this.locationsTooltipUrl(filter).toString();
@@ -113,6 +116,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Locations PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getHistoryEdits(filter: HistoryEditsFilter): Promise<HistoryEditsResponse> {
         let url = filter.editUrl;
@@ -129,6 +133,7 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @param output options to convert output
      * @returns Parmeters PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse>
     async getParameters(filter: ParametersFilter, output?: ParameterGroupsOutputOptions): Promise<ParameterGroupsOutput>
@@ -146,6 +151,7 @@ export class PiWebserviceProvider {
      * Request time series with a relative url
      * @param relativeUrl
      * @returns time series api response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
         const url = new URL(relativeUrl, this._baseUrl);
@@ -157,7 +163,8 @@ export class PiWebserviceProvider {
      * Request Time Series
      *
      * @param filter an object with request query parameters
-     * @returns Time Series PI API response
+     * @returns Time Series PI API response      
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeriesTopologyActions(filter: TimeSeriesTopologyActionsFilter): Promise<TimeSeriesResponse> {
         const defaults: TimeSeriesFilter = {
@@ -173,6 +180,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Time Series PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeries(filter: TimeSeriesFilter): Promise<TimeSeriesResponse> {
         const defaults: TimeSeriesFilter = {
@@ -208,6 +216,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Time Series Grid PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
         const defaults: TimeSeriesGridFilter = {
@@ -224,6 +233,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Time Series Grid Actions PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
 
     async getTimeSeriesGridActions(filter: timeSeriesGridActionsFilter): Promise<ActionsResponse> {
@@ -237,6 +247,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns Time series with maximum values for a WMS layer.
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeriesGridMaxValues(filter: TimeSeriesGridMaxValuesFilter): Promise<TimeSeriesResponse> {
         const url = this.timeSeriesGridMaxValuesUrl(filter);
@@ -249,6 +260,7 @@ export class PiWebserviceProvider {
      *
      * @param filter an object with request query parameters
      * @returns task runs PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTaskRuns(filter: TaskRunsFilter): Promise<TaskRunsResponse> {
         const defaults: Partial<TaskRunsFilter> = {}
@@ -263,6 +275,7 @@ export class PiWebserviceProvider {
      * Get all the topology nodes of FEWS
      *
      * @returns all the topology nodes configured in FEWS
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTopologyNodes(): Promise<TopologyNodeResponse> {
         const url = this.topologyNodesUrl();
@@ -274,6 +287,7 @@ export class PiWebserviceProvider {
      * Get all the active thresholds for the topology nodes 
      *
      * @returns all the active thresholds for the topology nodes
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTopologyThresholds(): Promise<TopologyThresholdNodeResponse> {
         const url = this.topologyThresholdsUrl()
@@ -285,6 +299,7 @@ export class PiWebserviceProvider {
      * Get the import status of FEWS
      *
      * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getImportStatus(): Promise<ImportStatusResponse> {
         const url = this.importStatusUrl();
@@ -296,6 +311,7 @@ export class PiWebserviceProvider {
      * Get the import status of FEWS
      *
      * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getVersion(): Promise<VersionResponse> {
         const queryParameters = "documentFormat=PI_JSON"
@@ -308,6 +324,7 @@ export class PiWebserviceProvider {
      * Get the configuration of FEWS related to the Web OC.
      *
      * @returns Web OC configuration API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getWebOcConfiguration(): Promise<WebOcConfigurationResponse> {
         const defaults: BaseFilter = {
@@ -322,6 +339,7 @@ export class PiWebserviceProvider {
      * Get the configuration of FEWS related to the Web OC that is always available.
      *
      * @returns Web OC public configuration API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getWebOcPublicConfiguration(): Promise<WebOcConfigurationResponse> {
         const defaults: BaseFilter = {
@@ -333,10 +351,11 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Get the time series info for a certain topology node
+     * Get the actions for a certain topology node
      *
      * @param filter search options for the displays (nodeId)
      * @returns Display groups API response
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTopologyActions(filter: TopologyActionFilter): Promise<ActionsResponse> {
         const url = this.topologyActionsUrl(filter)
@@ -350,18 +369,37 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    /**
+     * Get the time series flags
+     *
+     * @returns Time series flags API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
     async getFlags(): Promise<TimeSeriesFlagsResponse> {
         const url = this.flagsUrl()
         const res = await this.webservice.getData<TimeSeriesFlagsResponse>(url.toString());
         return res.data;
     }
 
+    /**
+     * Get the time series flag sources
+     *
+     * @returns Time series flag sources API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
     async getFlagSources(): Promise<TimeSeriesFlagSourcesResponse> {
         const url = this.flagSourcesUrl()
         const res = await this.webservice.getData<TimeSeriesFlagSourcesResponse>(url.toString());
         return res.data;
     }
 
+    /**
+     * Get the actions for filter
+     *
+     * @param filter search options
+     * @returns Actions API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
     async getFilterActions(filter: filterActionsFilter): Promise<ActionsResponse> {
         const url = this.filterActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
@@ -371,6 +409,10 @@ export class PiWebserviceProvider {
     /**
      * Post time series edits.
      *
+     * @param editUrl URL to post the time series edits to
+     * @param timeSeriesEvents Time Series Events to be updated
+     * @returns Updated time series events
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async postTimeSeriesEdit(editUrl: string, timeSeriesEvents: TimeSeriesResponse): Promise<unknown> {
         const requestOptions = new RequestOptions()
@@ -390,6 +432,7 @@ export class PiWebserviceProvider {
      *                               following xsd: https://fewsdocs.deltares.nl/schemas/version1.0/pi-schemas/pi_modelparameters.xsd
      *
      * @returns the taskId of the submitted job.
+     * @throws 'Fetch Error' if fetch result is not ok
      */
     async postRunTask(filter: RunTaskFilter, piParametersXmlContent: string): Promise<string> {
         const url = this.runTaskUrl(filter)
@@ -403,12 +446,18 @@ export class PiWebserviceProvider {
         return res.data
     }
 
+    /**
+     * Get the reporets for filter
+     *
+     * @param filter search options
+     * @returns Reports API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
     async getReports(filter: ReportsFilter): Promise<ReportsResponse> {
         const url = this.reportsUrl(filter)
         const res = await this.webservice.getData<ReportsResponse>(url.toString());
         return res.data;
     }
-
 
     /**
      * Construct URL for locations request
