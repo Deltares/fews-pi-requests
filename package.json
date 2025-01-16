@@ -41,7 +41,7 @@
     "message": "/* tslint:disable */"
   },
   "dependencies": {
-    "@deltares/fews-web-oc-utils": "^1.0.0"
+    "@deltares/fews-web-oc-utils": "^1.0.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
