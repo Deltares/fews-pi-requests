@@ -20,6 +20,7 @@ export interface TopologyNode {
   embedUrl?: string;
   plotId?: string;
   displayId?: string;
+  boundingBox?: BoundingBox;
   locationIds?: string[];
   mainPanel?: string;
   filterIds?: string[];
@@ -38,11 +39,26 @@ export interface TopologyNode {
    */
   secondaryWorkflows?: SecondaryWorkflowGroupItem[];
   dataDownloadDisplay?: DataDownloadDisplayItem;
+  logDisplay?: LogDisplayItem;
+  /**
+   * Dashboard panels
+   */
+  dashboardPanels?: DashboardPanelItem[];
   reportDisplay?: ReportDisplayItem;
   /**
    * id of the scada panel which is coupled to this topology node
    */
   scadaPanelId?: string;
+}
+/**
+ * Bounding box according to CRS EPSG:3857 Web Mercator format
+ */
+export interface BoundingBox {
+  crs: "EPSG:3857";
+  minx: string;
+  maxy: string;
+  maxx: string;
+  miny: string;
 }
 /**
  * Selectesd grid display
@@ -93,6 +109,15 @@ export interface DataDownloadDisplayItem {
 export interface DataDownloadDisplayAttributeItem {
   id: string;
   name: string;
+}
+/**
+ * Log display
+ */
+export interface LogDisplayItem {
+  id: string;
+}
+export interface DashboardPanelItem {
+  id: string;
 }
 /**
  * Report display
