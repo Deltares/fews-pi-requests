@@ -164,6 +164,7 @@ export interface WebOcGeneralConfig {
   defaultComponent?: string;
   customStyleSheet?: string;
   splashScreen?: string;
+  taskMenu?: TaskMenuConfig;
   icons?: WebOcIconsConfig;
   login?: WebOcLoginConfig;
   /**
@@ -176,6 +177,10 @@ export interface WebOcGeneralConfig {
   permissionsEnabled?: boolean;
   timeSettings?: TimeSettingsViewPeriodPresets;
   agreeToTermsAndConditions?: TermsAndConditions;
+  manifestFile?: string;
+}
+export interface TaskMenuConfig {
+  enabled?: string;
 }
 /**
  * Icons Configuration
