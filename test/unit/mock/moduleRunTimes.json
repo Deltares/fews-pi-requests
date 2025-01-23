@@ -1,0 +1,22 @@
+{
+  "moduleRunTimes": [
+    {
+      "workflowId": "testWorkflowId1",
+      "moduleInstanceId": "testModuleInstanceId1",
+      "mcId": "testId1",
+      "expectedStartTime": 1737640822000,
+      "expectedCompletionTime": 1737640822000,
+      "expectedPendingDuration": 21568,
+      "expectedRunningDuration": 41
+    },
+    {
+      "workflowId": "testWorkflowId2",
+      "moduleInstanceId": "testModuleInstanceId2",
+      "mcId": "testId2",
+      "expectedStartTime": 1737640822000,
+      "expectedCompletionTime": 1737641175000,
+      "expectedPendingDuration": 21610,
+      "expectedRunningDuration": 353755
+    }
+  ]
+}

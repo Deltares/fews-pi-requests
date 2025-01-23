@@ -1,5 +1,5 @@
 import type {TimeSeriesResponse} from './response/timeseries'
-import type {TaskRunsResponse} from './response/tasks'
+import type {ModuleRuntimesResponse, TaskRunsResponse} from './response/tasks'
 import type {LocationsResponse} from './response/locations'
 import type {ImportStatusResponse} from './response/importStatus'
 import type {VersionResponse} from './response/version'
@@ -17,7 +17,9 @@ import type {
     RunTaskFilter,
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
-    filterActionsFilter
+    filterActionsFilter,
+    WorkflowsFilter,
+    ModuleRuntimesFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -42,6 +44,7 @@ import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
 import type { ReportsResponse } from './response/reports/reportsResponse'
+import type { WorkflowResponse } from './response/workflows/workflowsResponse'
 import {LogsDisplaysResponse} from "@/response";
 
 export class PiWebserviceProvider {
@@ -403,6 +406,33 @@ export class PiWebserviceProvider {
     async getFilterActions(filter: filterActionsFilter): Promise<ActionsResponse> {
         const url = this.filterActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
+
+    /**
+     * Get the workflows
+     *
+     * @param filter search options
+     * @returns Workflows API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getWorkflows(filter: WorkflowsFilter): Promise<WorkflowResponse> {
+        const url = this.workflowsUrl(filter)
+        const res = await this.webservice.getData<WorkflowResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the module run times
+     *
+     * @param filter search options
+     * @returns Module run times API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getModuleRunTimes(filter: ModuleRuntimesFilter): Promise<ModuleRuntimesResponse> {
+        const url = this.moduleRunTimesUrl(filter)
+        const res = await this.webservice.getData<ModuleRuntimesResponse>(url.toString());
         return res.data;
     }
 
@@ -790,5 +820,20 @@ export class PiWebserviceProvider {
         )
     }
 
+    workflowsUrl(filter: WorkflowsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    moduleRunTimesUrl(filter: ModuleRuntimesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/moduleruntimes${queryParameters}`,
+            this._baseUrl
+        )
+    }
 
 }
