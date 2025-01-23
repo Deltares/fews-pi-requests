@@ -2,7 +2,7 @@ import { exec } from "child_process";
 
 const config = {
   url: "https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest",
-  message: "/*tslint:disable*/",
+  message: "/* tslint:disable */",
 };
 
 const piCommands = [
@@ -61,6 +61,10 @@ const piCommands = [
   {
     url: `${config.url}/pi_rest_topology_thresholds.json`,
     output: "src/response/topology/thresholdsNodeResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_workflows.json`,
+    output: "src/response/workflows/workflowsResponse.ts",
   },
 ];
 
