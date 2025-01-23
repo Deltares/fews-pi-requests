@@ -1,0 +1,14 @@
+{
+  "workflows": [
+    {
+      "id": "ImportHistorical",
+      "name": "Import Historical Data",
+      "description": ""
+    },
+    {
+      "id": "ImportTEST",
+      "name": "Import TEST",
+      "description": "Import TEST"
+    }
+  ]
+}

@@ -17,7 +17,8 @@ import type {
     RunTaskFilter,
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
-    filterActionsFilter
+    filterActionsFilter,
+    WorkflowsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -42,6 +43,7 @@ import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
 import type { ReportsResponse } from './response/reports/reportsResponse'
+import type { WorkflowResponse } from './response/workflows/workflowsResponse'
 import {LogsDisplaysResponse} from "@/response";
 
 export class PiWebserviceProvider {
@@ -403,6 +405,20 @@ export class PiWebserviceProvider {
     async getFilterActions(filter: filterActionsFilter): Promise<ActionsResponse> {
         const url = this.filterActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
+        return res.data;
+    }
+
+
+    /**
+     * Get the workflows
+     *
+     * @param filter search options
+     * @returns Workflows API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getWorkflows(filter: WorkflowsFilter): Promise<WorkflowResponse> {
+        const url = this.workflowsUrl(filter)
+        const res = await this.webservice.getData<WorkflowResponse>(url.toString());
         return res.data;
     }
 
@@ -790,5 +806,12 @@ export class PiWebserviceProvider {
         )
     }
 
+    workflowsUrl(filter: WorkflowsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows${queryParameters}`,
+            this._baseUrl
+        )
+    }
 
 }
