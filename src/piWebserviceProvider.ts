@@ -1,5 +1,5 @@
 import type {TimeSeriesResponse} from './response/timeseries'
-import type {TaskRunsResponse} from './response/tasks'
+import type {ModuleRuntimesResponse, TaskRunsResponse} from './response/tasks'
 import type {LocationsResponse} from './response/locations'
 import type {ImportStatusResponse} from './response/importStatus'
 import type {VersionResponse} from './response/version'
@@ -18,7 +18,8 @@ import type {
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
     filterActionsFilter,
-    WorkflowsFilter
+    WorkflowsFilter,
+    ModuleRuntimesFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -423,6 +424,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the module run times
+     *
+     * @param filter search options
+     * @returns Module run times API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getModuleRunTimes(filter: ModuleRuntimesFilter): Promise<ModuleRuntimesResponse> {
+        const url = this.moduleRunTimesUrl(filter)
+        const res = await this.webservice.getData<ModuleRuntimesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Post time series edits.
      *
      * @param editUrl URL to post the time series edits to
@@ -810,6 +824,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    moduleRunTimesUrl(filter: ModuleRuntimesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/moduleruntimes${queryParameters}`,
             this._baseUrl
         )
     }
