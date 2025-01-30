@@ -178,6 +178,7 @@ export interface WebOcGeneralConfig {
   timeSettings?: TimeSettingsViewPeriodPresets;
   agreeToTermsAndConditions?: TermsAndConditions;
   manifestFile?: string;
+  mapLayerConfig?: MapLayerConfig;
 }
 export interface TaskMenuConfig {
   enabled?: string;
@@ -242,4 +243,38 @@ export interface TermsAndConditions {
    * Enable terms and conditions
    */
   enabled?: boolean;
+}
+/**
+ * Map layer config options
+ */
+export interface MapLayerConfig {
+  /**
+   * Map layers
+   */
+  mapLayers?: MapLayer[];
+  /**
+   * The default map for light mode
+   */
+  defaultLightModeMapLayerId?: string;
+  /**
+   * The default map for dark mode
+   */
+  defaultDarkModeMapLayerId?: string;
+}
+/**
+ * Map layer
+ */
+export interface MapLayer {
+  /**
+   * id of the layer
+   */
+  id?: string;
+  /**
+   * name of the layer
+   */
+  name?: string;
+  /**
+   * This can be an absolute url when the file is externally hosted, if the file is in WebResourcesFiles then it should be a relative url
+   */
+  styleJsonFile?: string;
 }

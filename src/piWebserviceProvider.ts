@@ -46,6 +46,8 @@ import type { TopologyThresholdNodeResponse } from './response/topology/threshol
 import type { ReportsResponse } from './response/reports/reportsResponse'
 import type { WorkflowResponse } from './response/workflows/workflowsResponse'
 import {LogsDisplaysResponse} from "@/response";
+import { DashboardsFilter } from './requestParameters/dashboardsFilter'
+import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -433,6 +435,19 @@ export class PiWebserviceProvider {
     async getModuleRunTimes(filter: ModuleRuntimesFilter): Promise<ModuleRuntimesResponse> {
         const url = this.moduleRunTimesUrl(filter)
         const res = await this.webservice.getData<ModuleRuntimesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the dashboards
+     *
+     * @param filter search options
+     * @returns Dashboards API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDashboards(filter: DashboardsFilter): Promise<WebOCDashboardsResponse> {
+        const url = this.dashboardsUrl(filter)
+        const res = await this.webservice.getData<WebOCDashboardsResponse>(url.toString());
         return res.data;
     }
 
@@ -836,4 +851,11 @@ export class PiWebserviceProvider {
         )
     }
 
+    dashboardsUrl(filter: DashboardsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/dashboards${queryParameters}`,
+            this._baseUrl
+        )
+    }
 }
