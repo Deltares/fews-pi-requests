@@ -1,0 +1,47 @@
+{
+  "dashboards" : [ {
+    "id" : "dashboard2",
+    "name" : "dashboardname2",
+    "cssTemplate" : "dashboard_template.css",
+    "groups" : [ {
+      "elements" : [ {
+        "gridTemplateArea" : "area1",
+        "items" : [ {
+          "topologyNodeId" : "schematic",
+          "component" : "schematic-status-display",
+          "componentSettingsId" : "settingsId1"
+        } ]
+      }, {
+        "gridTemplateArea" : "area2",
+        "items" : [ {
+          "topologyNodeId" : "map_currents",
+          "component" : "map",
+          "componentSettingsId" : "settingsId1"
+        } ]
+      } ]
+    }, {
+      "elements" : [ {
+        "gridTemplateArea" : "area3",
+        "items" : [ {
+          "topologyNodeId" : "SSD",
+          "component" : "schematic-status-display",
+          "componentSettingsId" : "settingsId1"
+        } ]
+      }, {
+        "gridTemplateArea" : "area4",
+        "items" : [ {
+          "topologyNodeId" : "chart_outflow",
+          "component" : "charts",
+          "componentSettingsId" : "settingsId1"
+        } ]
+      }, {
+        "gridTemplateArea" : "area5",
+        "items" : [ {
+          "topologyNodeId" : "chart_water_level",
+          "component" : "charts",
+          "componentSettingsId" : "settingsId1"
+        } ]
+      } ]
+    } ]
+  } ]
+}
