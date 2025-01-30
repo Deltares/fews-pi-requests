@@ -59,6 +59,10 @@ export interface TimeSeriesResponse {
    * Time series data represent data collected over a given period of time at a specific location
    */
   timeSeries?: TimeSeriesResult[];
+  /**
+   * The task run ids of the available time series
+   */
+  taskRunIds?: string[];
 }
 export interface TimeSeriesResult {
   header?: Header;

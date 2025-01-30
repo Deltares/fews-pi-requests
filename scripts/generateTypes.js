@@ -66,6 +66,10 @@ const piCommands = [
     url: `${config.url}/pi_rest_workflows.json`,
     output: "src/response/workflows/workflowsResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_web_oc_dashboards.json`,
+    output: 'src/response/dashboards/webOcDashboardsResponse.ts',
+  }
 ];
 
 const archiveCommands = [
