@@ -32,6 +32,7 @@ export interface WhatIfTemplate {
     | WhatIfIntProperty
     | WhatIfDoubleProperty
     | WhatIfStringProperty
+    | WhatIfDateTimeProperty
     | WhatIfTemplateProperty
     | WhatIfEnumProperty
   )[];
@@ -61,6 +62,10 @@ export interface WhatIfConfigFileProperty {
    * The configured pattern
    */
   pattern?: string;
+  /**
+   * When true then the configFile name without the configured 'pattern' is visible in the dropdown box.
+   */
+  hidePattern?: boolean;
 }
 export interface WhatIfBooleanProperty {
   /**
@@ -110,7 +115,7 @@ export interface WhatIfDoubleProperty {
   /**
    * The type of the property
    */
-  type: "double";
+  type: "number";
   /**
    * The default value of the property
    */
@@ -137,6 +142,24 @@ export interface WhatIfStringProperty {
    * The type of the property
    */
   type: "string";
+  /**
+   * The default value of the property
+   */
+  defaultValue: string;
+}
+export interface WhatIfDateTimeProperty {
+  /**
+   * the id of the property
+   */
+  id: string;
+  /**
+   * The name of the property
+   */
+  name: string;
+  /**
+   * The type of the property
+   */
+  type: "dateTime";
   /**
    * The default value of the property
    */
