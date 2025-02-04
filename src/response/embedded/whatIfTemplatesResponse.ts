@@ -26,7 +26,7 @@ export interface WhatIfTemplate {
   /**
    * WhatIfProperties
    */
-  whatIfProperties?: (
+  properties?: (
     | WhatIfConfigFileProperty
     | WhatIfBooleanProperty
     | WhatIfIntProperty
@@ -48,7 +48,7 @@ export interface WhatIfConfigFileProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "configFile";
   /**
    * The config file type
    */
@@ -74,7 +74,7 @@ export interface WhatIfBooleanProperty {
   /**
    * The name of the property
    */
-  type: string;
+  type: "boolean";
   /**
    * The default value of the property
    */
@@ -92,7 +92,7 @@ export interface WhatIfIntProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "integer";
   /**
    * The default value of the property
    */
@@ -110,7 +110,7 @@ export interface WhatIfDoubleProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "double";
   /**
    * The default value of the property
    */
@@ -136,7 +136,7 @@ export interface WhatIfStringProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "string";
   /**
    * The default value of the property
    */
@@ -154,7 +154,7 @@ export interface WhatIfTemplateProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "whatIfTemplateId";
   /**
    * The template id of the referenced whatif
    */
@@ -172,7 +172,7 @@ export interface WhatIfEnumProperty {
   /**
    * The type of the property
    */
-  type: string;
+  type: "enumProperty";
   /**
    * The default value of the property
    */
