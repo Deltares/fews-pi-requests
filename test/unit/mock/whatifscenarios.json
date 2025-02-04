@@ -1,0 +1,22 @@
+{
+  "whatIfScenarioDescriptors": [
+    {
+      "id": "id1",
+      "name": "triple_the_surge",
+      "whatIfTemplateId": "whatif_surge",
+      "properties": {
+        "ADD_SURGE": 0.0,
+        "MULTIPLY_SURGE": 3.0
+      }
+    },
+    {
+      "id": "id2",
+      "name": "offset_by_minus_1",
+      "whatIfTemplateId": "whatif_surge",
+      "properties": {
+        "ADD_SURGE": -1.0,
+        "MULTIPLY_SURGE": 1.0
+      }
+    }
+  ]
+}
