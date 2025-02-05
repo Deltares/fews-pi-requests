@@ -31,7 +31,7 @@ export interface LogDisplayUserAlerts {
   showUnreadMessageIconsInTopology: boolean;
 }
 export interface LogDisplaySystemLog {
-  logLevels?: ("INFO" | "WARN" | "ERROR")[];
+  logLevel?: "INFO" | "WARN" | "ERROR";
   eventCodes?: string[];
 }
 export interface LogDisplayManualLog {
