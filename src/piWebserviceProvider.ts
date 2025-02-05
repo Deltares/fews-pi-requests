@@ -20,6 +20,7 @@ import type {
     filterActionsFilter,
     WorkflowsFilter,
     ModuleRuntimesFilter,
+    LogDisplaysFilter,
     LogDisplayLogsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
@@ -95,8 +96,8 @@ export class PiWebserviceProvider {
      * @returns Locations PI API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getLogDisplays(): Promise<LogsDisplaysResponse> {
-        const url = this.logDisplaysUrl();
+    async getLogDisplays(filter: LogDisplaysFilter): Promise<LogsDisplaysResponse> {
+        const url = this.logDisplaysUrl(filter);
         const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString());
         return res.data;
     }
@@ -537,9 +538,10 @@ export class PiWebserviceProvider {
      *
      * @returns complete url for making a request
      */
-    logDisplaysUrl(): URL {
+    logDisplaysUrl(filter: LogDisplaysFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays${queryParameters}`,
             this._baseUrl
         )
     }
