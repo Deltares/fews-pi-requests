@@ -1,0 +1,26 @@
+{
+  "logs": [
+    {
+      "id": 0,
+      "taskRunId": "1",
+      "code": "New.run",
+      "entryTime": "2025-02-01T00:40:13.389Z",
+      "text": "Run surge",
+      "level": "INFO",
+      "componentId": "FS",
+      "eventAcknowledged": true
+    },
+    {
+      "id": 1,
+      "taskRunId": "2",
+      "code": "Manual.event.testnotegroup1",
+      "entryTime": "2025-02-01T00:47:18.677Z",
+      "text": "test get logs endpoint",
+      "level": "INFO",
+      "componentId": "OC",
+      "eventAcknowledged": true,
+      "user": "Karl",
+      "topologyNodeId": "schematic"
+    }
+  ]
+}

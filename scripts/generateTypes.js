@@ -68,8 +68,12 @@ const piCommands = [
   },
   {
     url: `${config.url}/pi_rest_web_oc_dashboards.json`,
-    output: 'src/response/dashboards/webOcDashboardsResponse.ts',
-  }
+    output: "src/response/dashboards/webOcDashboardsResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_logdisplay_logs.json`,
+    output: "src/response/logs/logDisplayLogsResponse.ts",
+  },
 ];
 
 const archiveCommands = [

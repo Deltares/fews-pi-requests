@@ -19,7 +19,8 @@ import type {
     TimeSeriesTopologyActionsFilter,
     filterActionsFilter,
     WorkflowsFilter,
-    ModuleRuntimesFilter
+    ModuleRuntimesFilter,
+    LogDisplayLogsFilter
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -45,7 +46,7 @@ import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGri
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
 import type { ReportsResponse } from './response/reports/reportsResponse'
 import type { WorkflowResponse } from './response/workflows/workflowsResponse'
-import {LogsDisplaysResponse} from "@/response";
+import {LogsDisplayLogsResponse, LogsDisplaysResponse} from "@/response";
 import { DashboardsFilter } from './requestParameters/dashboardsFilter'
 import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
 
@@ -448,6 +449,19 @@ export class PiWebserviceProvider {
     async getDashboards(filter: DashboardsFilter): Promise<WebOCDashboardsResponse> {
         const url = this.dashboardsUrl(filter)
         const res = await this.webservice.getData<WebOCDashboardsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the logdisplay logs
+     *
+     * @param filter search options
+     * @returns LogsDisplayLogsResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getLogDisplayLogs(filter: LogDisplayLogsFilter): Promise<LogsDisplayLogsResponse> {
+        const url = this.logDisplayLogsUrl(filter)
+        const res = await this.webservice.getData<LogsDisplayLogsResponse>(url.toString());
         return res.data;
     }
 
@@ -855,6 +869,15 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/dashboards${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    logDisplayLogsUrl(filter: LogDisplayLogsFilter): URL {
+        const { logDisplayId, ...remainingFilter } = filter
+        const queryParameters = filterToParams(remainingFilter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays/${logDisplayId}/logs${queryParameters}`,
             this._baseUrl
         )
     }
