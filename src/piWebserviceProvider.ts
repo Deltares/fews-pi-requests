@@ -47,7 +47,8 @@ import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGri
 import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
 import type { ReportsResponse } from './response/reports/reportsResponse'
 import type { WorkflowResponse } from './response/workflows/workflowsResponse'
-import {LogsDisplayLogsResponse, LogsDisplaysResponse} from "@/response";
+import type { LogsDisplayLogsResponse } from './response/logs/logDisplayLogsResponse'
+import type { LogsDisplaysResponse } from './response/logs/logDisplaysResponse'
 import { DashboardsFilter } from './requestParameters/dashboardsFilter'
 import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
 
