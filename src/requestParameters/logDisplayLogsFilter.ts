@@ -8,7 +8,7 @@ export interface LogDisplayLogsFilter extends BaseFilter {
   /**
    * Type of the log. Default is system.
    */
-  logType?: string;
+  logType?: "system" | "manual";
   /**
    * Start time of the log. Format: yyyy-MM-ddTHH:mm:ssZ
    */
