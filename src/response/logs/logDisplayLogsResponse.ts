@@ -35,7 +35,7 @@ export interface LogDisplayLogs {
   /**
    * Component that logged the message
    */
-  componentId: "FS" | "MC" | "AI";
+  componentId: "FS" | "MC" | "AI" | "OC";
   /**
    * Event acknowledged
    */
