@@ -7,9 +7,9 @@ export interface WhatIfScenarioResponse {
   /**
    * WhatIfScenarioDescriptors
    */
-  whatIfScenarioDescriptors: WhatIfScenarioDescriptors[];
+  whatIfScenarioDescriptors: WhatIfScenarioDescriptor[];
 }
-export interface WhatIfScenarioDescriptors {
+export interface WhatIfScenarioDescriptor {
   /**
    * the id of the whatif
    */
@@ -27,9 +27,48 @@ export interface WhatIfScenarioDescriptors {
    */
   whatIfTemplateId?: string;
   /**
-   * The properties of the whatif
+   * WhatIfProperties
    */
-  properties?: {
-    [k: string]: unknown;
-  };
+  properties?: (
+    | WhatIfBooleanProperty
+    | WhatIfTemplateIdProperty
+    | WhatIfIntegerProperty
+    | WhatIfStringProperty
+    | WhatIfDoubleProperty
+    | WhatIfConfigFileProperty
+    | WhatIfEnumProperty
+    | WhatIfDateTimeProperty
+  )[];
+}
+export interface WhatIfBooleanProperty {
+  type: "boolean";
+  value: boolean;
+}
+export interface WhatIfTemplateIdProperty {
+  type: "whatIfTemplateId";
+  value: string;
+}
+export interface WhatIfIntegerProperty {
+  type: "integer";
+  value: number;
+}
+export interface WhatIfStringProperty {
+  type: "string";
+  value: string;
+}
+export interface WhatIfDoubleProperty {
+  type: "number";
+  value: number;
+}
+export interface WhatIfConfigFileProperty {
+  type: "configFile";
+  value: string;
+}
+export interface WhatIfEnumProperty {
+  type: "enumProperty";
+  value: string;
+}
+export interface WhatIfDateTimeProperty {
+  type: "dateTime";
+  value: string;
 }
