@@ -47,7 +47,8 @@ export interface WebOCDashboardItem {
     | "system-monitor"
     | "html-display"
     | "log-display"
-    | "data-download-display";
+    | "data-download-display"
+    | "whatif-display";
   /**
    * The component settings to use
    */

@@ -1,0 +1,83 @@
+{
+  "whatIfTemplates": [
+    {
+      "id": "whatif_surge",
+      "name": "WhatIf Properties",
+      "properties": [
+        {
+          "id": "ADD_SURGE",
+          "name": "Add Surge",
+          "type": "number",
+          "defaultValue": 0.0,
+          "maxValue": 10.0,
+          "minValue": -3.0
+        },
+        {
+          "id": "MULTIPLY_SURGE",
+          "name": "Multiply Surge",
+          "type": "number",
+          "defaultValue": 1.0,
+          "maxValue": 3.0,
+          "minValue": 0.1
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "name": "test",
+      "properties": [
+        {
+          "id": "enumeration_id",
+          "name": "enumeration_id",
+          "type": "enumProperty",
+          "defaultValue": "Lekker",
+          "values": [
+            {
+              "code": "Lekker",
+              "label": "Lekker"
+            },
+            {
+              "code": "gedaan",
+              "label": "gedaan"
+            },
+            {
+              "code": "Andre",
+              "label": "Andre"
+            }
+          ]
+        },
+        {
+          "id": "string_id",
+          "name": "string_id",
+          "type": "string",
+          "defaultValue": ""
+        },
+        {
+          "id": "dateTime_id",
+          "name": "dateTime_id",
+          "type": "dateTime",
+          "defaultValue": "2025-02-04T01:48:21Z"
+        },
+        {
+          "id": "bool_id",
+          "name": "bool_id",
+          "type": "boolean",
+          "defaultValue": false
+        },
+        {
+          "id": "mp_enumeration_id",
+          "name": "mp_enumeration_id"
+        },
+        {
+          "id": "config_id",
+          "name": "config_id",
+          "type": "configFile",
+          "configFileType": "cold state",
+          "default": null,
+          "pattern": "Cold*",
+          "hidePattern": false
+        }
+      ]
+    }
+  ]
+}

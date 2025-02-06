@@ -1,0 +1,38 @@
+{
+  "whatIfScenarioDescriptors": [
+    {
+      "id": "id1",
+      "name": "triple_the_surge",
+      "whatIfTemplateId": "whatif_surge",
+      "properties": [
+        {
+          "id": "ADD_SURGE",
+          "type": "number",
+          "value": 0.0
+        },
+        {
+          "id": "MULTIPLY_SURGE",
+          "type": "number",
+          "value": 3.0
+        }
+      ]
+    },
+    {
+      "id": "id2",
+      "name": "offset_by_minus_1",
+      "whatIfTemplateId": "whatif_surge",
+      "properties": [
+        {
+          "id": "ADD_SURGE",
+          "type": "number",
+          "value": -1.0
+        },
+        {
+          "id": "MULTIPLY_SURGE",
+          "type": "number",
+          "value": 1.0
+        }
+      ]
+    }
+  ]
+}

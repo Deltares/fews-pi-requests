@@ -21,7 +21,10 @@ import type {
     WorkflowsFilter,
     ModuleRuntimesFilter,
     LogDisplaysFilter,
-    LogDisplayLogsFilter
+    LogDisplayLogsFilter,
+    DashboardsFilter,
+    WhatIfScenariosFilter,
+    WhatIfTemplatesFilter,
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -49,7 +52,8 @@ import type { ReportsResponse } from './response/reports/reportsResponse'
 import type { WorkflowResponse } from './response/workflows/workflowsResponse'
 import type { LogsDisplayLogsResponse } from './response/logs/logDisplayLogsResponse'
 import type { LogsDisplaysResponse } from './response/logs/logDisplaysResponse'
-import { DashboardsFilter } from './requestParameters/dashboardsFilter'
+import type { WhatIfTemplatesResponse } from './response/embedded/whatIfTemplatesResponse'
+import type { WhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorsResponse'
 import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
 
 export class PiWebserviceProvider {
@@ -468,6 +472,32 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the what if templates
+     *
+     * @param filter search options
+     * @returns WhatIfTemplates API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getWhatIfTemplates(filter: WhatIfTemplatesFilter): Promise<WhatIfTemplatesResponse> {
+        const url = this.whatIfTemplatesUrl(filter)
+        const res = await this.webservice.getData<WhatIfTemplatesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the what if scenarios
+     *
+     * @param filter search options
+     * @returns WhatIfScenarios API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getWhatIfScenarios(filter: WhatIfScenariosFilter): Promise<WhatIfScenarioResponse> {
+        const url = this.whatIfScenariosUrl(filter)
+        const res = await this.webservice.getData<WhatIfScenarioResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Post time series edits.
      *
      * @param editUrl URL to post the time series edits to
@@ -881,6 +911,22 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(remainingFilter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays/${logDisplayId}/logs${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    whatIfScenariosUrl(filter: WhatIfScenariosFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    whatIfTemplatesUrl(filter: WhatIfTemplatesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatiftemplates${queryParameters}`,
             this._baseUrl
         )
     }
