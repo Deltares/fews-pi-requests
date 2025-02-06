@@ -74,6 +74,14 @@ const piCommands = [
     url: `${config.url}/pi_rest_logdisplay_logs.json`,
     output: "src/response/logs/logDisplayLogsResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
+    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_whatiftemplates.json`,
+    output: "src/response/embedded/whatIfTemplatesResponse.ts",
+  },
 ];
 
 const archiveCommands = [
