@@ -30,45 +30,53 @@ export interface WhatIfScenarioDescriptor {
    * WhatIfProperties
    */
   properties?: (
-    | WhatIfBooleanProperty
-    | WhatIfTemplateIdProperty
-    | WhatIfIntegerProperty
-    | WhatIfStringProperty
-    | WhatIfDoubleProperty
-    | WhatIfConfigFileProperty
-    | WhatIfEnumProperty
-    | WhatIfDateTimeProperty
+    | WhatIfScenarioBooleanProperty
+    | WhatIfScenarioTemplateIdProperty
+    | WhatIfScenarioIntegerProperty
+    | WhatIfScenarioStringProperty
+    | WhatIfScenarioDoubleProperty
+    | WhatIfScenarioConfigFileProperty
+    | WhatIfScenarioEnumProperty
+    | WhatIfScenarioDateTimeProperty
   )[];
 }
-export interface WhatIfBooleanProperty {
+export interface WhatIfScenarioBooleanProperty {
+  id: string;
   type: "boolean";
   value: boolean;
 }
-export interface WhatIfTemplateIdProperty {
-  type: "whatIfTemplateId";
+export interface WhatIfScenarioTemplateIdProperty {
+  id: string;
+  type: "whatIfScenarioId";
   value: string;
 }
-export interface WhatIfIntegerProperty {
+export interface WhatIfScenarioIntegerProperty {
+  id: string;
   type: "integer";
   value: number;
 }
-export interface WhatIfStringProperty {
+export interface WhatIfScenarioStringProperty {
+  id: string;
   type: "string";
   value: string;
 }
-export interface WhatIfDoubleProperty {
+export interface WhatIfScenarioDoubleProperty {
+  id: string;
   type: "number";
   value: number;
 }
-export interface WhatIfConfigFileProperty {
+export interface WhatIfScenarioConfigFileProperty {
+  id: string;
   type: "configFile";
   value: string;
 }
-export interface WhatIfEnumProperty {
+export interface WhatIfScenarioEnumProperty {
+  id: string;
   type: "enumProperty";
   value: string;
 }
-export interface WhatIfDateTimeProperty {
+export interface WhatIfScenarioDateTimeProperty {
+  id: string;
   type: "dateTime";
   value: string;
 }

@@ -27,17 +27,17 @@ export interface WhatIfTemplate {
    * WhatIfProperties
    */
   properties?: (
-    | WhatIfConfigFileProperty
-    | WhatIfBooleanProperty
-    | WhatIfIntProperty
-    | WhatIfDoubleProperty
-    | WhatIfStringProperty
-    | WhatIfDateTimeProperty
-    | WhatIfTemplateProperty
-    | WhatIfEnumProperty
+    | WhatIfTemplateConfigFileProperty
+    | WhatIfTemplateBooleanProperty
+    | WhatIfTemplateIntProperty
+    | WhatIfTemplateDoubleProperty
+    | WhatIfTemplateStringProperty
+    | WhatIfTemplateDateTimeProperty
+    | WhatIfTemplateTemplateProperty
+    | WhatIfTemplateEnumProperty
   )[];
 }
-export interface WhatIfConfigFileProperty {
+export interface WhatIfTemplateConfigFileProperty {
   /**
    * the id of the property
    */
@@ -67,7 +67,7 @@ export interface WhatIfConfigFileProperty {
    */
   hidePattern?: boolean;
 }
-export interface WhatIfBooleanProperty {
+export interface WhatIfTemplateBooleanProperty {
   /**
    * the id of the property
    */
@@ -85,7 +85,7 @@ export interface WhatIfBooleanProperty {
    */
   defaultValue: boolean;
 }
-export interface WhatIfIntProperty {
+export interface WhatIfTemplateIntProperty {
   /**
    * the id of the property
    */
@@ -103,7 +103,7 @@ export interface WhatIfIntProperty {
    */
   defaultValue: number;
 }
-export interface WhatIfDoubleProperty {
+export interface WhatIfTemplateDoubleProperty {
   /**
    * the id of the property
    */
@@ -129,7 +129,7 @@ export interface WhatIfDoubleProperty {
    */
   maxValue?: number;
 }
-export interface WhatIfStringProperty {
+export interface WhatIfTemplateStringProperty {
   /**
    * the id of the property
    */
@@ -147,7 +147,7 @@ export interface WhatIfStringProperty {
    */
   defaultValue: string;
 }
-export interface WhatIfDateTimeProperty {
+export interface WhatIfTemplateDateTimeProperty {
   /**
    * the id of the property
    */
@@ -165,7 +165,7 @@ export interface WhatIfDateTimeProperty {
    */
   defaultValue: string;
 }
-export interface WhatIfTemplateProperty {
+export interface WhatIfTemplateTemplateProperty {
   /**
    * the id of the property
    */
@@ -177,13 +177,13 @@ export interface WhatIfTemplateProperty {
   /**
    * The type of the property
    */
-  type: "whatIfTemplateId";
+  type: "whatIfTemplateTemplateId";
   /**
    * The template id of the referenced whatif
    */
   templateId: string;
 }
-export interface WhatIfEnumProperty {
+export interface WhatIfTemplateEnumProperty {
   /**
    * the id of the property
    */
@@ -203,9 +203,9 @@ export interface WhatIfEnumProperty {
   /**
    * values of the enum
    */
-  values: WhatIfEnumPropertyValues[];
+  values: WhatIfTemplateEnumPropertyValues[];
 }
-export interface WhatIfEnumPropertyValues {
+export interface WhatIfTemplateEnumPropertyValues {
   /**
    * the code of the value
    */

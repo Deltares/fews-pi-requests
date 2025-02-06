@@ -38,18 +38,49 @@ describe("whatIfScenarios", function () {
     expect(results.whatIfScenarioDescriptors[0].whatIfTemplateId).toBe(
       "whatif_surge"
     );
-    expect(results.whatIfScenarioDescriptors[0].properties).toEqual({
-      ADD_SURGE: 0.0,
-      MULTIPLY_SURGE: 3.0,
-    });
+    expect(results.whatIfScenarioDescriptors[0].properties?.length).toBe(2);
+    expect(results.whatIfScenarioDescriptors[0].properties?.[0].id).toBe(
+      "ADD_SURGE"
+    );
+    expect(results.whatIfScenarioDescriptors[0].properties?.[0].type).toBe(
+      "number"
+    );
+    expect(results.whatIfScenarioDescriptors[0].properties?.[0].value).toBe(
+      0.0
+    );
+    expect(results.whatIfScenarioDescriptors[0].properties?.[1].id).toBe(
+      "MULTIPLY_SURGE"
+    );
+    expect(results.whatIfScenarioDescriptors[0].properties?.[1].type).toBe(
+      "number"
+    );
+    expect(results.whatIfScenarioDescriptors[0].properties?.[1].value).toBe(
+      3.0
+    );
+
     expect(results.whatIfScenarioDescriptors[1].id).toBe("id2");
     expect(results.whatIfScenarioDescriptors[1].name).toBe("offset_by_minus_1");
     expect(results.whatIfScenarioDescriptors[1].whatIfTemplateId).toBe(
       "whatif_surge"
     );
-    expect(results.whatIfScenarioDescriptors[1].properties).toEqual({
-      ADD_SURGE: -1.0,
-      MULTIPLY_SURGE: 1.0,
-    });
+    expect(results.whatIfScenarioDescriptors[1].properties?.length).toBe(2);
+    expect(results.whatIfScenarioDescriptors[1].properties?.[0].id).toBe(
+      "ADD_SURGE"
+    );
+    expect(results.whatIfScenarioDescriptors[1].properties?.[0].type).toBe(
+      "number"
+    );
+    expect(results.whatIfScenarioDescriptors[1].properties?.[0].value).toBe(
+      -1.0
+    );
+    expect(results.whatIfScenarioDescriptors[1].properties?.[1].id).toBe(
+      "MULTIPLY_SURGE"
+    );
+    expect(results.whatIfScenarioDescriptors[1].properties?.[1].type).toBe(
+      "number"
+    );
+    expect(results.whatIfScenarioDescriptors[1].properties?.[1].value).toBe(
+      1.0
+    );
   });
 });
