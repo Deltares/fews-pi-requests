@@ -957,7 +957,7 @@ export class PiWebserviceProvider {
     postWhatIfScenarioUrl(filter: PostWhatIfScenarioFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenario${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
             this._baseUrl
         )
     }
