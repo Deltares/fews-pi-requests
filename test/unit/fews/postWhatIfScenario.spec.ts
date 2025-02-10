@@ -11,7 +11,7 @@ describe("postWhatIfScenario", function () {
 
   it("generates a valid postWhatIfScenario request", async function () {
     const baseUrl =
-      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenario";
+      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios";
     const queryParams = `whatIfTemplateId=testid&name=test&property(ADD_SURGE)=0.2&property(MULTIPLY_SURGE)=1.3`;
 
     const url = `${baseUrl}?${queryParams}`;
