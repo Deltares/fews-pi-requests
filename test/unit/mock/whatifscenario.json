@@ -1,0 +1,9 @@
+{
+  "id": "id1",
+  "name": "triple_the_surge",
+  "whatIfTemplateId": "whatif_surge",
+  "properties": [
+    { "id": "ADD_SURGE", "type": "number", "value": 0 },
+    { "id": "MULTIPLY_SURGE", "type": "number", "value": 3 }
+  ]
+}

@@ -25,6 +25,7 @@ import type {
     DashboardsFilter,
     WhatIfScenariosFilter,
     WhatIfTemplatesFilter,
+    PostWhatIfScenarioFilter,
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -43,7 +44,7 @@ import {DocumentFormat} from './requestParameters/index.js'
 import {HistoryEditsFilter} from "./requestParameters/historyEditsFilter";
 import {HistoryEditsResponse} from "./response/timeseries/historyEditsResponse";
 
-import {PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
+import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
@@ -54,6 +55,7 @@ import type { LogsDisplayLogsResponse } from './response/logs/logDisplayLogsResp
 import type { LogsDisplaysResponse } from './response/logs/logDisplaysResponse'
 import type { WhatIfTemplatesResponse } from './response/embedded/whatIfTemplatesResponse'
 import type { WhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorsResponse'
+import type { PostWhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorResponse'
 import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
 
 export class PiWebserviceProvider {
@@ -538,6 +540,27 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Runs a what if scenario for a given whatIfTemplateId.
+     *
+     * @param filter an object with request query parameters
+     * @param piParametersXmlContent URL Encoded model parameters content that validates against the
+     *                              following xsd: https://fewsdocs.deltares.nl/schemas/version1.0/pi-schemas/pi_modelparameters.xsd
+     * @returns the WhatIfScenario of the submitted job.
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async postWhatIfScenario(filter: PostWhatIfScenarioFilter, piParametersXmlContent: string): Promise<PostWhatIfScenarioResponse> {
+        const url = this.postWhatIfScenarioUrl(filter)
+        const requestOptions = new RequestOptions()
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        const res = await this.webservice.postDataWithParser<PostWhatIfScenarioResponse>(url.toString(), requestOptions, new DefaultParser(), piParametersXmlContent, headers);
+        return res.data
+    }
+
+    /**
      * Get the reporets for filter
      *
      * @param filter search options
@@ -930,4 +953,13 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+    postWhatIfScenarioUrl(filter: PostWhatIfScenarioFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenario${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
 }
