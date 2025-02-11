@@ -11,5 +11,6 @@ export interface TaskRunsFilter extends BaseFilter {
     scenarioId?: string;
     mcId?: string;
     taskRunStatusIds?: string | string[];
-
+    taskRunIds?: string | string[];
+    taskRunCount?: number;
 }
