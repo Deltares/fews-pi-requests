@@ -82,6 +82,10 @@ const piCommands = [
     url: `${config.url}/pi_rest_whatifscenariodescriptor.json`,
     output: "src/response/embedded/whatIfScenarioDescriptorResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_weboc_component_settings.json`,
+    output: "src/response/configuration/webOcComponentSettingsResponse.ts",
+  },
 ];
 
 const archiveCommands = [
