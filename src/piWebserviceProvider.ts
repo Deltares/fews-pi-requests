@@ -26,6 +26,7 @@ import type {
     WhatIfScenariosFilter,
     WhatIfTemplatesFilter,
     PostWhatIfScenarioFilter,
+    ComponentSettingsFilter,
 } from "./requestParameters";
 import type {TopologyNodeResponse} from "./response/topology";
 import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
@@ -57,6 +58,7 @@ import type { WhatIfTemplatesResponse } from './response/embedded/whatIfTemplate
 import type { WhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorsResponse'
 import type { PostWhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorResponse'
 import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
+import type { WebOCComponentSettingsResponse } from './response/configuration/webOcComponentSettingsResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -483,6 +485,19 @@ export class PiWebserviceProvider {
     async getWhatIfTemplates(filter: WhatIfTemplatesFilter): Promise<WhatIfTemplatesResponse> {
         const url = this.whatIfTemplatesUrl(filter)
         const res = await this.webservice.getData<WhatIfTemplatesResponse>(url.toString());
+        return res.data;
+    }
+    
+    /**
+     * Get the component settings
+     *
+     * @param filter search options
+     * @returns ComponentSettings API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getComponentSettings(filter: ComponentSettingsFilter): Promise<WebOCComponentSettingsResponse> {
+        const url = this.componentSettingsUrl(filter)
+        const res = await this.webservice.getData<WebOCComponentSettingsResponse>(url.toString());
         return res.data;
     }
 
@@ -958,6 +973,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    componentSettingsUrl(filter: ComponentSettingsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config/componentsettings${queryParameters}`,
             this._baseUrl
         )
     }
