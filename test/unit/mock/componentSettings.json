@@ -1,0 +1,95 @@
+{
+  "webOCComponentSettings": {
+    "id": "componentA",
+    "map": {
+      "wmsLayer": {
+        "show": true,
+        "autoPlay": true,
+        "animateVectors": true,
+        "doubleClickAction": false
+      },
+      "locationsLayer": {
+        "show": true,
+        "locationNames": true,
+        "singleClickAction": false,
+        "locationSearchEnabled": true
+      },
+      "overlays": [
+        {
+          "id": "control_subcatchments",
+          "visible": true,
+          "name": "Sub-catchments",
+          "locationSetId": "control_subcatchments",
+          "type": "line",
+          "paint": {
+            "fillAntiAlias": true,
+            "fillOpacity": 0.2,
+            "fillColor": "black",
+            "fillOutlineColor": "black"
+          }
+        },
+        {
+          "id": "control_branches",
+          "visible": true,
+          "name": "Drain Network",
+          "locationSetId": "control_branches",
+          "type": "line",
+          "paint": {
+            "lineColor": "#3944BC"
+          }
+        }
+      ]
+    },
+    "charts": {
+      "general": {
+        "startPanel": "metaDataPanel",
+        "hideToolBar": "false",
+        "showLocationNames": false
+      },
+      "actions": {
+        "panelPlacement": {
+          "defaultPlacement": "right",
+          "allowedPlacement": ["right", "all", "left", "bottom", "detached"]
+        },
+        "downloadData": true,
+        "downloadMetaData": true,
+        "downloadFigure": true
+      },
+      "timeSeriesChart": {
+        "enabled": true,
+        "legend": { "numberOfLines": "1", "placement": "auto" },
+        "xAxis": { "show": true, "xTicks": false, "xLabel": true },
+        "yAxis": { "show": true, "yTicks": false, "yLabel": true }
+      },
+      "timeSeriesTable": {
+        "enabled": true,
+        "allowDateTimeSorting": true,
+        "sortDateTimeColumn": "descending"
+      },
+      "verticalProfileChart": {
+        "enabled": true,
+        "legend": { "numberOfLines": "1", "placement": "above chart" },
+        "xAxis": { "show": true, "xTicks": false, "xLabel": true },
+        "yAxis": { "show": true, "yTicks": false, "yLabel": true }
+      },
+      "verticalProfileTable": {
+        "enabled": true,
+        "allowDepthSorting": true,
+        "sortDepthColumn": "descending"
+      },
+      "metaDataPanel": { "enabled": true }
+    },
+    "ssd": {
+      "zoomEnabled": true,
+      "singleClickAction": true,
+      "doubleClickAction": true,
+      "useBrowserStyle": true
+    },
+    "report": {
+      "downloadReport": true,
+      "hideNonCurrentReports": true,
+      "hideReportName": true,
+      "hideAnalysisTime": true
+    }
+  }
+}

@@ -4,19 +4,19 @@
  * WebOCComponentSettingsResponse PI_JSON
  */
 export interface WebOCComponentSettingsResponse {
-  webOCComponentSettings?: WebOCComponnetSettings;
+  webOCComponentSettings?: WebOCComponentSettings;
 }
-export interface WebOCComponnetSettings {
+export interface WebOCComponentSettings {
   id?: string;
-  map?: Map;
-  charts?: Charts;
-  ssd?: SSD;
-  report?: Report;
+  map?: MapSettings;
+  charts?: ChartsSettings;
+  ssd?: SSDSettings;
+  report?: ReportSettings;
 }
-export interface Map {
+export interface MapSettings {
   wmsLayer?: WmsLayer;
   locationsLayer?: LocationsLayer;
-  overlays?: Overlays;
+  overlays?: Overlay[];
 }
 export interface WmsLayer {
   show?: boolean;
@@ -30,15 +30,9 @@ export interface LocationsLayer {
   singleClickAction?: boolean;
   locationSearchEnabled?: boolean;
 }
-export interface Overlays {
-  overlay?: Overlay;
-}
 export interface Overlay {
-  locations?: Locations;
-  visible?: boolean;
-}
-export interface Locations {
   id?: string;
+  visible?: boolean;
   name?: string;
   locationSetId?: string;
   type?: string;
@@ -53,12 +47,13 @@ export interface Paint {
   fillColor?: string;
   fillOutlineColor?: string;
 }
-export interface Charts {
+export interface ChartsSettings {
   general?: General;
   actions?: Actions;
   timeSeriesChart?: Chart;
   timeSeriesTable?: TimeSeriesTable;
-  verticaProfileChart?: Chart;
+  verticalProfileChart?: Chart;
+  verticalProfileTable?: TimeSeriesTable;
   metaDataPanel?: MetaDataPanel;
 }
 export interface General {
@@ -104,13 +99,13 @@ export interface TimeSeriesTable {
 export interface MetaDataPanel {
   enabled?: boolean;
 }
-export interface SSD {
+export interface SSDSettings {
   zoomEnabled?: boolean;
   singleClickAction?: boolean;
   doubleClickAction?: boolean;
   useBrowserStyle?: boolean;
 }
-export interface Report {
+export interface ReportSettings {
   downloadReport?: boolean;
   hideNonCurrentReports?: boolean;
   hideReportName?: boolean;
