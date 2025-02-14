@@ -27,38 +27,40 @@ import type {
     WhatIfTemplatesFilter,
     PostWhatIfScenarioFilter,
     ComponentSettingsFilter,
+    TimeSeriesGridMaxValuesFilter,
+    HistoryEditsFilter,
+    TopologyActionFilter,
 } from "./requestParameters";
-import type {TopologyNodeResponse} from "./response/topology";
-import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
-import type {ActionsResponse} from "./response/actions/actionsResponse";
-import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
-import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
-import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
-import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
-import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
-import type {ParameterGroupsOutput} from "./output/parameters/parameterGroupsOutput";
-import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
+import { DocumentFormat } from "./requestParameters/index.js";
+import type {
+    ActionsResponse,
+    DisplayGroupsNodesResponse,
+    WebOcConfigurationResponse,
+    TimeSeriesFlagsResponse,
+    TimeSeriesFlagSourcesResponse,
+    TimeSeriesParametersResponse,
+    HistoryEditsResponse,
+    TopologyThresholdNodeResponse,
+    ReportsResponse,
+    WorkflowResponse,
+    LogsDisplayLogsResponse,
+    LogsDisplaysResponse,
+    WhatIfTemplatesResponse,
+    WhatIfScenarioResponse,
+    PostWhatIfScenarioResponse,
+    WebOCDashboardsResponse,
+    WebOCComponentSettingsResponse,
+    TopologyNodeResponse,
+} from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
+import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
+import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
-import {DocumentFormat} from './requestParameters/index.js'
-import {HistoryEditsFilter} from "./requestParameters/historyEditsFilter";
-import {HistoryEditsResponse} from "./response/timeseries/historyEditsResponse";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
-import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
-import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
-import type { ReportsResponse } from './response/reports/reportsResponse'
-import type { WorkflowResponse } from './response/workflows/workflowsResponse'
-import type { LogsDisplayLogsResponse } from './response/logs/logDisplayLogsResponse'
-import type { LogsDisplaysResponse } from './response/logs/logDisplaysResponse'
-import type { WhatIfTemplatesResponse } from './response/embedded/whatIfTemplatesResponse'
-import type { WhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorsResponse'
-import type { PostWhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorResponse'
-import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
-import type { WebOCComponentSettingsResponse } from './response/configuration/webOcComponentSettingsResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
