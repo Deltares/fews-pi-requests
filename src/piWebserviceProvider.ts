@@ -30,6 +30,8 @@ import type {
     TimeSeriesGridMaxValuesFilter,
     HistoryEditsFilter,
     TopologyActionFilter,
+    ForecasterNoteRequest,
+    ForecasterNotesFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -51,6 +53,7 @@ import type {
     WebOCDashboardsResponse,
     WebOCComponentSettingsResponse,
     TopologyNodeResponse,
+    ForecasterNotesResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -500,6 +503,35 @@ export class PiWebserviceProvider {
     async getComponentSettings(filter: ComponentSettingsFilter): Promise<WebOCComponentSettingsResponse> {
         const url = this.componentSettingsUrl(filter)
         const res = await this.webservice.getData<WebOCComponentSettingsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the forecaster notes
+     *
+     * @param filter search options
+     * @returns ForecasterNotes API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getForecasterNotes(filter: ForecasterNotesFilter): Promise<ForecasterNotesResponse> {
+        const url = this.forecasterNotesUrl(filter)
+        const res = await this.webservice.getData<ForecasterNotesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Post a forecaster note
+     *
+     * @param note the forecaster note to post
+     * @returns whether the post was successful
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async postForecasterNote(note: ForecasterNoteRequest): Promise<string> {
+        const url = this.forecasterNotesUrl({})
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const res = await this.webservice.postData<string>(url.toString(), JSON.stringify(note), headers);
         return res.data;
     }
 
@@ -987,4 +1019,11 @@ export class PiWebserviceProvider {
         )
     }
 
+    forecasterNotesUrl(filter: ForecasterNotesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes${queryParameters}`,
+            this._baseUrl
+        )
+    }
 }
