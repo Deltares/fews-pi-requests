@@ -531,7 +531,10 @@ export class PiWebserviceProvider {
         const headers = {
             'Content-Type': "application/json"
         }
-        const res = await this.webservice.postData<string>(url.toString(), JSON.stringify(note), headers);
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(note), headers);
         return res.data;
     }
 

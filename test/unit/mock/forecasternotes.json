@@ -1,0 +1,19 @@
+{
+  "noteGroups": [
+    {
+      "id": "notegroup2",
+      "name": "NoteGroup2",
+      "note": {
+        "eventCodeId": "Manual.event.notegroup1",
+        "maxNumberOfLines": 5,
+        "maxNumberOfCharactersInLine": 100,
+        "messageTemplateId": "custom",
+        "messageTemplate": {
+          "message": "custom text",
+          "messageHeight": 200,
+          "messageWidth": 400
+        }
+      }
+    }
+  ]
+}
