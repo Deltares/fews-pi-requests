@@ -27,38 +27,43 @@ import type {
     WhatIfTemplatesFilter,
     PostWhatIfScenarioFilter,
     ComponentSettingsFilter,
+    TimeSeriesGridMaxValuesFilter,
+    HistoryEditsFilter,
+    TopologyActionFilter,
+    ForecasterNoteRequest,
+    ForecasterNotesFilter,
 } from "./requestParameters";
-import type {TopologyNodeResponse} from "./response/topology";
-import type {TopologyActionFilter} from "./requestParameters/topologyActionFilter";
-import type {ActionsResponse} from "./response/actions/actionsResponse";
-import type {DisplayGroupsNodesResponse} from "./response/displaygroups/DisplayGroupsNodesResponse";
-import type {WebOcConfigurationResponse} from "./response/configuration/WebOcConfigurationResponse";
-import type {TimeSeriesFlagsResponse} from "./response/flags/TimeSeriesFlagsResponse";
-import type {TimeSeriesFlagSourcesResponse} from "./response/flags/TimeSeriesFlagSourcesResponse";
-import type {TimeSeriesParametersResponse} from "./response/timeseriesparameters/timeSeriesParametersResponse";
-import type {ParameterGroupsOutput} from "./output/parameters/parameterGroupsOutput";
-import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
+import { DocumentFormat } from "./requestParameters/index.js";
+import type {
+    ActionsResponse,
+    DisplayGroupsNodesResponse,
+    WebOcConfigurationResponse,
+    TimeSeriesFlagsResponse,
+    TimeSeriesFlagSourcesResponse,
+    TimeSeriesParametersResponse,
+    HistoryEditsResponse,
+    TopologyThresholdNodeResponse,
+    ReportsResponse,
+    WorkflowResponse,
+    LogsDisplayLogsResponse,
+    LogsDisplaysResponse,
+    WhatIfTemplatesResponse,
+    WhatIfScenarioResponse,
+    PostWhatIfScenarioResponse,
+    WebOCDashboardsResponse,
+    WebOCComponentSettingsResponse,
+    TopologyNodeResponse,
+    ForecasterNotesResponse,
+} from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
+import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
+import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
-import {DocumentFormat} from './requestParameters/index.js'
-import {HistoryEditsFilter} from "./requestParameters/historyEditsFilter";
-import {HistoryEditsResponse} from "./response/timeseries/historyEditsResponse";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
-import { TimeSeriesGridMaxValuesFilter } from './requestParameters/timeSeriesGridMaxValuesFilter'
-import type { TopologyThresholdNodeResponse } from './response/topology/thresholdsNodeResponse'
-import type { ReportsResponse } from './response/reports/reportsResponse'
-import type { WorkflowResponse } from './response/workflows/workflowsResponse'
-import type { LogsDisplayLogsResponse } from './response/logs/logDisplayLogsResponse'
-import type { LogsDisplaysResponse } from './response/logs/logDisplaysResponse'
-import type { WhatIfTemplatesResponse } from './response/embedded/whatIfTemplatesResponse'
-import type { WhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorsResponse'
-import type { PostWhatIfScenarioResponse } from './response/embedded/whatIfScenarioDescriptorResponse'
-import { WebOCDashboardsResponse } from './response/dashboards/webOcDashboardsResponse'
-import type { WebOCComponentSettingsResponse } from './response/configuration/webOcComponentSettingsResponse'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -498,6 +503,38 @@ export class PiWebserviceProvider {
     async getComponentSettings(filter: ComponentSettingsFilter): Promise<WebOCComponentSettingsResponse> {
         const url = this.componentSettingsUrl(filter)
         const res = await this.webservice.getData<WebOCComponentSettingsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the forecaster notes
+     *
+     * @param filter search options
+     * @returns ForecasterNotes API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getForecasterNotes(filter: ForecasterNotesFilter): Promise<ForecasterNotesResponse> {
+        const url = this.forecasterNotesUrl(filter)
+        const res = await this.webservice.getData<ForecasterNotesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Post a forecaster note
+     *
+     * @param note the forecaster note to post
+     * @returns whether the post was successful
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async postForecasterNote(note: ForecasterNoteRequest): Promise<string> {
+        const url = this.forecasterNotesUrl({})
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(note), headers);
         return res.data;
     }
 
@@ -985,4 +1022,11 @@ export class PiWebserviceProvider {
         )
     }
 
+    forecasterNotesUrl(filter: ForecasterNotesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes${queryParameters}`,
+            this._baseUrl
+        )
+    }
 }
