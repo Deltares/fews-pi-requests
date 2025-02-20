@@ -78,6 +78,14 @@ const piCommands = [
     url: `${config.url}/pi_rest_forecaster_notes.json`,
     output: "src/response/forecasternotes/forecasterNotesResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_workflow_forecast_times.json`,
+    output: "src/response/workflows/forecastTimesResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_workflow_fss_info.json`,
+    output: "src/response/workflows/fssInfoResponse.ts",
+  }
 ];
 
 const archiveCommands = [
