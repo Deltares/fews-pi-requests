@@ -277,4 +277,12 @@ export interface MapLayer {
    * This can be an absolute url when the file is externally hosted, if the file is in WebResourcesFiles then it should be a relative url
    */
   styleJsonFile?: string;
+  /**
+   * Definition of where the layer should be inserted, if nothing is defined the wms layer placed on top of all layers.
+   */
+  insertWmsBeforeLayerId?: string;
+  /**
+   * Define an icon for the map layer.
+   */
+  iconId?: string;
 }
