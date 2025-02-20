@@ -32,6 +32,8 @@ import type {
     TopologyActionFilter,
     ForecasterNoteRequest,
     ForecasterNotesFilter,
+    FssInfoFilter,
+    ForecastTimesFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -54,6 +56,8 @@ import type {
     WebOCComponentSettingsResponse,
     TopologyNodeResponse,
     ForecasterNotesResponse,
+    WorkflowFssInfoResponse,
+    WorkflowForecastTimesResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -516,6 +520,32 @@ export class PiWebserviceProvider {
     async getForecasterNotes(filter: ForecasterNotesFilter): Promise<ForecasterNotesResponse> {
         const url = this.forecasterNotesUrl(filter)
         const res = await this.webservice.getData<ForecasterNotesResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the FSS info
+     *
+     * @param filter search options
+     * @returns WorkflowFssInfo API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getFssInfo(filter: FssInfoFilter): Promise<WorkflowFssInfoResponse> {
+        const url = this.fssInfoUrl(filter)
+        const res = await this.webservice.getData<WorkflowFssInfoResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the forecast times
+     *
+     * @param filter search options
+     * @returns WorkflowForecastTimes API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getForecastTimes(filter: ForecastTimesFilter): Promise<WorkflowForecastTimesResponse> {
+        const url = this.forecastTimesUrl(filter)
+        const res = await this.webservice.getData<WorkflowForecastTimesResponse>(url.toString());
         return res.data;
     }
 
@@ -1026,6 +1056,22 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    fssInfoUrl(filter: FssInfoFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/fssinfo${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    forecastTimesUrl(filter: ForecastTimesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/forecasttimes${queryParameters}`,
             this._baseUrl
         )
     }
