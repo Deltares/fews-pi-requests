@@ -5,7 +5,7 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type PiRestWorkflowForecastTimes = AnalysisTimes;
+export type WorkflowForecastTimesResponse = AnalysisTimes;
 
 export interface AnalysisTimes {
   selectedTimeZero: string;

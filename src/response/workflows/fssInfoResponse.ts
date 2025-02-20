@@ -3,7 +3,7 @@
 /**
  * WorkflowFssInfo PI_JSON
  */
-export interface WorkflowFssInfo {
+export interface WorkflowFssInfoResponse {
   workflowFssInfo: WorkflowFssInfoClass;
 }
 export interface WorkflowFssInfoClass {
