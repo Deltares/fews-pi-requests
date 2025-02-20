@@ -71,28 +71,12 @@ const piCommands = [
     output: "src/response/dashboards/webOcDashboardsResponse.ts",
   },
   {
-    url: `${config.url}/pi_rest_logdisplay_logs.json`,
-    output: "src/response/logs/logDisplayLogsResponse.ts",
-  },
-  {
-    url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
-    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
-  },
-  {
-    url: `${config.url}/pi_rest_whatifscenariodescriptor.json`,
-    output: "src/response/embedded/whatIfScenarioDescriptorResponse.ts",
-  },
-  {
     url: `${config.url}/pi_rest_weboc_component_settings.json`,
     output: "src/response/configuration/webOcComponentSettingsResponse.ts",
   },
   {
     url: `${config.url}/pi_rest_forecaster_notes.json`,
     output: "src/response/forecasternotes/forecasterNotesResponse.ts",
-  },
-  {
-    url: `${config.url}/pi_rest_forecaster_notes_post.json`,
-    output: "src/requestParameters/forecasterNoteBody.ts",
   },
 ];
 
