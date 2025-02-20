@@ -39,13 +39,13 @@ export interface Overlay {
   paint?: Paint;
 }
 export interface Paint {
-  lineOpacity?: number;
   lineColor?: string;
   lineWidth?: number;
   fillAntiAlias?: boolean;
-  fillOpacity?: number;
   fillColor?: string;
   fillOutlineColor?: string;
+  lineOpacity?: number;
+  fillOpacity?: number;
 }
 export interface ChartsSettings {
   general?: General;
@@ -53,7 +53,7 @@ export interface ChartsSettings {
   timeSeriesChart?: Chart;
   timeSeriesTable?: TimeSeriesTable;
   verticalProfileChart?: Chart;
-  verticalProfileTable?: TimeSeriesTable;
+  verticalProfileTable?: VerticalProfileTable;
   metaDataPanel?: MetaDataPanel;
 }
 export interface General {
@@ -92,6 +92,11 @@ export interface YAxis {
   yLabel?: boolean;
 }
 export interface TimeSeriesTable {
+  enabled?: boolean;
+  allowDateTimeSorting?: boolean;
+  sortDateTimeColumn?: string;
+}
+export interface VerticalProfileTable {
   enabled?: boolean;
   allowDepthSorting?: boolean;
   sortDepthColumn?: string;
