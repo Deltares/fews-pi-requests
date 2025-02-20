@@ -1,0 +1,6 @@
+{
+  "selectedTimeZero" : "2025-02-20T01:50:00Z",
+  "previousTimeZeros" : [ "2025-02-20T01:40:00Z" ],
+  "nextTimeZeros" : [ "2025-02-20T02:00:00Z" ],
+  "valid" : false
+}

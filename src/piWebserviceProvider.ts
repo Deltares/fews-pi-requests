@@ -1063,7 +1063,7 @@ export class PiWebserviceProvider {
     fssInfoUrl(filter: FssInfoFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflow/fssinfo${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/fssinfo${queryParameters}`,
             this._baseUrl
         )
     }
@@ -1071,7 +1071,7 @@ export class PiWebserviceProvider {
     forecastTimesUrl(filter: ForecastTimesFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflow/forecasttimes${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/forecasttimes${queryParameters}`,
             this._baseUrl
         )
     }
