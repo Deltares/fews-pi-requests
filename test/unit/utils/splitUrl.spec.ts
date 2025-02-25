@@ -53,6 +53,14 @@ describe("split url", function() {
     expect(urls[1].toString()).toMatch('https://example.com/base?b=1&c=blah&c=jfkjldsafj&d=I&d=II&verylongkey=2');
   });
 
+  it("splits on most frequent key that is not first in the list", function() {
+    const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&longkeyb=a&longkeyb=b&longkeyb=c&d=I&d=II')
+    const urls =  splitUrl(url, 80)
+    expect(urls[0].toString()).toMatch('https://example.com/base?verylongkey=1&verylongkey=2&d=I&d=II&longkeyb=a');
+    expect(urls[1].toString()).toMatch('https://example.com/base?verylongkey=1&verylongkey=2&d=I&d=II&longkeyb=b');
+    expect(urls[2].toString()).toMatch('https://example.com/base?verylongkey=1&verylongkey=2&d=I&d=II&longkeyb=c');
+  });
+
   it("splits with triple duplicate by non default parameter 'c'", function() {
     const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1&c=blah&c=jfkjldsafj&d=I&d=II')
     const urls =  splitUrl(url, 80, 'c')
