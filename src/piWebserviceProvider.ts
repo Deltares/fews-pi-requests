@@ -34,6 +34,7 @@ import type {
     ForecasterNotesFilter,
     FssInfoFilter,
     ForecastTimesFilter,
+    TopologyThresholdFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -311,11 +312,12 @@ export class PiWebserviceProvider {
     /**
      * Get all the active thresholds for the topology nodes 
      *
+     * @param filter an object with request query parameters
      * @returns all the active thresholds for the topology nodes
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getTopologyThresholds(): Promise<TopologyThresholdNodeResponse> {
-        const url = this.topologyThresholdsUrl()
+    async getTopologyThresholds(filter: TopologyThresholdFilter): Promise<TopologyThresholdNodeResponse> {
+        const url = this.topologyThresholdsUrl(filter)
         const res = await this.webservice.getData<TopologyThresholdNodeResponse>(url.toString());
         return res.data;
     }
@@ -932,11 +934,13 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for topology thresholds request
      *
+     * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    topologyThresholdsUrl(): URL {
+    topologyThresholdsUrl(filter: TopologyThresholdFilter): URL {
+        const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/thresholds`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/thresholds${queryParameters}`,
             this._baseUrl
         )
     }

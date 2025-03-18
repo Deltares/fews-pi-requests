@@ -18,22 +18,42 @@ export interface TopologyThresholdNode {
    */
   aggregatedLevelThresholdCrossings?: AggregatedLevelThresholdCrossings[];
   /**
+   * AggregatedLevelThresholdWarningLevels
+   */
+  aggregatedLevelThresholdWarningLevels?: LevelThresholdWarningLevels[];
+  /**
    * LevelThresholdCrossings
    */
   levelThresholdCrossings?: LevelThresholdCrossings[];
+  /**
+   * LevelThresholdWarningLevels
+   */
+  levelThresholdWarningLevels?: LevelThresholdWarningLevels[];
 }
 export interface AggregatedLevelThresholdCrossings {
   locationId: string;
-  levelThresholdId: string;
-  levelThresholdName: string;
+  warningLevelId: string;
+  warningLevelName: string;
   icon: string;
   color: string;
+  lastValue?: number;
+  lastValueTime?: string;
+  maxValue?: number;
+  maxValueTime?: string;
+  minValue?: number;
+  minValueTime?: string;
+}
+export interface LevelThresholdWarningLevels {
+  id: string;
+  name: string;
+  count: number;
+  icon: string;
 }
 export interface LevelThresholdCrossings {
   locationId: string;
   parameterId: string;
-  levelThresholdId: string;
-  levelThresholdName: string;
+  warningLevelId?: string;
+  warningLevelName?: string;
   icon: string;
   color: string;
   maxValue?: number;

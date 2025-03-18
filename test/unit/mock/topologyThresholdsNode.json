@@ -1,0 +1,71 @@
+{
+    "topologyNodes" : [ {
+      "id" : "viewer.main.coastal.waverunup",
+      "filterLocationsCount" : 1,
+      "aggregatedLevelThresholdCrossings" : [ {
+        "locationId" : "SWAN_detail_ptnorth_66",
+        "icon" : "warninglevel2.gif",
+        "color" : "#ffff00",
+        "warningLevelId" : "1",
+        "warningLevelName" : "StandBy",
+        "maxValue" : 244.22,
+        "maxValueTime" : "2025-03-18T13:00:00Z",
+        "minValue" : -0.078,
+        "minValueTime" : "2025-03-20T01:00:00Z",
+        "lastValue" : 0.0,
+        "lastValueTime" : "2025-03-20T20:00:00Z"
+      }],
+      "aggregatedLevelThresholdWarningLevels" : [ {
+        "id" : "1",
+        "name" : "StandBy",
+        "icon" : "warninglevel2.gif",
+        "count" : 1
+      }, {
+        "id" : "0",
+        "name" : "No threshold exceeded",
+        "count" : 0
+      }, {
+        "id" : "2",
+        "name" : "Warning",
+        "icon" : "warninglevel3.gif",
+        "count" : 0
+      }, {
+        "id" : "3",
+        "name" : "Alarm",
+        "icon" : "warninglevel8.gif",
+        "count" : 0
+      } ],
+      "levelThresholdCrossings" : [ {
+        "locationId" : "SWAN_detail_ptnorth_66",
+        "parameterId" : "Wave.height.simulated",
+        "icon" : "warninglevel2.gif",
+        "color" : "#ffff00",
+        "warningLevelId" : "1",
+        "warningLevelName" : "StandBy",
+        "maxValue" : 0.0,
+        "maxValueTime" : "2025-03-20T20:00:00Z",
+        "lastValue" : 0.0,
+        "lastValueTime" : "2025-03-20T20:00:00Z"
+      }],
+      "levelThresholdWarningLevels" : [ {
+        "id" : "1",
+        "name" : "StandBy",
+        "icon" : "warninglevel2.gif",
+        "count" : 1
+      }, {
+        "id" : "0",
+        "name" : "No threshold exceeded",
+        "count" : 0
+      }, {
+        "id" : "2",
+        "name" : "Warning",
+        "icon" : "warninglevel3.gif",
+        "count" : 0
+      }, {
+        "id" : "3",
+        "name" : "Alarm",
+        "icon" : "warninglevel8.gif",
+        "count" : 0
+      } ]
+    } ]
+  }
