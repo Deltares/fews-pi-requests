@@ -1080,10 +1080,10 @@ export class PiWebserviceProvider {
         )
     }
 
-    timeSeriesFilterActionsUrl(filter: timeSeriesGridActionsFilter): URL {
+    timeSeriesFilterActionsUrl(filter: filterActionsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filter/actions${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filters/actions${queryParameters}`,
             this._baseUrl
         )
     }
