@@ -24,7 +24,7 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     // (string): Subset of parameters for which to retrieve time series. This parameter has to be duplicated to specify multiple parameters.
     parameterIds?: string | string[];
     // (string): Subset of qualifiers for which to retrieve time series. This parameter has to be duplicated to specify multiple qualifierIds.
-    qualifierIds?: QualifierIdsQueryParameter;
+    qualifierIds?: QualifierIdsQueryParameter | string | string[];
     // (string): Explicitly filter on a specific time series type. (Since 2020.01).
     timeSeriesType?: TimeSeriesType;
     // (dateTime format: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for creation time of time series. Note: creation time of time series is actually the creation time of the task that produced/imported these time series.

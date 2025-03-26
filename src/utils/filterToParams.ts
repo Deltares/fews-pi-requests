@@ -24,7 +24,10 @@ export function filterToParams(filter: object ): string {
                 const strings = filterArgToStrings(`${prefix}(${key})`, value)
                 filterArgs.push(...strings)
             }
-        } else if ( parameter === 'qualifierIds') {
+        } else if (
+          parameter === "qualifierIds" &&
+          typeof values === "object"
+        ) {
             for (const [key, value] of Object.entries(values)) {
                 const strings = filterArgToStrings(`${parameter}`,`${key}=` + value)
                 filterArgs.push(...strings)
@@ -40,3 +43,4 @@ export function filterToParams(filter: object ): string {
     }
     return filterArgs.length ? '?' + filterArgs.join('&') : ''
 }
+
