@@ -26,7 +26,8 @@ export function filterToParams(filter: object ): string {
             }
         } else if (
           parameter === "qualifierIds" &&
-          typeof values === "object"
+          typeof values === "object" &&
+          !Array.isArray(values)
         ) {
             for (const [key, value] of Object.entries(values)) {
                 const strings = filterArgToStrings(`${parameter}`,`${key}=` + value)
