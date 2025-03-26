@@ -1079,4 +1079,12 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
+
+    timeSeriesFilterActionsUrl(filter: filterActionsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filters/actions${queryParameters}`,
+            this._baseUrl
+        )
+    }
 }
