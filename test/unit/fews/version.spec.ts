@@ -23,5 +23,6 @@ describe("version", function () {
         expect(results.version.buildNumber).toBe(12345);
         expect(results.version.buildTime).toBe('2017-10-31T23:00:00Z');
         expect(results.version.buildType).toBe('stable');
+        // just a demo
     });
 });
