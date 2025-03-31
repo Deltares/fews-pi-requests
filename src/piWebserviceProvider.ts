@@ -348,6 +348,21 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the time zone used in FEWS
+     *
+     * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getTimeZoneId(): Promise<string> {
+        const url = this.timeZoneIdUrl().toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url.toString(), requestOptions, parser);
+        return res.data;
+    }
+
+    /**
      * Get the configuration of FEWS related to the Web OC.
      *
      * @returns Web OC configuration API response
@@ -859,6 +874,18 @@ export class PiWebserviceProvider {
     versionUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for time zone information
+     *
+     * @returns complete url for making a request
+     */
+    timeZoneIdUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timezoneid`,
             this._baseUrl
         )
     }
