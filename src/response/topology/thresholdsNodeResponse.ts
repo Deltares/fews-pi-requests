@@ -34,6 +34,7 @@ export interface AggregatedLevelThresholdCrossings {
   locationId: string;
   warningLevelId: string;
   warningLevelName: string;
+  severity: number;
   icon: string;
   color: string;
   firstValue?: number;
@@ -48,6 +49,7 @@ export interface AggregatedLevelThresholdCrossings {
 export interface LevelThresholdWarningLevels {
   id: string;
   name: string;
+  severity: number;
   icon?: string;
   count: number;
 }
@@ -56,6 +58,7 @@ export interface LevelThresholdCrossings {
   parameterId: string;
   warningLevelId?: string;
   warningLevelName?: string;
+  severity: number;
   icon: string;
   color: string;
   maxValue?: number;
@@ -70,6 +73,7 @@ export interface LevelThresholdCrossings {
 export interface ParameterLevelThresholdWarningLevels {
   id: string;
   name: string;
+  severity: number;
   icon?: string;
   /**
    * parameterWarningLevelCount
