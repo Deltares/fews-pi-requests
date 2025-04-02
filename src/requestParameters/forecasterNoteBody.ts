@@ -5,7 +5,6 @@ export type NoteGroupId = string;
 export type TopologyNodeId = string;
 export type EventTime = string;
 export type LogLevel = "INFO" | "WARN" | "ERROR";
-export type EventCodeId = string;
 export type UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser =
   string;
 
@@ -18,6 +17,5 @@ export interface ForecasterNoteRequest {
   topologyNodeId?: TopologyNodeId;
   eventTime?: EventTime;
   logLevel?: LogLevel;
-  eventCodeId?: EventCodeId;
   userId?: UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser;
 }

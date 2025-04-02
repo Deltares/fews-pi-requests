@@ -53,4 +53,8 @@ export interface WebOCDashboardItem {
    * The component settings to use
    */
   componentSettingsId?: string;
+  /**
+   * The action ids available to the component
+   */
+  actionIds?: string[];
 }

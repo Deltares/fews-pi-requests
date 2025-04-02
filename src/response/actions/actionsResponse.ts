@@ -9,6 +9,10 @@ export interface ActionsResponse {
    * ActionsResults
    */
   results: ActionResult[];
+  /**
+   * TaskRunIds
+   */
+  taskRunIds?: string[];
 }
 export interface ActionResult {
   type: "PI" | "SSD" | "PDF" | "URL" | "WMS";
