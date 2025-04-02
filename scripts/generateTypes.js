@@ -1,11 +1,12 @@
-import { exec } from "child_process";
+import { compile } from 'json-schema-to-typescript';
+import fs from 'fs';
 
 const config = {
   url: "https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest",
   message: "/* tslint:disable */",
 };
 
-const piCommands = [
+const piSchemas = [
   {
     url: `${config.url}/pi_rest_logdisplays.json`,
     output: "src/response/logs/logDisplaysResponse.ts",
@@ -79,16 +80,28 @@ const piCommands = [
     output: "src/response/forecasternotes/forecasterNotesResponse.ts",
   },
   {
+    url: `${config.url}/pi_rest_forecaster_notes_post.json`,
+    output: "src/requestParameters/forecasterNoteBody.ts",
+  },
+  {
     url: `${config.url}/pi_rest_workflow_forecast_times.json`,
     output: "src/response/workflows/forecastTimesResponse.ts",
   },
   {
     url: `${config.url}/pi_rest_workflow_fss_info.json`,
     output: "src/response/workflows/fssInfoResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
+    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_whatiftemplates.json`,
+    output: "src/response/embedded/whatIfTemplatesResponse.ts",
   }
 ];
 
-const archiveCommands = [
+const archiveSchemas = [
   {
     url: `${config.url}/pi_rest_archive_areas.json`,
     output: "src/response/archivearea/ArchiveAreasResponse.ts",
@@ -121,29 +134,27 @@ const archiveCommands = [
   },
 ];
 
-const generateTypes = (commands) => {
-  commands.forEach((command) => {
-    const cmd = `curl ${command.url} | json2ts --bannerComment "${config.message}" > ${command.output}`;
-    exec(cmd, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing command: ${cmd}\n${error}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Error: ${stderr}`);
-        return;
-      }
-      console.log(`Output: ${stdout}`);
-    });
-  });
+const generateTypes = async (schemas) => {
+  for (const schema of schemas) {
+    try {
+      const response = await fetch(schema.url);
+      const schema = await response.json();
+      const ts = await compile(schema, schema.output, {
+        bannerComment: config.message,
+      });
+      fs.writeFileSync(schema.output, ts);
+    } catch (error) {
+      console.error(`Error processing file ${schema.url}: ${error}`);
+    }
+  }
 };
 
 const type = process.argv[2];
 
 if (type === "pi") {
-  generateTypes(piCommands);
+  generateTypes(piSchemas);
 } else if (type === "archive") {
-  generateTypes(archiveCommands);
+  generateTypes(archiveSchemas);
 } else {
   console.error('Invalid argument. Use "pi" or "archive".');
 }

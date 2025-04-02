@@ -1,9 +1,9 @@
 /* tslint:disable */
 
 /**
- * WhatIfScenarioResponse PI_JSON
+ * WhatIfScenarioDescriptorsResponse PI_JSON
  */
-export interface WhatIfScenarioResponse {
+export interface WhatIfScenarioDescriptorsResponse {
   /**
    * WhatIfScenarioDescriptors
    */
@@ -23,6 +23,10 @@ export interface WhatIfScenarioDescriptor {
    */
   parentWhatIfId?: string;
   /**
+   * Is this a single run whatif
+   */
+  singleRunWhatIf?: boolean;
+  /**
    * The whatif template id
    */
   whatIfTemplateId?: string;
@@ -30,52 +34,52 @@ export interface WhatIfScenarioDescriptor {
    * WhatIfProperties
    */
   properties?: (
-    | WhatIfScenarioBooleanProperty
-    | WhatIfScenarioTemplateIdProperty
-    | WhatIfScenarioIntegerProperty
-    | WhatIfScenarioStringProperty
-    | WhatIfScenarioDoubleProperty
-    | WhatIfScenarioConfigFileProperty
-    | WhatIfScenarioEnumProperty
-    | WhatIfScenarioDateTimeProperty
+    | WhatIfBooleanProperty
+    | WhatIfTemplateIdProperty
+    | WhatIfIntegerProperty
+    | WhatIfStringProperty
+    | WhatIfDoubleProperty
+    | WhatIfConfigFileProperty
+    | WhatIfEnumProperty
+    | WhatIfDateTimeProperty
   )[];
 }
-export interface WhatIfScenarioBooleanProperty {
+export interface WhatIfBooleanProperty {
   id: string;
   type: "boolean";
   value: boolean;
 }
-export interface WhatIfScenarioTemplateIdProperty {
+export interface WhatIfTemplateIdProperty {
   id: string;
-  type: "whatIfScenarioId";
+  type: "whatIfTemplateId";
   value: string;
 }
-export interface WhatIfScenarioIntegerProperty {
+export interface WhatIfIntegerProperty {
   id: string;
   type: "integer";
   value: number;
 }
-export interface WhatIfScenarioStringProperty {
+export interface WhatIfStringProperty {
   id: string;
   type: "string";
   value: string;
 }
-export interface WhatIfScenarioDoubleProperty {
+export interface WhatIfDoubleProperty {
   id: string;
   type: "number";
   value: number;
 }
-export interface WhatIfScenarioConfigFileProperty {
+export interface WhatIfConfigFileProperty {
   id: string;
   type: "configFile";
   value: string;
 }
-export interface WhatIfScenarioEnumProperty {
+export interface WhatIfEnumProperty {
   id: string;
   type: "enumProperty";
   value: string;
 }
-export interface WhatIfScenarioDateTimeProperty {
+export interface WhatIfDateTimeProperty {
   id: string;
   type: "dateTime";
   value: string;

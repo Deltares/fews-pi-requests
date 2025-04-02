@@ -164,6 +164,7 @@ export interface WebOcGeneralConfig {
   defaultComponent?: string;
   customStyleSheet?: string;
   splashScreen?: string;
+  helpMenu?: HelpMenuConfig;
   taskMenu?: TaskMenuConfig;
   icons?: WebOcIconsConfig;
   login?: WebOcLoginConfig;
@@ -180,8 +181,20 @@ export interface WebOcGeneralConfig {
   manifestFile?: string;
   mapLayerConfig?: MapLayerConfig;
 }
+export interface HelpMenuConfig {
+  url?: HelpMenuConfigUrl[];
+  path?: HelpMenuConfigPath[];
+}
+export interface HelpMenuConfigUrl {
+  name?: string;
+  url?: string;
+}
+export interface HelpMenuConfigPath {
+  name?: string;
+  path?: string;
+}
 export interface TaskMenuConfig {
-  enabled?: string;
+  enabled?: boolean;
 }
 /**
  * Icons Configuration

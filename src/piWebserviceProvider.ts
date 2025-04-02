@@ -51,7 +51,7 @@ import type {
     LogsDisplayLogsResponse,
     LogsDisplaysResponse,
     WhatIfTemplatesResponse,
-    WhatIfScenarioResponse,
+    WhatIfScenarioDescriptorsResponse,
     PostWhatIfScenarioResponse,
     WebOCDashboardsResponse,
     WebOCComponentSettingsResponse,
@@ -592,9 +592,9 @@ export class PiWebserviceProvider {
      * @returns WhatIfScenarios API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getWhatIfScenarios(filter: WhatIfScenariosFilter): Promise<WhatIfScenarioResponse> {
+    async getWhatIfScenarios(filter: WhatIfScenariosFilter): Promise<WhatIfScenarioDescriptorsResponse> {
         const url = this.whatIfScenariosUrl(filter)
-        const res = await this.webservice.getData<WhatIfScenarioResponse>(url.toString());
+        const res = await this.webservice.getData<WhatIfScenarioDescriptorsResponse>(url.toString());
         return res.data;
     }
 

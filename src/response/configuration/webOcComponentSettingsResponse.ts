@@ -1,12 +1,12 @@
 /* tslint:disable */
 
 /**
- * WebOCComponentSettingsResponse PI_JSON
+ * WebOCComponentSettings PI_JSON
  */
 export interface WebOCComponentSettingsResponse {
-  webOCComponentSettings?: WebOCComponentSettings;
+  webOCComponentSettings?: WebOCComponentSettingsClass;
 }
-export interface WebOCComponentSettings {
+export interface WebOCComponentSettingsClass {
   id?: string;
   map?: MapSettings;
   charts?: ChartsSettings;
@@ -58,8 +58,8 @@ export interface ChartsSettings {
 }
 export interface General {
   startPanel?: string;
-  hideToolBar?: string;
-  showLocationNames?: boolean;
+  toolBar?: "false" | "true" | "auto";
+  locationNames?: boolean;
 }
 export interface Actions {
   panelPlacement?: PanelPlacement;
@@ -82,12 +82,12 @@ export interface Legend {
   placement?: string;
 }
 export interface XAxis {
-  show?: boolean;
+  enabled?: boolean;
   xTicks?: boolean;
   xLabel?: boolean;
 }
 export interface YAxis {
-  show?: boolean;
+  enabled?: boolean;
   yTicks?: boolean;
   yLabel?: boolean;
 }
@@ -112,7 +112,7 @@ export interface SSDSettings {
 }
 export interface ReportSettings {
   downloadReport?: boolean;
-  hideNonCurrentReports?: boolean;
-  hideReportName?: boolean;
-  hideAnalysisTime?: boolean;
+  nonCurrentReports?: boolean;
+  reportName?: boolean;
+  analysisTimes?: boolean;
 }
