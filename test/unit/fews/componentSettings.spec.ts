@@ -102,10 +102,10 @@ describe("componentSettings", function () {
       results.webOCComponentSettings?.charts?.general?.startPanel
     ).toBe("metaDataPanel");
     expect(
-      results.webOCComponentSettings?.charts?.general?.hideToolBar
+      results.webOCComponentSettings?.charts?.general?.toolBar
     ).toBe("false");
     expect(
-      results.webOCComponentSettings?.charts?.general?.showLocationNames
+      results.webOCComponentSettings?.charts?.general?.locationNames
     ).toBe(false);
     expect(
       results.webOCComponentSettings?.charts?.actions?.panelPlacement
@@ -155,7 +155,7 @@ describe("componentSettings", function () {
       results.webOCComponentSettings?.charts?.timeSeriesChart?.legend?.placement
     ).toBe("auto");
     expect(
-      results.webOCComponentSettings?.charts?.timeSeriesChart?.xAxis?.show
+      results.webOCComponentSettings?.charts?.timeSeriesChart?.xAxis?.enabled
     ).toBe(true);
     expect(
       results.webOCComponentSettings?.charts?.timeSeriesChart?.xAxis?.xTicks
@@ -164,7 +164,7 @@ describe("componentSettings", function () {
       results.webOCComponentSettings?.charts?.timeSeriesChart?.xAxis?.xLabel
     ).toBe(true);
     expect(
-      results.webOCComponentSettings?.charts?.timeSeriesChart?.yAxis?.show
+      results.webOCComponentSettings?.charts?.timeSeriesChart?.yAxis?.enabled
     ).toBe(true);
     expect(
       results.webOCComponentSettings?.charts?.timeSeriesChart?.yAxis?.yTicks

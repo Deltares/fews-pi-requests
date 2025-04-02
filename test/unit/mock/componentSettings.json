@@ -43,8 +43,8 @@
     "charts": {
       "general": {
         "startPanel": "metaDataPanel",
-        "hideToolBar": "false",
-        "showLocationNames": false
+        "toolBar": "false",
+        "locationNames": false
       },
       "actions": {
         "panelPlacement": {
@@ -58,8 +58,8 @@
       "timeSeriesChart": {
         "enabled": true,
         "legend": { "numberOfLines": "1", "placement": "auto" },
-        "xAxis": { "show": true, "xTicks": false, "xLabel": true },
-        "yAxis": { "show": true, "yTicks": false, "yLabel": true }
+        "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
+        "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
       "timeSeriesTable": {
         "enabled": true,
@@ -69,8 +69,8 @@
       "verticalProfileChart": {
         "enabled": true,
         "legend": { "numberOfLines": "1", "placement": "above chart" },
-        "xAxis": { "show": true, "xTicks": false, "xLabel": true },
-        "yAxis": { "show": true, "yTicks": false, "yLabel": true }
+        "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
+        "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
       "verticalProfileTable": {
         "enabled": true,
@@ -87,9 +87,9 @@
     },
     "report": {
       "downloadReport": true,
-      "hideNonCurrentReports": true,
-      "hideReportName": true,
-      "hideAnalysisTime": true
+      "nonCurrentReports": true,
+      "reportName": true,
+      "analysisTime": true
     }
   }
 }
