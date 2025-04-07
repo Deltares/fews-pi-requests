@@ -12,5 +12,5 @@ export interface ReportFilter extends BaseFilter {
     /**
     * Identifier of the report id to retrieve unique within a module instance and task run
     */
-    reportId: string;
+    reportId: number;
 }
