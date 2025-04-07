@@ -95,10 +95,12 @@ const piSchemas = [
     url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
     output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
   },
-  {
-    url: `${config.url}/pi_rest_whatiftemplates.json`,
-    output: "src/response/embedded/whatIfTemplatesResponse.ts",
-  }
+  // FIXME: Currently having the type: const in the json schema is quite difficult.
+  //        The backend tests give erorrs.
+  // {
+  //   url: `${config.url}/pi_rest_whatiftemplates.json`,
+  //   output: "src/response/embedded/whatIfTemplatesResponse.ts",
+  // }
 ];
 
 const archiveSchemas = [
