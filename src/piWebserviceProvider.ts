@@ -14,6 +14,7 @@ import type {
     ParametersFilter,
     ProcessDataFilter,
     ReportsFilter,
+    ReportFilter,
     RunTaskFilter,
     timeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
@@ -660,7 +661,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Get the reporets for filter
+     * Get the reports for filter
      *
      * @param filter search options
      * @returns Reports API response
@@ -669,6 +670,19 @@ export class PiWebserviceProvider {
     async getReports(filter: ReportsFilter): Promise<ReportsResponse> {
         const url = this.reportsUrl(filter)
         const res = await this.webservice.getData<ReportsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the report for filter
+     *
+     * @param filter search options
+     * @returns Reports API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getReport(filter: ReportFilter): Promise<string> {
+        const url = this.reportUrl(filter)
+        const res = await this.webservice.getData<string>(url.toString());
         return res.data;
     }
 
@@ -1014,6 +1028,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/reports${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    reportUrl(filter: ReportsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/report${queryParameters}`,
             this._baseUrl
         )
     }
