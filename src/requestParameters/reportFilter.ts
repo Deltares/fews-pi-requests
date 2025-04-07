@@ -6,7 +6,7 @@ export interface ReportFilter extends BaseFilter {
      */
     moduleInstanceIds?: string | string[];
     /**
-     * Identifier of the report module instance id to retrieve
+     * Identifier of the report module task run id to retrieve
      */
     taskRunId?: string;
     /**

@@ -96,7 +96,7 @@ const piSchemas = [
     output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
   },
   // FIXME: Currently having the type: const in the json schema is quite difficult.
-  //        The backend tests give erorrs.
+  //        The backend tests give errors.
   // {
   //   url: `${config.url}/pi_rest_whatiftemplates.json`,
   //   output: "src/response/embedded/whatIfTemplatesResponse.ts",

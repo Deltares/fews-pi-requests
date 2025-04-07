@@ -677,7 +677,7 @@ export class PiWebserviceProvider {
      * Get the report for filter
      *
      * @param filter search options
-     * @returns Reports API response
+     * @returns Report API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
     async getReport(filter: ReportFilter): Promise<string> {
@@ -1032,7 +1032,7 @@ export class PiWebserviceProvider {
         )
     }
 
-    reportUrl(filter: ReportsFilter): URL {
+    reportUrl(filter: ReportFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/report${queryParameters}`,
