@@ -4,13 +4,13 @@ export interface ReportFilter extends BaseFilter {
     /**
      * Identifier of the report module instance id to retrieve
      */
-    moduleInstanceIds?: string | string[];
+    moduleInstanceIds: string | string[];
     /**
      * Identifier of the report module task run id to retrieve
      */
-    taskRunId?: string;
+    taskRunId: string;
     /**
-    * Identifier of the report id to retrieve
+    * Identifier of the report id to retrieve unique within a module instance and task run
     */
-    reportId?: string;
+    reportId: string;
 }
