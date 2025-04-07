@@ -138,8 +138,8 @@ const generateTypes = async (schemas) => {
   for (const schema of schemas) {
     try {
       const response = await fetch(schema.url);
-      const schema = await response.json();
-      const ts = await compile(schema, schema.output, {
+      const data = await response.json();
+      const ts = await compile(data, schema.output, {
         bannerComment: config.message,
       });
       fs.writeFileSync(schema.output, ts);
