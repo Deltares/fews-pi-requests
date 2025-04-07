@@ -681,8 +681,11 @@ export class PiWebserviceProvider {
      * @throws 'Fetch Error' if fetch result is not ok
      */
     async getReport(filter: ReportFilter): Promise<string> {
-        const url = this.reportUrl(filter)
-        const res = await this.webservice.getData<string>(url.toString());
+        const url = this.reportUrl(filter).toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser);
         return res.data;
     }
 

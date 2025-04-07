@@ -34,7 +34,7 @@ describe("report", function () {
         const queryParams = "?moduleInstanceId=GenerateReport&taskRunId=taskRunId1&reportId=1";
         fetchMock.get(`${baseUrl}${queryParams}`, {
             status: 200,
-            body: JSON.stringify(expectedResponse)
+            body: expectedResponse
         });
 
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
