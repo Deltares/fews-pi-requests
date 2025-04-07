@@ -57,7 +57,12 @@ export interface ChartsSettings {
   metaDataPanel?: MetaDataPanel;
 }
 export interface General {
-  startPanel?: string;
+  startPanel?:
+    | "timeSeriesChart"
+    | "verticalProfileChart"
+    | "timeSeriesTable"
+    | "verticalProfileTable"
+    | "metaDataPanel";
   toolBar?: "false" | "true" | "auto";
   locationNames?: boolean;
 }

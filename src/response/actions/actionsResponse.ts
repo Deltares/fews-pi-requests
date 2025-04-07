@@ -78,9 +78,17 @@ export interface TimeSeriesDisplayPlotItemXAxis {
   axisMaxValue?: number;
 }
 export interface TimeSeriesDisplaySubplotItem {
-  type: string;
+  type: "line" | "bar" | "horizontalColorCode";
+  /**
+   * Bar margin in pixels. Only supported for type horizontalColorCode.
+   */
+  barMargin?: number;
+  /**
+   * Class Breaks
+   */
+  classBreaks?: ClassBreaks[];
   legend?: string;
-  color: string;
+  color?: string;
   lineStyle?: string;
   visibleInLegend: boolean;
   visibleInPlot: boolean;
@@ -103,6 +111,11 @@ export interface TimeSeriesDisplaySubplotItem {
    * Array with the keys of the requests. Only used if there are multiple requests.
    */
   requests?: string[];
+}
+export interface ClassBreaks {
+  lowerValue: number;
+  color: string;
+  label: string;
 }
 export interface TimeSeriesDisplaySubplotItemAxis {
   axisPosition?: string;
