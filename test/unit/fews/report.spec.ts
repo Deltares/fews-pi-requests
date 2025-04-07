@@ -31,7 +31,7 @@ describe("report", function () {
 
     it("gets called when done", async function () {
         const baseUrl = "https://mock.dev/fewswebservices/rest/fewspiservice/v1/report";
-        const queryParams = "?moduleInstanceIds=GenerateReport&taskRunId=taskRunId1&reportId=1";
+        const queryParams = "?moduleInstanceId=GenerateReport&taskRunId=taskRunId1&reportId=1";
         fetchMock.get(`${baseUrl}${queryParams}`, {
             status: 200,
             body: JSON.stringify(expectedResponse)
@@ -40,7 +40,7 @@ describe("report", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: ReportFilter = {
-            moduleInstanceIds: "GenerateReport",
+            moduleInstanceId: "GenerateReport",
             taskRunId: "taskRunId1",
             reportId: 1,
         }
