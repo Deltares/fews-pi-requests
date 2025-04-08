@@ -78,7 +78,7 @@ export interface TimeSeriesDisplayPlotItemXAxis {
   axisMaxValue?: number;
 }
 export interface TimeSeriesDisplaySubplotItem {
-  type: "line" | "bar" | "horizontalColorCode";
+  type: "line" | "area" | "horizontalColorCode";
   /**
    * Bar margin in pixels. Only supported for type horizontalColorCode.
    */

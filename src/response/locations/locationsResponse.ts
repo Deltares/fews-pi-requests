@@ -75,13 +75,17 @@ export interface Location {
    */
   parentLocationId?: string;
   /**
-   * Since 2024.01: Name of the location icon. Can be used with the resource /icons/{iconName} endpoint to get the icon
+   * Since 2023.03: Name of the location icon. Can be used with the resource /icons/{iconName} endpoint to get the icon
    */
   iconName?: string;
   /**
-   * Since 2024.01: Name of the threshold icon. If there are no crossed thresholds then this item will be ommitted. Can be used with the resource /icons/{iconName} endpoint to get the icon
+   * Since 2023.02: Name of the threshold icon. If there are no crossed thresholds then this item will be omitted. Can be used with the resource /icons/{iconName} endpoint to get the icon
    */
   thresholdIconName?: string;
+  /**
+   * Since 2023.02: Severity of the threshold, 0 is the lowest severity. If there are no crossed thresholds then this item will be omitted.
+   */
+  thresholdSeverity?: number;
 }
 export interface Attributes {
   /**
