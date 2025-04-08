@@ -9,4 +9,5 @@ export interface LocationsFilter extends BaseFilter {
     includeTimeDependency?: boolean;
     includeIconNames?: boolean;
     attributeIds?: string | string[];
+    locationIds?: string | string[];
 }
