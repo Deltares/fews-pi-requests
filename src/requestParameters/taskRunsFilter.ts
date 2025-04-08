@@ -7,6 +7,7 @@ export interface TaskRunsFilter extends BaseFilter {
     endDispatchTime?: string;
     startForecastTime?: string;
     endForecastTime?: string;
+    topologyNodeId?: string;
     workflowId?: string;
     scenarioId?: string;
     mcId?: string;
