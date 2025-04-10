@@ -101,6 +101,10 @@ const piSchemas = [
   //   url: `${config.url}/pi_rest_whatiftemplates.json`,
   //   output: "src/response/embedded/whatIfTemplatesResponse.ts",
   // }
+  {
+    url: `${config.url}/pi_rest_timesteps.json`,
+    output: "src/response/timeseries/timestepsResponse.ts",
+  },
 ];
 
 const archiveSchemas = [
