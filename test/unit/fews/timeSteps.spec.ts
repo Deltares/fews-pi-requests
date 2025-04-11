@@ -9,7 +9,7 @@ describe("time steps", function () {
         fetchMock.restore();
     });
 
-    it("gets called when done", async function () {
+    it("it returns 2 timesteps with correct types", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timesteps", {
             status: 200,
             body: expectedResponse
@@ -19,5 +19,9 @@ describe("time steps", function () {
 
         const results = await provider.getTimeSteps({});
         expect(results).toStrictEqual(expectedResponse);
+        expect("timeSteps" in results).toBe(true);
+        expect(results.timeSteps?.length).toBe(2);
+        expect(results.timeSteps?.[0].id).toBe("PT1D");
+        expect(results.timeSteps?.[0].label).toBe("Day");
     });
 });
