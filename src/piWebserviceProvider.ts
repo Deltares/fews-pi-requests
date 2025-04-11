@@ -60,6 +60,7 @@ import type {
     ForecasterNotesResponse,
     WorkflowFssInfoResponse,
     WorkflowForecastTimesResponse,
+    TimeStepsResponse
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -690,6 +691,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the time steps for filter
+     *
+     * @param filter search options
+     * @returns TimeStepsResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getTimeSteps(filter: BaseFilter): Promise<TimeStepsResponse> {
+        const url = this.timeStepsUrl(filter);
+        const res = await this.webservice.getData<TimeStepsResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -1136,6 +1150,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filters/actions${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    timeStepsUrl(filter: BaseFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/timesteps${queryParameters}`,
             this._baseUrl
         )
     }

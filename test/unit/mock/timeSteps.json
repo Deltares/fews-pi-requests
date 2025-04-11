@@ -1,0 +1,9 @@
+{
+  "timeSteps" : [ {
+    "id" : "PT1D",
+    "label" : "Day"
+  }, {
+    "id" : "PT1H",
+    "label" : "Hour"
+  } ]
+}
