@@ -14,4 +14,5 @@ export interface TaskRunsFilter extends BaseFilter {
     taskRunStatusIds?: string | string[];
     taskRunIds?: string | string[];
     taskRunCount?: number;
+    forecastCount?: number;
 }
