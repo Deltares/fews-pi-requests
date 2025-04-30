@@ -402,7 +402,7 @@ export class PiWebserviceProvider {
      */
     async getColors(): Promise<ColorsResponse> {
         const url = new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/colors`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/colors/default`,
             this._baseUrl
         )
         const res = await this.webservice.getData<ColorsResponse>(url.toString());
