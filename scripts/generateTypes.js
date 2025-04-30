@@ -105,6 +105,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_timesteps.json`,
     output: "src/response/timeseries/timestepsResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_colors.json`,
+    output: "src/response/configuration/colorsResponse.ts",
+  },
 ];
 
 const archiveSchemas = [
