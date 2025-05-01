@@ -60,7 +60,8 @@ import type {
     ForecasterNotesResponse,
     WorkflowFssInfoResponse,
     WorkflowForecastTimesResponse,
-    TimeStepsResponse
+    TimeStepsResponse,
+    ColorsResponse
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -391,6 +392,20 @@ export class PiWebserviceProvider {
         }
         const url = this.webOcPublicConfigurationUrl(defaults);
         const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get colors that should be used for plotting
+     * @returns colors API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getColors(): Promise<ColorsResponse> {
+        const url = new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/colors/default`,
+            this._baseUrl
+        )
+        const res = await this.webservice.getData<ColorsResponse>(url.toString());
         return res.data;
     }
 
