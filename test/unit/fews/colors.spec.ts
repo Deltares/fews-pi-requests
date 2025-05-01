@@ -11,7 +11,7 @@ describe("/colors", function () {
 
   it("test colors", async function () {
     fetchMock.get(
-      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/colors",
+      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/colors/default",
       {
         status: 200,
         body: JSON.stringify(expectedColorsResponse),
