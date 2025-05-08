@@ -36,6 +36,7 @@ import type {
     FssInfoFilter,
     ForecastTimesFilter,
     TopologyThresholdFilter,
+    ForecasterNoteKeysRequest,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -584,7 +585,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Post a forecaster note
+     * Post or update a forecaster note
      *
      * @param note the forecaster note to post
      * @returns whether the post was successful
@@ -599,6 +600,63 @@ export class PiWebserviceProvider {
         const requestOptions = new RequestOptions();
         requestOptions.relativeUrl = !url.toString().startsWith("http")
         const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(note), headers);
+        return res.data;
+    }
+
+    /**
+     * Delete forecaster notes
+     *
+     * @param keys the forecaster note to post
+     * @returns whether the deletion was successful
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async deleteForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
+        const url = this.forecasterNotesUrl({}, "delete")
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
+        return res.data;
+    }
+
+    /**
+     * Acknowledge forecaster notes
+     *
+     * @param keys the forecaster notes to acknowledge
+     * @returns whether the acknowledgement was successful
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async acknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
+        const url = this.forecasterNotesUrl({}, "acknowledge")
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
+        return res.data;
+    }
+
+    /**
+     * Unacknowledge forecaster notes
+     *
+     * @param keys the forecaster notes to unacknowledge
+     * @returns whether the acknowledgement was successful
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async unacknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
+        const url = this.forecasterNotesUrl({}, "unacknowledge")
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
         return res.data;
     }
 
@@ -1137,8 +1195,14 @@ export class PiWebserviceProvider {
         )
     }
 
-    forecasterNotesUrl(filter: ForecasterNotesFilter): URL {
+    forecasterNotesUrl(filter: ForecasterNotesFilter, action?: string): URL {
         const queryParameters = filterToParams(filter)
+        if (action) {
+            return new URL(
+                `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes/${action}/${queryParameters}`,
+                this._baseUrl
+            )
+        }
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes${queryParameters}`,
             this._baseUrl
