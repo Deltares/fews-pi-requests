@@ -98,6 +98,7 @@ export interface TimeSeriesDisplaySubplotItem {
   markerStyle?: string;
   markerSize?: number;
   locationId?: string;
+  taskRunId?: string;
   yAxis?: TimeSeriesDisplaySubplotItemAxis;
   /**
    * Thresholds
