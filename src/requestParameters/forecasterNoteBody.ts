@@ -12,7 +12,7 @@ export type UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWi
  * ForecasterNoteRequest PI_JSON
  */
 export interface ForecasterNoteRequest {
-  id?: string;
+  id?: number;
   taskRunId?: string;
   logMessage: LogMessage;
   noteGroupId: NoteGroupId;
@@ -23,7 +23,7 @@ export interface ForecasterNoteRequest {
 }
 
 export interface ForecasterNoteKey {
-  id: string;
+  id: number;
   taskRunId: string;
 }
 export interface ForecasterNoteKeysRequest {
