@@ -584,6 +584,17 @@ export class PiWebserviceProvider {
         return res.data;
     }
 
+    async postForecasterNoteHelper(body: ForecasterNoteRequest | ForecasterNoteKeysRequest, url: URL): Promise<string> {
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(body), headers);
+        return res.data;
+    }
+
     /**
      * Post or update a forecaster note
      *
@@ -593,14 +604,7 @@ export class PiWebserviceProvider {
      */
     async postForecasterNote(note: ForecasterNoteRequest): Promise<string> {
         const url = this.forecasterNotesUrl({})
-        const headers = {
-            'Content-Type': "application/json"
-        }
-        const parser = new PlainTextParser<string>();
-        const requestOptions = new RequestOptions();
-        requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(note), headers);
-        return res.data;
+        return await this.postForecasterNoteHelper(note, url);
     }
 
     /**
@@ -612,14 +616,7 @@ export class PiWebserviceProvider {
      */
     async deleteForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
         const url = this.forecasterNotesUrl({}, "delete")
-        const headers = {
-            'Content-Type': "application/json"
-        }
-        const parser = new PlainTextParser<string>();
-        const requestOptions = new RequestOptions();
-        requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
-        return res.data;
+        return await this.postForecasterNoteHelper(keys, url);
     }
 
     /**
@@ -631,14 +628,7 @@ export class PiWebserviceProvider {
      */
     async acknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
         const url = this.forecasterNotesUrl({}, "acknowledge")
-        const headers = {
-            'Content-Type': "application/json"
-        }
-        const parser = new PlainTextParser<string>();
-        const requestOptions = new RequestOptions();
-        requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
-        return res.data;
+        return await this.postForecasterNoteHelper(keys, url);
     }
 
     /**
@@ -650,14 +640,7 @@ export class PiWebserviceProvider {
      */
     async unacknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
         const url = this.forecasterNotesUrl({}, "unacknowledge")
-        const headers = {
-            'Content-Type': "application/json"
-        }
-        const parser = new PlainTextParser<string>();
-        const requestOptions = new RequestOptions();
-        requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(keys), headers);
-        return res.data;
+        return await this.postForecasterNoteHelper(keys, url);
     }
 
     /**
@@ -1195,7 +1178,7 @@ export class PiWebserviceProvider {
         )
     }
 
-    forecasterNotesUrl(filter: ForecasterNotesFilter, action?: string): URL {
+    forecasterNotesUrl(filter: ForecasterNotesFilter, action?: 'delete' | 'acknowledge' | 'unacknowledge'): URL {
         const queryParameters = filterToParams(filter)
         if (action) {
             return new URL(
