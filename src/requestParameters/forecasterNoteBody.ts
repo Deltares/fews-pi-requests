@@ -12,10 +12,20 @@ export type UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWi
  * ForecasterNoteRequest PI_JSON
  */
 export interface ForecasterNoteRequest {
+  id?: number;
+  taskRunId?: string;
   logMessage: LogMessage;
   noteGroupId: NoteGroupId;
   topologyNodeId?: TopologyNodeId;
   eventTime?: EventTime;
   logLevel?: LogLevel;
   userId?: UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser;
+}
+
+export interface ForecasterNoteKey {
+  id: number;
+  taskRunId: string;
+}
+export interface ForecasterNoteKeysRequest {
+  logs: ForecasterNoteKey[];
 }
