@@ -1,19 +1,21 @@
 /* tslint:disable */
 
 /**
- * Colors PI_JSON
+ * ColorsResponse PI_JSON
  */
 export interface ColorsResponse {
-  colors?: Color[];
+  /**
+   * Colors
+   */
+  colors: Color[];
 }
 export interface Color {
   /**
-   * Color hex code.
-   * @example #FF0000
+   * the hex color code
    */
   color: string;
   /**
-   * Optional name of the color.
+   * The optional name of the color
    */
   name?: string;
 }

@@ -40,6 +40,7 @@ export interface TopologyNode {
   secondaryWorkflows?: SecondaryWorkflowGroupItem[];
   dataDownloadDisplay?: DataDownloadDisplayItem;
   logDisplay?: LogDisplayItem;
+  dynamicReportDisplay?: DynamicReportDisplayItem;
   /**
    * Dashboard panels
    */
@@ -114,6 +115,12 @@ export interface DataDownloadDisplayAttributeItem {
  * Log display
  */
 export interface LogDisplayItem {
+  id: string;
+}
+/**
+ * Dynamic report display
+ */
+export interface DynamicReportDisplayItem {
   id: string;
 }
 export interface DashboardPanelItem {

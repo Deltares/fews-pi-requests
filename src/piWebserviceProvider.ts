@@ -62,7 +62,9 @@ import type {
     WorkflowFssInfoResponse,
     WorkflowForecastTimesResponse,
     TimeStepsResponse,
-    ColorsResponse
+    ColorsResponse,
+    DynamicReportDisplayCapabilitiesResponse,
+    DynamicReportDisplayDataResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -73,6 +75,7 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
+import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -745,6 +748,48 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser);
         return res.data;
     }
+    
+    /**
+     * Get the dynamic display for filter
+     *
+     * @param filter search options
+     * @returns Report API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDynamicReportDisplay(filter: DynamicReportDisplayFilter): Promise<string> {
+        const url = this.dynamicReportDisplayUrl(filter).toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser);
+        return res.data;
+    }
+
+    /**
+     * Get the dynamic display capabilities for filter
+     *
+     * @param filter search options
+     * @returns Report API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDynamicReportDisplayCapabilities(filter: DynamicReportDisplayCapabilitiesFilter): Promise<DynamicReportDisplayCapabilitiesResponse> {
+        const url = this.dynamicReportDisplayUrl(filter, 'capabilities').toString();
+        const res = await this.webservice.getData<DynamicReportDisplayCapabilitiesResponse>(url);
+        return res.data;
+    }
+
+    /**
+     * Get the dynamic display data for filter
+     *
+     * @param filter search options
+     * @returns Report API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDynamicReportDisplayData(filter: DynamicReportDisplayFilter): Promise<DynamicReportDisplayDataResponse> {
+        const url = this.dynamicReportDisplayUrl(filter, 'data').toString();
+        const res = await this.webservice.getData<DynamicReportDisplayDataResponse>(url);
+        return res.data;
+    }
 
     /**
      * Get the time steps for filter
@@ -1109,6 +1154,20 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/report${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    dynamicReportDisplayUrl(filter: DynamicReportDisplayFilter | DynamicReportDisplayCapabilitiesFilter, path? : 'capabilities' | 'data'): URL {
+        const queryParameters = filterToParams(filter)
+        if (path) {
+            return new URL(
+                `${this._baseUrl.pathname}${this.API_ENDPOINT}/dynamicreportdisplays/${path}${queryParameters}`,
+                this._baseUrl
+            )
+        }
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/dynamicreportdisplays${queryParameters}`,
             this._baseUrl
         )
     }
