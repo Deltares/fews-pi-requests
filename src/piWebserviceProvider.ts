@@ -37,6 +37,7 @@ import type {
     ForecastTimesFilter,
     TopologyThresholdFilter,
     ForecasterNoteKeysRequest,
+    LogDisplayLogsActionRequest,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -521,6 +522,27 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getData<LogsDisplayLogsResponse>(url.toString());
         return res.data;
     }
+
+    /**
+     * Post a log display action
+     *
+     * @param request the log display action request
+     * @returns the response from the server
+     * @throws 'Fetch Error' if fetch result is not ok
+     * */
+    async postLogDisplaysAction(request: LogDisplayLogsActionRequest): Promise<string> {
+        const { logDisplayId, ...body } = request;
+        const url = this.logDisplayActionUrl(logDisplayId);
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(body), headers);
+        return res.data;
+    }
+
 
     /**
      * Get the what if templates
@@ -1201,6 +1223,13 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(remainingFilter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays/${logDisplayId}/logs${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    logDisplayActionUrl(logDisplayId: string): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays/${logDisplayId}/action`,
             this._baseUrl
         )
     }
