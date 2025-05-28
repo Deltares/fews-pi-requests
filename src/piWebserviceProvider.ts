@@ -299,8 +299,27 @@ export class PiWebserviceProvider {
         const defaults: Partial<TaskRunsFilter> = {}
         const filterWithDefaults = {...defaults, ...filter}
         const url = this.taskRunsUrl(filterWithDefaults);
-        const res = await this.webservice.getData<TaskRunsResponse>(url.toString());
-        return res.data;
+        return await this.getTaskRunsResponse(url);
+    }
+
+    private async getTaskRunsResponse(url: URL): Promise<TaskRunsResponse> {
+        if (url.toString().length <= this.maxUrlLength) {
+            const res = await this.webservice.getData<TaskRunsResponse>(url.toString())
+            return res.data
+        } 
+
+        const urls = splitUrl(url, this.maxUrlLength).map((u) => u.toString());
+        const promises = urls.map((url) => this.webservice.getData<TaskRunsResponse>(url));
+        const responses = await Promise.all(promises)
+
+        const taskRuns = responses.flatMap(res => res.data.taskRuns ?? [])
+
+        const response = responses[0].data
+        if (taskRuns.length) {
+            response.taskRuns = taskRuns
+        }
+
+        return response
     }
 
 
