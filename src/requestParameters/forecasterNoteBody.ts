@@ -1,5 +1,7 @@
 /* tslint:disable */
 
+export type IdRequiredWhenUpdatingAForecasterNote = number;
+export type TaskRunIdRequiredWhenUpdatingAForecasterNote = string;
 export type LogMessage = string;
 export type NoteGroupId = string;
 export type TopologyNodeId = string;
@@ -12,20 +14,12 @@ export type UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWi
  * ForecasterNoteRequest PI_JSON
  */
 export interface ForecasterNoteRequest {
-  id?: number;
-  taskRunId?: string;
+  id?: IdRequiredWhenUpdatingAForecasterNote;
+  taskRunId?: TaskRunIdRequiredWhenUpdatingAForecasterNote;
   logMessage: LogMessage;
   noteGroupId: NoteGroupId;
   topologyNodeId?: TopologyNodeId;
   eventTime?: EventTime;
   logLevel?: LogLevel;
   userId?: UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser;
-}
-
-export interface ForecasterNoteKey {
-  id: number;
-  taskRunId: string;
-}
-export interface ForecasterNoteKeysRequest {
-  logs: ForecasterNoteKey[];
 }

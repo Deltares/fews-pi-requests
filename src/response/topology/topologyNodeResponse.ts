@@ -14,6 +14,7 @@ export interface TopologyNode {
   name: string;
   workflowId?: string;
   localRun?: boolean;
+  componentSettingsId?: string;
   icon?: string;
   iconId?: string;
   url?: string;
@@ -46,6 +47,14 @@ export interface TopologyNode {
    */
   dashboardPanels?: DashboardPanelItem[];
   reportDisplay?: ReportDisplayItem;
+  /**
+   * id of the document which is coupled to this topology node
+   */
+  documentDisplayId?: string;
+  /**
+   * id of the data analysis display which is coupled to this topology node
+   */
+  dataAnalysisDisplayId?: string;
   /**
    * id of the scada panel which is coupled to this topology node
    */

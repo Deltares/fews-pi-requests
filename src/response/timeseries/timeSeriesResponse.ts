@@ -392,27 +392,7 @@ export interface TimeSeriesEvent {
   /**
    * Flag Source. Optional common values are: MAN=MANUAL, IMP=IMPORTED, MOD=MODIFIER, SN=SOFT_MIN, HN=HARD_MIN, SX=SOFT_MAX, HX=HARD_MAX, ROR=RATE_OF_RISE, ROF=RATE_OF_FALL, SR=SAME_READING, TS=TEMPORARY_SHIFT, SC=SERIES_COMPARISON, FC=FLAGS_COMPARISON, SH=SPATIAL_HOMOGENEITY, MK=MANN_KENDALL, SFP=START_FLAG_PERSISTENCY, SVP=SECONDARY_VALIDATION_FLAG_PERSISTENCY, CA=CONDITIONAL_AGGREGATION, OSC=OSCILLATION, null. But custom flag sources can also be configured in /RegionConfigFiles/CustomFlagSources.xml and used within timeseries.
    */
-  flagSource?:
-    | "MAN"
-    | "IMP"
-    | "MOD"
-    | "SN"
-    | "HN"
-    | "SX"
-    | "HX"
-    | "ROR"
-    | "ROF"
-    | "SR"
-    | "TS"
-    | "SC"
-    | "FC"
-    | "SH"
-    | "MK"
-    | "SFP"
-    | "SVP"
-    | "CA"
-    | "OSC"
-    | null;
+  flagSource?: string;
   /**
    * Only used when editing timeseries. Original flag has to be be passed. Reliable: Change Flag to 0, 1, 2, with Flag Source MAN
    * Doubtful: Change Flag to 3, 4, 5 with Flag Source MAN
