@@ -1,0 +1,78 @@
+{
+  "dataAnalysisDisplays": [
+    {
+      "id": "test_id",
+      "name": "Test Display",
+      "relativeViewPeriod": {
+        "unit": "day",
+        "start": "-30",
+        "end": "1"
+      },
+      "filters": [
+        {
+          "id": "main_waterlevel",
+          "name": "Main Water Level"
+        }
+      ],
+      "selectionPanel": {
+        "locationSelection": {
+          "name": "Location"
+        },
+        "parameterSelection": {
+          "name": "Parameter"
+        },
+        "moduleInstanceSelection": {
+          "name": "Model",
+          "enabled": true
+        },
+        "locationAttributeSelection": {
+          "enabled": true,
+          "attributes": [
+            {
+              "attributeId": "LOCATION_TYPE",
+              "name": "Location type"
+            }
+          ]
+        }
+      },
+      "toolBoxes": {
+        "resampling": {
+          "enabled": true
+        },
+        "correlation": {
+          "enabled": true
+        },
+        "toolboxWorkflows": [
+          {
+            "id": "return_period",
+            "name": "Return Period",
+            "workflowId": "TestWorkflowId",
+            "whatIfTemplateId": "TestWhatIfTemplateId",
+            "results": {
+              "filterId": "test_filter_id",
+              "archiveProductId": "test_archive_product_id"
+            },
+            "iconId": "mdi-clock"
+          }
+        ]
+      },
+      "archiveCoupling": {
+        "enabled": true,
+        "metaData": {
+          "properties": {
+            "areaId": "test_area_id",
+            "sourceId": "test_source_id"
+          },
+          "attributes": [
+            {
+              "test_key": "test_value"
+            },
+            {
+              "another_key": "another_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

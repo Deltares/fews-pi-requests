@@ -39,6 +39,7 @@ import type {
     ForecasterNoteKeysRequest,
     LogDisplayLogsActionRequest,
     CorrelationFilter,
+    DataAnalysisDisplaysFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -68,6 +69,7 @@ import type {
     DynamicReportDisplayCapabilitiesResponse,
     DynamicReportDisplayDataResponse,
     CorrelationResponse,
+    DataAnalysisDisplaysResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -861,6 +863,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the data analysis displays for filter
+     *
+     * @param filter search options
+     * @returns DataAnalysisDisplaysResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDataAnalysisDisplays(filter: DataAnalysisDisplaysFilter): Promise<DataAnalysisDisplaysResponse> {
+        const url = this.dataAnalysisDisplaysUrl(filter);
+        const res = await this.webservice.getData<DataAnalysisDisplaysResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -1350,6 +1365,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/statistics/correlation${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    dataAnalysisDisplaysUrl(filter: DataAnalysisDisplaysFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/dataanalysisdisplays${queryParameters}`,
             this._baseUrl
         )
     }
