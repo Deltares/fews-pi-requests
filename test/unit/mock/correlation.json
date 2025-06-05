@@ -1,0 +1,35 @@
+{
+    "equation": {
+        "description": "Exponential Regression f(x) = 111.39822 *  exp( -0.00119 * x )",
+        "R-squared": 0.016868513
+    },
+    "title": "H_obs LOC7 to H_obs LOC2",
+    "xAxis": {
+        "label": "H_obs [m] LOC7"
+    },
+    "yAxis": {
+        "label": "H_obs [m] LOC2"
+    },
+    "values": [
+        {
+            "time": "2025-05-17T22:00:00+0000",
+            "x": 98.985,
+            "y": 99.09
+        },
+        {
+            "time": "2025-05-17T22:05:00+0000",
+            "x": 98.953,
+            "y": 99.031
+        }
+    ],
+    "fitPoints": [
+        {
+            "x": 98.806,
+            "y": 99.045
+        },
+        {
+            "x": 98.823,
+            "y": 99.043
+        }
+    ]
+}
