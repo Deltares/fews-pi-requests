@@ -113,6 +113,11 @@ const piSchemas = [
     url: `${config.url}/pi_rest_statistics_correlation.json`,
     output: "src/response/statistics/correlationResponse.ts",
   },
+  // FIXME: This schema currently has some errors that will be fixed in the future.
+  // {
+  //   url: `${config.url}/pi_rest_data_analysis_displays.json`,
+  //   output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
+  // }
 ];
 
 const archiveSchemas = [
