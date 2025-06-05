@@ -38,6 +38,7 @@ import type {
     TopologyThresholdFilter,
     ForecasterNoteKeysRequest,
     LogDisplayLogsActionRequest,
+    CorrelationFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -66,6 +67,7 @@ import type {
     ColorsResponse,
     DynamicReportDisplayCapabilitiesResponse,
     DynamicReportDisplayDataResponse,
+    CorrelationResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -846,6 +848,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the correlation for filter
+     *
+     * @param filter search options
+     * @returns CorrelationResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getCorrelation(filter: CorrelationFilter): Promise<CorrelationResponse> {
+        const url = this.correlationUrl(filter);
+        const res = await this.webservice.getData<CorrelationResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -1327,6 +1342,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timesteps${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    correlationUrl(filter: CorrelationFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/statistics/correlation${queryParameters}`,
             this._baseUrl
         )
     }

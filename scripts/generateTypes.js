@@ -109,6 +109,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_colors.json`,
     output: "src/response/configuration/colorsResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_statistics_correlation.json`,
+    output: "src/response/statistics/correlationResponse.ts",
+  },
 ];
 
 const archiveSchemas = [
