@@ -10,4 +10,5 @@ export interface LocationsFilter extends BaseFilter {
     includeIconNames?: boolean;
     attributeIds?: string | string[];
     locationIds?: string | string[];
+    parameterIds?: string | string[];
 }
