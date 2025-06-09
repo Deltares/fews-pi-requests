@@ -118,6 +118,10 @@ const piSchemas = [
   //   url: `${config.url}/pi_rest_data_analysis_displays.json`,
   //   output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
   // }
+  {
+    url: `${config.url}/pi_rest_taskrunstatus.json`,
+    output: "src/response/tasks/taskRunStatusResponse.ts",
+  },
 ];
 
 const archiveSchemas = [

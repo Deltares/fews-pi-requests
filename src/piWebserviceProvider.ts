@@ -40,6 +40,7 @@ import type {
     LogDisplayLogsActionRequest,
     CorrelationFilter,
     DataAnalysisDisplaysFilter,
+    TaskRunStatusFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -70,6 +71,7 @@ import type {
     DynamicReportDisplayDataResponse,
     CorrelationResponse,
     DataAnalysisDisplaysResponse,
+    TaskRunStatusResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -876,6 +878,19 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the task run status for filter
+     *
+     * @param filter search options
+     * @returns TaskRunStatusResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getTaskRunStatus(filter: TaskRunStatusFilter): Promise<TaskRunStatusResponse> {
+        const url = this.taskRunStatusUrl(filter);
+        const res = await this.webservice.getData<TaskRunStatusResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -1373,6 +1388,14 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/dataanalysisdisplays${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    taskRunStatusUrl(filter: TaskRunStatusFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/taskrunstatus${queryParameters}`,
             this._baseUrl
         )
     }
