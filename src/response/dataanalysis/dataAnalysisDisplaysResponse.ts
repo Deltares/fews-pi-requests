@@ -6,13 +6,13 @@ export interface DataAnalysisDisplaysResponse {
 export interface DataAnalysisDisplayElement {
   id: string;
   name: string;
-  relativeViewPeriod: RelativeViewPeriod;
+  relativeViewPeriod: AnalysisRelativeViewPeriod;
   filters: Filter[];
   selectionPanel: SelectionPanel;
   toolBoxes: ToolBoxes;
   archiveCoupling?: ArchiveCoupling;
 }
-export interface RelativeViewPeriod {
+export interface AnalysisRelativeViewPeriod {
   unit: string;
   start: string;
   end: string;
@@ -55,12 +55,24 @@ export interface ToolboxWorkflow {
   name: string;
   workflowId: string;
   whatIfTemplateId: string;
-  results: Results;
   iconId?: string;
+  results: Results;
 }
 export interface Results {
   filterId: string;
-  archiveProductId: string;
+  archiveProducts: DataAnalysisDisplayArchiveProduct[];
+}
+export interface DataAnalysisDisplayArchiveProduct {
+  id?: string;
+  name?: string;
+  areaId?: string;
+  sourceId?: string;
+  versionKeys?: string[];
+  attributes?: DataAnalysisDisplayArchiveProductAttribute[];
+}
+export interface DataAnalysisDisplayArchiveProductAttribute {
+  key?: string;
+  value?: string;
 }
 export interface ArchiveCoupling {
   enabled: boolean;
@@ -68,9 +80,12 @@ export interface ArchiveCoupling {
 }
 export interface MetaData {
   properties: Properties;
-  attributes: Record<string, string>[];
+  attributes: Attribute[];
 }
 export interface Properties {
   areaId: string;
   sourceId: string;
+}
+export interface Attribute {
+  [k: string]: unknown;
 }

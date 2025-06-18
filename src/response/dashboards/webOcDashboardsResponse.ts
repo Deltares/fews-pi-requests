@@ -45,7 +45,7 @@ export interface WebOCDashboardItem {
     | "charts"
     | "report"
     | "system-monitor"
-    | "html-display"
+    | "dynamic-report-display"
     | "log-display"
     | "data-download-display"
     | "whatif-display";
