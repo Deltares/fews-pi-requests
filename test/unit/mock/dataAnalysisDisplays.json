@@ -50,7 +50,16 @@
             "whatIfTemplateId": "TestWhatIfTemplateId",
             "results": {
               "filterId": "test_filter_id",
-              "archiveProductId": "test_archive_product_id"
+              "archiveProducts": [
+                {
+                  "id": "products_test",
+                  "name": "products_test",
+                  "areaId": "products",
+                  "sourceId": "test",
+                  "versionKeys": [],
+                  "attributes": []
+                }
+              ]
             },
             "iconId": "mdi-clock"
           }

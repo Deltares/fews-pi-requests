@@ -10,10 +10,13 @@ describe("dataAnalysisDisplays", function () {
   });
 
   it("it returns dataAnalysisDisplays with correct types", async function () {
-    fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/dataanalysisdisplays?dataAnalysisDisplayId=test_id", {
-      status: 200,
-      body: expectedResponse,
-    });
+    fetchMock.get(
+      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/dataanalysisdisplays?dataAnalysisDisplayId=test_id",
+      {
+        status: 200,
+        body: expectedResponse,
+      }
+    );
 
     const provider = new PiWebserviceProvider(
       "https://mock.dev/fewswebservices"
@@ -100,8 +103,32 @@ describe("dataAnalysisDisplays", function () {
     ).toBe("test_filter_id");
     expect(
       results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-        ?.archiveProductId
-    ).toBe("test_archive_product_id");
+        ?.archiveProducts?.length
+    ).toBe(1);
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].id
+    ).toBe("products_test");
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].name
+    ).toBe("products_test");
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].areaId
+    ).toBe("products");
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].sourceId
+    ).toBe("test");
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].versionKeys?.length
+    ).toBe(0);
+    expect(
+      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
+        ?.archiveProducts?.[0].attributes?.length
+    ).toBe(0);
     expect(results.dataAnalysisDisplays?.[0].archiveCoupling?.enabled).toBe(
       true
     );
@@ -128,22 +155,5 @@ describe("dataAnalysisDisplays", function () {
     expect(
       results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].iconId
     ).toBe("mdi-clock");
-    expect(
-      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-    ).toBeDefined();
-    expect(
-      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-    ).toHaveProperty("filterId");
-    expect(
-      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-    ).toHaveProperty("archiveProductId");
-    expect(
-      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-        .filterId
-    ).toBe("test_filter_id");
-    expect(
-      results.dataAnalysisDisplays?.[0].toolBoxes?.toolboxWorkflows?.[0].results
-        .archiveProductId
-    ).toBe("test_archive_product_id");
   });
 });
