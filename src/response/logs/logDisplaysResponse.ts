@@ -15,10 +15,20 @@ export interface LogsDisplay {
    * Name of the logs display
    */
   name: string;
+  relativeViewPeriod?: RelativeViewPeriod;
+  /**
+   * Default number of log entries to request when loading the logs display
+   */
+  defaultLogRequestCount?: number;
   userAlerts?: LogDisplayUserAlerts;
   systemLog?: LogDisplaySystemLog;
   manualLog?: LogDisplayManualLog;
   logDissemination?: LogDisplayLogDissemination;
+}
+export interface RelativeViewPeriod {
+  unit: string;
+  start: string;
+  end: string;
 }
 export interface LogDisplayUserAlerts {
   /**
@@ -64,4 +74,8 @@ export interface LogDisplayDisseminationAction {
    * System log
    */
   systemLog: boolean;
+  /**
+   * Maximum number of characters in the log entry. Usefull for manual log entries to limit the size of the log message that can be use (e.g. SMS).
+   */
+  maxLogCharacters?: number;
 }

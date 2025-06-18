@@ -90,6 +90,10 @@ export interface TimeSeriesDisplaySubplotItem {
   legend?: string;
   color?: string;
   lineStyle?: string;
+  /**
+   * Plot weight.
+   */
+  plotWeight?: number;
   visibleInLegend: boolean;
   visibleInPlot: boolean;
   visibleInTable: boolean;
@@ -100,6 +104,16 @@ export interface TimeSeriesDisplaySubplotItem {
   locationId?: string;
   taskRunId?: string;
   yAxis?: TimeSeriesDisplaySubplotItemAxis;
+  /**
+   * Inverted y-axis.
+   */
+  inverted?: boolean;
+  /**
+   * Logarithmic y-axis.
+   */
+  logarithmic?: boolean;
+  thresholdAxis?: "left" | "right" | "both" | "none";
+  thresholdAxisScaling?: "two thresholds" | "no thresholds" | "all thresholds";
   /**
    * Thresholds
    */
@@ -131,4 +145,8 @@ export interface TimeSeriesDisplaySubplotItemThreshold {
   value?: number;
   label?: string;
   color?: string;
+  /**
+   * Label alignment for the threshold label.
+   */
+  labelAlignment?: "left" | "right";
 }
