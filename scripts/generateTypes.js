@@ -121,6 +121,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_taskrunstatus.json`,
     output: "src/response/tasks/taskRunStatusResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_user_setting_user_ids.json`,
+    output: "src/response/usersettings/userSettingUsersResponse.ts",
+  },
 ];
 
 const archiveSchemas = [
