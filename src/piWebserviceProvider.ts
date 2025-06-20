@@ -85,7 +85,7 @@ import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsO
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
-import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
+import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 
@@ -902,9 +902,11 @@ export class PiWebserviceProvider {
      * @returns UserSettingsResponse API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getUserSettings<T>(filter: UserSettingsFilter): Promise<T> {
+    async getUserSettings<T>(filter: UserSettingsFilter, parser?: ResponseParser<T>): Promise<T> {
         const url = this.userSettingsUrl(filter);
-        const res = await this.webservice.getData<T>(url.toString());
+        const requestOption = new RequestOptions();
+        requestOption.relativeUrl = !url.toString().startsWith("http");
+        const res = await this.webservice.getDataWithParser(url.toString(), requestOption, parser ?? new DefaultParser<T>());
         return res.data;
     }
 
@@ -916,7 +918,7 @@ export class PiWebserviceProvider {
      * @returns the response from the server
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async postUserSettings(filter: UserSettingsFilter, body: unknown) {
+    async postUserSettings(filter: UserSettingsFilter, body: string) {
         const url = this.userSettingsUrl(filter);
         const headers = {
             'Content-Type': "application/json"
@@ -924,7 +926,7 @@ export class PiWebserviceProvider {
         const parser = new PlainTextParser<string>();
         const requestOptions = new RequestOptions();
         requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(body), headers);
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, body, headers);
         return res.data;
     }
 

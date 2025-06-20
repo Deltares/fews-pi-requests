@@ -48,7 +48,7 @@ describe("postUserSettings", function () {
         topicId: "chart-collection",
         userId: "test-user",
       },
-      chartCollectionData
+      JSON.stringify(chartCollectionData)
     );
     expect(typeof response === "string").toBe(true);
     expect(response).toBe("Success");
