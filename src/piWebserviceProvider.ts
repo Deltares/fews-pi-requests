@@ -44,6 +44,7 @@ import type {
     UserSettingsFilter,
     PostUserSettingsFilter,
     UserSettingsUsersFilter,
+    TimeStepsFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -849,7 +850,7 @@ export class PiWebserviceProvider {
      * @returns TimeStepsResponse API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getTimeSteps(filter: BaseFilter): Promise<TimeStepsResponse> {
+    async getTimeSteps(filter: TimeStepsFilter): Promise<TimeStepsResponse> {
         const url = this.timeStepsUrl(filter);
         const res = await this.webservice.getData<TimeStepsResponse>(url.toString());
         return res.data;
@@ -1418,7 +1419,7 @@ export class PiWebserviceProvider {
         )
     }
 
-    timeStepsUrl(filter: BaseFilter): URL {
+    timeStepsUrl(filter: TimeStepsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timesteps${queryParameters}`,
