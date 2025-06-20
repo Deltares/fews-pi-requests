@@ -41,6 +41,9 @@ import type {
     CorrelationFilter,
     DataAnalysisDisplaysFilter,
     TaskRunStatusFilter,
+    UserSettingsFilter,
+    PostUserSettingsFilter,
+    UserSettingsUsersFilter,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -72,6 +75,7 @@ import type {
     CorrelationResponse,
     DataAnalysisDisplaysResponse,
     TaskRunStatusResponse,
+    UserSettingUsersResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -891,6 +895,52 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the user settings for filter
+     *
+     * @param filter search options
+     * @returns UserSettingsResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getUserSettings<T>(filter: UserSettingsFilter): Promise<T> {
+        const url = this.userSettingsUrl(filter);
+        const res = await this.webservice.getData<T>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Post the user settings for filter
+     *
+     * @param filter search options
+     * @param body the body of the request
+     * @returns the response from the server
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async postUserSettings(filter: UserSettingsFilter, body: unknown) {
+        const url = this.userSettingsUrl(filter);
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, JSON.stringify(body), headers);
+        return res.data;
+    }
+
+    /**
+     * Get the user settings users for filter
+     *
+     * @param filter search options
+     * @returns UserSettingUsersResponse API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getUserSettingsUsers(filter: UserSettingsUsersFilter): Promise<UserSettingUsersResponse> {
+        const url = this.userSettingsUsersUrl(filter);
+        const res = await this.webservice.getData<UserSettingUsersResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
      * Construct URL for locations request
      *
      * @param filter an object with request query parameters
@@ -1396,6 +1446,30 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/taskrunstatus${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    userSettingsUrl(filter: UserSettingsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    postUserSettingsUrl(filter: PostUserSettingsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings${queryParameters}`,
+            this._baseUrl
+        )
+    }
+    
+    userSettingsUsersUrl(filter: UserSettingsUsersFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings/users${queryParameters}`,
             this._baseUrl
         )
     }
