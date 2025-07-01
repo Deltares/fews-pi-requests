@@ -77,7 +77,10 @@ export interface WhatIfConfigFileProperty {
 export interface WhatIfEnumProperty {
   id: string;
   type: "enumProperty";
-  value: string;
+  value: {
+    code: string;
+    label: string;
+  }
 }
 export interface WhatIfDateTimeProperty {
   id: string;
