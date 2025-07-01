@@ -91,10 +91,11 @@ const piSchemas = [
     url: `${config.url}/pi_rest_workflow_fss_info.json`,
     output: "src/response/workflows/fssInfoResponse.ts",
   },
-  {
-    url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
-    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
-  },
+  // FIXME: Currently the backend does not have the correct type for enum value's
+  // {
+  //   url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
+  //   output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
+  // },
   // FIXME: Currently having the type: const in the json schema is quite difficult.
   //        The backend tests give errors.
   // {
