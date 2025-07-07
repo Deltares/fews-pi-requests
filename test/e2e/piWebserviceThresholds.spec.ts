@@ -1,8 +1,9 @@
 import 'cross-fetch/polyfill';
 import {
     PiWebserviceProvider,
+    TopologyThresholdFilter
 } from "../../src";
-import {TopologyThresholdFilter} from "../../lib/types";
+
 
 const baseUrl = process.env.DOCKER_URL || "";
 
