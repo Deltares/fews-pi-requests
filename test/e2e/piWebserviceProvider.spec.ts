@@ -3,6 +3,7 @@ import {
     DocumentFormat, type filterActionsFilter,
     type LocationsFilter,
     PiWebserviceProvider,
+    TimeSeriesResponse,
     type TaskRunsFilter
 } from "../../src";
 
@@ -63,9 +64,6 @@ describe("pi webservice provider", function () {
     });
 
     it("get timeseries grid actions", async function () {
-        // ?layers=saws1&x=3497547.0812338623&y=-3498537.741543421&startTime=2025-03-13T18%3A00%3A00Z&endTime=2025-03-15T06%3A00%3A00Z&
-        //
-        // bbox=3485991.6981145153 -3510098.363325539 3509102.4643532103 -3486987.5749842175&documentFormat=PI_JSON&useDisplayUnits=true&thinning=135000
         const provider = new PiWebserviceProvider(baseUrl);
         const res = await provider.getTimeSeriesGridActions({
             layers: "saws1",
@@ -77,15 +75,56 @@ describe("pi webservice provider", function () {
         });
         expect(res.results.length).toBeGreaterThan(0);        
     });
-    // todo, add once an editable timeseries is available
-    // it("timeseries edit", async function () {
-    //     const provider = new PiWebserviceProvider(baseUrl);
-    //     const timeSeries: TimeSeriesResponse = {
-    //        "version":"1.32","timeZone":"0.0","timeSeries":[{"events":[{"date":"2023-12-12","time":"11:50:00","value":"15","flag":"1","flagSource":"MAN"}]}]
-    //     };
-    //     const editUrl = `${baseUrl}/rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=2958&locationId=Belfeld_boven`
-    //     await provider.postTimeSeriesEdit(editUrl, timeSeries);
-    //     // improvement: e2e testing depends on the state of the database using the timeSeriesSetIndex.
-    // })
+
+    it("timeseries edit", async function () {
+        const filter = {} as filterActionsFilter;
+        filter.locationIds = "Umgeni_Mouth_level";
+        filter.filterId = "River Stations";
+        const provider = new PiWebserviceProvider(baseUrl);
+        const filterActions = await provider.getFilterActions(filter);
+        const request = filterActions.results[0].requests[0].request;
+        const editRequest = filterActions.results[0].requests[0].editRequest;
+        const res = await provider.getTimeSeriesWithRelativeUrl(request);
+        expect(res?.timeSeries?.length).toBeGreaterThan(0);
+        if (res?.timeSeries && res.timeSeries.length > 0) {
+            const timeSeriesResult = res?.timeSeries[0];
+            expect(timeSeriesResult?.header?.parameterId).toBe("H.obs")
+            expect(timeSeriesResult?.header?.locationId).toBe("Umgeni_Mouth_level")
+            if (timeSeriesResult.events && timeSeriesResult.events.length > 0) {
+                const event = timeSeriesResult.events[0];
+                expect(event.date).toBeDefined();
+                expect(event.time).toBeDefined();
+                expect(event.value).toBeDefined();
+                expect(event.flag).toBeDefined();
+                const newValue = '1234567';
+                event.flag = '2';
+                const newEvent = {
+                    date: event.date,
+                    time: event.time,
+                    value: newValue,
+                    flag: event.flag,
+                    flagSource: event.flagSource
+                }
+                const newTimeSeries: TimeSeriesResponse = {
+                   "version":"1.32","timeZone":"0.0","timeSeries":[{"events":[ newEvent ]}],
+                };
+                const editUrl = `${baseUrl}` + editRequest;
+                await provider.postTimeSeriesEdit(editUrl, newTimeSeries);
+                const updatedResp = await provider.getTimeSeriesWithRelativeUrl(request);
+                const newValueEvent = updatedResp?.timeSeries?.[0]?.events?.[0];
+                if (newValueEvent) {
+                    expect(newValueEvent.value).toBe(newValue);
+                    expect(newValueEvent.flag).toBe(event.flag);
+                } else {
+                    fail("No events found in time series for Umgeni_Mouth_level");
+                }
+
+            } else {
+                fail("No events found in time series for Umgeni_Mouth_level");
+            }
+        } else {
+            fail("No time series found for Umgeni_Mouth_level");
+        }
+    })
     
 })
