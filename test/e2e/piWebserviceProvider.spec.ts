@@ -75,6 +75,7 @@ describe("pi webservice provider", function () {
         });
         expect(res.results.length).toBeGreaterThan(0);        
     });
+
     it("timeseries edit", async function () {
         const filter = {} as filterActionsFilter;
         filter.locationIds = "Umgeni_Mouth_level";
@@ -107,7 +108,7 @@ describe("pi webservice provider", function () {
                 const newTimeSeries: TimeSeriesResponse = {
                    "version":"1.32","timeZone":"0.0","timeSeries":[{"events":[ newEvent ]}],
                 };
-                const editUrl = `${baseUrl}/` + editRequest;
+                const editUrl = `${baseUrl}` + editRequest;
                 await provider.postTimeSeriesEdit(editUrl, newTimeSeries);
                 const updatedResp = await provider.getTimeSeriesWithRelativeUrl(request);
                 const newValueEvent = updatedResp?.timeSeries?.[0]?.events?.[0];
