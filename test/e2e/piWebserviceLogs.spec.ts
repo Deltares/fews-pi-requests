@@ -2,13 +2,10 @@
 import 'cross-fetch/polyfill';
 import {
     LogDisplayLogsFilter,
-    PiWebserviceProvider,
-    TopologyThresholdFilter
+    PiWebserviceProvider
 } from "../../src";
-import {LogDisplaysFilter} from "../../lib/types";
 
 const baseUrl = process.env.DOCKER_URL || "";
-
 
 describe("log display logs", function () {
 
