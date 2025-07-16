@@ -8,7 +8,6 @@ import {
 } from "../../src";
 
 const baseUrl = process.env.DOCKER_URL || "";
-const fewsVersion: number = process.env.FEWS_VERSION ? parseInt(process.env.FEWS_VERSION, 10) : 999999;
 
 describe("pi webservice provider", function () {
     it("get locations", async function () {
