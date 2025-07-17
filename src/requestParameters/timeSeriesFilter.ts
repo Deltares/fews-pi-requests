@@ -45,4 +45,6 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     resamplingTimeStepId?: string;
     // When resampling omit missing values. Default is true.
     resamplingOmitMissing?: boolean;
+    // One or more time series ids. Optional, don't specify locationIds, parmeterIds, qualfierIds, filterId, moduleInstanceIds <i>Since: 2023.01</i>
+    timeSeriesIds?: string[];
 }
