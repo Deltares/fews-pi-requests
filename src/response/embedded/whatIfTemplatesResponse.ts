@@ -35,7 +35,16 @@ export interface WhatIfTemplate {
     | WhatIfTemplateDateTimeProperty
     | WhatIfTemplateTemplateProperty
     | WhatIfTemplateEnumProperty
+    | WhatIfTemplateMultiProperty
   )[];
+  /**
+   * Determines if the what-if is a single run what-if by default
+   */
+  defaultSingleRunWhatIfSetting: boolean;
+  /**
+   * Determines if the default setting above can be overruled. Can a what-if which is by default not a single what-if be a single run what-if?
+   */
+  overrulableSingleRunWhatIf: boolean;
 }
 export interface WhatIfTemplateConfigFileProperty {
   /**
@@ -213,5 +222,19 @@ export interface WhatIfTemplateEnumPropertyValues {
   /**
    * The label of the value
    */
+  label: string;
+}
+export interface WhatIfTemplateMultiProperty {
+  id: string;
+  type: "multiProperty";
+  name: string;
+  defaultValue?: number;
+  /**
+   * WhatIfMultiPropertySelectionOptions
+   */
+  selectionOptions: WhatIfTemplateMultiPropertySelectionOptions[];
+}
+export interface WhatIfTemplateMultiPropertySelectionOptions {
+  code: string;
   label: string;
 }

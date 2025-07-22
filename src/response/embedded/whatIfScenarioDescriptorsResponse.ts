@@ -42,6 +42,9 @@ export interface WhatIfScenarioDescriptor {
     | WhatIfConfigFileProperty
     | WhatIfEnumProperty
     | WhatIfDateTimeProperty
+    | WhatIfMultiProperty
+    | WhatIfMultiProperty
+    | WhatIfTriggeredProperty
   )[];
 }
 export interface WhatIfBooleanProperty {
@@ -77,13 +80,30 @@ export interface WhatIfConfigFileProperty {
 export interface WhatIfEnumProperty {
   id: string;
   type: "enumProperty";
-  value: {
-    code: string;
-    label: string;
-  }
+  value: WhatIfEnumPropertyValue;
+}
+export interface WhatIfEnumPropertyValue {
+  /**
+   * the code of the value
+   */
+  code: string;
+  /**
+   * The label of the value
+   */
+  label: string;
 }
 export interface WhatIfDateTimeProperty {
   id: string;
   type: "dateTime";
+  value: string;
+}
+export interface WhatIfMultiProperty {
+  id: string;
+  type: "multiPropertyEnumeration";
+  value: string;
+}
+export interface WhatIfTriggeredProperty {
+  id: string;
+  type: "triggeredProperty";
   value: string;
 }
