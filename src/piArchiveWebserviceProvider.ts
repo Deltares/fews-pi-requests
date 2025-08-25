@@ -17,12 +17,12 @@ import type {
     TimeSeriesResponse
 } from "./response";
 import { DocumentFormat } from "./requestParameters/index.js";
-import { PiRestService } from "@deltares/fews-web-oc-utils";
+import { PiRestService, PlainTextParser, RequestOptions } from "@deltares/fews-web-oc-utils";
 import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import { BaseFilter } from "./requestParameters/baseFilter";
 import { ArchiveSources } from "./response/archivesources";
 import { ArchiveParametersFilter } from "./requestParameters/archiveParametersFilter";
-import { productAttributesFilter } from "./requestParameters/productAttributesFilter.js";
+import { ProductAttributesFilter as ProductAttributesFilter } from "./requestParameters/productAttributesFilter.js";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
@@ -199,7 +199,7 @@ export class PiArchiveWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    productsAttributesUrl(filter: productAttributesFilter): URL {
+    productsAttributesUrl(filter: ProductAttributesFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/products/attributes${queryParameters}`,
@@ -215,9 +215,15 @@ export class PiArchiveWebserviceProvider {
      * @returns Attributes PI API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async addOrUpdateProductAttributes(filter: productAttributesFilter): Promise<ArchiveAttributes> {
+    async postProductAttributes(filter: ProductAttributesFilter): Promise<string> {
         const url = this.productsAttributesUrl(filter);
-        const res = await this.webservice.postData<ArchiveAttributes>(url.toString(), {});
+        const headers = {
+                    'Content-Type': "application/json"
+                }
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, {}, headers);
         return res.data;
     }
 

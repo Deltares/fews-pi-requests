@@ -1,7 +1,7 @@
 import type { BaseFilter } from "./baseFilter";
 import type { AttributeQueryParameter } from "./attributeQueryParameter";
 
-export interface productAttributesFilter extends BaseFilter {
+export interface ProductAttributesFilter extends BaseFilter {
     /**
      * Relative path to the metadata file.
      */

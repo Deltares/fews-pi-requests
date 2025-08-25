@@ -3,7 +3,7 @@ import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 import { DocumentFormat } from "../../../src/requestParameters/documentFormat";
 import { PiArchiveWebserviceProvider } from "../../../src/piArchiveWebserviceProvider";
-import { productAttributesFilter } from "../../../src/requestParameters/productAttributesFilter";
+import { ProductAttributesFilter } from "../../../src/requestParameters/productAttributesFilter";
 
 describe("archive/products/attributes", function () {
   afterAll(function () {
@@ -16,12 +16,14 @@ describe("archive/products/attributes", function () {
         return (
           opts &&
           opts.method === "POST" &&
-          url.includes("archive/products/attributes?documentFormat=PI_JSON&relativePath=path%2Fto%2Fmetadata.xml&attribute(key1)=value1&attribute(key2)=value2")
+          url.includes(
+            "archive/products/attributes?documentFormat=PI_JSON&relativePath=path%2Fto%2Fmetadata.xml&attribute(key1)=value1&attribute(key2)=value2"
+          )
         );
       },
       {
         status: 200,
-        body: JSON.stringify("Attributes were successfully updated."),
+        body: "Attributes were successfully updated.",
       }
     );
 
@@ -29,7 +31,7 @@ describe("archive/products/attributes", function () {
       "https://mock.dev/fewswebservices"
     );
 
-    const filter: productAttributesFilter = {
+    const filter: ProductAttributesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
       relativePath: "path/to/metadata.xml",
       attribute: {
@@ -38,8 +40,9 @@ describe("archive/products/attributes", function () {
       },
     };
 
-    const results: ArchiveAttributes =
-      await provider.addOrUpdateProductAttributes(filter);
+    const results: string = await provider.postProductAttributes(
+      filter
+    );
     expect(results).toStrictEqual("Attributes were successfully updated.");
 
     const calls = fetchMock.calls();
