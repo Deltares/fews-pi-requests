@@ -27,6 +27,7 @@ export interface TopologyNode {
   filterIds?: string[];
   documentFile?: string;
   gridDisplaySelection?: GridDisplaySelection;
+  disableMap?: boolean;
   /**
    * Display group item
    */
