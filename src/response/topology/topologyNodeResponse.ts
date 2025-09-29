@@ -25,9 +25,9 @@ export interface TopologyNode {
   locationIds?: string[];
   mainPanel?: string;
   filterIds?: string[];
+  disableMap?: boolean;
   documentFile?: string;
   gridDisplaySelection?: GridDisplaySelection;
-  disableMap?: boolean;
   /**
    * Display group item
    */
