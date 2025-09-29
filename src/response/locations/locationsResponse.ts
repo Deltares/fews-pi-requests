@@ -86,6 +86,22 @@ export interface Location {
    * Since 2023.02: Severity of the threshold, 0 is the lowest severity. If there are no crossed thresholds then this item will be omitted.
    */
   thresholdSeverity?: number;
+  /**
+   * Since 2024.02: Indicates if there is data in the view period
+   */
+  hasDataInViewPeriod?: boolean;
+  /**
+   * Since 2024.02: Indicates if there is data outside the view period
+   */
+  hasDataOutsideViewPeriod?: boolean;
+  /**
+   * Since 2024.02: Last value for this location
+   */
+  lastValue?: number;
+  /**
+   * Since 2024.02: Last time for which there is a value for this location
+   */
+  lastValueTime?: number;
 }
 export interface Attributes {
   /**
