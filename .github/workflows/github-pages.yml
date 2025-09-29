@@ -14,7 +14,7 @@ jobs:
           node-version: 16
       - run: npm i
       - run: npx typedoc src/index.ts
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: pages
           path: docs
