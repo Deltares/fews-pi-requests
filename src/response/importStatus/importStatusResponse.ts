@@ -9,6 +9,10 @@ export interface ImportStatusResponse {
 }
 export interface ImportStatus {
   mcId: string;
+  workflowId?: string;
+  workflowName?: string;
+  directory?: string;
+  suspended: boolean;
   dataFeed: string;
   lastImportTime: string;
   lastFileImported: string;
