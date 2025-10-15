@@ -83,7 +83,8 @@ export interface Chart {
   yAxis?: YAxis;
 }
 export interface Legend {
-  numberOfLines?: string;
+  minNumberOfLines?: string;
+  maxNumberOfLines?: string;
   placement?: string;
 }
 export interface XAxis {

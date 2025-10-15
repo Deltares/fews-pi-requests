@@ -57,7 +57,7 @@
       },
       "timeSeriesChart": {
         "enabled": true,
-        "legend": { "numberOfLines": "1", "placement": "auto" },
+        "legend": { "minNumberOfLines": "1", "maxNumberOfLines": "2", "placement": "auto" },
         "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
         "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
@@ -68,7 +68,7 @@
       },
       "verticalProfileChart": {
         "enabled": true,
-        "legend": { "numberOfLines": "1", "placement": "above chart" },
+        "legend": { "minNumberOfLines": "1", "maxNumberOfLines": "2", "placement": "above chart" },
         "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
         "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
