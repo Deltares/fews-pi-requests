@@ -180,6 +180,7 @@ export interface WebOcGeneralConfig {
   agreeToTermsAndConditions?: TermsAndConditions;
   manifestFile?: string;
   mapLayerConfig?: MapLayerConfig;
+  sidePanel?: SidePanelConfig;
 }
 export interface HelpMenuConfig {
   url?: HelpMenuConfigUrl[];
@@ -298,4 +299,69 @@ export interface MapLayer {
    * Define an icon for the map layer.
    */
   iconId?: string;
+}
+/**
+ * SidePanel config options
+ */
+export interface SidePanelConfig {
+  taskOverview?: SidePanelTaskOverviewConfig;
+  nonCurrentData?: SidePanelNonCurrentDataConfig;
+  importStatus?: SidePanelImportStatusConfig;
+  exportStatus?: SidePanelExportStatusConfig;
+  runTask?: SidePanelRunTaskConfig;
+  documentFile?: SidePanelDocumentFileConfig;
+}
+/**
+ * SidePanel Task Overview config options
+ */
+export interface SidePanelTaskOverviewConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+}
+/**
+ * SidePanel Non Current Data config options
+ */
+export interface SidePanelNonCurrentDataConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+}
+/**
+ * SidePanel Import Status config options
+ */
+export interface SidePanelImportStatusConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+}
+/**
+ * SidePanel Export Status config options
+ */
+export interface SidePanelExportStatusConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+}
+/**
+ * SidePanel Run Task config options
+ */
+export interface SidePanelRunTaskConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+}
+/**
+ * SidePanel Document File config options
+ */
+export interface SidePanelDocumentFileConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
 }

@@ -48,7 +48,7 @@ export interface WebOCDashboardItem {
     | "dynamic-report-display"
     | "log-display"
     | "data-download-display"
-    | "whatif-display";
+    | "runtask-display";
   /**
    * The component settings to use
    */
