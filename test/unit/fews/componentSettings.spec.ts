@@ -149,8 +149,12 @@ describe("componentSettings", function () {
     ).toBe(true);
     expect(
       results.webOCComponentSettings?.charts?.timeSeriesChart?.legend
-        ?.numberOfLines
+        ?.minNumberOfLines
     ).toBe("1");
+    expect(
+      results.webOCComponentSettings?.charts?.timeSeriesChart?.legend
+        ?.maxNumberOfLines
+    ).toBe("2");
     expect(
       results.webOCComponentSettings?.charts?.timeSeriesChart?.legend?.placement
     ).toBe("auto");
