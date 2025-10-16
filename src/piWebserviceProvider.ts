@@ -88,6 +88,7 @@ import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@de
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
+import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -966,6 +967,19 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for document displays request
+     *
+     * @returns complete url for making a request
+     */
+    documentDisplaysUrl(filter: DocumentDisplaysFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/documentdisplays${queryParameters}`,
             this._baseUrl
         )
     }
