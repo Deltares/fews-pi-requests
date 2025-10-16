@@ -88,6 +88,7 @@ import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@de
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
+import { DocumentDisplaysResponse } from './response/logs/documentDisplaysResponse'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
 
 export class PiWebserviceProvider {
@@ -138,6 +139,18 @@ export class PiWebserviceProvider {
     async getLogDisplays(filter: LogDisplaysFilter): Promise<LogsDisplaysResponse> {
         const url = this.logDisplaysUrl(filter);
         const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Request document displays
+     *
+     * @returns DocumentDisplay PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDocumentDisplays(filter: DocumentDisplaysFilter): Promise<DocumentDisplaysResponse> {
+        const url = this.documentDisplaysUrl(filter);
+        const res = await this.webservice.getData<DocumentDisplaysResponse>(url.toString());
         return res.data;
     }
 
