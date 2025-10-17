@@ -23,14 +23,14 @@ export interface DocumentDisplayReport {
    * Indicates whether the user has edit permissions for the document display
    */
   editPermissions?: boolean;
-  relativeViewPeriod?: RelativeViewPeriod;
+  relativeViewPeriod?: DocumentRelativeViewPeriod;
   /**
    * the type the document display
    */
   type?: string;
   report: DocumentDisplayReportType;
 }
-export interface RelativeViewPeriod {
+export interface DocumentRelativeViewPeriod {
   unit: string;
   start: string;
   end: string;
@@ -82,7 +82,7 @@ export interface DocumentDisplayBrowser {
    * the type the document display
    */
   type?: string;
-  relativeViewPeriod?: RelativeViewPeriod;
+  relativeViewPeriod?: DocumentRelativeViewPeriod;
   browser: DocumentDisplayBrowserType;
 }
 export interface DocumentDisplayBrowserType {
@@ -131,7 +131,7 @@ export interface DocumentDisplayCompose {
    * the type the document display
    */
   type?: string;
-  relativeViewPeriod?: RelativeViewPeriod;
+  relativeViewPeriod?: DocumentRelativeViewPeriod;
   compose?: ProductAndTemplate;
 }
 export interface ProductAndTemplate {
