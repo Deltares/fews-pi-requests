@@ -5,6 +5,7 @@ export interface LocationsFilter extends BaseFilter {
     showAttributes?: boolean;
     showParentLocations?: boolean;
     showThresholds?: boolean;
+    showTimeSeriesInfo?: boolean;
     includeLocationRelations?: boolean;
     includeTimeDependency?: boolean;
     includeIconNames?: boolean;
