@@ -31,21 +31,9 @@ export interface LocationsLayer {
   locationSearchEnabled?: boolean;
 }
 export interface Overlay {
+  type: "overLay" | "gridLayer";
   id?: string;
   visible?: boolean;
-  name?: string;
-  locationSetId?: string;
-  type?: string;
-  paint?: Paint;
-}
-export interface Paint {
-  lineColor?: string;
-  lineWidth?: number;
-  fillAntiAlias?: boolean;
-  fillColor?: string;
-  fillOutlineColor?: string;
-  lineOpacity?: number;
-  fillOpacity?: number;
 }
 export interface ChartsSettings {
   general?: General;

@@ -60,26 +60,8 @@ describe("componentSettings", function () {
       results.webOCComponentSettings?.map?.overlays?.[0].visible
     ).toBe(true);
     expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].name
-    ).toBe("Sub-catchments");
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].locationSetId
-    ).toBe("control_subcatchments");
-    expect(
       results.webOCComponentSettings?.map?.overlays?.[0].type
-    ).toBe("line");
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].paint?.fillAntiAlias
-    ).toBe(true);
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].paint?.fillOpacity
-    ).toBe(0.2);
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].paint?.fillColor
-    ).toBe("black");
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[0].paint?.fillOutlineColor
-    ).toBe("black");
+    ).toBe("overLay");
     expect(
       results.webOCComponentSettings?.map?.overlays?.[1].id
     ).toBe("control_branches");
@@ -87,17 +69,8 @@ describe("componentSettings", function () {
       results.webOCComponentSettings?.map?.overlays?.[1].visible
     ).toBe(true);
     expect(
-      results.webOCComponentSettings?.map?.overlays?.[1].name
-    ).toBe("Drain Network");
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[1].locationSetId
-    ).toBe("control_branches");
-    expect(
       results.webOCComponentSettings?.map?.overlays?.[1].type
-    ).toBe("line");
-    expect(
-      results.webOCComponentSettings?.map?.overlays?.[1].paint?.lineColor
-    ).toBe("#3944BC");
+    ).toBe("gridLayer");
     expect(
       results.webOCComponentSettings?.charts?.general?.startPanel
     ).toBe("metaDataPanel");
