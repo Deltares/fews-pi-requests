@@ -91,6 +91,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_workflow_fss_info.json`,
     output: "src/response/workflows/fssInfoResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_document_displays.json`,
+    output: "src/response/logs/documentDisplaysResponse.ts"
+  },
   // FIXME: Currently the backend does not have the correct type for enum value's
   // {
   //   url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
