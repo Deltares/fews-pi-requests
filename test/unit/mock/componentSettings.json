@@ -18,25 +18,12 @@
         {
           "id": "control_subcatchments",
           "visible": true,
-          "name": "Sub-catchments",
-          "locationSetId": "control_subcatchments",
-          "type": "line",
-          "paint": {
-            "fillAntiAlias": true,
-            "fillOpacity": 0.2,
-            "fillColor": "black",
-            "fillOutlineColor": "black"
-          }
+          "type": "overLay"
         },
         {
           "id": "control_branches",
           "visible": true,
-          "name": "Drain Network",
-          "locationSetId": "control_branches",
-          "type": "line",
-          "paint": {
-            "lineColor": "#3944BC"
-          }
+          "type": "gridLayer"
         }
       ]
     },
@@ -57,7 +44,11 @@
       },
       "timeSeriesChart": {
         "enabled": true,
-        "legend": { "minNumberOfLines": "1", "maxNumberOfLines": "2", "placement": "auto" },
+        "legend": {
+          "minNumberOfLines": "1",
+          "maxNumberOfLines": "2",
+          "placement": "auto"
+        },
         "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
         "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
@@ -68,7 +59,11 @@
       },
       "verticalProfileChart": {
         "enabled": true,
-        "legend": { "minNumberOfLines": "1", "maxNumberOfLines": "2", "placement": "above chart" },
+        "legend": {
+          "minNumberOfLines": "1",
+          "maxNumberOfLines": "2",
+          "placement": "above chart"
+        },
         "xAxis": { "enabled": true, "xTicks": false, "xLabel": true },
         "yAxis": { "enabled": true, "yTicks": false, "yLabel": true }
       },
