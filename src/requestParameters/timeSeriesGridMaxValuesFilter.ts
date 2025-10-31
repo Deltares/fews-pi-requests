@@ -17,6 +17,8 @@ export interface TimeSeriesGridMaxValuesFilter {
   // gridPlot id as configured in the gridDisplay. Every gridPlot that has been
   // configured in the grid display configuration represents a WMS layer.
   layers: string
+  // aggregation label returned by the getCapabilities
+  aggregation?: string
   // Convert values from relative location height to absolute height values.
   convertDatum?: boolean
   // Export values using display units.
