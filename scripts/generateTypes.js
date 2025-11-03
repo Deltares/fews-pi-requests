@@ -93,7 +93,7 @@ const piSchemas = [
   },
   {
     url: `${config.url}/pi_rest_document_displays.json`,
-    output: "src/response/logs/documentDisplaysResponse.ts"
+    output: "src/response/documentdisplays/documentDisplaysResponse.ts"
   },
   // FIXME: Currently the backend does not have the correct type for enum value's
   // {
