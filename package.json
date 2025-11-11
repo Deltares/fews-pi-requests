@@ -76,9 +76,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Deltares/fews-pi-requests"
+    "url": "git+https://github.com/Deltares/fews-pi-requests.git"
   },
   "bugs": {
     "url": "https://github.com/Deltares/fews-pi-requests/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
