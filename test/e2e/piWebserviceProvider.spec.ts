@@ -1,4 +1,3 @@
-import 'cross-fetch/polyfill';
 import {
     DocumentFormat, type filterActionsFilter,
     type LocationsFilter,
@@ -6,8 +5,9 @@ import {
     TimeSeriesResponse,
     type TaskRunsFilter
 } from "../../src";
+import { describe, it, expect } from 'vitest';
 
-const baseUrl = process.env.DOCKER_URL || "";
+const baseUrl = import.meta.env.VITE_DOCKER_URL || "";
 
 describe("pi webservice provider", function () {
     it("get locations", async function () {
@@ -115,14 +115,14 @@ describe("pi webservice provider", function () {
                     expect(newValueEvent.value).toBe(newValue);
                     expect(newValueEvent.flag).toBe(event.flag);
                 } else {
-                    fail("No events found in time series for Umgeni_Mouth_level");
+                    throw new Error("No events found in time series for Umgeni_Mouth_level");
                 }
 
             } else {
-                fail("No events found in time series for Umgeni_Mouth_level");
+                throw new Error("No events found in time series for Umgeni_Mouth_level");
             }
         } else {
-            fail("No time series found for Umgeni_Mouth_level");
+            throw new Error("No time series found for Umgeni_Mouth_level");
         }
     })
     

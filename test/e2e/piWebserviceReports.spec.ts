@@ -1,13 +1,12 @@
-
-import 'cross-fetch/polyfill';
 import {
     ReportsFilter,
     ReportFilter,
     PiWebserviceProvider
 } from "../../src";
+import { describe, it, expect } from 'vitest';
 
-const baseUrl = process.env.DOCKER_URL || "";
-
+const baseUrl = import.meta.env.VITE_DOCKER_URL || "";
+    
 describe("reports", function () {
     it("list all reports and get an actual report", async function () {
         const provider = new PiWebserviceProvider(baseUrl);
@@ -30,7 +29,7 @@ describe("reports", function () {
             expect(typeof reportResponse).toBe('string');
             expect(reportResponse.length).toBeGreaterThan(0)
         } else {
-            fail("No report found");
+            throw new Error("No report found");
         }
     })
 })

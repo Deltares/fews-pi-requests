@@ -1,11 +1,10 @@
-import 'cross-fetch/polyfill';
 import {
     PiWebserviceProvider,
     TopologyThresholdFilter
 } from "../../src";
+import { describe, it, expect } from 'vitest';
 
-
-const baseUrl = process.env.DOCKER_URL || "";
+const baseUrl = import.meta.env.VITE_DOCKER_URL || "";
 
 describe("pi webservice thresholds", function () {
 
