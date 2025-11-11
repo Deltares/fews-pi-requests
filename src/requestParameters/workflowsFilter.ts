@@ -1,3 +1,3 @@
 import type { BaseFilter } from "./baseFilter";
 
-export interface WorkflowsFilter extends BaseFilter {}
+export type WorkflowsFilter = BaseFilter;
