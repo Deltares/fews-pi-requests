@@ -12,8 +12,8 @@ export default defineConfig({
     lib: {
       entry: resolveRelativePath('src/index.ts'),
       formats: ['es'],
-      name: 'fews-web-oc-utils',
-      fileName: 'fews-web-oc-utils'
+      name: 'fews-pi-requests',
+      fileName: 'fews-pi-requests'
     },
     rollupOptions: {
       plugins: [
