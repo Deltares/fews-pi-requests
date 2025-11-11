@@ -1,8 +1,5 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider.js'
 
-import expectedResponse from '../mock/version.json'
-import fetchMock from "fetch-mock";
-
 import { describe, it, expect } from 'vitest';
 
 describe("icon resources", function () {    it("get icon resource", async function () {
