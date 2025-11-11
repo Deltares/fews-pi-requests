@@ -86,7 +86,8 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
-import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
+// @ts-expect-error Cannot find module
+import type { DataRequestResult } from "@deltares/fews-web-oc-utils";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 
 export class PiWebserviceProvider {
