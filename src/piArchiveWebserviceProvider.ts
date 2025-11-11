@@ -223,7 +223,7 @@ export class PiArchiveWebserviceProvider {
         const parser = new PlainTextParser<string>();
         const requestOptions = new RequestOptions();
         requestOptions.relativeUrl = !url.toString().startsWith("http")
-        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, {}, headers);
+        const res = await this.webservice.postDataWithParser<string>(url.toString(), requestOptions, parser, '{}', headers);
         return res.data;
     }
 
