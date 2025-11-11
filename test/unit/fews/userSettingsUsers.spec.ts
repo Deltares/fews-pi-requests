@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src";
 
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/userSettingsUsers.json";
 import fetchMock from "fetch-mock";
 
-describe("usersettingsusers", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("it returns the user settings users", async function () {
+describe("usersettingsusers", function () {  it("it returns the user settings users", async function () {
     const baseUrl = "https://mock.dev/fewswebservices/rest/fewspiservice/v1/";
     fetchMock.get(`${baseUrl}usersettings/users?topicId=chart-collection`, {
       status: 200,

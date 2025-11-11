@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src'
 
-import 'cross-fetch/polyfill';
 import expectedResponse from '../mock/timeSteps.json'
 import fetchMock from "fetch-mock";
 
-describe("time steps", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("it returns 2 timesteps with correct types", async function () {
+describe("time steps", function () {    it("it returns 2 timesteps with correct types", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timesteps", {
             status: 200,
             body: expectedResponse

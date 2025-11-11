@@ -1,26 +1,15 @@
 import { ArchiveAttributes } from "../../../src/response";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 import { DocumentFormat } from "../../../src/requestParameters/documentFormat";
 import { PiArchiveWebserviceProvider } from "../../../src/piArchiveWebserviceProvider";
 import { ProductAttributesFilter } from "../../../src/requestParameters/productAttributesFilter";
 
-describe("archive/products/attributes", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
+describe("archive/products/attributes", function () {
   it("posts product attributes when called", async function () {
-    fetchMock.mock(
-      (url, opts) => {
-        return (
-          opts &&
-          opts.method === "POST" &&
-          url.includes(
-            "archive/products/attributes?documentFormat=PI_JSON&relativePath=path%2Fto%2Fmetadata.xml&attribute(key1)=value1&attribute(key2)=value2"
-          )
-        );
-      },
+    fetchMock.post(
+      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/products/attributes?documentFormat=PI_JSON&relativePath=path%2Fto%2Fmetadata.xml&attribute(key1)=value1&attribute(key2)=value2",
       {
         status: 200,
         body: "Attributes were successfully updated.",
@@ -45,8 +34,8 @@ describe("archive/products/attributes", function () {
     );
     expect(results).toStrictEqual("Attributes were successfully updated.");
 
-    const calls = fetchMock.calls();
+    const calls = fetchMock.callHistory.calls();
     expect(calls.length).toBe(1);
-    expect(calls[0][1]?.method).toBe("POST");
+    expect(calls[0].options.method).toBe("POST");
   });
 });

@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src";
 
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/dataAnalysisDisplays.json";
 import fetchMock from "fetch-mock";
 
-describe("dataAnalysisDisplays", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("it returns dataAnalysisDisplays with correct types", async function () {
+describe("dataAnalysisDisplays", function () {  it("it returns dataAnalysisDisplays with correct types", async function () {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/dataanalysisdisplays?dataAnalysisDisplayId=test_id",
       {

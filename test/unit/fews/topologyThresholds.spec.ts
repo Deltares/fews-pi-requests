@@ -1,4 +1,3 @@
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {
     PiWebserviceProvider,
@@ -8,13 +7,9 @@ import expectedResponseTopologyThresholds from '../mock/topologyThresholds.json'
 import expectedResponseTopologyThresholdsNode from '../mock/topologyThresholdsNode.json'
 import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
 
-describe("topology tresholds", function () {
+import { describe, it, expect } from 'vitest';
 
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("gets called when done", async function () {
+describe("topology tresholds", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/topology/thresholds?documentFormat=PI_JSON", {
             status: 200,
             body: JSON.stringify(expectedResponseTopologyThresholds)
@@ -36,13 +31,7 @@ describe("topology tresholds", function () {
     });
 })
 
-describe("topology tresholds with node ID", function () {
-
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("gets called when done", async function () {
+describe("topology tresholds with node ID", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/topology/thresholds?documentFormat=PI_JSON&nodeId=viewer.main.coastal.waverunup", {
             status: 200,
             body: JSON.stringify(expectedResponseTopologyThresholdsNode)

@@ -4,15 +4,11 @@ import {
 } from "../../../src";
 
 import expectedResponse from "../mock/logDisplayLogs.json";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 
-describe("logDisplayLogs", function () {
-  afterAll(() => {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("gets called when done", async () => {
+describe("logDisplayLogs", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/logdisplays/admin.log/logs?logType=manual&level=info&eventCode=Manual.event.testnotegroup1",
       {

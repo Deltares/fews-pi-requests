@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/whatifscenario.json";
 import fetchMock from "fetch-mock";
 import { PostWhatIfScenarioFilter } from "../../../src/requestParameters/postWhatIfScenarioFilter";
 
-describe("postWhatIfScenario", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("generates a valid postWhatIfScenario request", async function () {
+describe("postWhatIfScenario", function () {  it("generates a valid postWhatIfScenario request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios";
     const queryParams = `whatIfTemplateId=testid&name=test&property(ADD_SURGE)=0.2&property(MULTIPLY_SURGE)=1.3`;

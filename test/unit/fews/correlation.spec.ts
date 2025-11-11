@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src";
 
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/correlation.json";
 import fetchMock from "fetch-mock";
 
-describe("correlation", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("it returns 2 correlation with correct types", async function () {
+describe("correlation", function () {  it("it returns 2 correlation with correct types", async function () {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/statistics/correlation?timeSeriesIdYaxis=ts1&timeSeriesIdXaxis=ts2&startTime=2023-01-01T00%3A00%3A00Z&endTime=2023-01-02T00%3A00%3A00Z&regressionEquation=exponential%20multiply",
       {

@@ -1,15 +1,11 @@
 import { DocumentFormat, PiWebserviceProvider, ModuleRuntimesFilter } from "../../../src";
 
 import expectedResponse from "../mock/moduleRunTimes.json";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 
-describe("moduleRunTimes", function () {
-  afterAll(() => {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("gets called when done", async () => {
+describe("moduleRunTimes", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/moduleruntimes?documentFormat=PI_JSON",
       {

@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import { RunTaskFilter } from '../../../src/requestParameters';
 
-describe("runtask", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("generates a valid runtask POST request", async function () {
+describe("runtask", function () {    it("generates a valid runtask POST request", async function () {
         const workflowId = 'ImportObserved'
         const startTime = '2014-01-01T00:00:00Z+0000'
         const timeZero = '2014-01-01T00:00:00Z+0000'

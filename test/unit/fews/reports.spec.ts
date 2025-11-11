@@ -1,16 +1,12 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {ReportsFilter, RunTaskFilter} from '../../../src/requestParameters';
 import expectedResponse from '../mock/reports.json'
 
-describe("reports", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
+describe("reports", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/reports?moduleInstanceIds=GenerateReport", {
             status: 200,
             body: JSON.stringify(expectedResponse)

@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {LocationsTooltipFilter} from '../../../src/requestParameters';
 
-describe("locationsTooltip", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
+describe("locationsTooltip", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/locations/tooltip?filterId=filter1&locationId=location1", {
             status: 200,
             body: '<html><h1>Hello Web OC</h1></html>'

@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider.js'
 
 import expectedResponse from '../mock/version.json'
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 
-describe("icon resources", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("get icon resource", async function () {
+describe("icon resources", function () {    it("get icon resource", async function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
         const results = await provider.resourcesIconsUrl('meteo_site_data.gif')
         expect(results.toString()).toStrictEqual("https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/icons/meteo_site_data.gif");

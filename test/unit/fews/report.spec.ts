@@ -1,8 +1,9 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {ReportFilter } from '../../../src/requestParameters';
+
+import { describe, it, expect } from 'vitest';
 
 const expectedResponse = `
 <!DOCTYPE html>
@@ -24,12 +25,7 @@ const expectedResponse = `
 </html>
 `
 
-describe("report", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("gets called when done", async function () {
+describe("report", function () {    it("gets called when done", async function () {
         const baseUrl = "https://mock.dev/fewswebservices/rest/fewspiservice/v1/report";
         const queryParams = "?moduleInstanceId=GenerateReport&taskRunId=taskRunId1&reportId=1";
         fetchMock.get(`${baseUrl}${queryParams}`, {

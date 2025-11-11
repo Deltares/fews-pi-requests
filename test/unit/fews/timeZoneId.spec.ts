@@ -1,14 +1,10 @@
 import {PiWebserviceProvider} from '../../../src'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 
-describe("time zone id", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
+describe("time zone id", function () {    it("gets called when done", async function () {
         const expectedResponse = "GMT"
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timezoneid", {
             status: 200,

@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/fssinfo.json";
 import fetchMock from "fetch-mock";
 import { FssInfoFilter } from "../../../src/requestParameters/fssInfoFilter";
 
-describe("fssInfo", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("generates a valid fssInfo request", async function () {
+describe("fssInfo", function () {  it("generates a valid fssInfo request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/fssinfo";
     const queryParams = `workflowId=testWorkflowId`;

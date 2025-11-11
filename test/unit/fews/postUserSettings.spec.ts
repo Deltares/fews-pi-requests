@@ -1,6 +1,7 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
+
+import { describe, it, expect } from 'vitest';
 
 const chartCollectionData = {
   "chart-collection": {
@@ -25,12 +26,7 @@ const chartCollectionData = {
   },
 };
 
-describe("postUserSettings", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
-
-  it("post a user settings body", async function () {
+describe("postUserSettings", function () {  it("post a user settings body", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/usersettings?topicId=chart-collection&userId=test-user";
 

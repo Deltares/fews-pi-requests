@@ -2,7 +2,6 @@ import {PiWebserviceProvider} from '../../../src/piWebserviceProvider.js'
 
 import expectedResponse from '../mock/webOcConfiguration.json'
 import expectedPublicResponse from '../mock/webOcPublicConfiguration.json'
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {
     WebOcTopologyDisplayConfig,
@@ -15,13 +14,9 @@ import {
     isSpatialDisplay, isSystemMonitor,
     isTopologyDisplay
 } from "../../../src/utils/webOcCompontentsTypeGuards";
+import { describe, it, expect } from 'vitest';
 
-describe("webOcConfig", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("tests fetch Web OC config", async function () {
+describe("webOcConfig", function () {    it("tests fetch Web OC config", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/weboc/config?documentFormat=PI_JSON", {
             status: 200,
             body: JSON.stringify(expectedResponse)
