@@ -1,4 +1,3 @@
-import { ArchiveAttributes } from "../../../src/response";
 import fetchMock from "fetch-mock";
 import { DocumentFormat } from "../../../src/requestParameters/documentFormat";
 import { PiArchiveWebserviceProvider } from "../../../src/piArchiveWebserviceProvider";
