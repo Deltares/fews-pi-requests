@@ -23,8 +23,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "doc": "typedoc --out doc src",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "lint:fix": "eslint --fix src/**/*.ts test/**/*.ts",
     "test:unit": "vitest run test/unit",
     "test:e2e": "vitest run test/e2e --config vitest.config.e2e.ts",
     "test": "vitest",

@@ -13,7 +13,7 @@ export default defineConfig(
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        projectService: { allowDefaultProject: ['*.js', '*.ts'] },
+        projectService: { allowDefaultProject: ['*.js'] },
       },
     },
   },
