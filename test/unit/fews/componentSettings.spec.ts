@@ -1,15 +1,11 @@
 import { PiWebserviceProvider, ComponentSettingsFilter } from "../../../src";
 
 import expectedResponse from "../mock/componentSettings.json";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 
-describe("componentSettings", function () {
-  afterAll(() => {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("gets called when done", async () => {
+describe("componentSettings", function () {  it("gets called when done", async () => {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/weboc/config/componentsettings";
     const queryParams = `componentSettingsId=componentA`;

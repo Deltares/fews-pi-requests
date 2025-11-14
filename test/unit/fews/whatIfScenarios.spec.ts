@@ -5,15 +5,11 @@ import {
 } from "../../../src";
 
 import expectedResponse from "../mock/whatifscenarios.json";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 
-describe("whatIfScenarios", function () {
-  afterAll(() => {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("gets called when done", async () => {
+describe("whatIfScenarios", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios?documentFormat=PI_JSON",
       {

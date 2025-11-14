@@ -1,15 +1,11 @@
 import { DocumentFormat, PiWebserviceProvider } from "../../../src";
 
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/taskRunStatus.json";
 import fetchMock from "fetch-mock";
 
-describe("taskRunStatus", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("it returns taskRunStatus with correct types", async function () {
+describe("taskRunStatus", function () {  it("it returns taskRunStatus with correct types", async function () {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/taskrunstatus?taskId=test_id&documentFormat=PI_JSON",
       {

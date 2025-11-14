@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
-import "cross-fetch/polyfill";
 import expectedResponse from "../mock/forecasttimes.json";
 import fetchMock from "fetch-mock";
 import { ForecastTimesFilter } from "../../../src/requestParameters/forecastTimesFilter";
 
-describe("forecastTimes", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("generates a valid forecastTimes request", async function () {
+describe("forecastTimes", function () {  it("generates a valid forecastTimes request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/forecasttimes";
     const queryParams = `workflowId=testWorkflowId&timeZero=2025-02-20T01%3A51%3A37.869Z`;

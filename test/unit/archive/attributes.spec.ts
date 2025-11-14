@@ -1,18 +1,14 @@
 import {ArchiveAttributes} from '../../../src/response'
-import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/attributes.json'
 import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
 import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 
-describe("archive/attributes", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
-        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source', {
+describe("archive/attributes", function () {    it("gets called when done", async function () {
+        fetchMock.route('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source', {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });

@@ -1,17 +1,12 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedResponseDisplayGroupsNodes from '../mock/displayGroupsNodes.json'
 
 
-describe("/displaygroups/nodes", function () {
+import { describe, it, expect } from 'vitest';
 
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("test display groups nodes", async function () {
+describe("/displaygroups/nodes", function () {    it("test display groups nodes", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/displaygroups/nodes", {
             status: 200,
             body: JSON.stringify(expectedResponseDisplayGroupsNodes)

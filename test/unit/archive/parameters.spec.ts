@@ -1,5 +1,4 @@
 import {ArchiveParameters} from '../../../src/response'
-import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
 import expectedResponse from '../mock/archive/parameters.json'
@@ -7,13 +6,10 @@ import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvi
 import {ArchiveParametersFilter} from "../../../src/requestParameters/archiveParametersFilter";
 import {DocumentFormat} from "../../../src";
 
-describe("archive/parameters", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
-        fetchMock.mock("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
+describe("archive/parameters", function () {    it("gets called when done", async function () {
+        fetchMock.route("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/parameters?documentFormat=PI_JSON&locationIds=delfzijl", {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });

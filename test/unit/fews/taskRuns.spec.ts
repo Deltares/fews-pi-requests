@@ -1,17 +1,13 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
 import expectedResponse from '../mock/taskRuns.json'
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {DocumentFormat} from "../../../src";
 import {TaskRunsFilter} from "../../../src/requestParameters/taskRunsFilter";
 
-describe("tasks/ID/taskruns", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
+describe("tasks/ID/taskruns", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/taskruns?onlyCurrent=true&documentFormat=PI_JSON&onlyForecasts=false", {
             status: 200,
             body: JSON.stringify(expectedResponse)

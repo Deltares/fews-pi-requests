@@ -1,5 +1,7 @@
 import { splitUrl } from '../../../src/utils/splitUrl'
 
+import { describe, it, expect } from 'vitest';
+
 describe("split url", function() {
 
   it("do not split with single duplicate shorter than max length", function() {

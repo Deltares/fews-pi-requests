@@ -1,10 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedResponse from '../mock/timeseries.json'
 import {TimeSeriesFilter} from "../../../src/requestParameters/timeSeriesFilter";
 import {DocumentFormat} from "../../../src";
 import {TimeSeriesType} from "../../../src/requestParameters/timeSeriesType";
+
+import { describe, it, expect } from 'vitest';
 
 const filter: TimeSeriesFilter = {
     documentFormat: DocumentFormat.PI_JSON,
@@ -21,12 +22,7 @@ const filter: TimeSeriesFilter = {
     }
 }
 
-describe("timeseries", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("timeseries json response", async function () {
+describe("timeseries", function () {    it("timeseries json response", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries?documentFormat=PI_JSON&importFromExternalDataSource=true&timeSeriesType=EXTERNAL_FORECASTING&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&locationIds=den_helder&moduleInstanceIds=dcsm6zuno4_hirlam&moduleInstanceIds=dcsm6zuno4_hirlam_kf&startForecastTime=2020-10-16T00%3A00%3A00Z&endForecastTime=2020-10-16T00%3A00%3A00Z&forecastCount=1&qualifierIds=verification_period%3D7d", {
             status: 200,
             body: JSON.stringify(expectedResponse)
@@ -77,12 +73,7 @@ describe("timeseries", function () {
     });
 });
 
-describe("timeseries with transform request", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("timeseries json response with transform request", async function () {
+describe("timeseries with transform request", function () {    it("timeseries json response with transform request", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries?documentFormat=PI_JSON&importFromExternalDataSource=true&timeSeriesType=EXTERNAL_FORECASTING&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&locationIds=den_helder&moduleInstanceIds=dcsm6zuno4_hirlam&moduleInstanceIds=dcsm6zuno4_hirlam_kf&startForecastTime=2020-10-16T00%3A00%3A00Z&endForecastTime=2020-10-16T00%3A00%3A00Z&forecastCount=1&qualifierIds=verification_period%3D7d", {
             status: 200,
             body: JSON.stringify(expectedResponse)

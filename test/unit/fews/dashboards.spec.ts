@@ -2,15 +2,11 @@ import { PiWebserviceProvider } from "../../../src";
 import { DashboardsFilter } from "../../../src/requestParameters/dashboardsFilter";
 
 import expectedResponse from "../mock/dashboards.json";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 
-describe("dashbaords", function () {
-  afterAll(() => {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("gets called when done", async () => {
+describe("dashbaords", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/dashboards",
       {

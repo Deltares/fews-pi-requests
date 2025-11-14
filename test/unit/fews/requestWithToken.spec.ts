@@ -1,9 +1,10 @@
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {PiWebserviceProvider} from "../../../src";
 import {TopologyActionFilter} from "../../../src/requestParameters/topologyActionFilter";
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
+
+import { describe, it, expect } from 'vitest';
 
 async function transformRequest(request: Request): Promise<Request> {
     const newRequest = new Request(request)
@@ -13,11 +14,7 @@ async function transformRequest(request: Request): Promise<Request> {
     return newRequest
 }
 
-describe("archive/locations", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
-    it('test token with cache option', async function () {
+describe("archive/locations", function () {    it('test token with cache option', async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/import/status?documentFormat=PI_JSON", {
             status: 200,
             body: JSON.stringify(expectedImportStatusResponse)

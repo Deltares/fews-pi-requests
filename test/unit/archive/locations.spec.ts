@@ -1,4 +1,3 @@
-import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 
 import expectedResponse from '../mock/locations.json'
@@ -6,13 +5,10 @@ import {ArchiveLocationsFilter} from "../../../src/requestParameters/archiveLoca
 import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 
-describe("archive/locations", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets called when done", async function () {
-        fetchMock.mock("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias", {
+describe("archive/locations", function () {    it("gets called when done", async function () {
+        fetchMock.route("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias", {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });

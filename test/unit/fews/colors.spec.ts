@@ -1,15 +1,11 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
 
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 import expectedColorsResponse from "../mock/colors.json";
 
-describe("/colors", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("test colors", async function () {
+describe("/colors", function () {  it("test colors", async function () {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/colors/default",
       {

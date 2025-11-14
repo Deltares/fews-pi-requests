@@ -1,14 +1,10 @@
 import { PiWebserviceProvider } from "../../../src/piWebserviceProvider";
-import "cross-fetch/polyfill";
 import fetchMock from "fetch-mock";
 import { ForecasterNoteRequest } from "../../../src";
 
-describe("postForecasterNote", function () {
-  afterAll(function () {
-    fetchMock.restore();
-  });
+import { describe, it, expect } from 'vitest';
 
-  it("generates a valid postForecasterNote request", async function () {
+describe("postForecasterNote", function () {  it("generates a valid postForecasterNote request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/forecasternotes";
 

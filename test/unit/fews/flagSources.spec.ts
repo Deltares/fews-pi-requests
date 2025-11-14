@@ -1,16 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedFlagSourcesResponse from '../mock/flagSources.json'
 
-describe("/flagsources", function () {
+import { describe, it, expect } from 'vitest';
 
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("test flagSources", async function () {
+describe("/flagsources", function () {    it("test flagSources", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/flagsources", {
             status: 200,
             body: JSON.stringify(expectedFlagSourcesResponse)

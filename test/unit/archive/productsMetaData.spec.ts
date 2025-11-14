@@ -1,16 +1,12 @@
-import 'cross-fetch/polyfill';
 import fetchMock from 'fetch-mock';
 import expectedResponse from '../mock/productsMetaData.json'
 import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
 import { ProductsMetaDataFilter } from '../../../src';
 
-describe("archive/productsMetadata", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("gets productsMetadata", async function () {
-        fetchMock.mock('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/productsmetadata?startForecastTime=2022-12-12T20%3A30%3A00Z&endForecastTime=2022-12-14T20%3A30%3A00Z&attribute(area_id)=meren', {
+describe("archive/productsMetadata", function () {    it("gets productsMetadata", async function () {
+        fetchMock.route('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/productsmetadata?startForecastTime=2022-12-12T20%3A30%3A00Z&endForecastTime=2022-12-14T20%3A30%3A00Z&attribute(area_id)=meren', {
             status: 200,
             body: JSON.stringify(expectedResponse)
         });

@@ -86,7 +86,8 @@ import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
-import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
+// @ts-expect-error Cannot find module
+import type { DataRequestResult } from "@deltares/fews-web-oc-utils";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 
 export class PiWebserviceProvider {
@@ -182,7 +183,6 @@ export class PiWebserviceProvider {
      */
     async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse>
     async getParameters(filter: ParametersFilter, output?: ParameterGroupsOutputOptions): Promise<ParameterGroupsOutput>
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async getParameters(filter: ParametersFilter, output?: ParameterOutputOptions): Promise<ParameterGroupsOutput|TimeSeriesParametersResponse> {
         const url = this.parametersUrl(filter);
         const res = await this.webservice.getData<TimeSeriesParametersResponse>(url.toString());

@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import expectedResponse from '../mock/logDisplays.json'
 import { LogDisplaysFilter } from '../../../src';
 
-describe("logDisplays", function () {
-    afterAll(function () {
-        fetchMock.restore();
-    });
+import { describe, it, expect } from 'vitest';
 
-    it("logdisplays json response", async function () {
+describe("logDisplays", function () {    it("logdisplays json response", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/logdisplays?logDisplayId=admin.log", {
             status: 200,
             body: JSON.stringify(expectedResponse)

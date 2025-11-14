@@ -1,15 +1,11 @@
 import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
 
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import type { TimeSeriesResponse } from "../../../src";
 
-describe("timeseries/edit", function () {
+import { describe, it, expect } from 'vitest';
 
-    afterAll(function () {
-        fetchMock.restore();
-    });
-    it("post events using time series index and location id", async function () {
+describe("timeseries/edit", function () {    it("post events using time series index and location id", async function () {
         fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2", {
             status: 200,
             body: 'uploaded'
@@ -101,7 +97,8 @@ describe("timeseries/edit", function () {
         expect(results).toStrictEqual('uploaded');
     });
     it("post events with relative url", async function () {
-        fetchMock.post("rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2", {
+        // Provider will prepend the base URL, so we need to mock the full URL
+        fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2", {
             status: 200,
             body: 'uploaded'
         });
@@ -130,12 +127,7 @@ describe("timeseries/edit", function () {
 
 });
 
-describe("timeseries/edit with transformRequest", function () {
-
-    afterAll(function () {
-        fetchMock.restore();
-    });
-    it("post events using time series index and location id", async function () {
+describe("timeseries/edit with transformRequest", function () {    it("post events using time series index and location id", async function () {
         fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2", {
             status: 200,
             body: 'uploaded'

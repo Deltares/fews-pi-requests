@@ -1,4 +1,3 @@
-import 'cross-fetch/polyfill';
 import fetchMock from "fetch-mock";
 import {
     PiWebserviceProvider
@@ -6,13 +5,9 @@ import {
 import expectedResponseTopology from '../mock/topology.json'
 
 
-describe("topology", function () {
+import { describe, it, expect } from 'vitest';
 
-    afterAll(function () {
-        fetchMock.restore();
-    });
-
-    it("gets called when done", async function () {
+describe("topology", function () {    it("gets called when done", async function () {
         fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/topology/nodes", {
             status: 200,
             body: JSON.stringify(expectedResponseTopology)
