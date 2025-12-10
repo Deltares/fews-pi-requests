@@ -88,7 +88,7 @@ import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@de
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
 import DataRequestResult from "@deltares/fews-web-oc-utils/lib/types/restservice/dataRequestResult";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
-import { DocumentDisplaysResponse } from './response/logs/documentDisplaysResponse'
+import { DocumentDisplaysResponse } from './response/documentdisplays'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
 
 export class PiWebserviceProvider {

@@ -1,1 +1,1 @@
-export * from './DocumentDisplaysResponse.js'
+export * from './documentDisplaysResponse.js'
