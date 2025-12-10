@@ -89,6 +89,8 @@ import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-we
 // @ts-expect-error Cannot find module
 import type { DataRequestResult } from "@deltares/fews-web-oc-utils";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
+import { DocumentDisplaysResponse } from './response/documentdisplays'
+import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -138,6 +140,18 @@ export class PiWebserviceProvider {
     async getLogDisplays(filter: LogDisplaysFilter): Promise<LogsDisplaysResponse> {
         const url = this.logDisplaysUrl(filter);
         const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Request document displays
+     *
+     * @returns DocumentDisplay PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getDocumentDisplays(filter: DocumentDisplaysFilter): Promise<DocumentDisplaysResponse> {
+        const url = this.documentDisplaysUrl(filter);
+        const res = await this.webservice.getData<DocumentDisplaysResponse>(url.toString());
         return res.data;
     }
 
@@ -966,6 +980,19 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for document displays request
+     *
+     * @returns complete url for making a request
+     */
+    documentDisplaysUrl(filter: DocumentDisplaysFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/documentdisplays${queryParameters}`,
             this._baseUrl
         )
     }
