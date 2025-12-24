@@ -36,6 +36,10 @@ const piSchemas = [
     output: "src/response/configuration/WebOcConfigurationResponse.ts",
   },
   {
+    url: `${config.url}/pi_rest_web_oc_micro_front_ends.json`,
+    output: "src/response/microfrontends/WebOcMicroFrontEndsResponse.ts",
+  },
+  {
     url: `${config.url}/pi_rest_importstatus.json`,
     output: "src/response/importStatus/importStatusResponse.ts",
   },
