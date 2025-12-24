@@ -47,6 +47,10 @@ export interface TopologyNode {
    * Dashboard panels
    */
   dashboardPanels?: DashboardPanelItem[];
+  /**
+   * Micro front ends
+   */
+  microFrontEnds?: MicroFrontEndItem[];
   reportDisplay?: ReportDisplayItem;
   /**
    * id of the document which is coupled to this topology node
@@ -134,6 +138,9 @@ export interface DynamicReportDisplayItem {
   id: string;
 }
 export interface DashboardPanelItem {
+  id: string;
+}
+export interface MicroFrontEndItem {
   id: string;
 }
 /**

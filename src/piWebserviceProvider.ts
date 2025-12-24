@@ -77,6 +77,7 @@ import type {
     DataAnalysisDisplaysResponse,
     TaskRunStatusResponse,
     UserSettingUsersResponse,
+    WebOCMicroFrontEndsResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -91,6 +92,7 @@ import type { DataRequestResult } from "@deltares/fews-web-oc-utils";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 import { DocumentDisplaysResponse } from './response/documentdisplays'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
+import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.js'
 
 export class PiWebserviceProvider {
     private _baseUrl: URL
@@ -142,6 +144,19 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString());
         return res.data;
     }
+
+    /**
+     * Request mico frontend  displays
+     *
+     * @returns Locations PI API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getMicroFrontEnds(filter: MicroFrontEndsFilter): Promise<WebOCMicroFrontEndsResponse> {
+        const url = this.microFrontEndsUrl(filter);
+        const res = await this.webservice.getData<WebOCMicroFrontEndsResponse>(url.toString());
+        return res.data;
+    }
+
 
     /**
      * Request document displays
@@ -980,6 +995,19 @@ export class PiWebserviceProvider {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for micro frontends request
+     *
+     * @returns complete url for making a request
+     */
+    microFrontEndsUrl(filter: MicroFrontEndsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/microfrontends${queryParameters}`,
             this._baseUrl
         )
     }
