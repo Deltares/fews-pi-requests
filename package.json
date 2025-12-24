@@ -51,6 +51,11 @@
     "vite": "^7.2.2",
     "vitest": "^4.0.8"
   },
+  "overrides": {
+    "sonarqube-scanner": {
+      "node-forge": "^1.3.3"
+    }
+  },
   "engines": {
     "node": ">=22.0.0"
   },
