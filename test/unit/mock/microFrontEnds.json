@@ -1,0 +1,25 @@
+{
+  "microFrontEnds": [
+    {
+      "id": "mf-main-display",
+      "icon": "mdi-toy-brick",
+      "remoteId": "test-micro-frontend",
+      "componentId": "main_component",
+      "display": "main"
+    },
+    {
+      "id": "mf-location-display",
+      "icon": "mdi-toy-brick-marker",
+      "remoteId": "location_component",
+      "componentId": "sankey",
+      "display": "location"
+    },
+    {
+      "id": "mf-sidepanel-display",
+      "icon": "mdi-toy-brick-plus-outline",
+      "remoteId": "test-micro-frontend",
+      "componentId": "sidepanel_component",
+      "display": "sidepanel"
+    }
+  ]
+}
