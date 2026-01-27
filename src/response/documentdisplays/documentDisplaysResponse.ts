@@ -132,7 +132,7 @@ export interface DocumentDisplayCompose {
    */
   type?: string;
   relativeViewPeriod?: DocumentRelativeViewPeriod;
-  compose?: ProductAndTemplate;
+  compose?: ProductAndTemplate[];
 }
 export interface ProductAndTemplate {
   archiveProduct?: DocumentDisplayArchiveProduct;
@@ -168,6 +168,9 @@ export interface DocumentDisplayWorkflowStatusAttribute {
    * the key of the workflow status attribute
    */
   key: string;
+  /**
+   * the value of the workflow status attribute
+   */
   value: string;
 }
 export interface DocumentDisplayWorkflowTransition {
