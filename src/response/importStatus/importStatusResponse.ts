@@ -9,6 +9,7 @@ export interface ImportStatusResponse {
 }
 export interface ImportStatus {
   mcId: string;
+  taskRunId?: string;
   workflowId?: string;
   workflowName?: string;
   directory?: string;
