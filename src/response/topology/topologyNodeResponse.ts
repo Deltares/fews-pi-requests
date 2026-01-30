@@ -79,7 +79,8 @@ export interface BoundingBox {
  * Selectesd grid display
  */
 export interface GridDisplaySelection {
-  plotId: string;
+  plotId?: string;
+  groupId?: string;
 }
 export interface TopologyDisplayGroupItem {
   displayGroupId: string;
