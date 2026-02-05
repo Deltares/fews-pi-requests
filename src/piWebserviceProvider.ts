@@ -1229,7 +1229,7 @@ export class PiWebserviceProvider {
     permissionsUrl(filter: TaskRunsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/permissions?${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/permissions${queryParameters}`,
             this._baseUrl
         )
     }
