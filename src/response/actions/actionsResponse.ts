@@ -37,7 +37,8 @@ export interface ActionRequest {
   historyRequest?: string;
 }
 export interface ActionRequestConfig {
-  timeSeriesDisplay: TimeSeriesDisplayConfig;
+  timeSeriesDisplay?: TimeSeriesDisplayConfig;
+  scalar1DDisplay?: TimeSeriesDisplayConfig;
 }
 export interface TimeSeriesDisplayConfig {
   /**

@@ -6,13 +6,13 @@ export interface DataAnalysisDisplaysResponse {
 export interface DataAnalysisDisplayElement {
   id: string;
   name: string;
-  relativeViewPeriod: AnalysisRelativeViewPeriod;
+  relativeViewPeriod: RelativeViewPeriod;
   filters: Filter[];
   selectionPanel: SelectionPanel;
   toolBoxes: ToolBoxes;
   archiveCoupling?: ArchiveCoupling;
 }
-export interface AnalysisRelativeViewPeriod {
+export interface RelativeViewPeriod {
   unit: string;
   start: string;
   end: string;
