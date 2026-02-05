@@ -134,6 +134,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_user_setting_user_ids.json`,
     output: "src/response/usersettings/userSettingUsersResponse.ts",
   },
+  {
+    url: `${config.url}/pi_rest_permissions.json`,
+    output: "src/response/permissions/permissionsResponse.ts",
+  },
 ];
 
 const archiveSchemas = [
