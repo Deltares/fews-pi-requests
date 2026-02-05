@@ -402,7 +402,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Get the import status of FEWS
+     * Get the version of FEWS
      *
      * @returns import status API response
      * @throws 'Fetch Error' if fetch result is not ok
