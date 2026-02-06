@@ -78,6 +78,7 @@ import type {
     TaskRunStatusResponse,
     UserSettingUsersResponse,
     WebOCMicroFrontEndsResponse,
+    PermissionsResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -402,7 +403,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Get the import status of FEWS
+     * Get the version of FEWS
      *
      * @returns import status API response
      * @throws 'Fetch Error' if fetch result is not ok
@@ -411,6 +412,21 @@ export class PiWebserviceProvider {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.versionUrl(queryParameters);
         const res = await this.webservice.getData<VersionResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get all permissions and whether the current user has them assigned
+     *
+     * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getPermissions(): Promise<PermissionsResponse> {
+        const defaults: BaseFilter = {
+            documentFormat: DocumentFormat.PI_JSON,
+        }
+        const url = this.permissionsUrl(defaults);
+        const res = await this.webservice.getData<PermissionsResponse>(url.toString());
         return res.data;
     }
 
@@ -1200,6 +1216,20 @@ export class PiWebserviceProvider {
     versionUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for permissions request
+     *
+     * @param queryParameters query string
+     * @returns complete url for making a request
+     */
+    permissionsUrl(filter: TaskRunsFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/permissions${queryParameters}`,
             this._baseUrl
         )
     }
