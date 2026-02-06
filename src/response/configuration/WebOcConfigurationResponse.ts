@@ -265,7 +265,7 @@ export interface MapLayerConfig {
   /**
    * Map layers
    */
-  mapLayers?: MapLayer[];
+  mapLayers: MapLayer[];
   /**
    * The default map for light mode
    */
@@ -310,6 +310,7 @@ export interface SidePanelConfig {
   exportStatus?: SidePanelExportStatusConfig;
   runTask?: SidePanelRunTaskConfig;
   documentFile?: SidePanelDocumentFileConfig;
+  logDisplay?: SidePanelLogDisplayConfig;
 }
 /**
  * SidePanel Task Overview config options
@@ -364,4 +365,17 @@ export interface SidePanelDocumentFileConfig {
    * enable
    */
   enabled?: boolean;
+}
+/**
+ * SidePanel log dispaly config options
+ */
+export interface SidePanelLogDisplayConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean;
+  /**
+   * log display id
+   */
+  logDisplayId: string;
 }
