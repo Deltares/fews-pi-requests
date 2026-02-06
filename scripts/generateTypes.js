@@ -95,10 +95,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_workflow_fss_info.json`,
     output: "src/response/workflows/fssInfoResponse.ts",
   },
-  {
-    url: `${config.url}/pi_rest_document_displays.json`,
-    output: "src/response/documentdisplays/documentDisplaysResponse.ts"
-  },
+  // {
+  //   url: `${config.url}/pi_rest_document_displays.json`,
+  //   output: "src/response/documentdisplays/documentDisplaysResponse.ts"
+  // },
   // FIXME: Currently the backend does not have the correct type for enum value's
   // {
   //   url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
@@ -122,10 +122,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_statistics_correlation.json`,
     output: "src/response/statistics/correlationResponse.ts",
   },
-  {
-    url: `${config.url}/pi_rest_data_analysis_displays.json`,
-    output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
-  },
+  // {
+  //   url: `${config.url}/pi_rest_data_analysis_displays.json`,
+  //   output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
+  // },
   {
     url: `${config.url}/pi_rest_taskrunstatus.json`,
     output: "src/response/tasks/taskRunStatusResponse.ts",
