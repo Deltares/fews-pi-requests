@@ -24,4 +24,5 @@ export interface filterActionsFilter extends BaseFilter {
   useDisplayUnits?: boolean;
   convertDatum?: boolean;
   currentForecastsAlwaysVisible?: boolean;
+  fullDataPeriod?: boolean;
 }
