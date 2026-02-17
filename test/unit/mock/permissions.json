@@ -1,0 +1,8 @@
+{
+  "permissions": [
+    { "id": "AdminPermission", "assigned": false },
+    { "id": "ForcPermission", "assigned": false },
+    { "id": "TribunePermission", "assigned": false },
+    { "id": "viewerPermission", "assigned": true }
+  ]
+}

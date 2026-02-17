@@ -274,6 +274,7 @@ export interface MapLayerConfig {
    * The default map for dark mode
    */
   defaultDarkModeMapLayerId?: string;
+  [k: string]: unknown;
 }
 /**
  * Map layer
