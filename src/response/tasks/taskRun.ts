@@ -27,6 +27,10 @@ export interface TaskRun {
     //the start of the period for which data was created in the run
     outputStartTime: string;
     //the end of the period for which data was created in the run
-    outputEndTime: string
+    outputEndTime: string;
+    //topology associations
+    topologyAssociations: {
+        layerIds: string[];
+    };
 }
 
