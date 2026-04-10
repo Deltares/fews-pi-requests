@@ -29,10 +29,18 @@ export interface LocationsLayer {
   locationNames?: boolean;
   singleClickAction?: boolean;
   locationSearchEnabled?: boolean;
+  minZoom?: LocationsLayerZoomSettings;
+  maxZoom?: LocationsLayerZoomSettings;
+}
+export interface LocationsLayerZoomSettings {
+  level: number;
+  levelLocationAttribute?: string;
 }
 export interface Overlay {
-  type: "overLay" | "gridLayer";
+  type: "overLay" | "gridLayer" | "externalOverLay";
   id?: string;
+  name?: string;
+  styleJsonFile?: string;
   visible?: boolean;
 }
 export interface ChartsSettings {
@@ -66,6 +74,7 @@ export interface PanelPlacement {
 }
 export interface Chart {
   enabled?: boolean;
+  locationEnabledAttribute?: string;
   legend?: Legend;
   xAxis?: XAxis;
   yAxis?: YAxis;
@@ -87,16 +96,19 @@ export interface YAxis {
 }
 export interface TimeSeriesTable {
   enabled?: boolean;
+  locationEnabledAttribute?: string;
   allowDateTimeSorting?: boolean;
   sortDateTimeColumn?: string;
 }
 export interface VerticalProfileTable {
   enabled?: boolean;
+  locationEnabledAttribute?: string;
   allowDepthSorting?: boolean;
   sortDepthColumn?: string;
 }
 export interface MetaDataPanel {
   enabled?: boolean;
+  locationEnabledAttribute?: string;
 }
 export interface SSDSettings {
   zoomEnabled?: boolean;
