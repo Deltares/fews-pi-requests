@@ -48,7 +48,8 @@ export interface WebOCDashboardItem {
     | "dynamic-report-display"
     | "log-display"
     | "data-download-display"
-    | "runtask-display";
+    | "runtask-display"
+    | "embed-url";
   /**
    * The component settings to use
    */
