@@ -22,7 +22,7 @@ import type {TransformRequestFunction} from "@deltares/fews-web-oc-utils";
 import { BaseFilter } from "./requestParameters/baseFilter";
 import { ArchiveSources } from "./response/archivesources";
 import { ArchiveParametersFilter } from "./requestParameters/archiveParametersFilter";
-import { ProductAttributesFilter as ProductAttributesFilter } from "./requestParameters/productAttributesFilter.js";
+import { ProductAttributesFilter } from "./requestParameters/productAttributesFilter.js";
 
 const attributesForKey: { [key: string]: string } = {
     parameterIds: 'long_name',
