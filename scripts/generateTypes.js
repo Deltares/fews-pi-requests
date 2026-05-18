@@ -1,5 +1,5 @@
 import { compile } from 'json-schema-to-typescript';
-import fs from 'fs';
+import fs from 'node:fs';
 
 const config = {
   url: "https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest",
