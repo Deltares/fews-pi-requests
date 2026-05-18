@@ -29,10 +29,10 @@ const attributesForKey: { [key: string]: string } = {
 }
 
 export class PiArchiveWebserviceProvider {
-    private baseUrl: URL
-    private maxUrlLength: number
+    private readonly baseUrl: URL
+    private readonly maxUrlLength: number
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
-    private webservice: PiRestService;
+    private readonly webservice: PiRestService;
 
     addPiJsonFormat(queryParameters: string): string {
         const preFix = queryParameters.length == 0 ? "?" : "&";
@@ -237,7 +237,7 @@ export class PiArchiveWebserviceProvider {
     async getExternalForecasts(filter: ExternalForecastsFilter): Promise<ArchiveExternalNetCDFStorageForecasts> {
         const mappedFilter: { [key: string]: unknown } = {}
         for (const [key, value] of Object.entries(filter)) {
-            if (key in Object.keys(attributesForKey)) {
+            if (Object.keys(attributesForKey).includes(key)) {
                 mappedFilter[attributesForKey[key]] = value
             } else {
                 mappedFilter[key] = value
