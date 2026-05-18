@@ -4,7 +4,6 @@
 name: Node.js Package
 
 permissions:
-  id-token: write # Required for OIDC
   contents: read
 
 on:
@@ -23,6 +22,9 @@ jobs:
       - run: npm run test:unit
 
   publish-npm:
+    permissions:
+      contents: read
+      id-token: write # Required for OIDC
     needs: build
     runs-on: ubuntu-latest
     steps:
