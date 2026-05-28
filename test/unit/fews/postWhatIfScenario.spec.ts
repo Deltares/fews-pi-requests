@@ -5,6 +5,10 @@ import { PostWhatIfScenarioFilter } from "../../../src/requestParameters/postWha
 
 import { describe, it, expect } from 'vitest';
 
+function hasValue(property: unknown): property is { value: unknown } {
+  return typeof property === "object" && property !== null && "value" in property;
+}
+
 describe("postWhatIfScenario", function () {  it("generates a valid postWhatIfScenario request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios";
@@ -39,9 +43,11 @@ describe("postWhatIfScenario", function () {  it("generates a valid postWhatIfSc
     expect(results.properties?.length).toBe(2);
     expect(results.properties?.[0].id).toBe("ADD_SURGE");
     expect(results.properties?.[0].type).toBe("number");
-    expect(results.properties?.[0].value).toBe(0);
+    const firstProperty = results.properties?.[0];
+    expect(hasValue(firstProperty) ? firstProperty.value : undefined).toBe(0);
     expect(results.properties?.[1].id).toBe("MULTIPLY_SURGE");
     expect(results.properties?.[1].type).toBe("number");
-    expect(results.properties?.[1].value).toBe(3);
+    const secondProperty = results.properties?.[1];
+    expect(hasValue(secondProperty) ? secondProperty.value : undefined).toBe(3);
   });
 });

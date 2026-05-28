@@ -20,7 +20,7 @@ type EncodeURIComponentArgs = Parameters<typeof encodeURIComponent>
  */
 function filterArgToStrings(key: string, value: EncodeURIComponentArgs[0] | EncodeURIComponentArgs[0][] ): string[] {
     const result: string[] = []
-    if (value instanceof Array) {
+    if (Array.isArray(value)) {
         for (const item of value) {
             result.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`)
         }
@@ -54,7 +54,7 @@ export function filterToParams(filter: object ): string {
                 filterArgs.push(...strings)
             }
         } else if (parameter === 'bbox') {
-            if (!(values instanceof Array) || values.length !== 4) {
+            if (!(Array.isArray(values)) || values.length !== 4) {
                 throw new Error('bbox parameter must be an array of four numbers')
             }
             const value = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`

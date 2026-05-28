@@ -6,21 +6,21 @@ import type { ParameterGroup } from './parameterGroup'
 /**
  * Checks if the provided value is of type Parameter.
  *
- * @param {Parameter | any} parameter - The value to be checked.
- * @returns {boolean} True if the value is of type Parameter, false otherwise.
+ * @param parameter - The value to be checked.
+ * @returns True if the value is of type Parameter, false otherwise.
  */
-function isParameter(parameter: Parameter | unknown): parameter is Parameter {
+function isParameter(parameter: Parameter | unknown): parameter is Parameter { // NOSONAR(S6571) - Unknown type in type guard is recommended 
   return (parameter as Parameter).name !== undefined
 }
 
 /**
  * Checks if the provided value is of type ParameterGroup.
  *
- * @param {ParameterGroup | any} parameter - The value to be checked.
- * @returns {boolean} True if the value is of type ParameterGroup, false otherwise.
+ * @param parameter - The value to be checked.
+ * @returns True if the value is of type ParameterGroup, false otherwise.
  */
 function isParameterGroup(
-  parameter: ParameterGroup | unknown,
+  parameter: ParameterGroup | unknown, // NOSONAR(S6571) - Unknown type in type guard is recommended 
 ): parameter is ParameterGroup {
   return (parameter as ParameterGroup).parameters !== undefined
 }

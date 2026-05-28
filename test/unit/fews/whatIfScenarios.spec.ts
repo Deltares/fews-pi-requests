@@ -9,6 +9,10 @@ import fetchMock from "fetch-mock";
 
 import { describe, it, expect } from 'vitest';
 
+function hasValue(property: unknown): property is { value: unknown } {
+  return typeof property === "object" && property !== null && "value" in property;
+}
+
 describe("whatIfScenarios", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios?documentFormat=PI_JSON",
@@ -41,8 +45,9 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[0].properties?.[0].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[0].properties?.[0].value).toBe(
-      0.0
+    const firstScenarioProperty1 = results.whatIfScenarioDescriptors[0].properties?.[0];
+    expect(hasValue(firstScenarioProperty1) ? firstScenarioProperty1.value : undefined).toBe(
+      0
     );
     expect(results.whatIfScenarioDescriptors[0].properties?.[1].id).toBe(
       "MULTIPLY_SURGE"
@@ -50,8 +55,9 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[0].properties?.[1].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[0].properties?.[1].value).toBe(
-      3.0
+    const firstScenarioProperty2 = results.whatIfScenarioDescriptors[0].properties?.[1];
+    expect(hasValue(firstScenarioProperty2) ? firstScenarioProperty2.value : undefined).toBe(
+      3
     );
 
     expect(results.whatIfScenarioDescriptors[1].id).toBe("id2");
@@ -66,8 +72,9 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[1].properties?.[0].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[1].properties?.[0].value).toBe(
-      -1.0
+    const secondScenarioProperty1 = results.whatIfScenarioDescriptors[1].properties?.[0];
+    expect(hasValue(secondScenarioProperty1) ? secondScenarioProperty1.value : undefined).toBe(
+      -1
     );
     expect(results.whatIfScenarioDescriptors[1].properties?.[1].id).toBe(
       "MULTIPLY_SURGE"
@@ -75,8 +82,9 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[1].properties?.[1].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[1].properties?.[1].value).toBe(
-      1.0
+    const secondScenarioProperty2 = results.whatIfScenarioDescriptors[1].properties?.[1];
+    expect(hasValue(secondScenarioProperty2) ? secondScenarioProperty2.value : undefined).toBe(
+      1
     );
   });
 });
