@@ -1,0 +1,41 @@
+/* tslint:disable */
+
+export type SubjectOfTheMessage = string;
+export type BodyOfTheMessageInPlainText = string;
+export type BodyOfTheMessageInPlainTextThatWillBeResolvedByTheServerUsingTheProvidedIdTheIdShouldBeAReferenceToAnArchivedTextMessageBody =
+  string;
+export type BodyOfTheMessageInHTMLFormat = string;
+export type BodyOfTheMessageInHtmlThatWillBeResolvedByTheServerUsingTheProvidedIdTheIdShouldBeAReferenceToAnArchivedHtmlMessageBody =
+  string;
+export type AttachmentIdIfTheAttachmentContentIsNotProvidedTheServerWillTryToResolveTheAttachmentContentUsingThisIdAsAReferenceToAnArchivedAttachment =
+  string;
+export type Base64EncodedContentOfTheAttachmentIfProvidedTheAttachmentIdIsNotUsedToResolveTheContent = string;
+export type FilenameOfTheAttachmentOnlyProvideIfTheAttachmentContentIsProvidedInTheRequest = string;
+export type ContentTypeOfTheAttachmentOnlyProvideIfTheAttachmentContentIsProvidedInTheRequest = string;
+export type WhetherTheAttachmentIsAnInlineAttachmentOrNotOnlyProvideIfTheAttachmentContentIsProvidedInTheRequestAndIsReferencedFromTheBodyHTMLContent =
+  boolean;
+export type MessageIdCanBeUsedToCorrelateTheMessageWithAnExternalSystemTheMessagesEndpointCanBeUsedToRetrieveTheMessagesMetadata =
+  string;
+
+/**
+ * Topics Messages with attachments
+ */
+export interface TopicsMessagesWithAttachments {
+  subject: SubjectOfTheMessage;
+  bodyText?: BodyOfTheMessageInPlainText;
+  bodyTextId?: BodyOfTheMessageInPlainTextThatWillBeResolvedByTheServerUsingTheProvidedIdTheIdShouldBeAReferenceToAnArchivedTextMessageBody;
+  bodyHtml?: BodyOfTheMessageInHTMLFormat;
+  bodyHtmlId?: BodyOfTheMessageInHtmlThatWillBeResolvedByTheServerUsingTheProvidedIdTheIdShouldBeAReferenceToAnArchivedHtmlMessageBody;
+  /**
+   * TopicMessageAttachment
+   */
+  attachments?: TopicMessageAttachment[];
+  messageId?: MessageIdCanBeUsedToCorrelateTheMessageWithAnExternalSystemTheMessagesEndpointCanBeUsedToRetrieveTheMessagesMetadata;
+}
+export interface TopicMessageAttachment {
+  attachmentId: AttachmentIdIfTheAttachmentContentIsNotProvidedTheServerWillTryToResolveTheAttachmentContentUsingThisIdAsAReferenceToAnArchivedAttachment;
+  base64Content?: Base64EncodedContentOfTheAttachmentIfProvidedTheAttachmentIdIsNotUsedToResolveTheContent;
+  filename?: FilenameOfTheAttachmentOnlyProvideIfTheAttachmentContentIsProvidedInTheRequest;
+  contentType?: ContentTypeOfTheAttachmentOnlyProvideIfTheAttachmentContentIsProvidedInTheRequest;
+  inline?: WhetherTheAttachmentIsAnInlineAttachmentOrNotOnlyProvideIfTheAttachmentContentIsProvidedInTheRequestAndIsReferencedFromTheBodyHTMLContent;
+}
