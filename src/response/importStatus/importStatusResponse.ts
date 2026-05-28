@@ -15,6 +15,8 @@ export interface ImportStatus {
   directory?: string;
   suspended: boolean;
   dataFeed: string;
+  dataFeedName?: string;
+  dataFeedDescription?: string;
   lastImportTime: string;
   lastFileImported: string;
   fileRead: number;
