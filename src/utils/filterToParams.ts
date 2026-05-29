@@ -20,7 +20,7 @@ type EncodeURIComponentArgs = Parameters<typeof encodeURIComponent>
  */
 function filterArgToStrings(key: string, value: EncodeURIComponentArgs[0] | EncodeURIComponentArgs[0][] ): string[] {
     const result: string[] = []
-    if (value instanceof Array) {
+    if (Array.isArray(value)) {
         for (const item of value) {
             result.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`)
         }
@@ -30,40 +30,66 @@ function filterArgToStrings(key: string, value: EncodeURIComponentArgs[0] | Enco
     return result
 }
 
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function pushAttributeOrPropertiesArgs(
+    parameter: 'attribute' | 'properties',
+    values: unknown,
+    filterArgs: string[]
+): boolean {
+    if (!isPlainObject(values)) return false
+
+    const prefixMap = {
+        attribute: 'attribute',
+        properties: 'property'
+    } as const
+    const prefix = prefixMap[parameter]
+
+    for (const [key, value] of Object.entries(values)) {
+        filterArgs.push(...filterArgToStrings(`${prefix}(${key})`, `${value}`))
+    }
+    return true
+}
+
+function pushQualifierIdsArgs(values: unknown, filterArgs: string[]): boolean {
+    if (!isPlainObject(values)) return false
+
+    for (const [key, value] of Object.entries(values)) {
+        filterArgs.push(...filterArgToStrings('qualifierIds', `${key}=${value}`))
+    }
+    return true
+}
+
+function pushBboxArgs(values: unknown, filterArgs: string[]): boolean {
+    if (!Array.isArray(values) || values.length !== 4) {
+        throw new Error('bbox parameter must be an array of four numbers')
+    }
+
+    const bboxValue = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`
+    filterArgs.push(...filterArgToStrings('bbox', bboxValue))
+    return true
+}
+
+type SpecialParameterHandler = (values: unknown, filterArgs: string[]) => boolean
+
+const specialParameterHandlers: Record<string, SpecialParameterHandler> = {
+    attribute: (values, filterArgs) => pushAttributeOrPropertiesArgs('attribute', values, filterArgs),
+    properties: (values, filterArgs) => pushAttributeOrPropertiesArgs('properties', values, filterArgs),
+    qualifierIds: pushQualifierIdsArgs,
+    bbox: pushBboxArgs
+}
+
 export function filterToParams(filter: object ): string {
     const filterArgs: string[] = []
     for (const [parameter, values] of Object.entries(filter)) {
         if (values === undefined) continue
-        if ( parameter === 'attribute' || parameter === 'properties') {
-            const prefixMap = {
-                'attribute': 'attribute',
-                'properties': 'property'
-            }
-            const prefix = prefixMap[parameter]
-            for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${prefix}(${key})`, `${value}`)
-                filterArgs.push(...strings)
-            }
-        } else if (
-          parameter === "qualifierIds" &&
-          typeof values === "object" &&
-          !Array.isArray(values)
-        ) {
-            for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${parameter}`,`${key}=` + value)
-                filterArgs.push(...strings)
-            }
-        } else if (parameter === 'bbox') {
-            if (!(values instanceof Array) || values.length !== 4) {
-                throw new Error('bbox parameter must be an array of four numbers')
-            }
-            const value = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`
-            const strings = filterArgToStrings(parameter, value)
-            filterArgs.push(...strings)
-        } else {
-            const strings = filterArgToStrings(parameter, values)
-            filterArgs.push(...strings)
-        }
+
+        const handler = specialParameterHandlers[parameter]
+        if (handler?.(values, filterArgs)) continue
+
+        filterArgs.push(...filterArgToStrings(parameter, values))
     }
     return filterArgs.length ? '?' + filterArgs.join('&') : ''
 }
