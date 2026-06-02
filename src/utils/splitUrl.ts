@@ -17,7 +17,7 @@ function mostFrequentParameter(url: URL): string {
 export function splitUrl(url: URL, maxLength = 2000, parameter?: string): URL[] {
     if ( url.toString().length <= maxLength ) return [url]
     const baseUrl = new URL(url.toString())
-    const split = parameter !== undefined ? parameter : mostFrequentParameter(url)
+    const split = parameter ?? mostFrequentParameter(url)
     baseUrl.searchParams.delete(split)
     const urls: URL[] = []
     let newUrl = new URL(baseUrl.toString())

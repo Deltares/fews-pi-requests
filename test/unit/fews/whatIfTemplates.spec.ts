@@ -37,8 +37,8 @@ describe("whatIfTemplates", function () {  it("gets called when done", async () 
     expect(numberProperty?.name).toBe("Add Surge");
     expect(numberProperty?.type).toBe("number");
     if (numberProperty?.type === "number") {
-      expect(numberProperty.defaultValue).toBe(0.0);
-      expect(numberProperty.maxValue).toBe(10.0);
+      expect(numberProperty.defaultValue).toBe(0);
+      expect(numberProperty.maxValue).toBe(10);
     }
     expect(results.whatIfTemplates[1].id).toBe("test");
     expect(results.whatIfTemplates[1].name).toBe("test");
