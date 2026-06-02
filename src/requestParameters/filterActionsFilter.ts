@@ -1,6 +1,6 @@
 import { BaseFilter } from "./baseFilter";
 
-export interface filterActionsFilter extends BaseFilter {
+export interface FilterActionsFilter extends BaseFilter {
   filterId?: string;
   parameterGroupIds?: string;
   parameterIds?: string;

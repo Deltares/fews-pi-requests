@@ -16,9 +16,9 @@ import type {
     ReportsFilter,
     ReportFilter,
     RunTaskFilter,
-    timeSeriesGridActionsFilter,
+    TimeSeriesGridActionsFilter,
     TimeSeriesTopologyActionsFilter,
-    filterActionsFilter,
+    FilterActionsFilter,
     WorkflowsFilter,
     ModuleRuntimesFilter,
     LogDisplaysFilter,
@@ -311,7 +311,7 @@ export class PiWebserviceProvider {
      * @throws 'Fetch Error' if fetch result is not ok
      */
 
-    async getTimeSeriesGridActions(filter: timeSeriesGridActionsFilter): Promise<ActionsResponse> {
+    async getTimeSeriesGridActions(filter: TimeSeriesGridActionsFilter): Promise<ActionsResponse> {
         const url = this.timeSeriesGridActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
         return res.data;
@@ -539,7 +539,7 @@ export class PiWebserviceProvider {
      * @returns Actions API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
-    async getFilterActions(filter: filterActionsFilter): Promise<ActionsResponse> {
+    async getFilterActions(filter: FilterActionsFilter): Promise<ActionsResponse> {
         const url = this.filterActionsUrl(filter)
         const res = await this.webservice.getData<ActionsResponse>(url.toString());
         return res.data;
@@ -1146,7 +1146,7 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns 
      */
-    timeSeriesGridActionsUrl(filter: timeSeriesGridActionsFilter): URL {
+    timeSeriesGridActionsUrl(filter: TimeSeriesGridActionsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid/actions${queryParameters}`,
@@ -1160,7 +1160,7 @@ export class PiWebserviceProvider {
      * @param filter an object with request query parameters
      * @returns complete url for making a request
      */
-    filterActionsUrl(filter: filterActionsFilter): URL {
+    filterActionsUrl(filter: FilterActionsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/filters/actions${queryParameters}`,
@@ -1498,7 +1498,7 @@ export class PiWebserviceProvider {
         )
     }
 
-    timeSeriesFilterActionsUrl(filter: filterActionsFilter): URL {
+    timeSeriesFilterActionsUrl(filter: FilterActionsFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filters/actions${queryParameters}`,
