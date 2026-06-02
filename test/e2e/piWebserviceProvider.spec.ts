@@ -1,6 +1,6 @@
 import {
   DocumentFormat,
-  type filterActionsFilter,
+  type FilterActionsFilter,
   type LocationsFilter,
   PiWebserviceProvider,
   TimeSeriesResponse,
@@ -22,7 +22,7 @@ describe('pi webservice provider', function () {
   it('get timeseries with relative url', async function () {
     // http://localhost:8080/FewsWebServices/rest/fewspiservice/v1/filters/actions?locationIds=Umgeni_Mouth_level&filterId=River%20Stations&useDisplayUnits=true&convertDatum=true
 
-    const filter = {} as filterActionsFilter
+    const filter = {} as FilterActionsFilter
     filter.locationIds = 'Umgeni_Mouth_level'
     filter.filterId = 'River Stations'
     const provider = new PiWebserviceProvider(baseUrl)
@@ -78,7 +78,7 @@ describe('pi webservice provider', function () {
   })
 
   it('timeseries edit', async function () {
-    const filter = {} as filterActionsFilter
+    const filter = {} as FilterActionsFilter
     filter.locationIds = 'Umgeni_Mouth_level'
     filter.filterId = 'River Stations'
     const provider = new PiWebserviceProvider(baseUrl)
