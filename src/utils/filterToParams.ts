@@ -38,40 +38,68 @@ function filterArgToStrings(key: string, value: EncodeURIComponentArgs[0] | Enco
     return result
 }
 
+function isAttributeOrProperties(parameter: string): parameter is 'attribute' | 'properties' {
+    return parameter === 'attribute' || parameter === 'properties'
+}
+
+function appendAttributeOrProperties(
+    filterArgs: string[],
+    parameter: 'attribute' | 'properties',
+    values: unknown
+): void {
+    const prefixMap = {
+        attribute: 'attribute',
+        properties: 'property'
+    } as const
+    const prefix = prefixMap[parameter]
+    for (const [key, value] of Object.entries(values as object)) {
+        const strings = filterArgToStrings(`${prefix}(${key})`, `${value}`)
+        filterArgs.push(...strings)
+    }
+}
+
+function isQualifierIdsObject(parameter: string, values: unknown): boolean {
+    return parameter === 'qualifierIds' && typeof values === 'object' && !Array.isArray(values)
+}
+
+function appendQualifierIds(filterArgs: string[], values: object): void {
+    for (const [key, value] of Object.entries(values)) {
+        const strings = filterArgToStrings('qualifierIds', `${key}=${value}`)
+        filterArgs.push(...strings)
+    }
+}
+
+function appendBbox(filterArgs: string[], values: unknown): void {
+    if (!(Array.isArray(values)) || values.length !== 4) {
+        throw new Error('bbox parameter must be an array of four numbers')
+    }
+    const value = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`
+    const strings = filterArgToStrings('bbox', value)
+    filterArgs.push(...strings)
+}
+
 export function filterToParams(filter: object, queryParamsStrategy: QueryParamsStrategy = 'repeat-params'): string {
     const filterArgs: string[] = []
     for (const [parameter, values] of Object.entries(filter)) {
         if (values === undefined) continue
-        if ( parameter === 'attribute' || parameter === 'properties') {
-            const prefixMap = {
-                'attribute': 'attribute',
-                'properties': 'property'
-            }
-            const prefix = prefixMap[parameter]
-            for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${prefix}(${key})`, `${value}`)
-                filterArgs.push(...strings)
-            }
-        } else if (
-          parameter === "qualifierIds" &&
-          typeof values === "object" &&
-          !Array.isArray(values)
-        ) {
-            for (const [key, value] of Object.entries(values)) {
-                const strings = filterArgToStrings(`${parameter}`,`${key}=` + value)
-                filterArgs.push(...strings)
-            }
-        } else if (parameter === 'bbox') {
-            if (!(Array.isArray(values)) || values.length !== 4) {
-                throw new Error('bbox parameter must be an array of four numbers')
-            }
-            const value = `${encodeURIComponent(values[0])},${encodeURIComponent(values[1])},${encodeURIComponent(values[2])},${encodeURIComponent(values[3])}`
-            const strings = filterArgToStrings(parameter, value)
-            filterArgs.push(...strings)
-        } else {
-            const strings = filterArgToStrings(parameter, values, queryParamsStrategy)
-            filterArgs.push(...strings)
+
+        if (isAttributeOrProperties(parameter)) {
+            appendAttributeOrProperties(filterArgs, parameter, values)
+            continue
         }
+
+        if (isQualifierIdsObject(parameter, values)) {
+            appendQualifierIds(filterArgs, values as object)
+            continue
+        }
+
+        if (parameter === 'bbox') {
+            appendBbox(filterArgs, values)
+            continue
+        }
+
+        const strings = filterArgToStrings(parameter, values as EncodeURIComponentArgs[0] | EncodeURIComponentArgs[0][], queryParamsStrategy)
+        filterArgs.push(...strings)
     }
     return filterArgs.length ? '?' + filterArgs.join('&') : ''
 }
