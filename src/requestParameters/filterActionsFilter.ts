@@ -3,9 +3,9 @@ import { BaseFilter } from "./baseFilter";
 export interface FilterActionsFilter extends BaseFilter {
   filterId?: string;
   parameterGroupIds?: string;
-  parameterIds?: string;
-  taskRunIds?: string;
-  locationIds?: string;
+  parameterIds?: string | string[];
+  taskRunIds?: string | string[];
+  locationIds?: string | string[];
   timeZero?: string;
   // If this parameter is set, resampling is applied using the passed method. It is required to also specify a resamplingTimeStepId. For information about the different methods, see: https://publicwiki.deltares.nl/x/xJUYBw
   resamplingMethod?:

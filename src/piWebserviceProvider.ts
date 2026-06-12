@@ -85,6 +85,7 @@ import { convertToParameterGroups } from './output/parameters/convertToParameter
 import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
 import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
+import type { QueryParamsStrategy } from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
@@ -98,6 +99,7 @@ import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.j
 export class PiWebserviceProvider {
     private _baseUrl: URL
     maxUrlLength: number
+    private readonly queryParamsStrategy: QueryParamsStrategy
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     webservice: PiRestService;
 
@@ -107,18 +109,24 @@ export class PiWebserviceProvider {
      * @param url the base url where the PI service is available
      * @param {Object} [options] Optional constructor options
      * @param {number} [options.maxUrlLength] A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
+     * @param {'repeat-params' | 'comma-separated-values'} [options.queryParamsStrategy] Controls how taskRunIds arrays are serialized.
      * @param {TransformRequestFunction} [options.transformRequestFn] A function that can be used to modify the Request
      * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
      * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, options: {maxUrlLength?: number; transformRequestFn?: TransformRequestFunction} = {}) {
+    constructor(url: string, options: {maxUrlLength?: number; queryParamsStrategy?: QueryParamsStrategy; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this._baseUrl = absoluteUrl(url)
         this.maxUrlLength = options.maxUrlLength ?? Infinity;
+        this.queryParamsStrategy = options.queryParamsStrategy ?? 'repeat-params'
         this.webservice = new PiRestService(url, options.transformRequestFn);
 
+    }
+
+    private buildQueryParams(filter: object): string {
+        return filterToParams(filter, this.queryParamsStrategy)
     }
 
     /**
@@ -271,7 +279,7 @@ export class PiWebserviceProvider {
             const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
             return res.data;
         } else {
-            const urls = splitUrl(url, this.maxUrlLength);
+            const urls = splitUrl(url, this.maxUrlLength, undefined, this.queryParamsStrategy);
             const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()));
             return Promise.all(promises).then((responses) => {
                 const response = responses[0].data;
@@ -350,7 +358,7 @@ export class PiWebserviceProvider {
             return res.data
         } 
 
-        const urls = splitUrl(url, this.maxUrlLength).map((u) => u.toString());
+        const urls = splitUrl(url, this.maxUrlLength, undefined, this.queryParamsStrategy).map((u) => u.toString());
         const promises = urls.map((url) => this.webservice.getData<TaskRunsResponse>(url));
         const responses = await Promise.all(promises)
 
@@ -995,7 +1003,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     locationsUrl(filter: LocationsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations${queryParameters}`,
             this._baseUrl
@@ -1008,7 +1016,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     logDisplaysUrl(filter: LogDisplaysFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays${queryParameters}`,
             this._baseUrl
@@ -1021,7 +1029,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     microFrontEndsUrl(filter: MicroFrontEndsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/microfrontends${queryParameters}`,
             this._baseUrl
@@ -1034,7 +1042,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     documentDisplaysUrl(filter: DocumentDisplaysFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/documentdisplays${queryParameters}`,
             this._baseUrl
@@ -1048,7 +1056,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     locationsTooltipUrl(filter: LocationsTooltipFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/locations/tooltip${queryParameters}`,
             this._baseUrl
@@ -1062,7 +1070,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     historyEditsUrl(filter: HistoryEditsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/history/${queryParameters}`,
             this._baseUrl
@@ -1077,7 +1085,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     parametersUrl(filter: ParametersFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/parameters${queryParameters}`,
             this._baseUrl
@@ -1092,7 +1100,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
      timeSeriesUrl(filter: TimeSeriesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
             this._baseUrl
@@ -1106,7 +1114,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
      timeSeriesGridUrl(filter: TimeSeriesGridFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid${queryParameters}`,
             this._baseUrl
@@ -1120,7 +1128,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     timeSeriesGridMaxValuesUrl(filter: TimeSeriesGridMaxValuesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid/maxvalues${queryParameters}`,
             this._baseUrl
@@ -1134,7 +1142,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     topologyActionsUrl(filter: TopologyActionFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/actions${queryParameters}`,
             this._baseUrl
@@ -1147,7 +1155,7 @@ export class PiWebserviceProvider {
      * @returns 
      */
     timeSeriesGridActionsUrl(filter: TimeSeriesGridActionsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/grid/actions${queryParameters}`,
             this._baseUrl
@@ -1161,7 +1169,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     filterActionsUrl(filter: FilterActionsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/filters/actions${queryParameters}`,
             this._baseUrl
@@ -1187,7 +1195,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
      taskRunsUrl(filter: TaskRunsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/taskruns${queryParameters}`,
             this._baseUrl
@@ -1227,7 +1235,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     permissionsUrl(filter: TaskRunsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/permissions${queryParameters}`,
             this._baseUrl
@@ -1252,7 +1260,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     webOcConfigurationUrl(filter: BaseFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.queryParamsStrategy)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config${queryParameters}`,
             this._baseUrl
@@ -1265,7 +1273,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     webOcPublicConfigurationUrl(filter: BaseFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config/public${queryParameters}`,
             this._baseUrl
@@ -1321,7 +1329,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     topologyThresholdsUrl(filter: TopologyThresholdFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/thresholds${queryParameters}`,
             this._baseUrl
@@ -1329,7 +1337,7 @@ export class PiWebserviceProvider {
     }
 
     timeSeriesTopologyActionsUrl(filter: TimeSeriesTopologyActionsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/topology/actions${queryParameters}`,
             this._baseUrl
@@ -1351,7 +1359,7 @@ export class PiWebserviceProvider {
     }
 
     processDataUrl(filter: ProcessDataFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/processdata${queryParameters}`,
             this._baseUrl
@@ -1359,7 +1367,7 @@ export class PiWebserviceProvider {
     }
 
     runTaskUrl(filter: RunTaskFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/runtask${queryParameters}`,
             this._baseUrl
@@ -1367,7 +1375,7 @@ export class PiWebserviceProvider {
     }
 
     reportsUrl(filter: ReportsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/reports${queryParameters}`,
             this._baseUrl
@@ -1375,7 +1383,7 @@ export class PiWebserviceProvider {
     }
 
     reportUrl(filter: ReportFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/report${queryParameters}`,
             this._baseUrl
@@ -1383,7 +1391,7 @@ export class PiWebserviceProvider {
     }
 
     dynamicReportDisplayUrl(filter: DynamicReportDisplayFilter | DynamicReportDisplayCapabilitiesFilter, path? : 'capabilities' | 'data'): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         if (path) {
             return new URL(
                 `${this._baseUrl.pathname}${this.API_ENDPOINT}/dynamicreportdisplays/${path}${queryParameters}`,
@@ -1397,7 +1405,7 @@ export class PiWebserviceProvider {
     }
 
     workflowsUrl(filter: WorkflowsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows${queryParameters}`,
             this._baseUrl
@@ -1405,7 +1413,7 @@ export class PiWebserviceProvider {
     }
 
     moduleRunTimesUrl(filter: ModuleRuntimesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/moduleruntimes${queryParameters}`,
             this._baseUrl
@@ -1413,7 +1421,7 @@ export class PiWebserviceProvider {
     }
 
     dashboardsUrl(filter: DashboardsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/dashboards${queryParameters}`,
             this._baseUrl
@@ -1422,7 +1430,7 @@ export class PiWebserviceProvider {
 
     logDisplayLogsUrl(filter: LogDisplayLogsFilter): URL {
         const { logDisplayId, ...remainingFilter } = filter
-        const queryParameters = filterToParams(remainingFilter)
+        const queryParameters = this.buildQueryParams(remainingFilter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/logdisplays/${logDisplayId}/logs${queryParameters}`,
             this._baseUrl
@@ -1437,7 +1445,7 @@ export class PiWebserviceProvider {
     }
 
     whatIfScenariosUrl(filter: WhatIfScenariosFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
             this._baseUrl
@@ -1445,7 +1453,7 @@ export class PiWebserviceProvider {
     }
 
     whatIfTemplatesUrl(filter: WhatIfTemplatesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatiftemplates${queryParameters}`,
             this._baseUrl
@@ -1453,7 +1461,7 @@ export class PiWebserviceProvider {
     }
 
     postWhatIfScenarioUrl(filter: PostWhatIfScenarioFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
             this._baseUrl
@@ -1461,7 +1469,7 @@ export class PiWebserviceProvider {
     }
 
     componentSettingsUrl(filter: ComponentSettingsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config/componentsettings${queryParameters}`,
             this._baseUrl
@@ -1469,7 +1477,7 @@ export class PiWebserviceProvider {
     }
 
     forecasterNotesUrl(filter: ForecasterNotesFilter, action?: 'delete' | 'acknowledge' | 'unacknowledge'): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         if (action) {
             return new URL(
                 `${this._baseUrl.pathname}${this.API_ENDPOINT}/forecasternotes/${action}/${queryParameters}`,
@@ -1483,7 +1491,7 @@ export class PiWebserviceProvider {
     }
 
     fssInfoUrl(filter: FssInfoFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/fssinfo${queryParameters}`,
             this._baseUrl
@@ -1491,7 +1499,7 @@ export class PiWebserviceProvider {
     }
 
     forecastTimesUrl(filter: ForecastTimesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/workflows/forecasttimes${queryParameters}`,
             this._baseUrl
@@ -1499,7 +1507,7 @@ export class PiWebserviceProvider {
     }
 
     timeSeriesFilterActionsUrl(filter: FilterActionsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timeseries/filters/actions${queryParameters}`,
             this._baseUrl
@@ -1507,7 +1515,7 @@ export class PiWebserviceProvider {
     }
 
     timeStepsUrl(filter: TimeStepsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/timesteps${queryParameters}`,
             this._baseUrl
@@ -1515,7 +1523,7 @@ export class PiWebserviceProvider {
     }
 
     correlationUrl(filter: CorrelationFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/statistics/correlation${queryParameters}`,
             this._baseUrl
@@ -1523,7 +1531,7 @@ export class PiWebserviceProvider {
     }
 
     dataAnalysisDisplaysUrl(filter: DataAnalysisDisplaysFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/dataanalysisdisplays${queryParameters}`,
             this._baseUrl
@@ -1531,7 +1539,7 @@ export class PiWebserviceProvider {
     }
 
     taskRunStatusUrl(filter: TaskRunStatusFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/taskrunstatus${queryParameters}`,
             this._baseUrl
@@ -1539,7 +1547,7 @@ export class PiWebserviceProvider {
     }
 
     userSettingsUrl(filter: UserSettingsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings${queryParameters}`,
             this._baseUrl
@@ -1547,7 +1555,7 @@ export class PiWebserviceProvider {
     }
 
     postUserSettingsUrl(filter: PostUserSettingsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings${queryParameters}`,
             this._baseUrl
@@ -1555,7 +1563,7 @@ export class PiWebserviceProvider {
     }
     
     userSettingsUsersUrl(filter: UserSettingsUsersFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings/users${queryParameters}`,
             this._baseUrl
