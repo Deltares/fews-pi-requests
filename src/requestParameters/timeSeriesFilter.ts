@@ -32,7 +32,7 @@ export interface TimeSeriesFilter extends BaseTimeSeriesFilter {
     // (dateTime: yyyy-MM-ddTHH:mm:ssZ): Start time of search period that looks for time series produced by forecasts that have their forecast time within this period.
     startForecastTime?: string;
     // (string): Subset of task run ids for which to retrieve time series. This parameter has to be duplicated to specify multiple taskRuns.  N.B. cannot be used in combination with a filterId.
-    taskRunIds?: string | string[];
+    taskRunIds?: string;
     // (string): filter time series by the timestep that has been configured in the TimeSteps.xml. (since 2018.02). N.B.: It is not required to use the timeStepId's in the filter configurations to be able to use them as long as they have been configured in the TimeSteps.xml.
     timeStepId?: string;
     // (number): Default value is -1 in which case the index is not used.
