@@ -1,8 +1,14 @@
-import { splitUrl } from '../../../src/utils/splitUrl'
+import { mostValuesParameter, splitUrl } from '../../../src/utils/splitUrl'
 
 import { describe, it, expect } from 'vitest';
 
 describe("split url", function() {
+
+  it('selects the parameter with the most comma-separated values', function () {
+    const url = new URL('https://example.com/base?a=one,two,three&b=alpha,beta&c=single')
+    const parameter = mostValuesParameter(url)
+    expect(parameter).toBe('a')
+  })
 
   it("do not split with single duplicate shorter than max length", function() {
     const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1')
@@ -79,5 +85,52 @@ describe("split url", function() {
     const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1&c=blah&c=jfkjldsafj&d=II&d=I')
     expect(() => splitUrl(url, 80, 'd')).toThrow()
   });
+
+  it('splits comma-separated values when strategy is configured', function () {
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second')
+    const urls = splitUrl(url, 68, 'taskRunIds', false)
+
+    expect(urls).toHaveLength(2)
+    expect(urls[0].toString()).toBe('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first')
+    expect(urls[1].toString()).toBe('https://example.com/base?documentFormat=PI_JSON&taskRunIds=second')
+  })
+
+  it('uses most-values parameter when comma-separated strategy has no explicit split parameter', function () {
+    const url = new URL('https://example.com/base?a=1,2&taskRunIds=x,y,z')
+    const singleChunkCandidate = new URL('https://example.com/base?a=1,2')
+    singleChunkCandidate.searchParams.set('taskRunIds', 'x')
+    const maxLength = singleChunkCandidate.toString().length
+    const urls = splitUrl(url, maxLength, undefined, false)
+
+    expect(urls.length).toBeGreaterThan(1)
+    expect(urls.every((u) => u.searchParams.get('a') === '1,2')).toBe(true)
+    const taskRunIds = urls.flatMap((u) => (u.searchParams.get('taskRunIds') ?? '').split(','))
+    expect(taskRunIds).toStrictEqual(['x', 'y', 'z'])
+  })
+
+  it('does not split at exact max length but splits when one character shorter in comma-separated strategy', function () {
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second')
+    const exactLength = url.toString().length
+
+    const exactFit = splitUrl(url, exactLength, 'taskRunIds', false)
+    const oneShorter = splitUrl(url, exactLength - 1, 'taskRunIds', false)
+
+    expect(exactFit).toHaveLength(1)
+    expect(oneShorter).toHaveLength(2)
+  })
+
+  it('splits repeated params when repeat strategy is configured', function () {
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first&taskRunIds=second')
+    const urls = splitUrl(url, 69, 'taskRunIds', true)
+
+    expect(urls).toHaveLength(2)
+    expect(urls[0].toString()).toBe('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first')
+    expect(urls[1].toString()).toBe('https://example.com/base?documentFormat=PI_JSON&taskRunIds=second')
+  })
+
+  it('throws when comma-separated strategy cannot satisfy max length', function () {
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=verylongvalue')
+    expect(() => splitUrl(url, 40, 'taskRunIds', false)).toThrow()
+  })
 
 });

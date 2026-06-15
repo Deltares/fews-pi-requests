@@ -23,4 +23,17 @@ describe("/topology/actions", function () {    it("test topology actions", async
         expect(response.results[0].requests.length).toBe(9);
     })
 ;
+
+    it("applies queryParamsStrategy for topology actions URL serialization", function () {
+        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {
+            explodeQueryParameters: false
+        })
+
+        const url = provider.topologyActionsUrl({
+            nodeId: 'test',
+            taskRunIds: ['first', 'second']
+        })
+
+        expect(url.toString()).toBe("https://mock.dev/fewswebservices/rest/fewspiservice/v1/topology/actions?nodeId=test&taskRunIds=first%2Csecond")
+    });
 });
