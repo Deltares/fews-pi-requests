@@ -1,0 +1,19 @@
+{
+  "allSuccess": true,
+  "allFailed": false,
+  "allArrived": true,
+  "messages": [
+    {
+      "id": "1152921542240432919",
+      "arrived": "2026-06-04T12:23:29Z",
+      "status": "success",
+      "statusDescription": "sent"
+    },
+    {
+      "id": "1152921542240432920",
+      "arrived": "2026-06-04T12:23:29Z",
+      "status": "success",
+      "statusDescription": "sent"
+    }
+  ]
+}
