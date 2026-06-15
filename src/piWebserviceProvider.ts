@@ -85,7 +85,6 @@ import { convertToParameterGroups } from './output/parameters/convertToParameter
 import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './output/parameters/parameterOutputOptions'
 import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
-import type { QueryParamsStrategy } from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
 import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
@@ -99,7 +98,7 @@ import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.j
 export class PiWebserviceProvider {
     private _baseUrl: URL
     maxUrlLength: number
-    private readonly queryParamsStrategy: QueryParamsStrategy
+    private readonly explodeQueryParameters: boolean
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     webservice: PiRestService;
 
@@ -107,26 +106,26 @@ export class PiWebserviceProvider {
      * Constructor for PiWebserviceProvider
      *
      * @param url the base url where the PI service is available
-     * @param {Object} [options] Optional constructor options
-     * @param {number} [options.maxUrlLength] A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
-     * @param {'repeat-params' | 'comma-separated-values'} [options.queryParamsStrategy] Controls how taskRunIds arrays are serialized.
-     * @param {TransformRequestFunction} [options.transformRequestFn] A function that can be used to modify the Request
+     * @param options Optional constructor options
+     * @param options.maxUrlLength A number that specifies the maximum length of the URL. If the URL length exceeds this value, the requests will be split up.
+     * @param options.explodeQueryParameters Controls how taskRunIds arrays are serialized.
+     * @param options.transformRequestFn A function that can be used to modify the Request
      * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
      * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, options: {maxUrlLength?: number; queryParamsStrategy?: QueryParamsStrategy; transformRequestFn?: TransformRequestFunction} = {}) {
+    constructor(url: string, options: {maxUrlLength?: number; explodeQueryParameters?: boolean; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this._baseUrl = absoluteUrl(url)
         this.maxUrlLength = options.maxUrlLength ?? Infinity;
-        this.queryParamsStrategy = options.queryParamsStrategy ?? 'repeat-params'
+        this.explodeQueryParameters = options.explodeQueryParameters ?? true
         this.webservice = new PiRestService(url, options.transformRequestFn);
 
     }
 
     private buildQueryParams(filter: object): string {
-        return filterToParams(filter, this.queryParamsStrategy)
+        return filterToParams(filter, this.explodeQueryParameters)
     }
 
     /**
@@ -246,7 +245,7 @@ export class PiWebserviceProvider {
      * Request Time Series
      *
      * @param filter an object with request query parameters
-     * @returns Time Series PI API response      
+     * @returns Time Series PI API response
      * @throws 'Fetch Error' if fetch result is not ok
      */
     async getTimeSeriesTopologyActions(filter: TimeSeriesTopologyActionsFilter): Promise<TimeSeriesResponse> {
@@ -279,7 +278,7 @@ export class PiWebserviceProvider {
             const res = await this.webservice.getData<TimeSeriesResponse>(url.toString());
             return res.data;
         } else {
-            const urls = splitUrl(url, this.maxUrlLength, undefined, this.queryParamsStrategy);
+            const urls = splitUrl(url, this.maxUrlLength, undefined, this.explodeQueryParameters);
             const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()));
             return Promise.all(promises).then((responses) => {
                 const response = responses[0].data;
@@ -356,9 +355,9 @@ export class PiWebserviceProvider {
         if (url.toString().length <= this.maxUrlLength) {
             const res = await this.webservice.getData<TaskRunsResponse>(url.toString())
             return res.data
-        } 
+        }
 
-        const urls = splitUrl(url, this.maxUrlLength, undefined, this.queryParamsStrategy).map((u) => u.toString());
+        const urls = splitUrl(url, this.maxUrlLength, undefined, this.explodeQueryParameters).map((u) => u.toString());
         const promises = urls.map((url) => this.webservice.getData<TaskRunsResponse>(url));
         const responses = await Promise.all(promises)
 
@@ -386,7 +385,7 @@ export class PiWebserviceProvider {
     }
 
     /**
-     * Get all the active thresholds for the topology nodes 
+     * Get all the active thresholds for the topology nodes
      *
      * @param filter an object with request query parameters
      * @returns all the active thresholds for the topology nodes
@@ -639,7 +638,7 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getData<WhatIfTemplatesResponse>(url.toString());
         return res.data;
     }
-    
+
     /**
      * Get the component settings
      *
@@ -853,7 +852,7 @@ export class PiWebserviceProvider {
         const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser);
         return res.data;
     }
-    
+
     /**
      * Get the dynamic display for filter
      *
@@ -1152,7 +1151,7 @@ export class PiWebserviceProvider {
     /**
      * Construct URL for time series grid actions request
      * @param filter an object with request query parameters
-     * @returns 
+     * @returns
      */
     timeSeriesGridActionsUrl(filter: TimeSeriesGridActionsFilter): URL {
         const queryParameters = this.buildQueryParams(filter)
@@ -1260,7 +1259,7 @@ export class PiWebserviceProvider {
      * @returns complete url for making a request
      */
     webOcConfigurationUrl(filter: BaseFilter): URL {
-        const queryParameters = filterToParams(filter, this.queryParamsStrategy)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/weboc/config${queryParameters}`,
             this._baseUrl
@@ -1561,7 +1560,7 @@ export class PiWebserviceProvider {
             this._baseUrl
         )
     }
-    
+
     userSettingsUsersUrl(filter: UserSettingsUsersFilter): URL {
         const queryParameters = this.buildQueryParams(filter)
         return new URL(

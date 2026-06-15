@@ -11,7 +11,7 @@ describe('filterToParams', function () {
   it('serializes array values as comma-separated values when configured', function () {
     const query = filterToParams(
       { taskRunIds: ['first', 'second'] },
-      'comma-separated-values'
+      false
     )
 
     expect(query).toBe('?taskRunIds=first%2Csecond')

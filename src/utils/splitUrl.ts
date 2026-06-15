@@ -1,5 +1,4 @@
 import { duplicates } from './duplicates.js'
-import type { QueryParamsStrategy } from './filterToParams.js'
 
 function mostFrequentParameter(url: URL): string {
     const duplicateEntries = duplicates(Array.from(url.searchParams.keys()))
@@ -98,10 +97,11 @@ function splitUrlByRepeatedParams(url: URL, maxLength: number, parameter?: strin
     return urls
 }
 
-export function splitUrl(url: URL, maxLength = 2000, parameter?: string, queryParamsStrategy: QueryParamsStrategy = 'repeat-params'): URL[] {
+export function splitUrl(url: URL, maxLength = 2000, parameter?: string, explodeQueryParameters = true): URL[] {
     if (url.toString().length <= maxLength) return [url]
-    if (queryParamsStrategy === 'comma-separated-values') {
+    if (explodeQueryParameters) {
+        return splitUrlByRepeatedParams(url, maxLength, parameter)
+    } else {
         return splitUrlByCommaSeparatedValues(url, maxLength, parameter)
     }
-    return splitUrlByRepeatedParams(url, maxLength, parameter)
 }

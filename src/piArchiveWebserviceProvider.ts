@@ -31,6 +31,7 @@ const attributesForKey: { [key: string]: string } = {
 export class PiArchiveWebserviceProvider {
     private readonly baseUrl: URL
     private readonly maxUrlLength: number
+    private readonly explodeQueryParameters: boolean
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     private readonly webservice: PiRestService;
 
@@ -49,12 +50,13 @@ export class PiArchiveWebserviceProvider {
      * before it is sent to the server. This function takes a Request as a parameter and returns the modified Request.
      * If this option is not specified, the Request will be sent as is.
      */
-    constructor(url: string, options: {maxUrlLength?: number; transformRequestFn?: TransformRequestFunction} = {}) {
+    constructor(url: string, options: {maxUrlLength?: number; explodeQueryParameters?: boolean; transformRequestFn?: TransformRequestFunction} = {}) {
         if (!url.endsWith("/")) {
             url += "/"
         }
         this.baseUrl = absoluteUrl(url)
         this.maxUrlLength = options.maxUrlLength ?? Infinity;
+        this.explodeQueryParameters = options.explodeQueryParameters ?? true;
         this.webservice = new PiRestService(url, options.transformRequestFn);
     }
 
@@ -78,7 +80,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     parametersUrl(filter: ArchiveParametersFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/parameters${queryParameters}`,
             this.baseUrl
@@ -105,7 +107,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     locationsUrl(filter: ArchiveLocationsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/locations${queryParameters}`,
             this.baseUrl
@@ -132,7 +134,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     areasUrl(filter: BaseFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters  )
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/areas${queryParameters}`,
             this.baseUrl
@@ -159,7 +161,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     sourcesUrl(filter: BaseFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/sources${queryParameters}`,
             this.baseUrl
@@ -186,7 +188,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     attributesUrl(filter: AttributesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/attributes${queryParameters}`,
             this.baseUrl
@@ -200,7 +202,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     productsAttributesUrl(filter: ProductAttributesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/products/attributes${queryParameters}`,
             this.baseUrl
@@ -259,7 +261,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     externalForecastsUrl(filter: ExternalForecastsFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/archive/netcdfstorageforecasts${queryParameters}`,
             this.baseUrl
@@ -274,7 +276,7 @@ export class PiArchiveWebserviceProvider {
      * @throws 'Fetch Error' if fetch result is not ok
      */
     async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
-        const queryParameters = filterToParams(filter);
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters);
         const url = this.productsMetaDataUrl(queryParameters);
         const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString());
         return res.data;
@@ -332,7 +334,7 @@ export class PiArchiveWebserviceProvider {
      * @returns complete url for making a request
      */
     timeSeriesUrl(filter: TimeSeriesFilter): URL {
-        const queryParameters = filterToParams(filter)
+        const queryParameters = filterToParams(filter, this.explodeQueryParameters)
         return new URL(
             `${this.baseUrl.pathname}${this.API_ENDPOINT}/timeseries${queryParameters}`,
             this.baseUrl

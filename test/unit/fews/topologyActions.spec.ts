@@ -26,7 +26,7 @@ describe("/topology/actions", function () {    it("test topology actions", async
 
     it("applies queryParamsStrategy for topology actions URL serialization", function () {
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices", {
-            queryParamsStrategy: 'comma-separated-values'
+            explodeQueryParameters: false
         })
 
         const url = provider.topologyActionsUrl({
