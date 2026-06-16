@@ -1,10 +1,5 @@
 /* tslint:disable */
 
-export type StatusOfTheMessagePostRequestForExampleSuccessError = string;
-export type ErrorCode = string;
-export type OptionalStatusCode = number;
-export type ErrorMessage = string;
-
 /**
  * Response after a Topics Messages post request.
  */
@@ -15,14 +10,26 @@ export interface TopicsMessagesPostResponse {
   messages: TopicsMessagesPostResponse1[];
 }
 export interface TopicsMessagesPostResponse1 {
-  status: StatusOfTheMessagePostRequestForExampleSuccessError;
+  /**
+   * Status of the message post request. For example: success, error
+   */
+  status: string;
   /**
    * Optional errors
    */
   errors?: TopicsMessagesPostResponseError[];
 }
 export interface TopicsMessagesPostResponseError {
-  code?: ErrorCode;
-  statusCode?: OptionalStatusCode;
-  message: ErrorMessage;
+  /**
+   * Error code.
+   */
+  code?: string;
+  /**
+   * Optional status code.
+   */
+  statusCode?: number;
+  /**
+   * Error message.
+   */
+  message: string;
 }

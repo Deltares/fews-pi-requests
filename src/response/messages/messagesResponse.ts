@@ -1,20 +1,23 @@
 /* tslint:disable */
 
-export type IndicatesIfMessageWasSuccessfullySentToAllRecipients = boolean;
-export type IndicatesIfMessageFailedToBeSentToAllRecipients = boolean;
-export type IndicatesIfMessageArrivedAtAllRecipients = boolean;
 export type Status = "failed" | "success" | "unknown";
-export type OptionalDescriptionOfTheStatus = string;
-export type OptionalIdOfTheMessageThatWasSentToARecipient = string;
-export type DateTheMessageArrivedAtTheRecipientInUTCFormat = string;
 
 /**
  * Status of a posted message.
  */
 export interface MessagesResponse {
-  allSuccess?: IndicatesIfMessageWasSuccessfullySentToAllRecipients;
-  allFailed?: IndicatesIfMessageFailedToBeSentToAllRecipients;
-  allArrived?: IndicatesIfMessageArrivedAtAllRecipients;
+  /**
+   * Indicates if message was successfully sent to all recipients.
+   */
+  allSuccess?: boolean;
+  /**
+   * Indicates if message failed to be sent to all recipients.
+   */
+  allFailed?: boolean;
+  /**
+   * Indicates if message arrived at all recipients.
+   */
+  allArrived?: boolean;
   /**
    * Messages sent to recipients.
    */
@@ -22,7 +25,16 @@ export interface MessagesResponse {
 }
 export interface MessageResponse {
   status: Status;
-  statusDescription?: OptionalDescriptionOfTheStatus;
-  id?: OptionalIdOfTheMessageThatWasSentToARecipient;
-  arrived?: DateTheMessageArrivedAtTheRecipientInUTCFormat;
+  /**
+   * Optional description of the status.
+   */
+  statusDescription?: string;
+  /**
+   * Optional id of the message that was sent to a recipient.
+   */
+  id?: string;
+  /**
+   * Date the message arrived at the recipient in UTC format.
+   */
+  arrived?: string;
 }
