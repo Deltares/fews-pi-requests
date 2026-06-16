@@ -45,6 +45,8 @@ import type {
     PostUserSettingsFilter,
     UserSettingsUsersFilter,
     TimeStepsFilter,
+    MessagesFilter,
+    TopicsMessagesWithAttachments,
 } from "./requestParameters";
 import { DocumentFormat } from "./requestParameters/index.js";
 import type {
@@ -79,6 +81,8 @@ import type {
     UserSettingUsersResponse,
     WebOCMicroFrontEndsResponse,
     PermissionsResponse,
+    MessagesResponse,
+    TopicsMessagesPostResponse,
 } from "./response";
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
@@ -748,6 +752,25 @@ export class PiWebserviceProvider {
     async unacknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
         const url = this.forecasterNotesUrl({}, "unacknowledge")
         return await this.postForecasterNoteHelper(keys, url);
+    }
+
+    async getMessages(filter: MessagesFilter): Promise<MessagesResponse> {
+        const url = this.messagesUrl(filter)
+        const res = await this.webservice.getData<MessagesResponse>(url.toString())
+        return res.data
+    }
+
+    async postTopicMessage(topic: string, body: TopicsMessagesWithAttachments): Promise<TopicsMessagesPostResponse> {
+        const url = this.postTopicsMessagesUrl(topic)
+
+        const headers = {
+            'Content-Type': "application/json"
+        }
+        const parser = new DefaultParser<TopicsMessagesPostResponse>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.toString().startsWith("http")
+        const res = await this.webservice.postDataWithParser(url.toString(), requestOptions, parser, JSON.stringify(body), headers);
+        return res.data;
     }
 
     /**
@@ -1565,6 +1588,21 @@ export class PiWebserviceProvider {
         const queryParameters = this.buildQueryParams(filter)
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings/users${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    messagesUrl({ messageId, ...filter }: MessagesFilter): URL {
+        const queryParameters = filterToParams(filter)
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/messages/${messageId}${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    postTopicsMessagesUrl(topic: string) {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topics/${topic}/messages`,
             this._baseUrl
         )
     }

@@ -5,7 +5,7 @@ import fetchMock from "fetch-mock";
 
 import { describe, it, expect } from 'vitest';
 
-describe("taskRunStatus", function () {  it("it returns permissions with correct types", async function () {
+describe("permissions", function () {  it("it returns permissions with correct types", async function () {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/permissions?documentFormat=PI_JSON",
       {
