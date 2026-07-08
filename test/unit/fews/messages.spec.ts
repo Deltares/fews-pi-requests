@@ -8,7 +8,7 @@ import { describe, it, expect } from 'vitest'
 describe('messages', function () {
   it('it returns messages with correct types', async function () {
     fetchMock.get(
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/messages/testMessageId',
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/topics/testTopicId/messages/testMessageId',
       {
         status: 200,
         body: expectedResponse,
@@ -20,6 +20,7 @@ describe('messages', function () {
     )
 
     const results = await provider.getMessages({
+      topicId: 'testTopicId',
       messageId: 'testMessageId',
     })
     expect(results).toStrictEqual(expectedResponse)

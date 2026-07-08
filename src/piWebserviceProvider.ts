@@ -1592,17 +1592,17 @@ export class PiWebserviceProvider {
         )
     }
 
-    messagesUrl({ messageId, ...filter }: MessagesFilter): URL {
+    messagesUrl({ topicId, messageId, ...filter }: MessagesFilter): URL {
         const queryParameters = filterToParams(filter)
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/messages/${messageId}${queryParameters}`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topics/${topicId}/messages/${messageId}${queryParameters}`,
             this._baseUrl
         )
     }
 
-    postTopicsMessagesUrl(topic: string) {
+    postTopicsMessagesUrl(topicId: string) {
         return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topics/${topic}/messages`,
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/topics/${topicId}/messages`,
             this._baseUrl
         )
     }
