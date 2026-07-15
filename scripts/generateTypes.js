@@ -199,10 +199,14 @@ const generateTypes = async (schemas) => {
 
 const type = process.argv[2]
 
-if (type === 'pi') {
-  generateTypes(piSchemas)
-} else if (type === 'archive') {
-  generateTypes(archiveSchemas)
-} else {
-  console.error('Invalid argument. Use "pi" or "archive".')
+const run = async () => {
+  if (type === 'pi') {
+    await generateTypes(piSchemas)
+  } else if (type === 'archive') {
+    await generateTypes(archiveSchemas)
+  } else {
+    console.error('Invalid argument. Use "pi" or "archive".')
+  }
 }
+
+await run()

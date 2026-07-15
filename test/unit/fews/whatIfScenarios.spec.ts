@@ -45,7 +45,7 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
 
     const results = await provider.getWhatIfScenarios(filter);
     expect(results).toEqual(expectedResponse);
-    expect(results.whatIfScenarioDescriptors.length).toBe(2);
+    expect(results.whatIfScenarioDescriptors).toHaveLength(2);
     expect(results.whatIfScenarioDescriptors[0].id).toBe("id1");
     expect(results.whatIfScenarioDescriptors[0].name).toBe("triple_the_surge");
     expect(results.whatIfScenarioDescriptors[0].whatIfTemplateId).toBe(

@@ -91,17 +91,15 @@ import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsO
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
 import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
-import type { ResponseParser, TransformRequestFunction } from "@deltares/fews-web-oc-utils";
-// @ts-expect-error Cannot find module
-import type { DataRequestResult } from "@deltares/fews-web-oc-utils";
+import type { ResponseParser, TransformRequestFunction, DataRequestResult } from "@deltares/fews-web-oc-utils";
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 import { DocumentDisplaysResponse } from './response/documentdisplays'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
 import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.js'
 
 export class PiWebserviceProvider {
-    private _baseUrl: URL
-    maxUrlLength: number
+    private readonly _baseUrl: URL
+    private readonly maxUrlLength: number
     private readonly explodeQueryParameters: boolean
     readonly API_ENDPOINT = 'rest/fewspiservice/v1';
     webservice: PiRestService;
@@ -1483,11 +1481,7 @@ export class PiWebserviceProvider {
     }
 
     postWhatIfScenarioUrl(filter: PostWhatIfScenarioFilter): URL {
-        const queryParameters = this.buildQueryParams(filter)
-        return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/whatifscenarios${queryParameters}`,
-            this._baseUrl
-        )
+        return this.whatIfScenariosUrl(filter)
     }
 
     componentSettingsUrl(filter: ComponentSettingsFilter): URL {
@@ -1577,11 +1571,7 @@ export class PiWebserviceProvider {
     }
 
     postUserSettingsUrl(filter: PostUserSettingsFilter): URL {
-        const queryParameters = this.buildQueryParams(filter)
-        return new URL(
-            `${this._baseUrl.pathname}${this.API_ENDPOINT}/usersettings${queryParameters}`,
-            this._baseUrl
-        )
+        return this.userSettingsUrl(filter)
     }
 
     userSettingsUsersUrl(filter: UserSettingsUsersFilter): URL {
