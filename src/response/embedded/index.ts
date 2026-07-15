@@ -1,3 +1,3 @@
-export * from './whatIfTemplatesResponse.js'
-export * from './whatIfScenarioDescriptorsResponse.js'
-export * from './whatIfScenarioDescriptorResponse.js'
+export type { WhatIfTemplatesResponse, WhatIfTemplate } from './whatIfTemplatesResponse.js'
+export type { WhatIfScenarioDescriptorsResponse, WhatIfScenarioDescriptor } from './whatIfScenarioDescriptorsResponse.js'
+export type { PostWhatIfScenarioResponse } from './whatIfScenarioDescriptorResponse.js'

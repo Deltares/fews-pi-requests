@@ -120,13 +120,9 @@ export interface TimeSeriesDisplaySubplotItem {
    */
   thresholds?: TimeSeriesDisplaySubplotItemThreshold[];
   /**
-   * Key of the request. Only used if there is only one request.
+   * Key of the request.
    */
   request?: string;
-  /**
-   * Array with the keys of the requests. Only used if there are multiple requests.
-   */
-  requests?: string[];
 }
 export interface ClassBreaks {
   lowerValue: number;

@@ -95,21 +95,18 @@ const piSchemas = [
     url: `${config.url}/pi_rest_workflow_fss_info.json`,
     output: 'src/response/workflows/fssInfoResponse.ts',
   },
-  // {
-  //   url: `${config.url}/pi_rest_document_displays.json`,
-  //   output: "src/response/documentdisplays/documentDisplaysResponse.ts"
-  // },
-  // FIXME: Currently the backend does not have the correct type for enum value's
-  // {
-  //   url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
-  //   output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
-  // },
-  // FIXME: Currently having the type: const in the json schema is quite difficult.
-  //        The backend tests give errors.
-  // {
-  //   url: `${config.url}/pi_rest_whatiftemplates.json`,
-  //   output: "src/response/embedded/whatIfTemplatesResponse.ts",
-  // }
+  {
+    url: `${config.url}/pi_rest_document_displays.json`,
+    output: "src/response/documentdisplays/documentDisplaysResponse.ts"
+  },
+  {
+    url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
+    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
+  },
+  {
+    url: `${config.url}/pi_rest_whatiftemplates.json`,
+    output: "src/response/embedded/whatIfTemplatesResponse.ts",
+  },
   {
     url: `${config.url}/pi_rest_timesteps.json`,
     output: 'src/response/timeseries/timestepsResponse.ts',
@@ -122,10 +119,10 @@ const piSchemas = [
     url: `${config.url}/pi_rest_statistics_correlation.json`,
     output: 'src/response/statistics/correlationResponse.ts',
   },
-  // {
-  //   url: `${config.url}/pi_rest_data_analysis_displays.json`,
-  //   output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
-  // },
+  {
+    url: `${config.url}/pi_rest_data_analysis_displays.json`,
+    output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
+  },
   {
     url: `${config.url}/pi_rest_taskrunstatus.json`,
     output: 'src/response/tasks/taskRunStatusResponse.ts',

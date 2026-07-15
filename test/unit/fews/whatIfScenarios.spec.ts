@@ -9,6 +9,23 @@ import fetchMock from "fetch-mock";
 
 import { describe, it, expect } from 'vitest';
 
+function isPropertyWithValue(property: unknown): property is { value: string | number | boolean } {
+  return (
+    property !== null &&
+    typeof property === "object" &&
+    "value" in property
+  );
+}
+
+function expectPropertyValue(
+  property: unknown,
+  expected: string | number | boolean
+): void {
+  expect(property).toBeDefined();
+  expect(isPropertyWithValue(property)).toBe(true);
+  expect((property as { value: string | number | boolean }).value).toBe(expected);
+}
+
 describe("whatIfScenarios", function () {  it("gets called when done", async () => {
     fetchMock.get(
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios?documentFormat=PI_JSON",
@@ -41,18 +58,14 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[0].properties?.[0].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[0].properties?.[0].value).toBe(
-      0.0
-    );
+    expectPropertyValue(results.whatIfScenarioDescriptors[0].properties?.[0], 0.0);
     expect(results.whatIfScenarioDescriptors[0].properties?.[1].id).toBe(
       "MULTIPLY_SURGE"
     );
     expect(results.whatIfScenarioDescriptors[0].properties?.[1].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[0].properties?.[1].value).toBe(
-      3.0
-    );
+    expectPropertyValue(results.whatIfScenarioDescriptors[0].properties?.[1], 3.0);
 
     expect(results.whatIfScenarioDescriptors[1].id).toBe("id2");
     expect(results.whatIfScenarioDescriptors[1].name).toBe("offset_by_minus_1");
@@ -66,17 +79,13 @@ describe("whatIfScenarios", function () {  it("gets called when done", async () 
     expect(results.whatIfScenarioDescriptors[1].properties?.[0].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[1].properties?.[0].value).toBe(
-      -1.0
-    );
+    expectPropertyValue(results.whatIfScenarioDescriptors[1].properties?.[0], -1.0);
     expect(results.whatIfScenarioDescriptors[1].properties?.[1].id).toBe(
       "MULTIPLY_SURGE"
     );
     expect(results.whatIfScenarioDescriptors[1].properties?.[1].type).toBe(
       "number"
     );
-    expect(results.whatIfScenarioDescriptors[1].properties?.[1].value).toBe(
-      1.0
-    );
+    expectPropertyValue(results.whatIfScenarioDescriptors[1].properties?.[1], 1.0);
   });
 });
