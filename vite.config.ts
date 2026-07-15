@@ -1,6 +1,5 @@
 import { resolve } from 'node:path'
 
-import rollupPluginTypescript from '@rollup/plugin-typescript'
 import { defineConfig } from 'vite'
 
 function resolveRelativePath(relative: string): string {
@@ -14,16 +13,6 @@ export default defineConfig({
       formats: ['es'],
       name: 'fews-pi-requests',
       fileName: 'fews-pi-requests'
-    },
-    rollupOptions: {
-      plugins: [
-        rollupPluginTypescript({
-          allowImportingTsExtensions: false,
-          declaration: true,
-          declarationDir: resolveRelativePath('dist'),
-          rootDir: resolveRelativePath('src')
-        })
-      ]
     }
   }
 })
