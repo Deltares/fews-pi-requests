@@ -1,7 +1,5 @@
 /* tslint:disable */
 
-export type Status = "failed" | "success" | "unknown";
-
 /**
  * Status of a posted message.
  */
@@ -24,7 +22,10 @@ export interface MessagesResponse {
   messages: MessageResponse[];
 }
 export interface MessageResponse {
-  status: Status;
+  /**
+   * Status
+   */
+  status: "failed" | "success" | "unknown";
   /**
    * Optional description of the status.
    */

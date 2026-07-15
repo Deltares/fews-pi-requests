@@ -1,16 +1,12 @@
-import type {
-  LogLevel,
-  LogMessage,
-  UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser,
-} from "./forecasterNoteBody";
+import type { ForecasterNoteRequest } from './forecasterNoteBody'
 
-export interface LogDisplayLogsActionRequest {
+export interface LogDisplayLogsActionRequest extends Pick<
+  ForecasterNoteRequest,
+  'logMessage' | 'logLevel' | 'userId'
+> {
   /**
    * the id of the log display
    */
-  logDisplayId: string;
-  actionId: string;
-  logMessage: LogMessage;
-  logLevel?: LogLevel;
-  userId?: UserIdIfTheWebserviceHasBeenSetupWithAuthenticationAnyPassedUserIdWillBeOverruledByTheAuthenticatedUser;
+  logDisplayId: string
+  actionId: string
 }

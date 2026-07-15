@@ -5,6 +5,23 @@ import { PostWhatIfScenarioFilter } from "../../../src/requestParameters/postWha
 
 import { describe, it, expect } from 'vitest';
 
+function isPropertyWithValue(property: unknown): property is { value: string | number | boolean } {
+  return (
+    property !== null &&
+    typeof property === "object" &&
+    "value" in property
+  );
+}
+
+function expectPropertyValue(
+  property: unknown,
+  expected: string | number | boolean
+): void {
+  expect(property).toBeDefined();
+  expect(isPropertyWithValue(property)).toBe(true);
+  expect((property as { value: string | number | boolean }).value).toBe(expected);
+}
+
 describe("postWhatIfScenario", function () {  it("generates a valid postWhatIfScenario request", async function () {
     const baseUrl =
       "https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios";
@@ -39,9 +56,9 @@ describe("postWhatIfScenario", function () {  it("generates a valid postWhatIfSc
     expect(results.properties?.length).toBe(2);
     expect(results.properties?.[0].id).toBe("ADD_SURGE");
     expect(results.properties?.[0].type).toBe("number");
-    expect(results.properties?.[0].value).toBe(0);
+    expectPropertyValue(results.properties?.[0], 0);
     expect(results.properties?.[1].id).toBe("MULTIPLY_SURGE");
     expect(results.properties?.[1].type).toBe("number");
-    expect(results.properties?.[1].value).toBe(3);
+    expectPropertyValue(results.properties?.[1], 3);
   });
 });
