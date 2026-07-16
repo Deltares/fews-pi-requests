@@ -22,7 +22,7 @@ function isParameter(parameter: Parameter | unknown): parameter is Parameter { /
 function isParameterGroup(
   parameter: ParameterGroup | unknown, // NOSONAR(S6571) - Unknown type in type guard is recommended
 ): parameter is ParameterGroup {
-  return (parameter as ParameterGroup).parameters !== undefined
+  return parameter !== undefined && (parameter as ParameterGroup).parameters !== undefined
 }
 
 function toParameter(parameter: Parameter): Parameter {
