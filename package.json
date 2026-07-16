@@ -33,7 +33,7 @@
     "sonar": "sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_KEY -Dsonar.projectName='Delft-FEWS Web OC PI Requests'"
   },
   "dependencies": {
-    "@deltares/fews-web-oc-utils": "^2.0.2"
+    "@deltares/fews-web-oc-utils": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.19.7",

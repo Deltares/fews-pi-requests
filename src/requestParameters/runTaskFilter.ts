@@ -26,10 +26,9 @@ export interface RunTaskFilter extends BaseFilter {
      */
     scenarioId?: string;
     /**
-     * User id of the user that runs the task.
-     * TODO: not optional according to the documentation
-     */
-    userId?: string;
+     * User id of the user that runs the task. 
+     */ 
+    userId: string;
     /**
      * Descriptive text to identify run.
      */

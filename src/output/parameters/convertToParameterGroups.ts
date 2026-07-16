@@ -9,7 +9,7 @@ import type { ParameterGroup } from './parameterGroup'
  * @param {Parameter | any} parameter - The value to be checked.
  * @returns {boolean} True if the value is of type Parameter, false otherwise.
  */
-function isParameter(parameter: Parameter | unknown): parameter is Parameter {
+function isParameter(parameter: Parameter | unknown): parameter is Parameter { // NOSONAR(S6571) - Unknown type in type guard is recommended
   return (parameter as Parameter).name !== undefined
 }
 
@@ -20,9 +20,41 @@ function isParameter(parameter: Parameter | unknown): parameter is Parameter {
  * @returns {boolean} True if the value is of type ParameterGroup, false otherwise.
  */
 function isParameterGroup(
-  parameter: ParameterGroup | unknown,
+  parameter: ParameterGroup | unknown, // NOSONAR(S6571) - Unknown type in type guard is recommended
 ): parameter is ParameterGroup {
-  return (parameter as ParameterGroup).parameters !== undefined
+  return parameter !== undefined && (parameter as ParameterGroup).parameters !== undefined
+}
+
+function toParameter(parameter: Parameter): Parameter {
+  return {
+    id: parameter.id,
+    name: parameter.name,
+    shortName: parameter.shortName,
+  }
+}
+
+function toParameterGroup(parameter: {
+  parameterGroup: string
+  parameterType?: string
+  unit?: string
+  displayUnit?: string
+  usesDatum?: string
+}): ParameterGroup {
+  const parameterGroup: ParameterGroup = {
+    id: parameter.parameterGroup,
+    parameterType:
+      parameter.parameterType === 'instantaneous'
+        ? 'instantaneous'
+        : 'accumulative',
+    unit: parameter.unit ?? '',
+    parameters: [],
+  }
+
+  if (parameter.displayUnit !== parameter.unit)
+    parameterGroup.displayUnit = parameter.displayUnit
+  if (parameter.usesDatum === 'true') parameterGroup.usesDatum = true
+
+  return parameterGroup
 }
 
 /**
@@ -34,55 +66,40 @@ function isParameterGroup(
 export function convertToParameterGroups(
   response: TimeSeriesParametersResponse,
 ): ParameterGroupsOutput {
-  const groupIds: string[] = []
+  const groupsById = new Map<string, ParameterGroup>()
   const result: ParameterGroupsOutput = {
     parameters: [],
   }
+
   for (const tsParameter of response.timeSeriesParameters) {
     const parameterGroupId = tsParameter.parameterGroup
-    if (parameterGroupId !== undefined && groupIds.includes(parameterGroupId)) {
-      const group = result.parameters.find(
-        (g) => 'parameters' in g && g.id === parameterGroupId,
-      )
-      if (isParameterGroup(group) && isParameter(tsParameter)) {
-        const parameter: Parameter = {
-          id: tsParameter.id,
-          name: tsParameter.name,
-          shortName: tsParameter.shortName,
-        }
-        group.parameters.push(parameter)
-      }
-    } else if (parameterGroupId !== undefined) {
-      groupIds.push(parameterGroupId)
-      const parameterGroup: ParameterGroup = {
-        id: parameterGroupId,
-        parameterType:
-          tsParameter.parameterType === 'instantaneous'
-            ? 'instantaneous'
-            : 'accumulative',
-        unit: tsParameter.unit ?? '',
-        parameters: [],
-      }
-      if (tsParameter.displayUnit !== tsParameter.unit)
-        parameterGroup.displayUnit = tsParameter.displayUnit
-      if (tsParameter.usesDatum === 'true') parameterGroup.usesDatum = true
-      if (isParameter(tsParameter)) {
-        const parameter: Parameter = {
-          id: tsParameter.id,
-          name: tsParameter.name,
-          shortName: tsParameter.shortName,
-        }
-        parameterGroup.parameters.push(parameter)
-      }
-      result.parameters.push(parameterGroup)
-    } else if (isParameter(tsParameter)) {
-      const parameter: Parameter = {
-        id: tsParameter.id,
-        name: tsParameter.name,
-        shortName: tsParameter.shortName,
-      }
-      result.parameters.push(parameter)
+
+    if (parameterGroupId === undefined) {
+      if (isParameter(tsParameter)) result.parameters.push(toParameter(tsParameter))
+      continue
     }
+
+    const existingGroup = groupsById.get(parameterGroupId)
+    if (isParameterGroup(existingGroup)) {
+      if (isParameter(tsParameter)) existingGroup.parameters.push(toParameter(tsParameter))
+      continue
+    }
+
+    const parameterGroup = toParameterGroup({
+      parameterGroup: parameterGroupId,
+      parameterType: tsParameter.parameterType,
+      unit: tsParameter.unit,
+      displayUnit: tsParameter.displayUnit,
+      usesDatum: tsParameter.usesDatum,
+    })
+
+    if (isParameter(tsParameter)) {
+      parameterGroup.parameters.push(toParameter(tsParameter))
+    }
+
+    groupsById.set(parameterGroupId, parameterGroup)
+    result.parameters.push(parameterGroup)
   }
+
   return result
 }
