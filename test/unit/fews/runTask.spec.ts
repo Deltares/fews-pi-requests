@@ -12,6 +12,7 @@ describe("runtask", function () {    it("generates a valid runtask POST request"
         const endTime = '2014-01-01T00:30:00Z+0000'
         const fileName = 'exportFile'
         const outputValue = 9.0
+        const userId = 'test-user'
 
         const expectedResponse = "1_0"
 
@@ -23,7 +24,7 @@ describe("runtask", function () {    it("generates a valid runtask POST request"
         const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
 
         const filter: RunTaskFilter = {
-            workflowId, startTime, timeZero, endTime, properties: { fileName, outputValue }
+            workflowId, startTime, timeZero, endTime, userId, properties: { fileName, outputValue }
         }
         const results = await provider.postRunTask(filter, '');
         expect(results).toStrictEqual(expectedResponse);

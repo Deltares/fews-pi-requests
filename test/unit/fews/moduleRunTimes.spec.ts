@@ -20,6 +20,7 @@ describe("moduleRunTimes", function () {  it("gets called when done", async () =
 
     const filter: ModuleRuntimesFilter = {
         documentFormat: DocumentFormat.PI_JSON,
+      includeManualTasks: false,
     }
 
     const results = await provider.getModuleRunTimes(filter);
