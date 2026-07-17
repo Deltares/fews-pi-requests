@@ -16,7 +16,7 @@ describe("runtask", function () {    it("generates a valid runtask POST request"
 
         const expectedResponse = "1_0"
 
-        fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&property(fileName)=exportFile&property(outputValue)=9", {
+        fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&userId=test-user&property(fileName)=exportFile&property(outputValue)=9", {
             status: 200,
             body: expectedResponse
         });

@@ -7,7 +7,7 @@ import { describe, it, expect } from 'vitest';
 
 describe("moduleRunTimes", function () {  it("gets called when done", async () => {
     fetchMock.get(
-      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/moduleruntimes?documentFormat=PI_JSON",
+      "https://mock.dev/fewswebservices/rest/fewspiservice/v1/moduleruntimes?documentFormat=PI_JSON&includeManualTasks=false",
       {
         status: 200,
         body: JSON.stringify(expectedResponse),
