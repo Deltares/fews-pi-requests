@@ -65,7 +65,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "rc",
     "registry": "https://registry.npmjs.org"
   },
   "overrides": {
