@@ -1,0 +1,20 @@
+{
+  "exportStatus": [
+    {
+      "mcId": "MC1",
+      "workflowId": "ExportWorkflow",
+      "taskRunId": "task-001",
+      "workflowName": "Export Workflow",
+      "suspended": false,
+      "directory": "/export/data",
+      "dataFeed": "export-feed-1",
+      "dataFeedName": "Export Feed 1",
+      "dataFeedDescription": "First export data feed",
+      "lastExportTime": "2024-01-15T12:00:00Z",
+      "lastFileExported": "export_20240115.nc",
+      "fileExported": 42,
+      "fileFailed": 0,
+      "lastExportTimeBackgroundColor": "#00FF00"
+    }
+  ]
+}
