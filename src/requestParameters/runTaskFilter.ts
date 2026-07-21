@@ -28,7 +28,7 @@ export interface RunTaskFilter extends BaseFilter {
     /**
      * User id of the user that runs the task. 
      */ 
-    userId: string;
+    userId?: string;
     /**
      * Descriptive text to identify run.
      */
