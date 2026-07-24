@@ -17,9 +17,10 @@ export interface ExportStatus {
   dataFeed: string;
   dataFeedName?: string;
   dataFeedDescription?: string;
-  lastExportTime?: string;
-  lastFileExported: string;
-  fileExported: number;
-  fileFailed: number;
-  lastExportTimeBackgroundColor?: string;
+  lastSuccessfulTime?: string;
+  lastSuccessfulFile: string;
+  filesSuccessfulCount: number;
+  filesFailedCount: number;
+  lastSuccessfulTimeBackgroundColor?: string;
+  label?: string;
 }
