@@ -2,6 +2,7 @@ import type {TimeSeriesResponse} from './response/timeseries'
 import type {ModuleRuntimesResponse, TaskRunsResponse} from './response/tasks'
 import type {LocationsResponse} from './response/locations'
 import type {ImportStatusResponse} from './response/importStatus'
+import type {ExportStatusResponse} from './response/exportStatus'
 import type {VersionResponse} from './response/version'
 
 import type {
@@ -408,6 +409,18 @@ export class PiWebserviceProvider {
     async getImportStatus(): Promise<ImportStatusResponse> {
         const url = this.importStatusUrl();
         const res = await this.webservice.getData<ImportStatusResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the export status
+     *
+     * @returns export status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getExportStatus(): Promise<ExportStatusResponse> {
+        const url = this.exportStatusUrl();
+        const res = await this.webservice.getData<ExportStatusResponse>(url.toString());
         return res.data;
     }
 
@@ -1231,6 +1244,19 @@ export class PiWebserviceProvider {
         const queryParameters = "documentFormat=PI_JSON"
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/import/status?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for export status request
+     *
+     * @returns complete url for making a request
+     */
+    exportStatusUrl(): URL {
+        const queryParameters = "documentFormat=PI_JSON"
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/export/status?${queryParameters}`,
             this._baseUrl
         )
     }

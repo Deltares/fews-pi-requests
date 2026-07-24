@@ -1,26 +1,26 @@
 /* tslint:disable */
 
 /**
- * ImportStatusResponse PI_JSON
+ * ExportStatusResponse PI_JSON
  */
-export interface ImportStatusResponse {
-  importStatus: ImportStatus[];
+export interface ExportStatusResponse {
+  exportStatus: ExportStatus[];
   [k: string]: unknown;
 }
-export interface ImportStatus {
+export interface ExportStatus {
   mcId: string;
-  taskRunId?: string;
   workflowId?: string;
+  taskRunId?: string;
   workflowName?: string;
+  suspended?: boolean;
   directory?: string;
-  suspended: boolean;
   dataFeed: string;
   dataFeedName?: string;
   dataFeedDescription?: string;
-  lastSuccessfulTime: string;
+  lastSuccessfulTime?: string;
   lastSuccessfulFile: string;
   filesSuccessfulCount: number;
   filesFailedCount: number;
-  lastSuccessfulTimeBackgroundColor: string;
-  label: string;
+  lastSuccessfulTimeBackgroundColor?: string;
+  label?: string;
 }
