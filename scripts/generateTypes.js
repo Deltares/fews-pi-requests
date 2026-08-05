@@ -44,6 +44,10 @@ const piSchemas = [
     output: 'src/response/importStatus/importStatusResponse.ts',
   },
   {
+    url: `${config.url}/pi_rest_export_status.json`,
+    output: 'src/response/exportStatus/exportStatusResponse.ts',
+  },
+  {
     url: `${config.url}/pi_rest_timeseries.json`,
     output: 'src/response/timeseries/timeSeriesResponse.ts',
   },
