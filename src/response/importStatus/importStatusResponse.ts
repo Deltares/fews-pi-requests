@@ -12,15 +12,15 @@ export interface ImportStatus {
   taskRunId?: string;
   workflowId?: string;
   workflowName?: string;
-  directory?: string;
-  suspended: boolean;
+  directory: string;
+  suspended?: boolean;
   dataFeed: string;
   dataFeedName?: string;
   dataFeedDescription?: string;
-  lastSuccessfulTime: string;
+  lastSuccessfulTime?: string;
   lastSuccessfulFile: string;
   filesSuccessfulCount: number;
   filesFailedCount: number;
-  lastSuccessfulTimeBackgroundColor: string;
-  label: string;
+  lastSuccessfulTimeBackgroundColor?: string;
+  label?: string;
 }

@@ -13,7 +13,7 @@ export interface ExportStatus {
   taskRunId?: string;
   workflowName?: string;
   suspended?: boolean;
-  directory?: string;
+  directory: string;
   dataFeed: string;
   dataFeedName?: string;
   dataFeedDescription?: string;
