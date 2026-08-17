@@ -10,11 +10,13 @@
       "dataFeed": "export-feed-1",
       "dataFeedName": "Export Feed 1",
       "dataFeedDescription": "First export data feed",
-      "lastExportTime": "2024-01-15T12:00:00Z",
-      "lastFileExported": "export_20240115.nc",
-      "fileExported": 42,
-      "fileFailed": 0,
-      "lastExportTimeBackgroundColor": "#00FF00"
+      "lastSuccessfulTime": "2024-01-15T12:00:00Z",
+      "lastSuccessfulFile": "export_20240115.nc",
+      "filesSuccessfulCount": 42,
+      "filesFailedCount": 0,
+      "lastSuccessfulTimeBackgroundColor": "#00FF00",
+      "status": "success"
     }
   ]
 }
+

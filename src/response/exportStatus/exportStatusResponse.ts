@@ -22,5 +22,5 @@ export interface ExportStatus {
   filesSuccessfulCount: number;
   filesFailedCount: number;
   lastSuccessfulTimeBackgroundColor?: string;
-  label?: string;
+  status?: string;
 }
