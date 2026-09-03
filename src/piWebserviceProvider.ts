@@ -453,6 +453,21 @@ export class PiWebserviceProvider {
     }
 
     /**
+     * Get the last refresh time of FEWS
+     *
+     * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getLastRefreshTime(): Promise<string> {
+        const url = this.lastRefreshTimeUrl().toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url.toString(), requestOptions, parser);
+        return res.data;
+    }
+
+    /**
      * Get all permissions and whether the current user has them assigned
      *
      * @returns import status API response
@@ -1297,6 +1312,18 @@ export class PiWebserviceProvider {
     systemTimeUrl(): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/systemtime`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for last refresh time
+     *
+     * @returns complete url for making a request
+     */
+    lastRefreshTimeUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/lastrefreshtime`,
             this._baseUrl
         )
     }
