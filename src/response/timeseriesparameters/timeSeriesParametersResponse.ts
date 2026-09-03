@@ -3,7 +3,7 @@
 /**
  * Is a datum used
  */
-export type UseDatum = "true" | "false";
+export type UseDatum = 'true' | 'false'
 
 /**
  * TimeSeriesParameters PI_JSON
@@ -12,78 +12,78 @@ export interface TimeSeriesParametersResponse {
   /**
    * PI Version
    */
-  version: string;
+  version: string
   /**
    * TimeSeriesParameters
    */
-  timeSeriesParameters: TimeSeriesParameter[];
+  timeSeriesParameters: TimeSeriesParameter[]
 }
 export interface TimeSeriesParameter {
   /**
    * the id of the parameter
    */
-  id: string;
+  id: string
   /**
    * The parameter name
    */
-  name?: string;
+  name?: string
   /**
    * The parameter type
    */
-  parameterType?: string;
+  parameterType?: string
   /**
    * The parameter unit
    */
-  unit?: string;
+  unit?: string
   /**
    * The parameter display unit
    */
-  displayUnit?: string;
-  usesDatum?: UseDatum;
+  displayUnit?: string
+  usesDatum?: UseDatum
   /**
    * The id of the parameter group this parameter is a member of
    */
-  parameterGroup?: string;
+  parameterGroup?: string
   /**
    * The name of parameter group this parameter is a member of
    */
-  parameterGroupName?: string;
+  parameterGroupName?: string
   /**
    * The parameter group this parameter is a member of
    */
-  shortName?: string;
+  shortName?: string
   /**
    * Parameter Attributes
    */
-  attributes?: TimeSeriesParameterAttributes[];
+  attributes?: TimeSeriesParameterAttributes[]
 }
 export interface TimeSeriesParameterAttributes {
   /**
    * Name
    */
-  name: string;
+  name: string
   /**
    * Description
    */
-  description?: string;
+  description?: string
   /**
    * Type
    */
-  type?: "text" | "boolean" | "number" | "dateTime";
+  type?: 'text' | 'boolean' | 'number' | 'dateTime'
   /**
    * Id
    */
-  id?: string;
+  id?: string
   /**
    * Start date time
    */
-  startDateTime?: string;
+  startDateTime?: string
   /**
    * End date time
    */
-  endDateTime?: string;
+  endDateTime?: string
   /**
    * Value
    */
-  value?: string;
+  value?: string
 }

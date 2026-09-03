@@ -1,12 +1,12 @@
-import type { Records } from "./records";
-import type { Task } from "./task";
+import type { Records } from './records'
+import type { Task } from './task'
 
 export interface ScheduledTasksResponse extends Records {
-  tasks:             Task[];
+  tasks: Task[]
   // Are there any remote Master Controllers available in the response. Can be used to filter out the mcId column.
-  remoteMcAvailable: boolean;
+  remoteMcAvailable: boolean
   // Are there any whatIf scenario’s available in the resonsponse
-  whatIfAvailable:   boolean;
+  whatIfAvailable: boolean
   // Are there any tags available in the response
-  tagAvailable:      boolean;
+  tagAvailable: boolean
 }

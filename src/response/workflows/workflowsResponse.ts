@@ -7,31 +7,31 @@ export interface WorkflowResponse {
   /**
    * Workflows
    */
-  workflows: Workflow[];
+  workflows: Workflow[]
 }
 export interface Workflow {
   /**
    * the id of the workflow
    */
-  id: string;
+  id: string
   /**
    * The name of the workflow
    */
-  name: string;
+  name: string
   /**
    * The description of the workflow
    */
-  description: string;
+  description: string
   /**
    * The whatif template id
    */
-  whatIfTemplateId?: string;
+  whatIfTemplateId?: string
   /**
    * the minimum forecast length of the workflow
    */
-  minimumForecastLength?: string;
+  minimumForecastLength?: string
   /**
    * the maximum forecast length of the workflow
    */
-  maximumForecastLength?: string;
+  maximumForecastLength?: string
 }

@@ -1,18 +1,24 @@
 {
-  "archiveAttributes" : [ {
-    "name" : "source_id",
-    "value" : "dcsm6_ecmwf"
-  }, {
-    "name" : "source_id",
-    "value" : "dcsm6_hirlam"
-  }, {
-    "name" : "source_id",
-    "value" : "dcsm6_hirlam_kf"
-  }, {
-    "name" : "source_id",
-    "value" : "dcsm6zuno4_hirlam"
-  }, {
-    "name" : "source_id",
-    "value" : "dcsm6zuno4_hirlam_kf"
-  } ]
+  "archiveAttributes": [
+    {
+      "name": "source_id",
+      "value": "dcsm6_ecmwf"
+    },
+    {
+      "name": "source_id",
+      "value": "dcsm6_hirlam"
+    },
+    {
+      "name": "source_id",
+      "value": "dcsm6_hirlam_kf"
+    },
+    {
+      "name": "source_id",
+      "value": "dcsm6zuno4_hirlam"
+    },
+    {
+      "name": "source_id",
+      "value": "dcsm6zuno4_hirlam_kf"
+    }
+  ]
 }

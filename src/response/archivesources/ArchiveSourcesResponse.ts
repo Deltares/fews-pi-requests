@@ -7,9 +7,9 @@ export interface ArchiveSources {
   /**
    * ArchiveSource
    */
-  sources: ArchiveSource[];
+  sources: ArchiveSource[]
 }
 export interface ArchiveSource {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }

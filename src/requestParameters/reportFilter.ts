@@ -1,16 +1,16 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface ReportFilter extends BaseFilter {
-    /**
-     * Identifier of the report module instance id to retrieve
-     */
-    moduleInstanceId: string;
-    /**
-     * Identifier of the report module task run id to retrieve
-     */
-    taskRunId: string;
-    /**
-    * Identifier of the report id to retrieve unique within a module instance and task run
-    */
-    reportId: number;
+  /**
+   * Identifier of the report module instance id to retrieve
+   */
+  moduleInstanceId: string
+  /**
+   * Identifier of the report module task run id to retrieve
+   */
+  taskRunId: string
+  /**
+   * Identifier of the report id to retrieve unique within a module instance and task run
+   */
+  reportId: number
 }

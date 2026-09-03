@@ -7,21 +7,21 @@ export interface DisplayGroupsNodesResponse {
   /**
    * DisplayGroupsNodes
    */
-  displayGroups: DisplayGroupsNodes[];
+  displayGroups: DisplayGroupsNodes[]
 }
 export interface DisplayGroupsNodes {
-  displayGroupId: string;
-  displayGroupName?: string;
+  displayGroupId: string
+  displayGroupName?: string
   /**
    * DisplayGroupsPlotNode
    */
-  plotNodes?: DisplayGroupsPlotNode[];
+  plotNodes?: DisplayGroupsPlotNode[]
   /**
    * DisplayGroupsPlotNode
    */
-  displayGroups?: DisplayGroupsNodes[];
+  displayGroups?: DisplayGroupsNodes[]
 }
 export interface DisplayGroupsPlotNode {
-  displayId: string;
-  displayName?: string;
+  displayId: string
+  displayName?: string
 }

@@ -1,3 +1,3 @@
-export type QualifierIdsQueryParameter  = {
-    [key: string]: string | string[];
+export type QualifierIdsQueryParameter = {
+  [key: string]: string | string[]
 }

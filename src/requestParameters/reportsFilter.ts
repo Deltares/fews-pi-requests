@@ -1,8 +1,8 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface ReportsFilter extends BaseFilter {
-    /**
-     * Identifier of the report module instance id to retrieve
-     */
-    moduleInstanceIds?: string | string[];
+  /**
+   * Identifier of the report module instance id to retrieve
+   */
+  moduleInstanceIds?: string | string[]
 }

@@ -1,29 +1,37 @@
-import {ArchiveAttributes} from '../../../src/response'
-import fetchMock from 'fetch-mock';
+import { ArchiveAttributes } from '../../../src/response'
+import fetchMock from 'fetch-mock'
 import expectedResponse from '../mock/attributes.json'
-import {AttributesFilter} from "../../../src/requestParameters/attributesFilter";
-import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
-import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
+import { AttributesFilter } from '../../../src/requestParameters/attributesFilter'
+import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
+import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 
-describe("archive/attributes", function () {    it("gets called when done", async function () {
-        fetchMock.route('https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source', {
-            status: 200,
-            body: JSON.stringify(expectedResponse)
-        });
+describe('archive/attributes', function () {
+  it('gets called when done', async function () {
+    fetchMock.route(
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/attributes?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias&locationIds=delfzijl&attributes=source',
+      {
+        status: 200,
+        body: JSON.stringify(expectedResponse),
+      },
+    )
 
-        const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
+    const provider = new PiArchiveWebserviceProvider(
+      'https://mock.dev/fewswebservices',
+    )
 
-        const filter: AttributesFilter = {
-            documentFormat: DocumentFormat.PI_JSON,
-            parameterIds: "waterlevel_stat_bias",
-            locationIds: "delfzijl",
-            attributes: 'source',
-        }
-        const results: ArchiveAttributes = await provider.getAttributes(filter) as ArchiveAttributes;
-        expect("archiveAttributes" in results).toBe(true)
-        expect(results.archiveAttributes.length).toBe(5)
-        expect(results).toStrictEqual(expectedResponse);
-    });
-});
+    const filter: AttributesFilter = {
+      documentFormat: DocumentFormat.PI_JSON,
+      parameterIds: 'waterlevel_stat_bias',
+      locationIds: 'delfzijl',
+      attributes: 'source',
+    }
+    const results: ArchiveAttributes = (await provider.getAttributes(
+      filter,
+    )) as ArchiveAttributes
+    expect('archiveAttributes' in results).toBe(true)
+    expect(results.archiveAttributes.length).toBe(5)
+    expect(results).toStrictEqual(expectedResponse)
+  })
+})

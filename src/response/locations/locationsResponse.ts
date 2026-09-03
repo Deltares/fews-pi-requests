@@ -7,147 +7,147 @@ export interface LocationsResponse {
   /**
    * PI Version
    */
-  version: string;
+  version: string
   /**
    * The geo datum
    */
-  geoDatum: string;
+  geoDatum: string
   /**
    * Locations
    */
-  locations: Location[];
+  locations: Location[]
 }
 export interface Location {
   /**
    * the id of the location
    */
-  locationId: string;
+  locationId: string
   /**
    * The location name
    */
-  locationName?: string;
+  locationName?: string
   /**
    * The description of the locations
    */
-  description?: string;
+  description?: string
   /**
    * The Short name of the location
    */
-  shortName?: string;
+  shortName?: string
   /**
    * Start date time in case a time dependent relation is use
    */
-  startDateTime?: string;
+  startDateTime?: string
   /**
    * End date time in case a time dependent relation is use
    */
-  endDateTime?: string;
+  endDateTime?: string
   /**
    * Latitude
    */
-  lat?: string;
+  lat?: string
   /**
    * Longitude
    */
-  lon?: string;
+  lon?: string
   /**
    * X
    */
-  x?: string;
+  x?: string
   /**
    * Y
    */
-  y?: string;
+  y?: string
   /**
    * Z
    */
-  z?: string;
+  z?: string
   /**
    * Location Attributes
    */
-  attributes?: Attributes[];
+  attributes?: Attributes[]
   /**
    * Related Locations
    */
-  relations?: LocationRelation[];
+  relations?: LocationRelation[]
   /**
    * Id of the parent location
    */
-  parentLocationId?: string;
+  parentLocationId?: string
   /**
    * Since 2023.03: Name of the location icon. Can be used with the resource /icons/{iconName} endpoint to get the icon
    */
-  iconName?: string;
+  iconName?: string
   /**
    * Since 2023.02: Name of the threshold icon. If there are no crossed thresholds then this item will be omitted. Can be used with the resource /icons/{iconName} endpoint to get the icon
    */
-  thresholdIconName?: string;
+  thresholdIconName?: string
   /**
    * Since 2023.02: Severity of the threshold, 0 is the lowest severity. If there are no crossed thresholds then this item will be omitted.
    */
-  thresholdSeverity?: number;
+  thresholdSeverity?: number
   /**
    * Since 2024.02: Indicates if there is data in the view period
    */
-  hasDataInViewPeriod?: boolean;
+  hasDataInViewPeriod?: boolean
   /**
    * Since 2024.02: Indicates if there is data outside the view period
    */
-  hasDataOutsideViewPeriod?: boolean;
+  hasDataOutsideViewPeriod?: boolean
   /**
    * Since 2024.02: Last value for this location
    */
-  lastValue?: number;
+  lastValue?: number
   /**
    * Since 2024.02: Last time for which there is a value for this location
    */
-  lastValueTime?: number;
+  lastValueTime?: number
 }
 export interface Attributes {
   /**
    * Name
    */
-  name: string;
+  name: string
   /**
    * Description
    */
-  description?: string;
+  description?: string
   /**
    * Type
    */
-  type?: "text" | "boolean" | "number" | "dateTime";
+  type?: 'text' | 'boolean' | 'number' | 'dateTime'
   /**
    * Id
    */
-  id?: string;
+  id?: string
   /**
    * Start date time
    */
-  startDateTime?: string;
+  startDateTime?: string
   /**
    * End date time
    */
-  endDateTime?: string;
+  endDateTime?: string
   /**
    * Value
    */
-  value?: string;
+  value?: string
 }
 export interface LocationRelation {
   /**
    * Id
    */
-  id?: string;
+  id?: string
   /**
    * Related Location Id
    */
-  relatedLocationId: string;
+  relatedLocationId: string
   /**
    * Start date time
    */
-  startDateTime?: string;
+  startDateTime?: string
   /**
    * End date time
    */
-  endDateTime?: string;
+  endDateTime?: string
 }

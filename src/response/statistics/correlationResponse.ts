@@ -4,26 +4,26 @@
  * CorrelationResponse PI_JSON
  */
 export interface CorrelationResponse {
-  equation?: Equation;
-  title?: string;
-  xAxis?: Axis;
-  yAxis?: Axis;
-  values?: Value[];
-  fitPoints?: FitPoint[];
+  equation?: Equation
+  title?: string
+  xAxis?: Axis
+  yAxis?: Axis
+  values?: Value[]
+  fitPoints?: FitPoint[]
 }
 export interface Equation {
-  description: string;
-  "R-squared": number;
+  description: string
+  'R-squared': number
 }
 export interface Axis {
-  label: string;
+  label: string
 }
 export interface Value {
-  time: string;
-  x: number;
-  y: number;
+  time: string
+  x: number
+  y: number
 }
 export interface FitPoint {
-  x: number;
-  y: number;
+  x: number
+  y: number
 }

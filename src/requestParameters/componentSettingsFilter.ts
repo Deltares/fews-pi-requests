@@ -1,5 +1,5 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface ComponentSettingsFilter extends BaseFilter {
-    componentSettingsId: string;
+  componentSettingsId: string
 }

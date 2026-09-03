@@ -1,24 +1,24 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface CorrelationFilter extends BaseFilter {
   /** Id of the time series for the y axis */
-  timeSeriesIdYaxis: string;
+  timeSeriesIdYaxis: string
   /** Id of the time series for the x axis */
-  timeSeriesIdXaxis: string;
+  timeSeriesIdXaxis: string
   /** Start time for the correlation in format: yyyy-MM-ddTHH:mm:ssZ */
-  startTime?: string;
+  startTime?: string
   /** End time for the correlation in format: yyyy-MM-ddTHH:mm:ssZ */
-  endTime?: string;
+  endTime?: string
   /** Type of regression equation to be used */
   regressionEquation:
-    | "exponential multiply"
-    | "hyperbolic"
-    | "logarithmic"
-    | "power"
-    | "simple linear"
-    | "multiple linear";
+    | 'exponential multiply'
+    | 'hyperbolic'
+    | 'logarithmic'
+    | 'power'
+    | 'simple linear'
+    | 'multiple linear'
   /** values above the threshold will not be taken into account */
-  upperThreshold?: number;
+  upperThreshold?: number
   /** values below the threshold will not be taken into account */
-  lowerThreshold?: number;
+  lowerThreshold?: number
 }

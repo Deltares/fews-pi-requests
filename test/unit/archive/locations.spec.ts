@@ -1,27 +1,33 @@
-import fetchMock from 'fetch-mock';
+import fetchMock from 'fetch-mock'
 
 import expectedResponse from '../mock/locations.json'
-import {ArchiveLocationsFilter} from "../../../src/requestParameters/archiveLocationsFilter";
-import {DocumentFormat} from "../../../src/requestParameters/documentFormat";
-import {PiArchiveWebserviceProvider} from "../../../src/piArchiveWebserviceProvider";
+import { ArchiveLocationsFilter } from '../../../src/requestParameters/archiveLocationsFilter'
+import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
+import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 
-describe("archive/locations", function () {    it("gets called when done", async function () {
-        fetchMock.route("https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias", {
-            status: 200,
-            body: JSON.stringify(expectedResponse)
-        });
+describe('archive/locations', function () {
+  it('gets called when done', async function () {
+    fetchMock.route(
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/archive/locations?documentFormat=PI_JSON&parameterIds=waterlevel_stat_bias',
+      {
+        status: 200,
+        body: JSON.stringify(expectedResponse),
+      },
+    )
 
-        const provider = new PiArchiveWebserviceProvider("https://mock.dev/fewswebservices")
+    const provider = new PiArchiveWebserviceProvider(
+      'https://mock.dev/fewswebservices',
+    )
 
-        const filter: ArchiveLocationsFilter = {
-            documentFormat: DocumentFormat.PI_JSON,
-            parameterIds: "waterlevel_stat_bias"
-        }
-        const results = await provider.getLocations(filter);
-        expect(results).toStrictEqual(expectedResponse);
-        expect("locations" in results).toBe(true)
-        expect(results.locations.length).toBe(6)
-    });
-});
+    const filter: ArchiveLocationsFilter = {
+      documentFormat: DocumentFormat.PI_JSON,
+      parameterIds: 'waterlevel_stat_bias',
+    }
+    const results = await provider.getLocations(filter)
+    expect(results).toStrictEqual(expectedResponse)
+    expect('locations' in results).toBe(true)
+    expect(results.locations.length).toBe(6)
+  })
+})

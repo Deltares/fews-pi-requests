@@ -7,8 +7,8 @@ export interface ArchiveParameters {
   /**
    * ArchiveParameter
    */
-  parameters: ArchiveParameter[];
+  parameters: ArchiveParameter[]
 }
 export interface ArchiveParameter {
-  parameterId: string;
+  parameterId: string
 }

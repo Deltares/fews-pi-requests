@@ -8,40 +8,40 @@ export type TimeStep =
       /**
        * Unit
        */
-      unit: string;
+      unit: string
       /**
        * Multiplier
        */
-      multiplier?: string;
+      multiplier?: string
     }
   | {
       /**
        * Times
        */
-      times: string;
+      times: string
     }
   | {
       /**
        * Minutes
        */
-      minutes: string;
-    };
+      minutes: string
+    }
 /**
  * array of strings
  */
-export type DomainAxisValueStringArray = string[];
+export type DomainAxisValueStringArray = string[]
 /**
  * Domain Axis Value Array
  */
-export type DomainAxisValueArray = DomainAxisValueStringArray[];
+export type DomainAxisValueArray = DomainAxisValueStringArray[]
 /**
  * array of strings
  */
-export type DomainAxisEventValuesStringArray = string[];
+export type DomainAxisEventValuesStringArray = string[]
 /**
  * array of arrays
  */
-export type DomainAxisEventValuesArray = DomainAxisEventValuesStringArray[];
+export type DomainAxisEventValuesArray = DomainAxisEventValuesStringArray[]
 
 /**
  * TimeSeries PI_JSON
@@ -50,31 +50,31 @@ export interface TimeSeriesResponse {
   /**
    * PI Version
    */
-  version: string;
+  version: string
   /**
    * Time Zone of the timeSeries times
    */
-  timeZone?: string;
+  timeZone?: string
   /**
    * Time series data represent data collected over a given period of time at a specific location
    */
-  timeSeries?: TimeSeriesResult[];
+  timeSeries?: TimeSeriesResult[]
   /**
    * The task run ids of the available time series
    */
-  taskRunIds?: string[];
+  taskRunIds?: string[]
 }
 export interface TimeSeriesResult {
-  header?: Header;
-  properties?: PropertiesPeriod[];
+  header?: Header
+  properties?: PropertiesPeriod[]
   /**
    * Events
    */
-  events?: TimeSeriesEvent[];
+  events?: TimeSeriesEvent[]
   /**
    * Domains
    */
-  domains?: Domains[];
+  domains?: Domains[]
 }
 /**
  * The header
@@ -83,127 +83,127 @@ export interface Header {
   /**
    * TimeSeries type
    */
-  type: string;
+  type: string
   /**
    * Module Instance Id
    */
-  moduleInstanceId?: string;
+  moduleInstanceId?: string
   /**
    * Location id
    */
-  locationId: string;
+  locationId: string
   /**
    * Parameter id
    */
-  parameterId: string;
+  parameterId: string
   /**
    * Qualifier Id
    */
-  qualifierId?: string[];
+  qualifierId?: string[]
   /**
    * Ensemble Id. Can be followed by either a ensembleMemberIndex or ensembleMemberId
    */
-  ensembleId?: string;
+  ensembleId?: string
   /**
    * Ensemble Member Index
    */
-  ensembleMemberIndex?: string;
+  ensembleMemberIndex?: string
   /**
    * Ensemble Member Id
    */
-  ensembleMemberId?: string;
-  timeStep?: TimeStep;
-  startDate: FewsDate;
-  endDate: FewsDate;
-  forecastDate?: FewsDate;
+  ensembleMemberId?: string
+  timeStep?: TimeStep
+  startDate: FewsDate
+  endDate: FewsDate
+  forecastDate?: FewsDate
   /**
    * Missing value
    */
-  missVal: string;
+  missVal: string
   /**
    * Long name
    */
-  longName?: string;
+  longName?: string
   /**
    * Station name
    */
-  stationName?: string;
+  stationName?: string
   /**
    * Latitude
    */
-  lat?: string;
+  lat?: string
   /**
    * Longitude
    */
-  lon?: string;
+  lon?: string
   /**
    * X
    */
-  x?: string;
+  x?: string
   /**
    * Y
    */
-  y?: string;
+  y?: string
   /**
    * Z
    */
-  z?: string;
+  z?: string
   /**
    * Units
    */
-  units?: string;
+  units?: string
   /**
    * Domain Axis
    */
-  domainAxis?: DomainAxis[];
+  domainAxis?: DomainAxis[]
   /**
    * Source Organisation
    */
-  sourceOrganisation?: string;
+  sourceOrganisation?: string
   /**
    * Source System
    */
-  sourceSystem?: string;
+  sourceSystem?: string
   /**
    * File Descriptor
    */
-  fileDescription?: string;
+  fileDescription?: string
   /**
    * Creation date
    */
-  creationDate?: string;
+  creationDate?: string
   /**
    * Creation time
    */
-  creationTime?: string;
-  approvedDate?: FewsDate;
+  creationTime?: string
+  approvedDate?: FewsDate
   /**
    * Region
    */
-  region?: string;
+  region?: string
   /**
    * Thresholds
    */
-  thresholds?: TimeSeriesThreshold[];
-  firstValueTime?: FewsDate;
-  lastValueTime?: FewsDate;
+  thresholds?: TimeSeriesThreshold[]
+  firstValueTime?: FewsDate
+  lastValueTime?: FewsDate
   /**
    * Max value
    */
-  maxValue?: string;
+  maxValue?: string
   /**
    * Min value
    */
-  minValue?: string;
+  minValue?: string
   /**
    * Value count
    */
-  valueCount?: string;
+  valueCount?: string
   /**
    * Max Warning Level Name
    */
-  maxWarningLevelName?: string;
-  product?: Product;
+  maxWarningLevelName?: string
+  product?: Product
 }
 /**
  * Date
@@ -212,21 +212,21 @@ export interface FewsDate {
   /**
    * Date
    */
-  date: string;
+  date: string
   /**
    * Time
    */
-  time: string;
+  time: string
 }
 export interface DomainAxis {
   /**
    * Parameter Id
    */
-  parameterId: string;
+  parameterId: string
   /**
    * Units
    */
-  units?: string;
+  units?: string
 }
 /**
  * Threshold
@@ -235,39 +235,39 @@ export interface TimeSeriesThreshold {
   /**
    * Id
    */
-  id?: string;
+  id?: string
   /**
    * Name
    */
-  name?: string;
+  name?: string
   /**
    * Label
    */
-  label?: string;
+  label?: string
   /**
    * Description
    */
-  description?: string;
+  description?: string
   /**
    * Comment
    */
-  comment?: string;
+  comment?: string
   /**
    * Value
    */
-  value?: string;
+  value?: string
   /**
    * Type
    */
-  type?: string;
+  type?: string
   /**
    * Group Id
    */
-  groupId?: string;
+  groupId?: string
   /**
    * Group Name
    */
-  groupName?: string;
+  groupName?: string
 }
 /**
  * Date
@@ -276,19 +276,19 @@ export interface Product {
   /**
    * Id
    */
-  id: string;
+  id: string
   /**
    * Name
    */
-  name: string;
+  name: string
   /**
    * Product Date
    */
-  productDate: string;
+  productDate: string
   /**
    * Product Time
    */
-  productTime: string;
+  productTime: string
   /**
    * Category
    */
@@ -296,12 +296,12 @@ export interface Product {
     /**
      * Id
      */
-    id: string;
+    id: string
     /**
      * Name
      */
-    name: string;
-  };
+    name: string
+  }
   /**
    * Product Info
    */
@@ -309,33 +309,33 @@ export interface Product {
     /**
      * User
      */
-    user: string;
+    user: string
     /**
      * Confidence
      */
-    confidence: string;
+    confidence: string
     /**
      * Classification
      */
-    classification: string;
+    classification: string
     /**
      * Comment
      */
-    comment: string;
-  }[];
+    comment: string
+  }[]
 }
 /**
  * Properties for a period
  */
 export interface PropertiesPeriod {
   period: {
-    startDate: FewsDate;
-    endDate: FewsDate;
-    [k: string]: unknown;
-  };
+    startDate: FewsDate
+    endDate: FewsDate
+    [k: string]: unknown
+  }
   properties: {
-    [k: string]: unknown;
-  };
+    [k: string]: unknown
+  }
 }
 /**
  * Timeseries event
@@ -344,55 +344,70 @@ export interface TimeSeriesEvent {
   /**
    * Date
    */
-  date: string;
+  date: string
   /**
    * Time
    */
-  time: string;
+  time: string
   /**
    * Start Date
    */
-  startDate?: string;
+  startDate?: string
   /**
    * Start Time
    */
-  startTime?: string;
+  startTime?: string
   /**
    * End Date
    */
-  endDate?: string;
+  endDate?: string
   /**
    * End Time
    */
-  endTime?: string;
+  endTime?: string
   /**
    * Value
    */
-  value: string;
+  value: string
   /**
    * Value source. Possible values are: MAN (manual), MOD (modifier), CYC (cyclic) and PER (persistent).
    */
-  valueSource?: "MAN" | "MOD" | "CYC" | "PER";
+  valueSource?: 'MAN' | 'MOD' | 'CYC' | 'PER'
   /**
    * Minimum Value
    */
-  minValue?: string;
+  minValue?: string
   /**
    * Maximum Value
    */
-  maxValue?: string;
+  maxValue?: string
   /**
    * Detection Symbol. One of < (below detection range), > (above detection range) or ~ (varying)
    */
-  detection?: "<" | ">" | "~";
+  detection?: '<' | '>' | '~'
   /**
    * Flag. Possible values are: 0=original reliable, 1=corrected reliable, 2=completed reliable, 3=original doubtful, 4=corrected doubtful, 5=completed doubtful, 6=original unreliable, 7=corrected unreliable, 8=completed unreliable, 9=original missing, 10=deleted, 11=set original reliable, 12=set original unreliable, 13=archive missing, 14=accumulation reset.
    */
-  flag: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14";
+  flag:
+    | '0'
+    | '1'
+    | '2'
+    | '3'
+    | '4'
+    | '5'
+    | '6'
+    | '7'
+    | '8'
+    | '9'
+    | '10'
+    | '11'
+    | '12'
+    | '13'
+    | '14'
   /**
    * Flag Source. Optional common values are: MAN=MANUAL, IMP=IMPORTED, MOD=MODIFIER, SN=SOFT_MIN, HN=HARD_MIN, SX=SOFT_MAX, HX=HARD_MAX, ROR=RATE_OF_RISE, ROF=RATE_OF_FALL, SR=SAME_READING, TS=TEMPORARY_SHIFT, SC=SERIES_COMPARISON, FC=FLAGS_COMPARISON, SH=SPATIAL_HOMOGENEITY, MK=MANN_KENDALL, SFP=START_FLAG_PERSISTENCY, SVP=SECONDARY_VALIDATION_FLAG_PERSISTENCY, CA=CONDITIONAL_AGGREGATION, OSC=OSCILLATION, null. But custom flag sources can also be configured in /RegionConfigFiles/CustomFlagSources.xml and used within timeseries.
    */
-  flagSource?: string;
+  flagSource?: string
   /**
    * Only used when editing timeseries. Original flag has to be be passed. Reliable: Change Flag to 0, 1, 2, with Flag Source MAN
    * Doubtful: Change Flag to 3, 4, 5 with Flag Source MAN
@@ -400,25 +415,30 @@ export interface TimeSeriesEvent {
    * Persistent Unreliable: Change Flag to 6, 7, 8, with Flag Source SFP
    * Accumulation Reset: Change Flag to 14, with Flag Source MAN
    */
-  flagEdit?: "Reliable" | "Doubtful" | "Unreliable" | "Persistent Unreliable" | "Accumulation Reset";
+  flagEdit?:
+    | 'Reliable'
+    | 'Doubtful'
+    | 'Unreliable'
+    | 'Persistent Unreliable'
+    | 'Accumulation Reset'
   /**
    * Flag Source Column
    */
   flagSourceColumn?: {
-    [k: string]: unknown;
-  };
+    [k: string]: unknown
+  }
   /**
    * State. Possible values are: dried, inundated, ice
    */
-  state?: "dried" | "inundated" | "ice";
+  state?: 'dried' | 'inundated' | 'ice'
   /**
    * Comment
    */
-  comment?: string;
+  comment?: string
   /**
    * User
    */
-  user?: string;
+  user?: string
 }
 /**
  * Domains
@@ -427,11 +447,11 @@ export interface Domains {
   /**
    * Domain Axis Values
    */
-  domainAxisValues?: DomainAxisValue[];
+  domainAxisValues?: DomainAxisValue[]
   /**
    * Domain Axis Events
    */
-  events?: DomainAxisEvent[];
+  events?: DomainAxisEvent[]
 }
 /**
  * Domain Axis Value
@@ -440,8 +460,8 @@ export interface DomainAxisValue {
   /**
    * Parameter Id
    */
-  parameterId?: string;
-  values?: DomainAxisValueArray;
+  parameterId?: string
+  values?: DomainAxisValueArray
 }
 /**
  * Domain Axis Event Array
@@ -450,14 +470,14 @@ export interface DomainAxisEvent {
   /**
    * Date
    */
-  date?: string;
+  date?: string
   /**
    * Time
    */
-  time?: string;
+  time?: string
   /**
    * Flag
    */
-  flag?: string;
-  values?: DomainAxisEventValuesArray;
+  flag?: string
+  values?: DomainAxisEventValuesArray
 }

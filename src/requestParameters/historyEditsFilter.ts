@@ -1,6 +1,6 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface HistoryEditsFilter extends BaseFilter {
-    times: string[];
-    editUrl: string;
+  times: string[]
+  editUrl: string
 }

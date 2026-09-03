@@ -1,15 +1,11 @@
-
 {
-  "parameters" : [
+  "parameters": [
     {
       "id": "Rainfall",
       "parameterType": "accumulative",
       "unit": "mm",
       "parameters": [
-        { "id": "P.obs",
-          "name": "Observed Rainfall",
-          "shortName": "P.obs"
-        }
+        { "id": "P.obs", "name": "Observed Rainfall", "shortName": "P.obs" }
       ]
     },
     {
@@ -18,11 +14,9 @@
       "unit": "m",
       "usesDatum": true,
       "parameters": [
-        { "id": "H.obs",
-          "name": "Observed Water Level",
-          "shortName": "H.obs"
-        },
-        { "id": "H.obs.proc",
+        { "id": "H.obs", "name": "Observed Water Level", "shortName": "H.obs" },
+        {
+          "id": "H.obs.proc",
           "name": "Processed Water Level",
           "shortName": "H.obs.proc"
         }
@@ -34,11 +28,9 @@
       "unit": "m3/s",
       "displayUnit": "ML/d",
       "parameters": [
-        { "id": "Q.obs",
-          "name": "Observed Discharge",
-          "shortName": "Q.obs"
-        },
-        { "id": "Q.obs.proc",
+        { "id": "Q.obs", "name": "Observed Discharge", "shortName": "Q.obs" },
+        {
+          "id": "Q.obs.proc",
           "name": "Processed Discharge",
           "shortName": "Q.obs.proc"
         }

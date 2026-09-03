@@ -1,56 +1,76 @@
-import {PiWebserviceProvider} from '../../../src/piWebserviceProvider'
+import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 
-import fetchMock from "fetch-mock";
-import { RunTaskFilter } from '../../../src/requestParameters';
+import fetchMock from 'fetch-mock'
+import { RunTaskFilter } from '../../../src/requestParameters'
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 
-describe("runtask", function () {    it("generates a valid runtask POST request", async function () {
-        const workflowId = 'ImportObserved'
-        const startTime = '2014-01-01T00:00:00Z+0000'
-        const timeZero = '2014-01-01T00:00:00Z+0000'
-        const endTime = '2014-01-01T00:30:00Z+0000'
-        const fileName = 'exportFile'
-        const outputValue = 9.0
-        const userId = 'test-user'
+describe('runtask', function () {
+  it('generates a valid runtask POST request', async function () {
+    const workflowId = 'ImportObserved'
+    const startTime = '2014-01-01T00:00:00Z+0000'
+    const timeZero = '2014-01-01T00:00:00Z+0000'
+    const endTime = '2014-01-01T00:30:00Z+0000'
+    const fileName = 'exportFile'
+    const outputValue = 9.0
+    const userId = 'test-user'
 
-        const expectedResponse = "1_0"
+    const expectedResponse = '1_0'
 
-        fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&userId=test-user&property(fileName)=exportFile&property(outputValue)=9", {
-            status: 200,
-            body: expectedResponse
-        });
+    fetchMock.post(
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&userId=test-user&property(fileName)=exportFile&property(outputValue)=9',
+      {
+        status: 200,
+        body: expectedResponse,
+      },
+    )
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+    const provider = new PiWebserviceProvider(
+      'https://mock.dev/fewswebservices',
+    )
 
-        const filter: RunTaskFilter = {
-            workflowId, startTime, timeZero, endTime, userId, properties: { fileName, outputValue }
-        }
-        const results = await provider.postRunTask(filter, '');
-        expect(results).toStrictEqual(expectedResponse);
-    });
+    const filter: RunTaskFilter = {
+      workflowId,
+      startTime,
+      timeZero,
+      endTime,
+      userId,
+      properties: { fileName, outputValue },
+    }
+    const results = await provider.postRunTask(filter, '')
+    expect(results).toStrictEqual(expectedResponse)
+  })
 
-    it("generates a valid runtask POST request without userId", async function () {
-        const workflowId = 'ImportObserved'
-        const startTime = '2014-01-01T00:00:00Z+0000'
-        const timeZero = '2014-01-01T00:00:00Z+0000'
-        const endTime = '2014-01-01T00:30:00Z+0000'
-        const fileName = 'exportFile'
-        const outputValue = 9.0
+  it('generates a valid runtask POST request without userId', async function () {
+    const workflowId = 'ImportObserved'
+    const startTime = '2014-01-01T00:00:00Z+0000'
+    const timeZero = '2014-01-01T00:00:00Z+0000'
+    const endTime = '2014-01-01T00:30:00Z+0000'
+    const fileName = 'exportFile'
+    const outputValue = 9.0
 
-        const expectedResponse = "1_0"
+    const expectedResponse = '1_0'
 
-        fetchMock.post("https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&property(fileName)=exportFile&property(outputValue)=9", {
-            status: 200,
-            body: expectedResponse
-        });
+    fetchMock.post(
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/runtask?workflowId=ImportObserved&startTime=2014-01-01T00%3A00%3A00Z%2B0000&timeZero=2014-01-01T00%3A00%3A00Z%2B0000&endTime=2014-01-01T00%3A30%3A00Z%2B0000&property(fileName)=exportFile&property(outputValue)=9',
+      {
+        status: 200,
+        body: expectedResponse,
+      },
+    )
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+    const provider = new PiWebserviceProvider(
+      'https://mock.dev/fewswebservices',
+    )
 
-        const filter: RunTaskFilter = {
-            workflowId, startTime, timeZero, endTime, properties: { fileName, outputValue }
-        }
-        const results = await provider.postRunTask(filter, '');
-        expect(results).toStrictEqual(expectedResponse);
-    });
-});
+    const filter: RunTaskFilter = {
+      workflowId,
+      startTime,
+      timeZero,
+      endTime,
+      properties: { fileName, outputValue },
+    }
+    const results = await provider.postRunTask(filter, '')
+    expect(results).toStrictEqual(expectedResponse)
+  })
+})

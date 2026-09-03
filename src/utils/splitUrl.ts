@@ -1,107 +1,128 @@
 import { duplicates } from './duplicates.js'
 
 function mostFrequentParameter(url: URL): string {
-    const duplicateEntries = duplicates(Array.from(url.searchParams.keys()))
-    const keys = Array.from(duplicateEntries.keys())
-    let max = 0
-    let split = keys[0]
-    for (const [key, value] of duplicateEntries) {
-        if ( value > max) {
-            max = value
-            split = key
-        }
+  const duplicateEntries = duplicates(Array.from(url.searchParams.keys()))
+  const keys = Array.from(duplicateEntries.keys())
+  let max = 0
+  let split = keys[0]
+  for (const [key, value] of duplicateEntries) {
+    if (value > max) {
+      max = value
+      split = key
     }
-    return split
+  }
+  return split
 }
-
 
 export function mostValuesParameter(url: URL): string {
-    let max = 0
-    let split = ''
-    for (const [key, value] of url.searchParams.entries()) {
-        const count = value.split(',').length
-        if (count > max) {
-            max = count
-            split = key
-        }
+  let max = 0
+  let split = ''
+  for (const [key, value] of url.searchParams.entries()) {
+    const count = value.split(',').length
+    if (count > max) {
+      max = count
+      split = key
     }
-    return split
+  }
+  return split
 }
 
-function createSplitError(split: string, maxLength: number, failingUrl: URL): Error {
-    return new Error(`Cannot split url by query parameter '${split}' to be shorter than ${maxLength} <= ${failingUrl.toString()}.`)
+function createSplitError(
+  split: string,
+  maxLength: number,
+  failingUrl: URL,
+): Error {
+  return new Error(
+    `Cannot split url by query parameter '${split}' to be shorter than ${maxLength} <= ${failingUrl.toString()}.`,
+  )
 }
 
-function splitUrlByCommaSeparatedValues(url: URL, maxLength: number, parameter?: string): URL[] {
-    const split = parameter ?? mostValuesParameter(url)
-    const baseUrl = new URL(url.toString())
-    baseUrl.searchParams.delete(split)
+function splitUrlByCommaSeparatedValues(
+  url: URL,
+  maxLength: number,
+  parameter?: string,
+): URL[] {
+  const split = parameter ?? mostValuesParameter(url)
+  const baseUrl = new URL(url.toString())
+  baseUrl.searchParams.delete(split)
 
-    const serializedValue = url.searchParams.get(split) ?? ''
-    const values = serializedValue.split(',')
-    const urls: URL[] = []
-    let chunk: string[] = []
+  const serializedValue = url.searchParams.get(split) ?? ''
+  const values = serializedValue.split(',')
+  const urls: URL[] = []
+  let chunk: string[] = []
 
-    for (const value of values) {
-        const nextChunk = [...chunk, value]
-        const nextUrl = new URL(baseUrl.toString())
-        nextUrl.searchParams.set(split, nextChunk.join(','))
+  for (const value of values) {
+    const nextChunk = [...chunk, value]
+    const nextUrl = new URL(baseUrl.toString())
+    nextUrl.searchParams.set(split, nextChunk.join(','))
 
-        if (nextUrl.toString().length <= maxLength) {
-            chunk = nextChunk
-            continue
-        }
-
-        if (chunk.length === 0) {
-            throw createSplitError(split, maxLength, nextUrl)
-        }
-
-        const currentUrl = new URL(baseUrl.toString())
-        currentUrl.searchParams.set(split, chunk.join(','))
-        urls.push(currentUrl)
-        chunk = [value]
-
-        const singleUrl = new URL(baseUrl.toString())
-        singleUrl.searchParams.set(split, value)
-        if (singleUrl.toString().length > maxLength) {
-            throw createSplitError(split, maxLength, singleUrl)
-        }
+    if (nextUrl.toString().length <= maxLength) {
+      chunk = nextChunk
+      continue
     }
 
-    const finalUrl = new URL(baseUrl.toString())
-    finalUrl.searchParams.set(split, chunk.join(','))
-    urls.push(finalUrl)
-    return urls
+    if (chunk.length === 0) {
+      throw createSplitError(split, maxLength, nextUrl)
+    }
+
+    const currentUrl = new URL(baseUrl.toString())
+    currentUrl.searchParams.set(split, chunk.join(','))
+    urls.push(currentUrl)
+    chunk = [value]
+
+    const singleUrl = new URL(baseUrl.toString())
+    singleUrl.searchParams.set(split, value)
+    if (singleUrl.toString().length > maxLength) {
+      throw createSplitError(split, maxLength, singleUrl)
+    }
+  }
+
+  const finalUrl = new URL(baseUrl.toString())
+  finalUrl.searchParams.set(split, chunk.join(','))
+  urls.push(finalUrl)
+  return urls
 }
 
-function splitUrlByRepeatedParams(url: URL, maxLength: number, parameter?: string): URL[] {
-    const split = parameter ?? mostFrequentParameter(url)
-    const baseUrl = new URL(url.toString())
-    baseUrl.searchParams.delete(split)
-    const urls: URL[] = []
-    let newUrl = new URL(baseUrl.toString())
+function splitUrlByRepeatedParams(
+  url: URL,
+  maxLength: number,
+  parameter?: string,
+): URL[] {
+  const split = parameter ?? mostFrequentParameter(url)
+  const baseUrl = new URL(url.toString())
+  baseUrl.searchParams.delete(split)
+  const urls: URL[] = []
+  let newUrl = new URL(baseUrl.toString())
 
-    for (const value of url.searchParams.getAll(split)) {
-        if (newUrl.toString().length + split.length + value.length + 2 > maxLength) {
-            urls.push(new URL(newUrl.toString()))
-            newUrl = new URL(baseUrl.toString())
-        }
-
-        newUrl.searchParams.append(split, value)
-        if (newUrl.toString().length > maxLength) {
-            throw createSplitError(split, maxLength, newUrl)
-        }
+  for (const value of url.searchParams.getAll(split)) {
+    if (
+      newUrl.toString().length + split.length + value.length + 2 >
+      maxLength
+    ) {
+      urls.push(new URL(newUrl.toString()))
+      newUrl = new URL(baseUrl.toString())
     }
 
-    urls.push(newUrl)
-    return urls
+    newUrl.searchParams.append(split, value)
+    if (newUrl.toString().length > maxLength) {
+      throw createSplitError(split, maxLength, newUrl)
+    }
+  }
+
+  urls.push(newUrl)
+  return urls
 }
 
-export function splitUrl(url: URL, maxLength = 2000, parameter?: string, explodeQueryParameters = true): URL[] {
-    if (url.toString().length <= maxLength) return [url]
-    if (explodeQueryParameters) {
-        return splitUrlByRepeatedParams(url, maxLength, parameter)
-    } else {
-        return splitUrlByCommaSeparatedValues(url, maxLength, parameter)
-    }
+export function splitUrl(
+  url: URL,
+  maxLength = 2000,
+  parameter?: string,
+  explodeQueryParameters = true,
+): URL[] {
+  if (url.toString().length <= maxLength) return [url]
+  if (explodeQueryParameters) {
+    return splitUrlByRepeatedParams(url, maxLength, parameter)
+  } else {
+    return splitUrlByCommaSeparatedValues(url, maxLength, parameter)
+  }
 }

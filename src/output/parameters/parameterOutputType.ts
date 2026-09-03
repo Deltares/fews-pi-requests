@@ -1,1 +1,1 @@
-export type ParameterOutputType= "raw" | "parameterGroups"
+export type ParameterOutputType = 'raw' | 'parameterGroups'
