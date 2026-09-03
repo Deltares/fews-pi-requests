@@ -1,3 +1,3 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
-export type WorkflowsFilter = BaseFilter;
+export type WorkflowsFilter = BaseFilter

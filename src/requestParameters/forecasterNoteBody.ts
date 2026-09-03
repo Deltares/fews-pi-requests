@@ -7,33 +7,33 @@ export interface ForecasterNoteRequest {
   /**
    * Id, required when updating a forecaster note.
    */
-  id?: number;
+  id?: number
   /**
    * Task Run Id, required when updating a forecaster note
    */
-  taskRunId?: string;
+  taskRunId?: string
   /**
    * Log Message
    */
-  logMessage: string;
+  logMessage: string
   /**
    * Note Group Id
    */
-  noteGroupId: string;
+  noteGroupId: string
   /**
    * Topology Node Id
    */
-  topologyNodeId?: string;
+  topologyNodeId?: string
   /**
    * Event Time
    */
-  eventTime?: string;
+  eventTime?: string
   /**
    * Log Level
    */
-  logLevel?: "INFO" | "WARN" | "ERROR";
+  logLevel?: 'INFO' | 'WARN' | 'ERROR'
   /**
    * User Id. If the webservice has been setup with authentication, any passed userId will be overruled by the authenticated user.
    */
-  userId?: string;
+  userId?: string
 }

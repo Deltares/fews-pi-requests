@@ -4,186 +4,188 @@
  * DocumentDisplaysResponse PI_JSON
  */
 export interface DocumentDisplaysResponse {
-  documentDisplays?: (DocumentDisplayReport | DocumentDisplayBrowser | DocumentDisplayCompose)[];
+  documentDisplays?: (
+    DocumentDisplayReport | DocumentDisplayBrowser | DocumentDisplayCompose
+  )[]
   /**
    * List of workflows associated with the document displays
    */
-  workflows?: DocumentDisplayWorkflow[];
+  workflows?: DocumentDisplayWorkflow[]
 }
 export interface DocumentDisplayReport {
   /**
    * the id of the document display
    */
-  id: string;
+  id: string
   /**
    * the name of the document display
    */
-  name: string;
+  name: string
   /**
    * Indicates whether the user has edit permissions for the document display
    */
-  editPermissions?: boolean;
-  relativeViewPeriod?: DocumentRelativeViewPeriod;
+  editPermissions?: boolean
+  relativeViewPeriod?: DocumentRelativeViewPeriod
   /**
    * the type the document display
    */
-  type?: string;
-  report: DocumentDisplayReportType;
+  type?: string
+  report: DocumentDisplayReportType
 }
 export interface DocumentRelativeViewPeriod {
-  unit: string;
-  start: string;
-  end: string;
+  unit: string
+  start: string
+  end: string
 }
 export interface DocumentDisplayReportType {
   /**
    * the id of the report module instance
    */
-  reportModuleInstanceId?: string;
-  archiveProduct?: DocumentDisplayArchiveProduct;
-  showReports?: DocumentDisplayShowReports;
+  reportModuleInstanceId?: string
+  archiveProduct?: DocumentDisplayArchiveProduct
+  showReports?: DocumentDisplayShowReports
   /**
    * Indicates whether the user can edit the report
    */
-  editor?: boolean;
+  editor?: boolean
 }
 export interface DocumentDisplayArchiveProduct {
-  id?: string;
-  name?: string;
-  areaId?: string;
-  sourceId?: string;
-  versionKeys?: string[];
-  attributes?: DocumentDisplayArchiveProductAttribute[];
+  id?: string
+  name?: string
+  areaId?: string
+  sourceId?: string
+  versionKeys?: string[]
+  attributes?: DocumentDisplayArchiveProductAttribute[]
 }
 export interface DocumentDisplayArchiveProductAttribute {
-  key?: string;
-  value?: string;
+  key?: string
+  value?: string
 }
 export interface DocumentDisplayShowReports {
   /**
    * List of product workflow status IDs to show in the report
    */
-  productWorkflowStatusIds?: string[];
+  productWorkflowStatusIds?: string[]
 }
 export interface DocumentDisplayBrowser {
   /**
    * the id of the document display
    */
-  id: string;
+  id: string
   /**
    * the name of the document display
    */
-  name: string;
+  name: string
   /**
    * Indicates whether the user has edit permissions for the document display
    */
-  editPermissions?: boolean;
+  editPermissions?: boolean
   /**
    * the type the document display
    */
-  type?: string;
-  relativeViewPeriod?: DocumentRelativeViewPeriod;
-  browser: DocumentDisplayBrowserType;
+  type?: string
+  relativeViewPeriod?: DocumentRelativeViewPeriod
+  browser: DocumentDisplayBrowserType
 }
 export interface DocumentDisplayBrowserType {
   layout?: {
-    preview?: boolean;
+    preview?: boolean
     headers?: {
-      name?: string;
-      productProperty?: string;
-      productAttribute?: string;
-    }[];
-  };
-  archiveProducts?: DocumentDisplayArchiveProduct[];
-  archiveProductSets?: DocumentDisplayArchiveProductSet[];
+      name?: string
+      productProperty?: string
+      productAttribute?: string
+    }[]
+  }
+  archiveProducts?: DocumentDisplayArchiveProduct[]
+  archiveProductSets?: DocumentDisplayArchiveProductSet[]
 }
 export interface DocumentDisplayArchiveProductSet {
-  id?: string;
-  constraints?: ArchiveProductSetConstraints;
+  id?: string
+  constraints?: ArchiveProductSetConstraints
 }
 export interface ArchiveProductSetConstraints {
-  areaId?: string;
-  sourceId?: string;
-  allValid?: ArchiveProductSetConstraintsAttributeTextEquals[];
-  anyValid?: ArchiveProductSetConstraintsAttributeTextEquals[];
+  areaId?: string
+  sourceId?: string
+  allValid?: ArchiveProductSetConstraintsAttributeTextEquals[]
+  anyValid?: ArchiveProductSetConstraintsAttributeTextEquals[]
 }
 export interface ArchiveProductSetConstraintsAttributeTextEquals {
-  attributeTextEquals?: ArchiveProductSetConstraintsAttributeEquals;
+  attributeTextEquals?: ArchiveProductSetConstraintsAttributeEquals
 }
 export interface ArchiveProductSetConstraintsAttributeEquals {
-  id?: string;
-  equals?: string;
+  id?: string
+  equals?: string
 }
 export interface DocumentDisplayCompose {
   /**
    * the id of the document display
    */
-  id: string;
+  id: string
   /**
    * the name of the document display
    */
-  name: string;
+  name: string
   /**
    * Indicates whether the user has edit permissions for the document display
    */
-  editPermissions?: boolean;
+  editPermissions?: boolean
   /**
    * the type the document display
    */
-  type?: string;
-  relativeViewPeriod?: DocumentRelativeViewPeriod;
-  compose?: ProductAndTemplate[];
+  type?: string
+  relativeViewPeriod?: DocumentRelativeViewPeriod
+  compose?: ProductAndTemplate[]
 }
 export interface ProductAndTemplate {
-  archiveProduct?: DocumentDisplayArchiveProduct;
-  template?: DocumentDisplayArchiveProduct;
+  archiveProduct?: DocumentDisplayArchiveProduct
+  template?: DocumentDisplayArchiveProduct
 }
 export interface DocumentDisplayWorkflow {
   /**
    * the id of the workflow
    */
-  id: string;
+  id: string
   /**
    * List of workflow status IDs
    */
-  statuses?: DocumentDisplayWorkflowStatus[];
+  statuses?: DocumentDisplayWorkflowStatus[]
   /**
    * List of workflow transition IDs
    */
-  transitions?: DocumentDisplayWorkflowTransition[];
+  transitions?: DocumentDisplayWorkflowTransition[]
 }
 export interface DocumentDisplayWorkflowStatus {
   /**
    * the id of the status
    */
-  id: string;
+  id: string
   /**
    * the name of the status
    */
-  name?: string;
-  attribute?: DocumentDisplayWorkflowStatusAttribute;
+  name?: string
+  attribute?: DocumentDisplayWorkflowStatusAttribute
 }
 export interface DocumentDisplayWorkflowStatusAttribute {
   /**
    * the key of the workflow status attribute
    */
-  key: string;
+  key: string
   /**
    * the value of the workflow status attribute
    */
-  value: string;
+  value: string
 }
 export interface DocumentDisplayWorkflowTransition {
   /**
    * the form status of the transition
    */
-  fromStatus: string;
+  fromStatus: string
   /**
    * the form status of the transition
    */
-  toStatus: string;
+  toStatus: string
   /**
    * Indicates whether the user has edit permissions for the transition
    */
-  editPermissions?: boolean;
+  editPermissions?: boolean
 }

@@ -4,15 +4,15 @@
  * TimeSeriesFlagSources PI_JSON
  */
 export interface TimeSeriesFlagSourcesResponse {
-  flagSources?: TimeSeriesFlagSource[];
+  flagSources?: TimeSeriesFlagSource[]
 }
 export interface TimeSeriesFlagSource {
   /**
    * the id of the flag
    */
-  id: string | null;
+  id: string | null
   /**
    * Name of the flag
    */
-  name: string;
+  name: string
 }

@@ -7,9 +7,9 @@ export interface ArchiveAreas {
   /**
    * ArchiveAreas
    */
-  areas: ArchiveArea[];
+  areas: ArchiveArea[]
 }
 export interface ArchiveArea {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }

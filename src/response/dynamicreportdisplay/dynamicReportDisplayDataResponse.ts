@@ -1,3 +1,3 @@
 export interface DynamicReportDisplayDataResponse {
-  input: [Record<string, string>];
+  input: [Record<string, string>]
 }

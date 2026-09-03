@@ -4,15 +4,15 @@
  * TimeSteps PI_JSON
  */
 export interface TimeStepsResponse {
-  timeSteps?: TimeSteps[];
+  timeSteps?: TimeSteps[]
 }
 export interface TimeSteps {
   /**
    * id of the time step
    */
-  id: string;
+  id: string
   /**
    * Label of the time step.
    */
-  label: string;
+  label: string
 }

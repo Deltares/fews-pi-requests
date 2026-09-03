@@ -10,20 +10,19 @@
  * the expected start time and end time won’t be available until the task is actually started.
  */
 
-
 export interface ModuleRunTime {
   // Id of Master Controller
-  mcId:                    string;
+  mcId: string
   // Workflow Id
-  workflowId:              string;
+  workflowId: string
   // The instance id of the module
-  moduleInstanceId:        string;
+  moduleInstanceId: string
   // The expected duration the module will be in the pending state after the workflow has been started
-  expectedPendingDuration: number;
+  expectedPendingDuration: number
   // Expected duration of the module run
-  expectedRunningDuration: number;
+  expectedRunningDuration: number
   // Expected time the module run will start
-  expectedStartTime:       number;
+  expectedStartTime: number
   // Expected time the module run will be completed
-  expectedCompletionTime:  number;
+  expectedCompletionTime: number
 }

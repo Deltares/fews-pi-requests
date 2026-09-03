@@ -1,8 +1,8 @@
 /* tslint:disable */
 
-import { WhatIfScenarioDescriptor } from "./whatIfScenarioDescriptorsResponse";
+import { WhatIfScenarioDescriptor } from './whatIfScenarioDescriptorsResponse'
 
 /**
  * WhatIfScenarioResponse PI_JSON
  */
-export type PostWhatIfScenarioResponse = WhatIfScenarioDescriptor;
+export type PostWhatIfScenarioResponse = WhatIfScenarioDescriptor

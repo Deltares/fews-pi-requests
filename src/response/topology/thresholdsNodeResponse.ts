@@ -7,80 +7,80 @@ export interface TopologyThresholdNodeResponse {
   /**
    * TopologyThresholdNodes
    */
-  topologyNodes: TopologyThresholdNode[];
+  topologyNodes: TopologyThresholdNode[]
 }
 export interface TopologyThresholdNode {
-  id: string;
-  topologyLocationIcon?: string;
-  filterLocationsCount?: number;
+  id: string
+  topologyLocationIcon?: string
+  filterLocationsCount?: number
   /**
    * AggregatedLevelThresholdCrossings
    */
-  aggregatedLevelThresholdCrossings?: AggregatedLevelThresholdCrossings[];
+  aggregatedLevelThresholdCrossings?: AggregatedLevelThresholdCrossings[]
   /**
    * AggregatedLevelThresholdWarningLevels
    */
-  aggregatedLevelThresholdWarningLevels?: LevelThresholdWarningLevels[];
+  aggregatedLevelThresholdWarningLevels?: LevelThresholdWarningLevels[]
   /**
    * LevelThresholdCrossings
    */
-  levelThresholdCrossings?: LevelThresholdCrossings[];
+  levelThresholdCrossings?: LevelThresholdCrossings[]
   /**
    * LevelThresholdWarningLevels
    */
-  levelThresholdWarningLevels?: ParameterLevelThresholdWarningLevels[];
+  levelThresholdWarningLevels?: ParameterLevelThresholdWarningLevels[]
 }
 export interface AggregatedLevelThresholdCrossings {
-  locationId: string;
-  warningLevelId: string;
-  warningLevelName: string;
-  severity: number;
-  icon: string;
-  color: string;
-  firstValue?: number;
-  firstValueTime?: string;
-  lastValue?: number;
-  lastValueTime?: string;
-  maxValue?: number;
-  maxValueTime?: string;
-  minValue?: number;
-  minValueTime?: string;
+  locationId: string
+  warningLevelId: string
+  warningLevelName: string
+  severity: number
+  icon: string
+  color: string
+  firstValue?: number
+  firstValueTime?: string
+  lastValue?: number
+  lastValueTime?: string
+  maxValue?: number
+  maxValueTime?: string
+  minValue?: number
+  minValueTime?: string
 }
 export interface LevelThresholdWarningLevels {
-  id: string;
-  name: string;
-  severity: number;
-  icon?: string;
-  count: number;
+  id: string
+  name: string
+  severity: number
+  icon?: string
+  count: number
 }
 export interface LevelThresholdCrossings {
-  locationId: string;
-  parameterId: string;
-  warningLevelId?: string;
-  warningLevelName?: string;
-  severity: number;
-  icon: string;
-  color: string;
-  maxValue?: number;
-  maxValueTime?: string;
-  minValue?: number;
-  minValueTime?: string;
-  firstValue: number;
-  firstValueTime: string;
-  lastValue: number;
-  lastValueTime: string;
+  locationId: string
+  parameterId: string
+  warningLevelId?: string
+  warningLevelName?: string
+  severity: number
+  icon: string
+  color: string
+  maxValue?: number
+  maxValueTime?: string
+  minValue?: number
+  minValueTime?: string
+  firstValue: number
+  firstValueTime: string
+  lastValue: number
+  lastValueTime: string
 }
 export interface ParameterLevelThresholdWarningLevels {
-  id: string;
-  name: string;
-  severity: number;
-  icon?: string;
+  id: string
+  name: string
+  severity: number
+  icon?: string
   /**
    * parameterWarningLevelCount
    */
-  parameterWarningLevelCount?: ParameterCount[];
+  parameterWarningLevelCount?: ParameterCount[]
 }
 export interface ParameterCount {
-  parameterId: string;
-  count: number;
+  parameterId: string
+  count: number
 }

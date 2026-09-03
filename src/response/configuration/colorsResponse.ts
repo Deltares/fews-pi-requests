@@ -7,15 +7,15 @@ export interface ColorsResponse {
   /**
    * Colors
    */
-  colors: Color[];
+  colors: Color[]
 }
 export interface Color {
   /**
    * the hex color code
    */
-  color: string;
+  color: string
   /**
    * The optional name of the color
    */
-  name?: string;
+  name?: string
 }

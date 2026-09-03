@@ -7,6 +7,6 @@ export interface UserSettingUsersResponse {
   /**
    * A list of user IDs
    */
-  userIds: string[];
-  [k: string]: unknown;
+  userIds: string[]
+  [k: string]: unknown
 }

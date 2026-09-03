@@ -7,17 +7,17 @@ export interface ArchiveExternalNetCDFStorageForecasts {
   /**
    * External NetCD FStorage Forecasts
    */
-  externalNetCDFStorageForecasts: ExternalNetCDFStorageForecast[];
+  externalNetCDFStorageForecasts: ExternalNetCDFStorageForecast[]
 }
 export interface ExternalNetCDFStorageForecast {
-  forecastTime: string;
-  forecastAvailableTime: string;
+  forecastTime: string
+  forecastAvailableTime: string
   /**
    * External NetCD FStorage Forecasts Attributes
    */
-  attributes?: ExternalNetCDFStorageForecastAttribute[];
+  attributes?: ExternalNetCDFStorageForecastAttribute[]
 }
 export interface ExternalNetCDFStorageForecastAttribute {
-  name: string;
-  value: string;
+  name: string
+  value: string
 }

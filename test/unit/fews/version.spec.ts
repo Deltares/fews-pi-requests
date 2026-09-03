@@ -1,23 +1,29 @@
-import {PiWebserviceProvider} from '../../../src'
+import { PiWebserviceProvider } from '../../../src'
 
 import expectedResponse from '../mock/version.json'
-import fetchMock from "fetch-mock";
+import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 
-describe("version", function () {    it("gets called when done", async function () {
-        fetchMock.get("https://mock.dev/fewswebservices/rest/fewspiservice/v1/version?documentFormat=PI_JSON", {
-            status: 200,
-            body: JSON.stringify(expectedResponse)
-        });
+describe('version', function () {
+  it('gets called when done', async function () {
+    fetchMock.get(
+      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/version?documentFormat=PI_JSON',
+      {
+        status: 200,
+        body: JSON.stringify(expectedResponse),
+      },
+    )
 
-        const provider = new PiWebserviceProvider("https://mock.dev/fewswebservices")
+    const provider = new PiWebserviceProvider(
+      'https://mock.dev/fewswebservices',
+    )
 
-        const results = await provider.getVersion();
-        expect(results).toStrictEqual(expectedResponse);
-        expect(results.version.implementation).toBe('2017.02');
-        expect(results.version.buildNumber).toBe(12345);
-        expect(results.version.buildTime).toBe('2017-10-31T23:00:00Z');
-        expect(results.version.buildType).toBe('stable');
-    });
-});
+    const results = await provider.getVersion()
+    expect(results).toStrictEqual(expectedResponse)
+    expect(results.version.implementation).toBe('2017.02')
+    expect(results.version.buildNumber).toBe(12345)
+    expect(results.version.buildTime).toBe('2017-10-31T23:00:00Z')
+    expect(results.version.buildType).toBe('stable')
+  })
+})

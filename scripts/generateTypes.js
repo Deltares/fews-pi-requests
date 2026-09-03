@@ -1,5 +1,6 @@
 import { compile } from 'json-schema-to-typescript'
 import fs from 'node:fs'
+import { resolveConfig, format } from 'prettier'
 
 const config = {
   url: 'https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest',
@@ -101,15 +102,15 @@ const piSchemas = [
   },
   {
     url: `${config.url}/pi_rest_document_displays.json`,
-    output: "src/response/documentdisplays/documentDisplaysResponse.ts"
+    output: 'src/response/documentdisplays/documentDisplaysResponse.ts',
   },
   {
     url: `${config.url}/pi_rest_whatifscenariodescriptors.json`,
-    output: "src/response/embedded/whatIfScenarioDescriptorsResponse.ts",
+    output: 'src/response/embedded/whatIfScenarioDescriptorsResponse.ts',
   },
   {
     url: `${config.url}/pi_rest_whatiftemplates.json`,
-    output: "src/response/embedded/whatIfTemplatesResponse.ts",
+    output: 'src/response/embedded/whatIfTemplatesResponse.ts',
   },
   {
     url: `${config.url}/pi_rest_timesteps.json`,
@@ -125,7 +126,7 @@ const piSchemas = [
   },
   {
     url: `${config.url}/pi_rest_data_analysis_displays.json`,
-    output: "src/response/dataanalysis/dataAnalysisDisplaysResponse.ts",
+    output: 'src/response/dataanalysis/dataAnalysisDisplaysResponse.ts',
   },
   {
     url: `${config.url}/pi_rest_taskrunstatus.json`,
@@ -194,7 +195,12 @@ const generateTypes = async (schemas) => {
       const ts = await compile(data, schema.output, {
         bannerComment: config.message,
       })
-      fs.writeFileSync(schema.output, ts)
+      const prettierConfig = await resolveConfig(schema.output)
+      const formattedTs = await format(ts, {
+        ...prettierConfig,
+        filepath: schema.output,
+      })
+      fs.writeFileSync(schema.output, formattedTs)
     } catch (error) {
       console.error(`Error processing file ${schema.url}: ${error}`)
     }

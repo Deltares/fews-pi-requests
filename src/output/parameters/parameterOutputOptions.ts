@@ -1,9 +1,9 @@
-import type { ParameterOutputType } from "./parameterOutputType";
+import type { ParameterOutputType } from './parameterOutputType'
 
 export interface ParameterOutputOptions {
-  type: ParameterOutputType;
+  type: ParameterOutputType
 }
 
 export interface ParameterGroupsOutputOptions extends ParameterOutputOptions {
-  type: "parameterGroups";
+  type: 'parameterGroups'
 }

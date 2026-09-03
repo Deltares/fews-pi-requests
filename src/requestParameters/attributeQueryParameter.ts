@@ -1,3 +1,3 @@
 export type AttributeQueryParameter = {
-    [key: string]: string | string[];
+  [key: string]: string | string[]
 }

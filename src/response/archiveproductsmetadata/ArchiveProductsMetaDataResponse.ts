@@ -7,25 +7,25 @@ export interface ArchiveProductsMetadata {
   /**
    * Archive Products Metadata
    */
-  productsMetadata: ArchiveProductsMetadataEntry[];
+  productsMetadata: ArchiveProductsMetadataEntry[]
 }
 export interface ArchiveProductsMetadataEntry {
-  version?: string;
-  areaId: string;
-  sourceId: string;
-  relativePathMetaDataFile: string;
+  version?: string
+  areaId: string
+  sourceId: string
+  relativePathMetaDataFile: string
   /**
    * Relative Path Products
    */
-  relativePathProducts: string[];
-  dataSetCreationTime?: string;
-  timeZero?: string;
+  relativePathProducts: string[]
+  dataSetCreationTime?: string
+  timeZero?: string
   /**
    * Archive Products Metadata Attributes
    */
-  attributes: ArchiveProductsMetadataAttribute[];
+  attributes: ArchiveProductsMetadataAttribute[]
 }
 export interface ArchiveProductsMetadataAttribute {
-  key: string;
-  value: string;
+  key: string
+  value: string
 }

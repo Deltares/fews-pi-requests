@@ -1,6 +1,6 @@
-import type { BaseFilter } from "./baseFilter";
+import type { BaseFilter } from './baseFilter'
 
 export interface ForecastTimesFilter extends BaseFilter {
-  workflowId: string;
-  timeZero: string;
+  workflowId: string
+  timeZero: string
 }

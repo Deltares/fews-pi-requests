@@ -1,22 +1,22 @@
 export enum TaskStatus {
   // Complete
-  A = "A",
+  A = 'A',
   // Partially Complete
-  B = "B",
+  B = 'B',
   // Complete
-  C = "C",
+  C = 'C',
   // Partly Successful
-  D = "D",
+  D = 'D',
   // Failed
-  F = "F",
+  F = 'F',
   // Invalid
-  I = "I",
+  I = 'I',
   // Pending
-  P = "P",
+  P = 'P',
   // Running
-  R = "R",
+  R = 'R',
   // Scheduled
-  S = "S",
+  S = 'S',
   // Terminated
-  T = "T",
+  T = 'T',
 }

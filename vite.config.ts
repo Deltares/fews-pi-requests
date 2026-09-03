@@ -12,7 +12,7 @@ export default defineConfig({
       entry: resolveRelativePath('src/index.ts'),
       formats: ['es'],
       name: 'fews-pi-requests',
-      fileName: 'fews-pi-requests'
-    }
-  }
+      fileName: 'fews-pi-requests',
+    },
+  },
 })

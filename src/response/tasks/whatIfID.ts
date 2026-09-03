@@ -1,3 +1,3 @@
 export enum WhatifID {
-    None = "None",
+  None = 'None',
 }

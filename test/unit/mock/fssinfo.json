@@ -1,12 +1,16 @@
 {
-  "workflowFssInfo" : {
-    "forecastingShellCount" : 1,
-    "fssGroups" : [ {
-      "id" : "windows_1",
-      "name" : "windows_1",
-      "forecastingShells" : [ {
-        "id" : 161
-      } ]
-    } ]
+  "workflowFssInfo": {
+    "forecastingShellCount": 1,
+    "fssGroups": [
+      {
+        "id": "windows_1",
+        "name": "windows_1",
+        "forecastingShells": [
+          {
+            "id": 161
+          }
+        ]
+      }
+    ]
   }
 }

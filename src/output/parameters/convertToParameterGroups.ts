@@ -9,7 +9,7 @@ import type { ParameterGroup } from './parameterGroup'
  * @param {Parameter | any} parameter - The value to be checked.
  * @returns {boolean} True if the value is of type Parameter, false otherwise.
  */
-function isParameter(parameter: Parameter | unknown): parameter is Parameter { // NOSONAR(S6571) - Unknown type in type guard is recommended
+function isParameter(parameter: unknown): parameter is Parameter {
   return (parameter as Parameter).name !== undefined
 }
 
@@ -19,10 +19,11 @@ function isParameter(parameter: Parameter | unknown): parameter is Parameter { /
  * @param {ParameterGroup | any} parameter - The value to be checked.
  * @returns {boolean} True if the value is of type ParameterGroup, false otherwise.
  */
-function isParameterGroup(
-  parameter: ParameterGroup | unknown, // NOSONAR(S6571) - Unknown type in type guard is recommended
-): parameter is ParameterGroup {
-  return parameter !== undefined && (parameter as ParameterGroup).parameters !== undefined
+function isParameterGroup(parameter: unknown): parameter is ParameterGroup {
+  return (
+    parameter !== undefined &&
+    (parameter as ParameterGroup).parameters !== undefined
+  )
 }
 
 function toParameter(parameter: Parameter): Parameter {
@@ -75,13 +76,15 @@ export function convertToParameterGroups(
     const parameterGroupId = tsParameter.parameterGroup
 
     if (parameterGroupId === undefined) {
-      if (isParameter(tsParameter)) result.parameters.push(toParameter(tsParameter))
+      if (isParameter(tsParameter))
+        result.parameters.push(toParameter(tsParameter))
       continue
     }
 
     const existingGroup = groupsById.get(parameterGroupId)
     if (isParameterGroup(existingGroup)) {
-      if (isParameter(tsParameter)) existingGroup.parameters.push(toParameter(tsParameter))
+      if (isParameter(tsParameter))
+        existingGroup.parameters.push(toParameter(tsParameter))
       continue
     }
 

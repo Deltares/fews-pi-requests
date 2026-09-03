@@ -7,35 +7,35 @@ export interface MessagesResponse {
   /**
    * Indicates if message was successfully sent to all recipients.
    */
-  allSuccess?: boolean;
+  allSuccess?: boolean
   /**
    * Indicates if message failed to be sent to all recipients.
    */
-  allFailed?: boolean;
+  allFailed?: boolean
   /**
    * Indicates if message arrived at all recipients.
    */
-  allArrived?: boolean;
+  allArrived?: boolean
   /**
    * Messages sent to recipients.
    */
-  messages: MessageResponse[];
+  messages: MessageResponse[]
 }
 export interface MessageResponse {
   /**
    * Status
    */
-  status: "failed" | "success" | "unknown";
+  status: 'failed' | 'success' | 'unknown'
   /**
    * Optional description of the status.
    */
-  statusDescription?: string;
+  statusDescription?: string
   /**
    * Optional id of the message that was sent to a recipient.
    */
-  id?: string;
+  id?: string
   /**
    * Date the message arrived at the recipient in UTC format.
    */
-  arrived?: string;
+  arrived?: string
 }

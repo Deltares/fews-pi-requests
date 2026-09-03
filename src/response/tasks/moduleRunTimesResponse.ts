@@ -1,5 +1,5 @@
-import type { ModuleRunTime } from "./moduleRuntime";
-import type { Records } from "./records";
+import type { ModuleRunTime } from './moduleRuntime'
+import type { Records } from './records'
 
 /**
  * The tasks/moduleruntimes resource is used to get all expected runtimes for workflows per module instance id.
@@ -12,6 +12,6 @@ import type { Records } from "./records";
  * the expected pending duration time and the expected running time. For triggered tasks,
  * the expected start time and end time won’t be available until the task is actually started.
  */
- export interface ModuleRuntimesResponse extends Records {
-    moduleRunTimes:  ModuleRunTime[];
+export interface ModuleRuntimesResponse extends Records {
+  moduleRunTimes: ModuleRunTime[]
 }
