@@ -91,8 +91,15 @@ import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './out
 import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
-import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
-import type { ResponseParser, TransformRequestFunction, DataRequestResult } from "@deltares/fews-web-oc-utils";
+import {
+  DefaultParser,
+  PiRestService,
+  PlainTextParser,
+  RequestOptions,
+  type ResponseParser,
+  type TransformRequestFunction,
+  type DataRequestResult,
+} from '@deltares/fews-web-oc-utils'
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 import { DocumentDisplaysResponse } from './response/documentdisplays'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
