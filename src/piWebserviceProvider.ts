@@ -91,8 +91,15 @@ import type { ParameterGroupsOutputOptions, ParameterOutputOptions } from './out
 import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
 import {absoluteUrl, filterToParams, splitUrl} from "./utils/index.js";
 
-import {DefaultParser, PiRestService, PlainTextParser, RequestOptions} from "@deltares/fews-web-oc-utils";
-import type { ResponseParser, TransformRequestFunction, DataRequestResult } from "@deltares/fews-web-oc-utils";
+import {
+  DefaultParser,
+  PiRestService,
+  PlainTextParser,
+  RequestOptions,
+  type ResponseParser,
+  type TransformRequestFunction,
+  type DataRequestResult,
+} from '@deltares/fews-web-oc-utils'
 import { DynamicReportDisplayCapabilitiesFilter, DynamicReportDisplayFilter } from './requestParameters/dynamicDisplayReportFilter'
 import { DocumentDisplaysResponse } from './response/documentdisplays'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
@@ -434,6 +441,36 @@ export class PiWebserviceProvider {
         const queryParameters = "documentFormat=PI_JSON"
         const url = this.versionUrl(queryParameters);
         const res = await this.webservice.getData<VersionResponse>(url.toString());
+        return res.data;
+    }
+
+    /**
+     * Get the system time of FEWS
+     *
+     * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getSystemTime(): Promise<string> {
+        const url = this.systemTimeUrl().toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url.toString(), requestOptions, parser);
+        return res.data;
+    }
+
+    /**
+     * Get the last refresh time of FEWS
+     *
+     * @returns import status API response
+     * @throws 'Fetch Error' if fetch result is not ok
+     */
+    async getLastRefreshTime(): Promise<string> {
+        const url = this.lastRefreshTimeUrl().toString();
+        const parser = new PlainTextParser<string>();
+        const requestOptions = new RequestOptions();
+        requestOptions.relativeUrl = !url.startsWith('http');
+        const res = await this.webservice.getDataWithParser<string>(url.toString(), requestOptions, parser);
         return res.data;
     }
 
@@ -1270,6 +1307,30 @@ export class PiWebserviceProvider {
     versionUrl(queryParameters: string): URL {
         return new URL(
             `${this._baseUrl.pathname}${this.API_ENDPOINT}/version?${queryParameters}`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for system time
+     *
+     * @returns complete url for making a request
+     */
+    systemTimeUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/systemtime`,
+            this._baseUrl
+        )
+    }
+
+    /**
+     * Construct URL for last refresh time
+     *
+     * @returns complete url for making a request
+     */
+    lastRefreshTimeUrl(): URL {
+        return new URL(
+            `${this._baseUrl.pathname}${this.API_ENDPOINT}/lastrefreshtime`,
             this._baseUrl
         )
     }
