@@ -1,5 +1,6 @@
 import { compile } from 'json-schema-to-typescript'
 import fs from 'node:fs'
+import { resolveConfig, format } from 'prettier'
 
 const config = {
   url: 'https://fewsdocs.deltares.nl/webservices/rest-api/v1/schemas/pirest',
@@ -194,7 +195,12 @@ const generateTypes = async (schemas) => {
       const ts = await compile(data, schema.output, {
         bannerComment: config.message,
       })
-      fs.writeFileSync(schema.output, ts)
+      const prettierConfig = await resolveConfig(schema.output)
+      const formattedTs = await format(ts, {
+        ...prettierConfig,
+        filepath: schema.output,
+      })
+      fs.writeFileSync(schema.output, formattedTs)
     } catch (error) {
       console.error(`Error processing file ${schema.url}: ${error}`)
     }
