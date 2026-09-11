@@ -12,6 +12,10 @@ export interface Permission {
    */
   id: string
   /**
+   * Optional name of the permission
+   */
+  name?: string
+  /**
    * True if the permission is assigned to the current user.
    */
   assigned: boolean

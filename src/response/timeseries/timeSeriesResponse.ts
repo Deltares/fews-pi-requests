@@ -81,6 +81,10 @@ export interface TimeSeriesResult {
  */
 export interface Header {
   /**
+   * Unique id for a time series.
+   */
+  timeSeriesId?: string
+  /**
    * TimeSeries type
    */
   type: string
