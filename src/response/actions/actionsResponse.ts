@@ -103,6 +103,7 @@ export interface TimeSeriesDisplaySubplotItem {
   markerStyle?: string
   markerSize?: number
   locationId?: string
+  parameterId?: string
   taskRunId?: string
   yAxis?: TimeSeriesDisplaySubplotItemAxis
   /**
