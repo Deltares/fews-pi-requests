@@ -38,7 +38,7 @@
     "@deltares/fews-web-oc-utils": "^2.2.0"
   },
   "devDependencies": {
-    "@types/node": "^24.12.2",
+    "@types/node": "^26.5.1",
     "@vitest/browser-playwright": "^5.0.0",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
