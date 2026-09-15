@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "vite build && tsc -p tsconfig.build.json",
-    "doc": "typedoc --out doc src",
+    "docs": "typedoc src/index.ts",
     "lint": "eslint src/**/*.ts test/**/*.ts | npm run prettier",
     "lint:fix": "eslint --fix src/**/*.ts test/**/*.ts",
     "prettier": "prettier . --check",
