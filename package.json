@@ -16,8 +16,8 @@
   "module": "./dist/fews-pi-requests.js",
   "exports": {
     ".": {
-      "import": "./dist/fews-pi-requests.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/fews-pi-requests.js"
     }
   },
   "scripts": {

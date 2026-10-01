@@ -1,9 +1,9 @@
-import type { TimeSeriesResponse } from './response/timeseries'
-import type { ModuleRuntimesResponse, TaskRunsResponse } from './response/tasks'
-import type { LocationsResponse } from './response/locations'
-import type { ImportStatusResponse } from './response/importStatus'
-import type { ExportStatusResponse } from './response/exportStatus'
-import type { VersionResponse } from './response/version'
+import type { TimeSeriesResponse } from './response/timeseries.js'
+import type { ModuleRuntimesResponse, TaskRunsResponse } from './response/tasks.js'
+import type { LocationsResponse } from './response/locations.js'
+import type { ImportStatusResponse } from './response/importStatus.js'
+import type { ExportStatusResponse } from './response/exportStatus.js'
+import type { VersionResponse } from './response/version.js'
 
 import type {
   BaseFilter,
@@ -48,7 +48,7 @@ import type {
   TimeStepsFilter,
   MessagesFilter,
   TopicsMessagesWithAttachments,
-} from './requestParameters'
+} from './requestParameters.js'
 import { DocumentFormat } from './requestParameters/index.js'
 import type {
   ActionsResponse,
@@ -84,14 +84,14 @@ import type {
   PermissionsResponse,
   MessagesResponse,
   TopicsMessagesPostResponse,
-} from './response'
+} from './response.js'
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
 import type {
   ParameterGroupsOutputOptions,
   ParameterOutputOptions,
-} from './output/parameters/parameterOutputOptions'
-import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput'
+} from './output/parameters/parameterOutputOptions.js'
+import type { ParameterGroupsOutput } from './output/parameters/parameterGroupsOutput.js'
 import { absoluteUrl, filterToParams, splitUrl } from './utils/index.js'
 
 import {
@@ -106,9 +106,9 @@ import {
 import {
   DynamicReportDisplayCapabilitiesFilter,
   DynamicReportDisplayFilter,
-} from './requestParameters/dynamicDisplayReportFilter'
-import { DocumentDisplaysResponse } from './response/documentdisplays'
-import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter'
+} from './requestParameters/dynamicDisplayReportFilter.js'
+import { DocumentDisplaysResponse } from './response/documentdisplays.js'
+import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter.js'
 import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.js'
 
 export class PiWebserviceProvider {

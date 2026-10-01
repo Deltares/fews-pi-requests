@@ -1,4 +1,4 @@
-import type { AttributeQueryParameter } from './attributeQueryParameter'
+import type { AttributeQueryParameter } from './attributeQueryParameter.js'
 
 interface BaseProductsMetaDataFilter {
   /**

@@ -1,5 +1,5 @@
-import type { ModuleRunTime } from './moduleRuntime'
-import type { Records } from './records'
+import type { ModuleRunTime } from './moduleRuntime.js'
+import type { Records } from './records.js'
 
 /**
  * The tasks/moduleruntimes resource is used to get all expected runtimes for workflows per module instance id.

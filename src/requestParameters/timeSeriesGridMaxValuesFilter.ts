@@ -1,4 +1,4 @@
-import { BaseFilter } from './baseFilter'
+import { BaseFilter } from './baseFilter.js'
 
 export interface TimeSeriesGridMaxValuesFilter extends BaseFilter {
   // Start time of search period that looks for timeseries values that are

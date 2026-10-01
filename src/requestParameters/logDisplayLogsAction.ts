@@ -1,4 +1,4 @@
-import type { ForecasterNoteRequest } from './forecasterNoteBody'
+import type { ForecasterNoteRequest } from './forecasterNoteBody.js'
 
 export interface LogDisplayLogsActionRequest extends Pick<
   ForecasterNoteRequest,

@@ -1,5 +1,5 @@
-import type { Records } from './records'
-import type { Task } from './task'
+import type { Records } from './records.js'
+import type { Task } from './task.js'
 
 export interface ScheduledTasksResponse extends Records {
   tasks: Task[]
