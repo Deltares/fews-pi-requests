@@ -1,3 +1,3 @@
-import type { BaseFilter } from './baseFilter'
+import type { BaseFilter } from './baseFilter.js'
 
 export type WorkflowsFilter = BaseFilter

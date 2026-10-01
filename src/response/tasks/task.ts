@@ -1,6 +1,6 @@
-import type { FailoverPolicy } from './failoverPolicy'
-import type { TaskStatus } from './taskStatus'
-import type { WhatifID } from './whatIfID'
+import type { FailoverPolicy } from './failoverPolicy.js'
+import type { TaskStatus } from './taskStatus.js'
+import type { WhatifID } from './whatIfID.js'
 
 export interface Task {
   // Id

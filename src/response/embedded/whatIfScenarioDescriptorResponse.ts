@@ -1,6 +1,6 @@
 /* tslint:disable */
 
-import { WhatIfScenarioDescriptor } from './whatIfScenarioDescriptorsResponse'
+import { WhatIfScenarioDescriptor } from './whatIfScenarioDescriptorsResponse.js'
 
 /**
  * WhatIfScenarioResponse PI_JSON

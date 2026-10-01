@@ -1,4 +1,4 @@
-import type { ParameterOutputType } from './parameterOutputType'
+import type { ParameterOutputType } from './parameterOutputType.js'
 
 export interface ParameterOutputOptions {
   type: ParameterOutputType

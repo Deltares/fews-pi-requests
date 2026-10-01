@@ -1,4 +1,4 @@
-import { BaseFilter } from './baseFilter'
+import { BaseFilter } from './baseFilter.js'
 
 export interface TaskRunStatusFilter extends BaseFilter {
   /** Task Id */

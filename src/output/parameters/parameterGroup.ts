@@ -1,4 +1,4 @@
-import type { Parameter } from './parameter'
+import type { Parameter } from './parameter.js'
 
 export interface ParameterGroup {
   id: string

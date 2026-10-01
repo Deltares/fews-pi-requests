@@ -1,5 +1,5 @@
-import type { BaseFilter } from './baseFilter'
-import type { AttributeQueryParameter } from './attributeQueryParameter'
+import type { BaseFilter } from './baseFilter.js'
+import type { AttributeQueryParameter } from './attributeQueryParameter.js'
 
 export interface AttributesFilter extends BaseFilter {
   /**

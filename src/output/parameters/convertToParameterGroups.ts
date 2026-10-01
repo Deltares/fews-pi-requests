@@ -1,7 +1,7 @@
-import type { TimeSeriesParametersResponse } from '../../response/timeseriesparameters/timeSeriesParametersResponse'
-import type { ParameterGroupsOutput } from './parameterGroupsOutput'
-import type { Parameter } from './parameter'
-import type { ParameterGroup } from './parameterGroup'
+import type { TimeSeriesParametersResponse } from '../../response/timeseriesparameters/timeSeriesParametersResponse.js'
+import type { ParameterGroupsOutput } from './parameterGroupsOutput.js'
+import type { Parameter } from './parameter.js'
+import type { ParameterGroup } from './parameterGroup.js'
 
 /**
  * Checks if the provided value is of type Parameter.

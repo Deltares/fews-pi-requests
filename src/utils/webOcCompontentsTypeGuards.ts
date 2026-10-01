@@ -3,7 +3,7 @@ import {
   WebOcSpatialDisplayConfig,
   WebOcSystemMonitorConfig,
   WebOcTopologyDisplayConfig,
-} from '../response'
+} from '../response/index.js'
 
 type WebOcComponentConfig =
   | WebOcSpatialDisplayConfig

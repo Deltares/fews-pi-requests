@@ -1,4 +1,4 @@
-import type { BaseFilter } from './baseFilter'
+import type { BaseFilter } from './baseFilter.js'
 
 export interface CorrelationFilter extends BaseFilter {
   /** Id of the time series for the y axis */
