@@ -1,9 +1,12 @@
-import type { TimeSeriesResponse } from './response/timeseries.js'
-import type { ModuleRuntimesResponse, TaskRunsResponse } from './response/tasks.js'
-import type { LocationsResponse } from './response/locations.js'
-import type { ImportStatusResponse } from './response/importStatus.js'
-import type { ExportStatusResponse } from './response/exportStatus.js'
-import type { VersionResponse } from './response/version.js'
+import type { TimeSeriesResponse } from './response/timeseries/index.js'
+import type {
+  ModuleRuntimesResponse,
+  TaskRunsResponse,
+} from './response/tasks/index.js'
+import type { LocationsResponse } from './response/locations/index.js'
+import type { ImportStatusResponse } from './response/importStatus/index.js'
+import type { ExportStatusResponse } from './response/exportStatus/index.js'
+import type { VersionResponse } from './response/version/index.js'
 
 import type {
   BaseFilter,
@@ -48,7 +51,7 @@ import type {
   TimeStepsFilter,
   MessagesFilter,
   TopicsMessagesWithAttachments,
-} from './requestParameters.js'
+} from './requestParameters/index.js'
 import { DocumentFormat } from './requestParameters/index.js'
 import type {
   ActionsResponse,
@@ -84,7 +87,7 @@ import type {
   PermissionsResponse,
   MessagesResponse,
   TopicsMessagesPostResponse,
-} from './response.js'
+} from './response/index.js'
 
 import { convertToParameterGroups } from './output/parameters/convertToParameterGroups.js'
 import type {
@@ -107,7 +110,7 @@ import {
   DynamicReportDisplayCapabilitiesFilter,
   DynamicReportDisplayFilter,
 } from './requestParameters/dynamicDisplayReportFilter.js'
-import { DocumentDisplaysResponse } from './response/documentdisplays.js'
+import { DocumentDisplaysResponse } from './response/documentdisplays/index.js'
 import { DocumentDisplaysFilter } from './requestParameters/documentDisplaysFilter.js'
 import { MicroFrontEndsFilter } from './requestParameters/microFrontEndsFilter.js'
 

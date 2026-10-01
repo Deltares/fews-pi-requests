@@ -5,7 +5,7 @@ import type {
   ExternalForecastsFilter,
   ProductsMetaDataFilter,
   TimeSeriesFilter,
-} from './requestParameters.js'
+} from './requestParameters/index.js'
 import type {
   ArchiveAreas,
   ArchiveAttributes,
@@ -14,7 +14,7 @@ import type {
   ArchiveParameters,
   ArchiveProductsMetadata,
   TimeSeriesResponse,
-} from './response.js'
+} from './response/index.js'
 import { DocumentFormat } from './requestParameters/index.js'
 import {
   PiRestService,
@@ -23,7 +23,7 @@ import {
 } from '@deltares/fews-web-oc-utils'
 import type { TransformRequestFunction } from '@deltares/fews-web-oc-utils'
 import { BaseFilter } from './requestParameters/baseFilter.js'
-import { ArchiveSources } from './response/archivesources.js'
+import { ArchiveSources } from './response/archivesources/index.js'
 import { ArchiveParametersFilter } from './requestParameters/archiveParametersFilter.js'
 import { ProductAttributesFilter } from './requestParameters/productAttributesFilter.js'
 
