@@ -9,8 +9,7 @@ import type {
 
 describe('locations', () => {
   it('types iconLabel as an optional string', () => {
-    expectTypeOf<Location['iconLabel']>()
-      .toEqualTypeOf<string | undefined>()
+    expectTypeOf<Location['iconLabel']>().toEqualTypeOf<string | undefined>()
   })
 
   it.each([
