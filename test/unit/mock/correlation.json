@@ -1,7 +1,13 @@
 {
   "equation": {
+    "type": "exponential multiply",
     "description": "Exponential Regression f(x) = 111.39822 *  exp( -0.00119 * x )",
-    "R-squared": 0.016868513
+    "coefficientA": 111.39822,
+    "coefficientB": -0.00119,
+    "rSquared": 0.016868513,
+    "status": "nominal",
+    "statusDescription": "Regression calculated successfully",
+    "requiredPointCount": 2
   },
   "title": "H_obs LOC7 to H_obs LOC2",
   "xAxis": {

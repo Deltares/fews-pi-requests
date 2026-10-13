@@ -1,9 +1,12 @@
 import { PiWebserviceProvider } from '../../../src'
+import type { Equation } from '../../../src/response/statistics/correlationResponse'
 
 import expectedResponse from '../mock/correlation.json'
 import fetchMock from 'fetch-mock'
 
 import { describe, it, expect } from 'vitest'
+
+expectedResponse.equation satisfies Equation
 
 describe('correlation', function () {
   it('it returns 2 correlation with correct types', async function () {
@@ -31,7 +34,15 @@ describe('correlation', function () {
     expect(results.equation?.description).toBe(
       'Exponential Regression f(x) = 111.39822 *  exp( -0.00119 * x )',
     )
-    expect(results.equation?.['R-squared']).toBe(0.016868513)
+    expect(results.equation?.type).toBe('exponential multiply')
+    expect(results.equation?.coefficientA).toBe(111.39822)
+    expect(results.equation?.coefficientB).toBe(-0.00119)
+    expect(results.equation?.rSquared).toBe(0.016868513)
+    expect(results.equation?.status).toBe('nominal')
+    expect(results.equation?.statusDescription).toBe(
+      'Regression calculated successfully',
+    )
+    expect(results.equation?.requiredPointCount).toBe(2)
     expect('title' in results).toBe(true)
     expect(results.title).toBe('H_obs LOC7 to H_obs LOC2')
     expect('xAxis' in results).toBe(true)
