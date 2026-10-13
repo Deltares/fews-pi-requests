@@ -13,7 +13,13 @@ export interface CorrelationResponse {
 }
 export interface Equation {
   description: string
-  'R-squared': number
+  type: string
+  coefficientA: number
+  coefficientB: number
+  rSquared: number
+  status: "nominal" | "coefficients-invalid" | "curve-invalid" | "input-too-short"
+  statusDescription: string
+  requiredPointCount: number
 }
 export interface Axis {
   label: string
