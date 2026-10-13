@@ -12,8 +12,14 @@ export interface CorrelationResponse {
   fitPoints?: FitPoint[]
 }
 export interface Equation {
+  type: string
   description: string
-  'R-squared': number
+  coefficientA: number
+  coefficientB: number
+  rSquared: number
+  status: string
+  statusDescription: string
+  requiredPointCount: number
 }
 export interface Axis {
   label: string
