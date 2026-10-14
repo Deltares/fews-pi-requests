@@ -79,6 +79,10 @@ export interface Location {
    */
   iconName?: string
   /**
+   * Since 2025.02: Name of the location icon label. Can be used with the resource /icons/{iconName} endpoint to get the icon label
+   */
+  iconLabel?: string
+  /**
    * Since 2023.02: Name of the threshold icon. If there are no crossed thresholds then this item will be omitted. Can be used with the resource /icons/{iconName} endpoint to get the icon
    */
   thresholdIconName?: string
