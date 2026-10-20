@@ -306,6 +306,7 @@ export interface MapLayer {
  */
 export interface SidePanelConfig {
   taskOverview?: SidePanelTaskOverviewConfig
+  shareOptions?: SidePanelShareOptionsConfig
   nonCurrentData?: SidePanelNonCurrentDataConfig
   importStatus?: SidePanelImportStatusConfig
   exportStatus?: SidePanelExportStatusConfig
@@ -317,6 +318,15 @@ export interface SidePanelConfig {
  * SidePanel Task Overview config options
  */
 export interface SidePanelTaskOverviewConfig {
+  /**
+   * enable
+   */
+  enabled?: boolean
+}
+/**
+ * SidePanel Share Options config options
+ */
+export interface SidePanelShareOptionsConfig {
   /**
    * enable
    */
