@@ -29,8 +29,12 @@ export interface LocationsLayer {
   locationNames?: boolean
   singleClickAction?: boolean
   locationSearchEnabled?: boolean
+  legend?: LocationsLayerLegendSettings
   minZoom?: LocationsLayerZoomSettings
   maxZoom?: LocationsLayerZoomSettings
+}
+export interface LocationsLayerLegendSettings {
+  show?: boolean
 }
 export interface LocationsLayerZoomSettings {
   level: number
