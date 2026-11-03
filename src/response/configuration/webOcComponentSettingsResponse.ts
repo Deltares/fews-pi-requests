@@ -55,6 +55,7 @@ export interface ChartsSettings {
   verticalProfileChart?: Chart
   verticalProfileTable?: VerticalProfileTable
   metaDataPanel?: MetaDataPanel
+  dynamicReportDisplay?: WebOCDynamicReportDisplay
 }
 export interface General {
   startPanel?:
@@ -63,6 +64,7 @@ export interface General {
     | 'timeSeriesTable'
     | 'verticalProfileTable'
     | 'metaDataPanel'
+    | 'dynamicReportDisplay'
   toolBar?: 'false' | 'true' | 'auto'
   locationNames?: boolean
 }
@@ -111,6 +113,10 @@ export interface VerticalProfileTable {
   sortDepthColumn?: string
 }
 export interface MetaDataPanel {
+  enabled?: boolean
+  locationEnabledAttribute?: string
+}
+export interface WebOCDynamicReportDisplay {
   enabled?: boolean
   locationEnabledAttribute?: string
 }
