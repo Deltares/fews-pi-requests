@@ -166,6 +166,7 @@ export interface WebOcGeneralConfig {
   splashScreen?: string
   helpMenu?: HelpMenuConfig
   taskMenu?: TaskMenuConfig
+  dataDownloadDisclaimer?: DataDownloadDisclaimerConfig
   icons?: WebOcIconsConfig
   login?: WebOcLoginConfig
   /**
@@ -196,6 +197,10 @@ export interface HelpMenuConfigPath {
 }
 export interface TaskMenuConfig {
   enabled?: boolean
+}
+export interface DataDownloadDisclaimerConfig {
+  enabled?: boolean
+  path?: string
 }
 /**
  * Icons Configuration
