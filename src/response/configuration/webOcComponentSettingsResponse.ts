@@ -10,6 +10,7 @@ export interface WebOCComponentSettingsClass {
   id?: string
   map?: MapSettings
   charts?: ChartsSettings
+  sidePanel?: SidePanelSettings
   ssd?: SSDSettings
   report?: ReportSettings
 }
@@ -119,6 +120,17 @@ export interface MetaDataPanel {
 export interface WebOCDynamicReportDisplay {
   enabled?: boolean
   locationEnabledAttribute?: string
+export interface SidePanelSettings {
+  showComponent?:
+    | 'taskOverview'
+    | 'shareOptions'
+    | 'nonCurrentData'
+    | 'importStatus'
+    | 'exportStatus'
+    | 'runTask'
+    | 'documentFile'
+    | 'logDisplay'
+    | 'None'
 }
 export interface SSDSettings {
   zoomEnabled?: boolean
