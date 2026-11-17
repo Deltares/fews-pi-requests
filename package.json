@@ -22,15 +22,14 @@
     }
   },
   "scripts": {
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "vp build && tsc -p tsconfig.build.json",
     "docs": "typedoc src/index.ts",
-    "lint": "eslint src/**/*.ts test/**/*.ts | npm run prettier",
-    "lint:fix": "eslint --fix src/**/*.ts test/**/*.ts",
-    "prettier": "prettier . --check",
-    "format": "prettier .  --write",
-    "test:unit": "vitest run test/unit",
-    "test:e2e": "vitest run test/e2e --config vitest.config.e2e.ts",
-    "test": "vitest",
+    "check": "vp check",
+    "lint": "vp lint",
+    "format": "vp fmt .",
+    "test:unit": "vp test run test/unit",
+    "test:e2e": "vp test run test/e2e --config vitest.config.e2e.ts",
+    "test": "vp test",
     "json2ts-pi": "node scripts/generateTypes.js pi",
     "json2ts-archive": "node scripts/generateTypes.js archive",
     "sonar": "sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=$SONAR_KEY -Dsonar.projectName='Delft-FEWS Web OC PI Requests'"
@@ -40,21 +39,18 @@
   },
   "devDependencies": {
     "@types/node": "^24.19.2",
-    "@vitest/browser-playwright": "^5.0.5",
-    "eslint": "^10.13.0",
-    "eslint-config-prettier": "^10.1.8",
+    "@vitest/browser-playwright": "5.1.0",
     "fetch-mock": "^12.6.0",
     "json-schema-to-typescript": "^16.0.0",
-    "prettier": "^3.9.10",
     "tslib": "^2.8.1",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.72.1",
-    "vite": "^8.3.4",
-    "vitest": "^5.0.5"
+    "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8000",
+    "vite-plus": "1.7.0",
+    "vitest": "5.1.0"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
   },
   "files": [
     "dist"
@@ -71,6 +67,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "overrides": {
-    "axios": "^1.18.0"
+    "axios": "^1.18.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8000",
+    "vitest": "5.1.0"
   }
 }
