@@ -2,7 +2,7 @@
 node_modules
 /dist
 /lib
-/doc
+/docs
 /coverage
 /reports
 
@@ -21,3 +21,4 @@ npm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+.vitest/
