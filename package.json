@@ -1,6 +1,6 @@
 {
   "name": "@deltares/fews-pi-requests",
-  "version": "3.7.0",
+  "version": "4.0.0-rc.0",
   "private": false,
   "description": "Library for making requests to the FEWS PI webservice",
   "keywords": [
@@ -33,7 +33,8 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "tag": "rc"
   },
   "scripts": {
     "build": "vp build && tsc -p tsconfig.build.json",
