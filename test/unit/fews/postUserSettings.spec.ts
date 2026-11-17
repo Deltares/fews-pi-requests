@@ -1,7 +1,7 @@
 import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const chartCollectionData = {
   'chart-collection': {
@@ -36,9 +36,7 @@ describe('postUserSettings', function () {
       body: 'Success',
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const response = await provider.postUserSettings(
       {

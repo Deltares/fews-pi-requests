@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src'
 import expectedResponse from '../mock/version.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('version', function () {
   it('gets called when done', async function () {
@@ -15,9 +15,7 @@ describe('version', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getVersion()
     expect(results).toStrictEqual(expectedResponse)

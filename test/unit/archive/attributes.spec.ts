@@ -5,7 +5,7 @@ import { AttributesFilter } from '../../../src/requestParameters/attributesFilte
 import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
 import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive/attributes', function () {
   it('gets called when done', async function () {
@@ -17,9 +17,7 @@ describe('archive/attributes', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: AttributesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -27,9 +25,7 @@ describe('archive/attributes', function () {
       locationIds: 'delfzijl',
       attributes: 'source',
     }
-    const results: ArchiveAttributes = (await provider.getAttributes(
-      filter,
-    )) as ArchiveAttributes
+    const results: ArchiveAttributes = (await provider.getAttributes(filter)) as ArchiveAttributes
     expect('archiveAttributes' in results).toBe(true)
     expect(results.archiveAttributes.length).toBe(5)
     expect(results).toStrictEqual(expectedResponse)

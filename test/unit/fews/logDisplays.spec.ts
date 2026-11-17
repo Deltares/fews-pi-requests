@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock'
 import expectedResponse from '../mock/logDisplays.json'
 import { LogDisplaysFilter } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('logDisplays', function () {
   it('logdisplays json response', async function () {
@@ -15,9 +15,7 @@ describe('logDisplays', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: LogDisplaysFilter = {
       logDisplayId: 'admin.log',

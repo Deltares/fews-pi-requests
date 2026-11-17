@@ -1,5 +1,5 @@
 import { PiWebserviceProvider, TopologyThresholdFilter } from '../../src'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const baseUrl = import.meta.env.VITE_DOCKER_URL || ''
 

@@ -6,7 +6,7 @@ import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebservicePro
 import { ArchiveParametersFilter } from '../../../src/requestParameters/archiveParametersFilter'
 import { DocumentFormat } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive/parameters', function () {
   it('gets called when done', async function () {
@@ -18,9 +18,7 @@ describe('archive/parameters', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
     const filter: ArchiveParametersFilter = {
       documentFormat: DocumentFormat.PI_JSON,
       locationIds: 'delfzijl',

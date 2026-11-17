@@ -6,7 +6,7 @@ import {
   TimeSeriesResponse,
   type TaskRunsFilter,
 } from '../../src'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const baseUrl = import.meta.env.VITE_DOCKER_URL || ''
 
@@ -69,10 +69,7 @@ describe('pi webservice provider', function () {
       y: -3498537.741543421,
       startTime: '2025-03-13T18:00:00Z',
       endTime: '2025-03-15T18:00:00Z',
-      bbox: [
-        3485991.6981145153, -3510098.363325539, 3509102.4643532103,
-        -3486987.5749842175,
-      ],
+      bbox: [3485991.6981145153, -3510098.363325539, 3509102.4643532103, -3486987.5749842175],
     })
     expect(res.results.length).toBeGreaterThan(0)
   })
@@ -119,9 +116,7 @@ describe('pi webservice provider', function () {
           expect(newValueEvent.value).toBe(newValue)
           expect(newValueEvent.flag).toBe(event.flag)
         } else {
-          throw new Error(
-            'No events found in time series for Umgeni_Mouth_level',
-          )
+          throw new Error('No events found in time series for Umgeni_Mouth_level')
         }
       } else {
         throw new Error('No events found in time series for Umgeni_Mouth_level')

@@ -3,31 +3,21 @@ import expectedResponse from '../mock/whatifscenario.json'
 import fetchMock from 'fetch-mock'
 import { PostWhatIfScenarioFilter } from '../../../src/requestParameters/postWhatIfScenarioFilter'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
-function isPropertyWithValue(
-  property: unknown,
-): property is { value: string | number | boolean } {
-  return (
-    property !== null && typeof property === 'object' && 'value' in property
-  )
+function isPropertyWithValue(property: unknown): property is { value: string | number | boolean } {
+  return property !== null && typeof property === 'object' && 'value' in property
 }
 
-function expectPropertyValue(
-  property: unknown,
-  expected: string | number | boolean,
-): void {
+function expectPropertyValue(property: unknown, expected: string | number | boolean): void {
   expect(property).toBeDefined()
   expect(isPropertyWithValue(property)).toBe(true)
-  expect((property as { value: string | number | boolean }).value).toBe(
-    expected,
-  )
+  expect((property as { value: string | number | boolean }).value).toBe(expected)
 }
 
 describe('postWhatIfScenario', function () {
   it('generates a valid postWhatIfScenario request', async function () {
-    const baseUrl =
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios'
+    const baseUrl = 'https://mock.dev/fewswebservices/rest/fewspiservice/v1/whatifscenarios'
     const queryParams = `whatIfTemplateId=testid&name=test&property(ADD_SURGE)=0.2&property(MULTIPLY_SURGE)=1.3`
 
     const url = `${baseUrl}?${queryParams}`
@@ -37,9 +27,7 @@ describe('postWhatIfScenario', function () {
       body: expectedResponse,
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const properties = {
       ADD_SURGE: 0.2,

@@ -4,21 +4,16 @@ import { MicroFrontEndsFilter } from '../../../src/requestParameters/microFrontE
 import expectedResponse from '../mock/microFrontEnds.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('microFrontEnds', function () {
   it('gets called when done', async () => {
-    fetchMock.get(
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/microfrontends',
-      {
-        status: 200,
-        body: JSON.stringify(expectedResponse),
-      },
-    )
+    fetchMock.get('https://mock.dev/fewswebservices/rest/fewspiservice/v1/microfrontends', {
+      status: 200,
+      body: JSON.stringify(expectedResponse),
+    })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const microFrontEndsFilter: MicroFrontEndsFilter = {}
 

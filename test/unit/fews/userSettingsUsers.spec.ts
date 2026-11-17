@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src'
 import expectedResponse from '../mock/userSettingsUsers.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('usersettingsusers', function () {
   it('it returns the user settings users', async function () {
@@ -13,9 +13,7 @@ describe('usersettingsusers', function () {
       body: expectedResponse,
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getUserSettingsUsers({
       topicId: 'chart-collection',

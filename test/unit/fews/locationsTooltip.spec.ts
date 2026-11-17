@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 import { LocationsTooltipFilter } from '../../../src/requestParameters'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('locationsTooltip', function () {
   it('gets called when done', async function () {
@@ -15,9 +15,7 @@ describe('locationsTooltip', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: LocationsTooltipFilter = {
       filterId: 'filter1',

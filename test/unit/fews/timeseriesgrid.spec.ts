@@ -6,7 +6,7 @@ import { TimeSeriesGridFilter } from '../../../src/requestParameters/timeSeriesG
 import { DocumentFormat } from '../../../src'
 import { TimeSeriesGridMaxValuesFilter } from '../../../src/requestParameters/timeSeriesGridMaxValuesFilter'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('timeseries/grid', function () {
   it('gets a time series for a WMS layer', async function () {
@@ -18,9 +18,7 @@ describe('timeseries/grid', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TimeSeriesGridFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -29,10 +27,7 @@ describe('timeseries/grid', function () {
       y: 6773416.739869252,
       startTime: '2020-12-22T21:00:00.000Z',
       endTime: '2020-12-22T21:00:00.000Z',
-      bbox: [
-        233081.51067565128, 6437014.8860724205, 1028684.8666990183,
-        6955886.640000704,
-      ],
+      bbox: [233081.51067565128, 6437014.8860724205, 1028684.8666990183, 6955886.640000704],
       importFromExternalDataSource: true,
       externalForecastTime: '2020-12-20T21:00:00.000Z',
     }
@@ -53,9 +48,7 @@ describe('timeseries/grid/maxvalues', () => {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TimeSeriesGridMaxValuesFilter = {
       layers: '-knmi_harmonie40--air_pressure_fixed_height-',

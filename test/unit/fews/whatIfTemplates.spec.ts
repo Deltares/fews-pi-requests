@@ -1,13 +1,9 @@
-import {
-  DocumentFormat,
-  PiWebserviceProvider,
-  WhatIfTemplatesFilter,
-} from '../../../src'
+import { DocumentFormat, PiWebserviceProvider, WhatIfTemplatesFilter } from '../../../src'
 
 import expectedResponse from '../mock/whatiftemplates.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('whatIfTemplates', function () {
   it('gets called when done', async () => {
@@ -19,9 +15,7 @@ describe('whatIfTemplates', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const whatIfTemplatesFilter: WhatIfTemplatesFilter = {
       documentFormat: DocumentFormat.PI_JSON,

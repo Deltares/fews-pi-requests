@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 import { ReportFilter } from '../../../src/requestParameters'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const expectedResponse = `
 <!DOCTYPE html>
@@ -27,18 +27,14 @@ const expectedResponse = `
 
 describe('report', function () {
   it('gets called when done', async function () {
-    const baseUrl =
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/report'
-    const queryParams =
-      '?moduleInstanceId=GenerateReport&taskRunId=taskRunId1&reportId=1'
+    const baseUrl = 'https://mock.dev/fewswebservices/rest/fewspiservice/v1/report'
+    const queryParams = '?moduleInstanceId=GenerateReport&taskRunId=taskRunId1&reportId=1'
     fetchMock.get(`${baseUrl}${queryParams}`, {
       status: 200,
       body: expectedResponse,
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: ReportFilter = {
       moduleInstanceId: 'GenerateReport',

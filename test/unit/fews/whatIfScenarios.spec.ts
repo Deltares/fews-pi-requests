@@ -1,31 +1,18 @@
-import {
-  DocumentFormat,
-  PiWebserviceProvider,
-  WhatIfScenariosFilter,
-} from '../../../src'
+import { DocumentFormat, PiWebserviceProvider, WhatIfScenariosFilter } from '../../../src'
 
 import expectedResponse from '../mock/whatifscenarios.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
-function isPropertyWithValue(
-  property: unknown,
-): property is { value: string | number | boolean } {
-  return (
-    property !== null && typeof property === 'object' && 'value' in property
-  )
+function isPropertyWithValue(property: unknown): property is { value: string | number | boolean } {
+  return property !== null && typeof property === 'object' && 'value' in property
 }
 
-function expectPropertyValue(
-  property: unknown,
-  expected: string | number | boolean,
-): void {
+function expectPropertyValue(property: unknown, expected: string | number | boolean): void {
   expect(property).toBeDefined()
   expect(isPropertyWithValue(property)).toBe(true)
-  expect((property as { value: string | number | boolean }).value).toBe(
-    expected,
-  )
+  expect((property as { value: string | number | boolean }).value).toBe(expected)
 }
 
 describe('whatIfScenarios', function () {
@@ -38,9 +25,7 @@ describe('whatIfScenarios', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: WhatIfScenariosFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -51,56 +36,24 @@ describe('whatIfScenarios', function () {
     expect(results.whatIfScenarioDescriptors).toHaveLength(2)
     expect(results.whatIfScenarioDescriptors[0].id).toBe('id1')
     expect(results.whatIfScenarioDescriptors[0].name).toBe('triple_the_surge')
-    expect(results.whatIfScenarioDescriptors[0].whatIfTemplateId).toBe(
-      'whatif_surge',
-    )
+    expect(results.whatIfScenarioDescriptors[0].whatIfTemplateId).toBe('whatif_surge')
     expect(results.whatIfScenarioDescriptors[0].properties?.length).toBe(2)
-    expect(results.whatIfScenarioDescriptors[0].properties?.[0].id).toBe(
-      'ADD_SURGE',
-    )
-    expect(results.whatIfScenarioDescriptors[0].properties?.[0].type).toBe(
-      'number',
-    )
-    expectPropertyValue(
-      results.whatIfScenarioDescriptors[0].properties?.[0],
-      0.0,
-    )
-    expect(results.whatIfScenarioDescriptors[0].properties?.[1].id).toBe(
-      'MULTIPLY_SURGE',
-    )
-    expect(results.whatIfScenarioDescriptors[0].properties?.[1].type).toBe(
-      'number',
-    )
-    expectPropertyValue(
-      results.whatIfScenarioDescriptors[0].properties?.[1],
-      3.0,
-    )
+    expect(results.whatIfScenarioDescriptors[0].properties?.[0].id).toBe('ADD_SURGE')
+    expect(results.whatIfScenarioDescriptors[0].properties?.[0].type).toBe('number')
+    expectPropertyValue(results.whatIfScenarioDescriptors[0].properties?.[0], 0.0)
+    expect(results.whatIfScenarioDescriptors[0].properties?.[1].id).toBe('MULTIPLY_SURGE')
+    expect(results.whatIfScenarioDescriptors[0].properties?.[1].type).toBe('number')
+    expectPropertyValue(results.whatIfScenarioDescriptors[0].properties?.[1], 3.0)
 
     expect(results.whatIfScenarioDescriptors[1].id).toBe('id2')
     expect(results.whatIfScenarioDescriptors[1].name).toBe('offset_by_minus_1')
-    expect(results.whatIfScenarioDescriptors[1].whatIfTemplateId).toBe(
-      'whatif_surge',
-    )
+    expect(results.whatIfScenarioDescriptors[1].whatIfTemplateId).toBe('whatif_surge')
     expect(results.whatIfScenarioDescriptors[1].properties?.length).toBe(2)
-    expect(results.whatIfScenarioDescriptors[1].properties?.[0].id).toBe(
-      'ADD_SURGE',
-    )
-    expect(results.whatIfScenarioDescriptors[1].properties?.[0].type).toBe(
-      'number',
-    )
-    expectPropertyValue(
-      results.whatIfScenarioDescriptors[1].properties?.[0],
-      -1.0,
-    )
-    expect(results.whatIfScenarioDescriptors[1].properties?.[1].id).toBe(
-      'MULTIPLY_SURGE',
-    )
-    expect(results.whatIfScenarioDescriptors[1].properties?.[1].type).toBe(
-      'number',
-    )
-    expectPropertyValue(
-      results.whatIfScenarioDescriptors[1].properties?.[1],
-      1.0,
-    )
+    expect(results.whatIfScenarioDescriptors[1].properties?.[0].id).toBe('ADD_SURGE')
+    expect(results.whatIfScenarioDescriptors[1].properties?.[0].type).toBe('number')
+    expectPropertyValue(results.whatIfScenarioDescriptors[1].properties?.[0], -1.0)
+    expect(results.whatIfScenarioDescriptors[1].properties?.[1].id).toBe('MULTIPLY_SURGE')
+    expect(results.whatIfScenarioDescriptors[1].properties?.[1].type).toBe('number')
+    expectPropertyValue(results.whatIfScenarioDescriptors[1].properties?.[1], 1.0)
   })
 })

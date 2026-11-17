@@ -1,4 +1,4 @@
-import { afterEach, beforeAll } from 'vitest'
+import { afterEach, beforeAll } from 'vite-plus/test'
 import fetchMock from 'fetch-mock'
 
 // Mock global fetch before all tests

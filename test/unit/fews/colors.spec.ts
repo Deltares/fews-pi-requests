@@ -3,21 +3,16 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 import expectedColorsResponse from '../mock/colors.json'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('/colors', function () {
   it('test colors', async function () {
-    fetchMock.get(
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/colors/default',
-      {
-        status: 200,
-        body: JSON.stringify(expectedColorsResponse),
-      },
-    )
+    fetchMock.get('https://mock.dev/fewswebservices/rest/fewspiservice/v1/colors/default', {
+      status: 200,
+      body: JSON.stringify(expectedColorsResponse),
+    })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const response = await provider.getColors()
     expect(response).toStrictEqual(expectedColorsResponse)
     expect(response.colors?.length).toBeGreaterThan(0)

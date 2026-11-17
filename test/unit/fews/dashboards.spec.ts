@@ -4,21 +4,16 @@ import { DashboardsFilter } from '../../../src/requestParameters/dashboardsFilte
 import expectedResponse from '../mock/dashboards.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('dashbaords', function () {
   it('gets called when done', async () => {
-    fetchMock.get(
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/dashboards',
-      {
-        status: 200,
-        body: JSON.stringify(expectedResponse),
-      },
-    )
+    fetchMock.get('https://mock.dev/fewswebservices/rest/fewspiservice/v1/dashboards', {
+      status: 200,
+      body: JSON.stringify(expectedResponse),
+    })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const dashboardsFilter: DashboardsFilter = {}
 
@@ -40,9 +35,7 @@ describe('dashbaords', function () {
     expect(group1Element1?.gridTemplateArea).toBe('area1')
     expect(group1Element1?.items?.length).toBe(1)
     expect(group1Element1?.items?.[0].topologyNodeId).toBe('schematic')
-    expect(group1Element1?.items?.[0].component).toBe(
-      'schematic-status-display',
-    )
+    expect(group1Element1?.items?.[0].component).toBe('schematic-status-display')
     expect(group1Element1?.items?.[0].componentSettingsId).toBe('settingsId1')
 
     const group1Element2 = group1?.elements?.[1]
@@ -59,9 +52,7 @@ describe('dashbaords', function () {
     expect(group2Element1?.gridTemplateArea).toBe('area3')
     expect(group2Element1?.items?.length).toBe(1)
     expect(group2Element1?.items?.[0].topologyNodeId).toBe('SSD')
-    expect(group2Element1?.items?.[0].component).toBe(
-      'schematic-status-display',
-    )
+    expect(group2Element1?.items?.[0].component).toBe('schematic-status-display')
     expect(group2Element1?.items?.[0].componentSettingsId).toBe('settingsId1')
 
     const group2Element2 = group2?.elements?.[1]

@@ -3,12 +3,11 @@ import expectedResponse from '../mock/forecasttimes.json'
 import fetchMock from 'fetch-mock'
 import { ForecastTimesFilter } from '../../../src/requestParameters/forecastTimesFilter'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('forecastTimes', function () {
   it('generates a valid forecastTimes request', async function () {
-    const baseUrl =
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/forecasttimes'
+    const baseUrl = 'https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/forecasttimes'
     const queryParams = `workflowId=testWorkflowId&timeZero=2025-02-20T01%3A51%3A37.869Z`
 
     const url = `${baseUrl}?${queryParams}`
@@ -18,9 +17,7 @@ describe('forecastTimes', function () {
       body: expectedResponse,
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: ForecastTimesFilter = {
       workflowId: 'testWorkflowId',

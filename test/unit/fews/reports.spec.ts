@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock'
 import { ReportsFilter } from '../../../src/requestParameters'
 import expectedResponse from '../mock/reports.json'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('reports', function () {
   it('gets called when done', async function () {
@@ -16,9 +16,7 @@ describe('reports', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: ReportsFilter = {
       moduleInstanceIds: 'GenerateReport',
