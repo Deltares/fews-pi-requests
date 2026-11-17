@@ -1,4 +1,4 @@
-name: Run npm test & npm lint on Pull Requests
+name: Run checks & tests on Pull Requests
 
 on:
   - pull_request
@@ -19,5 +19,5 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-      - name: Run linter
-        run: npm run lint
+      - name: Check formatting, lint and types
+        run: npm run check

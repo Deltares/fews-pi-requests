@@ -6,28 +6,28 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
 ### Compiles and minifies for production
 
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Check formatting, lint and types
 
 ```
-npm run lint
+npm run check
 ```
 
-### Run Unit tests
+### Format files
 
 ```
-npm run test
+npm run format
+```
+
+### Run unit tests
+
+```
+npm run test:unit
 ```
 
 ### Run End-to-End tests
@@ -40,5 +40,5 @@ The docker container can be run with:
 docker run --pull=always -p 8080:8080 -e FAKETIME="2025-03-14 10:00:00" -e JAVA_OPTS="-Xms512m -Xmx4068m -DTEST_PAGE_ENABLED=true" delftfewsregistry.azurecr.io/deltares/delft-fews-web-oc/202502/web-oc-web-services:latest
 
 ```
-npm run e2e
+npm run test:e2e
 ```

@@ -1,5 +1,5 @@
 import { DashboardsFilter, PiWebserviceProvider } from '../../src'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const baseUrl = import.meta.env.VITE_DOCKER_URL || ''
 
@@ -22,8 +22,6 @@ describe('dashboards', function () {
     const invalidFilter: DashboardsFilter = {
       dashboardId: 'rainfall_forecast_xxx',
     }
-    await expect(provider.getDashboards(invalidFilter)).rejects.toBeInstanceOf(
-      Error,
-    )
+    await expect(provider.getDashboards(invalidFilter)).rejects.toBeInstanceOf(Error)
   })
 })

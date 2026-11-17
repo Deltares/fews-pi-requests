@@ -1,5 +1,5 @@
 import { type MicroFrontEndsFilter, PiWebserviceProvider } from '../../src'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const baseUrl = import.meta.env.VITE_DOCKER_URL || ''
 
@@ -26,8 +26,6 @@ describe('microFrontEnds', function () {
     const invalidFilter: MicroFrontEndsFilter = {
       microFrontEndId: 'invalid_id',
     }
-    await expect(
-      provider.getMicroFrontEnds(invalidFilter),
-    ).rejects.toBeInstanceOf(Error)
+    await expect(provider.getMicroFrontEnds(invalidFilter)).rejects.toBeInstanceOf(Error)
   })
 })

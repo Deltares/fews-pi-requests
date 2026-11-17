@@ -15,7 +15,7 @@ import {
   isSystemMonitor,
   isTopologyDisplay,
 } from '../../../src/utils/webOcCompontentsTypeGuards'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('webOcConfig', function () {
   it('tests fetch Web OC config', async function () {
@@ -27,9 +27,7 @@ describe('webOcConfig', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const results = await provider.getWebOcConfiguration()
     expect(results).toStrictEqual(expectedResponse)
     expect(results.general.title).toBe(
@@ -40,8 +38,7 @@ describe('webOcConfig', function () {
     expect(isSystemMonitor(results.components[2])).toBeTruthy()
     expect(isSchematicStatusDisplay(results.components[3])).toBeTruthy()
     if (isTopologyDisplay(results.components[0])) {
-      const topologyDisplay = results
-        .components[0] as WebOcTopologyDisplayConfig
+      const topologyDisplay = results.components[0] as WebOcTopologyDisplayConfig
       expect(topologyDisplay.id).toBe('topologyDisplay')
       expect(topologyDisplay.title).toBe('Topology Display')
       if (topologyDisplay.defaultPath) {
@@ -78,9 +75,7 @@ describe('webOcConfig', function () {
         body: JSON.stringify(expectedPublicResponse),
       },
     )
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const results = await provider.getWebOcPublicConfiguration()
     expect(results).toStrictEqual(expectedPublicResponse)
     expect(results.general.title).toBe('my public title')
@@ -88,30 +83,21 @@ describe('webOcConfig', function () {
   })
 
   it('get static resource', async function () {
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const results = await provider.resourcesStaticUrl('css/style.css')
     expect(results.toString()).toStrictEqual(
       'https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/css/style.css',
     )
 
-    const resultsAbsolute = await provider.resourcesStaticUrl(
-      'https://mydomain.com/css/style.css',
-    )
-    expect(resultsAbsolute.toString()).toStrictEqual(
-      'https://mydomain.com/css/style.css',
-    )
+    const resultsAbsolute = await provider.resourcesStaticUrl('https://mydomain.com/css/style.css')
+    expect(resultsAbsolute.toString()).toStrictEqual('https://mydomain.com/css/style.css')
 
-    const resultsHttpsPath = await provider.resourcesStaticUrl(
-      'https/css/style.css',
-    )
+    const resultsHttpsPath = await provider.resourcesStaticUrl('https/css/style.css')
     expect(resultsHttpsPath.toString()).toStrictEqual(
       'https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/https/css/style.css',
     )
 
-    const resultsHttpPath =
-      await provider.resourcesStaticUrl('http/css/style.css')
+    const resultsHttpPath = await provider.resourcesStaticUrl('http/css/style.css')
     expect(resultsHttpPath.toString()).toStrictEqual(
       'https://mock.dev/fewswebservices/rest/fewspiservice/v1/resources/static/http/css/style.css',
     )

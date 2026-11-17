@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 import type { TimeSeriesResponse } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('timeseries/edit', function () {
   it('post events using time series index and location id', async function () {
@@ -14,9 +14,7 @@ describe('timeseries/edit', function () {
         body: 'uploaded',
       },
     )
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const timeSeries: TimeSeriesResponse = {
       version: '1.23',
       timeZone: '0.0',
@@ -49,9 +47,7 @@ describe('timeseries/edit', function () {
         body: 'uploaded',
       },
     )
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const timeSeries: TimeSeriesResponse = {
       version: '1.23',
       timeZone: '0.0',
@@ -92,9 +88,7 @@ describe('timeseries/edit', function () {
         body: 'uploaded',
       },
     )
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const timeSeries: TimeSeriesResponse = {
       version: '1.23',
       timeZone: '0.0',
@@ -127,9 +121,7 @@ describe('timeseries/edit', function () {
         body: 'uploaded',
       },
     )
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const timeSeries: TimeSeriesResponse = {
       version: '1.23',
       timeZone: '0.0',
@@ -148,8 +140,7 @@ describe('timeseries/edit', function () {
         },
       ],
     }
-    const url =
-      'rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2'
+    const url = 'rest/fewspiservice/v1/timeseries/edit?timeSeriesSetIndex=1&locationId=2'
     const results = await provider.postTimeSeriesEdit(url, timeSeries)
     expect(results).toStrictEqual('uploaded')
   })
@@ -177,10 +168,9 @@ describe('timeseries/edit with transformRequest', function () {
       return newRequest
     }
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-      { transformRequestFn: transformRequest },
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices', {
+      transformRequestFn: transformRequest,
+    })
     const timeSeries: TimeSeriesResponse = {
       version: '1.23',
       timeZone: '0.0',

@@ -3,12 +3,11 @@ import expectedResponse from '../mock/fssinfo.json'
 import fetchMock from 'fetch-mock'
 import { FssInfoFilter } from '../../../src/requestParameters/fssInfoFilter'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('fssInfo', function () {
   it('generates a valid fssInfo request', async function () {
-    const baseUrl =
-      'https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/fssinfo'
+    const baseUrl = 'https://mock.dev/fewswebservices/rest/fewspiservice/v1/workflows/fssinfo'
     const queryParams = `workflowId=testWorkflowId`
 
     const url = `${baseUrl}?${queryParams}`
@@ -18,9 +17,7 @@ describe('fssInfo', function () {
       body: expectedResponse,
     })
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: FssInfoFilter = {
       workflowId: 'testWorkflowId',
@@ -32,11 +29,7 @@ describe('fssInfo', function () {
     expect(results.workflowFssInfo.fssGroups.length).toBe(1)
     expect(results.workflowFssInfo.fssGroups[0].id).toBe('windows_1')
     expect(results.workflowFssInfo.fssGroups[0].name).toBe('windows_1')
-    expect(results.workflowFssInfo.fssGroups[0].forecastingShells.length).toBe(
-      1,
-    )
-    expect(results.workflowFssInfo.fssGroups[0].forecastingShells[0].id).toBe(
-      161,
-    )
+    expect(results.workflowFssInfo.fssGroups[0].forecastingShells.length).toBe(1)
+    expect(results.workflowFssInfo.fssGroups[0].forecastingShells[0].id).toBe(161)
   })
 })

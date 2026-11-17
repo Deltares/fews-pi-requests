@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock'
 import expectedResponse from '../mock/timeseries.json'
 import { DocumentFormat, TimeSeriesTopologyActionsFilter } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('timeseries/topology/actions', function () {
   it('gets timeseries from topology actions response', async function () {
@@ -16,9 +16,7 @@ describe('timeseries/topology/actions', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TimeSeriesTopologyActionsFilter = {
       documentFormat: DocumentFormat.PI_JSON,

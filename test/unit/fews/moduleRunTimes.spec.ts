@@ -1,13 +1,9 @@
-import {
-  DocumentFormat,
-  PiWebserviceProvider,
-  ModuleRuntimesFilter,
-} from '../../../src'
+import { DocumentFormat, PiWebserviceProvider, ModuleRuntimesFilter } from '../../../src'
 
 import expectedResponse from '../mock/moduleRunTimes.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('moduleRunTimes', function () {
   it('gets called when done', async () => {
@@ -19,9 +15,7 @@ describe('moduleRunTimes', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: ModuleRuntimesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -32,18 +26,14 @@ describe('moduleRunTimes', function () {
     expect(results).toStrictEqual(expectedResponse)
     expect(results.moduleRunTimes.length).toBe(2)
     expect(results.moduleRunTimes[0].workflowId).toBe('testWorkflowId1')
-    expect(results.moduleRunTimes[0].moduleInstanceId).toBe(
-      'testModuleInstanceId1',
-    )
+    expect(results.moduleRunTimes[0].moduleInstanceId).toBe('testModuleInstanceId1')
     expect(results.moduleRunTimes[0].mcId).toBe('testId1')
     expect(results.moduleRunTimes[0].expectedStartTime).toBe(1737640822000)
     expect(results.moduleRunTimes[0].expectedCompletionTime).toBe(1737640822000)
     expect(results.moduleRunTimes[0].expectedPendingDuration).toBe(21568)
     expect(results.moduleRunTimes[0].expectedRunningDuration).toBe(41)
     expect(results.moduleRunTimes[1].workflowId).toBe('testWorkflowId2')
-    expect(results.moduleRunTimes[1].moduleInstanceId).toBe(
-      'testModuleInstanceId2',
-    )
+    expect(results.moduleRunTimes[1].moduleInstanceId).toBe('testModuleInstanceId2')
     expect(results.moduleRunTimes[1].mcId).toBe('testId2')
     expect(results.moduleRunTimes[1].expectedStartTime).toBe(1737640822000)
     expect(results.moduleRunTimes[1].expectedCompletionTime).toBe(1737641175000)

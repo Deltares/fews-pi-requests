@@ -4,7 +4,7 @@ import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
 import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 import { ExternalForecastsFilter } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive/externalForecasts', function () {
   it('external forecasts when done', async function () {
@@ -16,9 +16,7 @@ describe('archive/externalForecasts', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
     const filter: ExternalForecastsFilter = {
       documentFormat: DocumentFormat.PI_JSON,
       requestedAttributes: ['source', 'verification_period'],

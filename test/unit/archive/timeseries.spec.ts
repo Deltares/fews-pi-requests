@@ -5,7 +5,7 @@ import type { TimeSeriesFilter } from '../../../src/requestParameters/timeSeries
 import { DocumentFormat } from '../../../src'
 import { TimeSeriesType } from '../../../src/requestParameters/timeSeriesType'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive timeseries', function () {
   it('timeseries json response', async function () {
@@ -17,9 +17,7 @@ describe('archive timeseries', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TimeSeriesFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -39,10 +37,7 @@ describe('archive timeseries', function () {
     expect(results).toStrictEqual(expectedResponse)
     expect('timeSeries' in results).toBe(true)
     expect(results?.timeSeries?.length).toBe(4)
-    if (
-      results?.timeSeries?.length === 4 &&
-      results?.timeSeries[0].events?.length === 5
-    ) {
+    if (results?.timeSeries?.length === 4 && results?.timeSeries[0].events?.length === 5) {
       expect(results.timeSeries[0].events[0].flagSource).toBe('MAN')
       expect(results.timeSeries[0].events[0].flag).toBe('0')
     }

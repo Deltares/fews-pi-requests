@@ -4,7 +4,7 @@ import { TopologyActionFilter } from '../../../src/requestParameters/topologyAct
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 import expectedImportStatusResponse from '../mock/importStatus.json'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 async function transformRequest(request: Request): Promise<Request> {
   const newRequest = new Request(request)
@@ -29,10 +29,9 @@ describe('archive/locations', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-      { transformRequestFn: transformRequest },
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices', {
+      transformRequestFn: transformRequest,
+    })
 
     const results = await provider.getImportStatus()
     expect(results).toStrictEqual(expectedImportStatusResponse)
@@ -53,10 +52,9 @@ describe('archive/locations', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-      { transformRequestFn: transformRequest },
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices', {
+      transformRequestFn: transformRequest,
+    })
 
     const filter = {} as TopologyActionFilter
     filter.nodeId = 'test'

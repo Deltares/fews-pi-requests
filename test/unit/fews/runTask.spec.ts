@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import fetchMock from 'fetch-mock'
 import { RunTaskFilter } from '../../../src/requestParameters'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('runtask', function () {
   it('generates a valid runtask POST request', async function () {
@@ -25,9 +25,7 @@ describe('runtask', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: RunTaskFilter = {
       workflowId,
@@ -59,9 +57,7 @@ describe('runtask', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: RunTaskFilter = {
       workflowId,

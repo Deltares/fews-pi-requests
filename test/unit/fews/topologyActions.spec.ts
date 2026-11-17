@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock'
 import { TopologyActionFilter } from '../../../src/requestParameters/topologyActionFilter'
 import expectedResponseDisplayGroups from '../mock/displayGroups.json'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('/topology/actions', function () {
   it('test topology actions', async function () {
@@ -16,9 +16,7 @@ describe('/topology/actions', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter = {} as TopologyActionFilter
     filter.nodeId = 'test'
@@ -29,12 +27,9 @@ describe('/topology/actions', function () {
   })
 
   it('applies queryParamsStrategy for topology actions URL serialization', function () {
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-      {
-        explodeQueryParameters: false,
-      },
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices', {
+      explodeQueryParameters: false,
+    })
 
     const url = provider.topologyActionsUrl({
       nodeId: 'test',

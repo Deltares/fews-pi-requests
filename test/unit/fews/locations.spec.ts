@@ -1,11 +1,8 @@
 import fetchMock from 'fetch-mock'
-import { describe, expect, expectTypeOf, it } from 'vitest'
+import { describe, expect, expectTypeOf, it } from 'vite-plus/test'
 import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
-import type {
-  Location,
-  LocationsResponse,
-} from '../../../src/response/locations/locationsResponse'
+import type { Location, LocationsResponse } from '../../../src/response/locations/locationsResponse'
 
 describe('locations', () => {
   it('types iconLabel as an optional string', () => {
@@ -30,9 +27,7 @@ describe('locations', () => {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const result = await provider.getLocations({
       documentFormat: DocumentFormat.PI_JSON,
     })

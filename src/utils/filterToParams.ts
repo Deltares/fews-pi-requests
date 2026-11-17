@@ -32,9 +32,7 @@ function filterArgToStrings(
         result.push(`${encodeURIComponent(key)}=${encodeURIComponent(item)}`)
       }
     } else {
-      result.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value.join(','))}`,
-      )
+      result.push(`${encodeURIComponent(key)}=${encodeURIComponent(value.join(','))}`)
     }
   } else {
     result.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
@@ -42,9 +40,7 @@ function filterArgToStrings(
   return result
 }
 
-function isAttributeOrProperties(
-  parameter: string,
-): parameter is 'attribute' | 'properties' {
+function isAttributeOrProperties(parameter: string): parameter is 'attribute' | 'properties' {
   return parameter === 'attribute' || parameter === 'properties'
 }
 
@@ -65,11 +61,7 @@ function appendAttributeOrProperties(
 }
 
 function isQualifierIdsObject(parameter: string, values: unknown): boolean {
-  return (
-    parameter === 'qualifierIds' &&
-    typeof values === 'object' &&
-    !Array.isArray(values)
-  )
+  return parameter === 'qualifierIds' && typeof values === 'object' && !Array.isArray(values)
 }
 
 function appendQualifierIds(filterArgs: string[], values: object): void {
@@ -88,10 +80,7 @@ function appendBbox(filterArgs: string[], values: unknown): void {
   filterArgs.push(...strings)
 }
 
-export function filterToParams(
-  filter: object,
-  explodeQueryParameters = true,
-): string {
+export function filterToParams(filter: object, explodeQueryParameters = true): string {
   const filterArgs: string[] = []
   for (const [parameter, values] of Object.entries(filter)) {
     if (values === undefined) continue

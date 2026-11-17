@@ -5,7 +5,7 @@ import { TimeSeriesFilter } from '../../../src/requestParameters/timeSeriesFilte
 import { DocumentFormat } from '../../../src'
 import { TimeSeriesType } from '../../../src/requestParameters/timeSeriesType'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 const filter: TimeSeriesFilter = {
   documentFormat: DocumentFormat.PI_JSON,
@@ -32,18 +32,13 @@ describe('timeseries', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getTimeSeries(filter)
     expect(results).toStrictEqual(expectedResponse)
     expect('timeSeries' in results).toBe(true)
     expect(results?.timeSeries?.length).toBe(4)
-    if (
-      results?.timeSeries?.length === 4 &&
-      results?.timeSeries[0].events?.length === 5
-    ) {
+    if (results?.timeSeries?.length === 4 && results?.timeSeries[0].events?.length === 5) {
       expect(results.timeSeries[0].events[0].flagSource).toBe('MAN')
       expect(results.timeSeries[0].events[0].flag).toBe('0')
       expect(results.timeSeries[0].events[0].valueSource).toBe('MAN')
@@ -60,9 +55,7 @@ describe('timeseries', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getTimeSeries({
       ...filter,
@@ -80,9 +73,7 @@ describe('timeseries', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getTimeSeries({
       ...filter,
@@ -115,19 +106,15 @@ describe('timeseries with transform request', function () {
       return newRequest
     }
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-      { transformRequestFn: transformRequest },
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices', {
+      transformRequestFn: transformRequest,
+    })
 
     const results = await provider.getTimeSeries(filter)
     expect(results).toStrictEqual(expectedResponse)
     expect('timeSeries' in results).toBe(true)
     expect(results?.timeSeries?.length).toBe(4)
-    if (
-      results?.timeSeries?.length === 4 &&
-      results?.timeSeries[0].events?.length === 5
-    ) {
+    if (results?.timeSeries?.length === 4 && results?.timeSeries[0].events?.length === 5) {
       expect(results.timeSeries[0].events[0].flagSource).toBe('MAN')
       expect(results.timeSeries[0].events[0].flag).toBe('0')
       expect(results.timeSeries[0].events[0].valueSource).toBe('MAN')

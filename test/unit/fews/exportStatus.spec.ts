@@ -3,7 +3,7 @@ import { PiWebserviceProvider } from '../../../src/piWebserviceProvider'
 import expectedResponse from '../mock/exportStatus.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('export/status', function () {
   it('gets called when done', async function () {
@@ -15,9 +15,7 @@ describe('export/status', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getExportStatus()
     expect(results).toStrictEqual(expectedResponse)
@@ -34,9 +32,7 @@ describe('export/status', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
     const results = await provider.getExportStatus()
     const item = results.exportStatus[0]
 

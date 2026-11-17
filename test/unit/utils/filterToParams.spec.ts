@@ -1,6 +1,6 @@
 import { filterToParams } from '../../../src/utils/filterToParams'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('filterToParams', function () {
   it('serializes array values as repeated parameters by default', function () {

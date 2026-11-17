@@ -4,7 +4,7 @@ import type { Equation } from '../../../src/response/statistics/correlationRespo
 import expectedResponse from '../mock/correlation.json'
 import fetchMock from 'fetch-mock'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 expectedResponse.equation satisfies Equation
 
@@ -18,9 +18,7 @@ describe('correlation', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const results = await provider.getCorrelation({
       timeSeriesIdYaxis: 'ts1',
@@ -39,9 +37,7 @@ describe('correlation', function () {
     expect(results.equation?.coefficientB).toBe(-0.00119)
     expect(results.equation?.rSquared).toBe(0.016868513)
     expect(results.equation?.status).toBe('nominal')
-    expect(results.equation?.statusDescription).toBe(
-      'Regression calculated successfully',
-    )
+    expect(results.equation?.statusDescription).toBe('Regression calculated successfully')
     expect(results.equation?.requiredPointCount).toBe(2)
     expect('title' in results).toBe(true)
     expect(results.title).toBe('H_obs LOC7 to H_obs LOC2')

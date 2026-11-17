@@ -20,10 +20,7 @@ function isParameter(parameter: unknown): parameter is Parameter {
  * @returns {boolean} True if the value is of type ParameterGroup, false otherwise.
  */
 function isParameterGroup(parameter: unknown): parameter is ParameterGroup {
-  return (
-    parameter !== undefined &&
-    (parameter as ParameterGroup).parameters !== undefined
-  )
+  return parameter !== undefined && (parameter as ParameterGroup).parameters !== undefined
 }
 
 function toParameter(parameter: Parameter): Parameter {
@@ -43,16 +40,12 @@ function toParameterGroup(parameter: {
 }): ParameterGroup {
   const parameterGroup: ParameterGroup = {
     id: parameter.parameterGroup,
-    parameterType:
-      parameter.parameterType === 'instantaneous'
-        ? 'instantaneous'
-        : 'accumulative',
+    parameterType: parameter.parameterType === 'instantaneous' ? 'instantaneous' : 'accumulative',
     unit: parameter.unit ?? '',
     parameters: [],
   }
 
-  if (parameter.displayUnit !== parameter.unit)
-    parameterGroup.displayUnit = parameter.displayUnit
+  if (parameter.displayUnit !== parameter.unit) parameterGroup.displayUnit = parameter.displayUnit
   if (parameter.usesDatum === 'true') parameterGroup.usesDatum = true
 
   return parameterGroup
@@ -76,15 +69,13 @@ export function convertToParameterGroups(
     const parameterGroupId = tsParameter.parameterGroup
 
     if (parameterGroupId === undefined) {
-      if (isParameter(tsParameter))
-        result.parameters.push(toParameter(tsParameter))
+      if (isParameter(tsParameter)) result.parameters.push(toParameter(tsParameter))
       continue
     }
 
     const existingGroup = groupsById.get(parameterGroupId)
     if (isParameterGroup(existingGroup)) {
-      if (isParameter(tsParameter))
-        existingGroup.parameters.push(toParameter(tsParameter))
+      if (isParameter(tsParameter)) existingGroup.parameters.push(toParameter(tsParameter))
       continue
     }
 

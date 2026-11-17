@@ -3,7 +3,7 @@ import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
 import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 import { ProductAttributesFilter } from '../../../src/requestParameters/productAttributesFilter'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive/products/attributes', function () {
   it('posts product attributes when called', async function () {
@@ -15,9 +15,7 @@ describe('archive/products/attributes', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: ProductAttributesFilter = {
       documentFormat: DocumentFormat.PI_JSON,

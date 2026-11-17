@@ -3,7 +3,7 @@ import expectedResponse from '../mock/productsMetaData.json'
 import { PiArchiveWebserviceProvider } from '../../../src/piArchiveWebserviceProvider'
 import { ProductsMetaDataFilter } from '../../../src'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('archive/productsMetadata', function () {
   it('gets productsMetadata', async function () {
@@ -15,9 +15,7 @@ describe('archive/productsMetadata', function () {
       },
     )
 
-    const provider = new PiArchiveWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiArchiveWebserviceProvider('https://mock.dev/fewswebservices')
     const filter: ProductsMetaDataFilter = {
       startForecastTime: '2022-12-12T20:30:00Z',
       endForecastTime: '2022-12-14T20:30:00Z',

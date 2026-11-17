@@ -4,7 +4,7 @@ import expectedResponseTopologyThresholds from '../mock/topologyThresholds.json'
 import expectedResponseTopologyThresholdsNode from '../mock/topologyThresholdsNode.json'
 import { DocumentFormat } from '../../../src/requestParameters/documentFormat'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('topology tresholds', function () {
   it('gets called when done', async function () {
@@ -16,9 +16,7 @@ describe('topology tresholds', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TopologyThresholdFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -30,9 +28,7 @@ describe('topology tresholds', function () {
     expect(thresholds.topologyNodes[0].id).toBe('viewer_rivers')
     expect(thresholds.topologyNodes[0].filterLocationsCount).toBe(1)
     expect(thresholds.topologyNodes[1].id).toBe('viewer_coastal')
-    expect(thresholds.topologyNodes[1].topologyLocationIcon).toBe(
-      'coastal_site_data_red.gif',
-    )
+    expect(thresholds.topologyNodes[1].topologyLocationIcon).toBe('coastal_site_data_red.gif')
   })
 })
 
@@ -46,9 +42,7 @@ describe('topology tresholds with node ID', function () {
       },
     )
 
-    const provider = new PiWebserviceProvider(
-      'https://mock.dev/fewswebservices',
-    )
+    const provider = new PiWebserviceProvider('https://mock.dev/fewswebservices')
 
     const filter: TopologyThresholdFilter = {
       documentFormat: DocumentFormat.PI_JSON,
@@ -61,21 +55,14 @@ describe('topology tresholds with node ID', function () {
     expect(thresholds.topologyNodes[0].id).toBe('viewer.main.coastal.waverunup')
 
     const expectedCount =
-      expectedResponseTopologyThresholdsNode.topologyNodes[0]
-        .filterLocationsCount
+      expectedResponseTopologyThresholdsNode.topologyNodes[0].filterLocationsCount
     expect(thresholds.topologyNodes[0].filterLocationsCount).toBe(expectedCount)
-    expect(
-      thresholds.topologyNodes[0].aggregatedLevelThresholdCrossings?.length,
-    ).toBe(expectedCount)
-    expect(thresholds.topologyNodes[0].levelThresholdCrossings?.length).toBe(
+    expect(thresholds.topologyNodes[0].aggregatedLevelThresholdCrossings?.length).toBe(
       expectedCount,
     )
+    expect(thresholds.topologyNodes[0].levelThresholdCrossings?.length).toBe(expectedCount)
 
-    expect(
-      thresholds.topologyNodes[0].aggregatedLevelThresholdWarningLevels?.length,
-    ).toBe(4)
-    expect(
-      thresholds.topologyNodes[0].levelThresholdWarningLevels?.length,
-    ).toBe(4)
+    expect(thresholds.topologyNodes[0].aggregatedLevelThresholdWarningLevels?.length).toBe(4)
+    expect(thresholds.topologyNodes[0].levelThresholdWarningLevels?.length).toBe(4)
   })
 })

@@ -1,43 +1,29 @@
 import { mostValuesParameter, splitUrl } from '../../../src/utils/splitUrl'
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vite-plus/test'
 
 describe('split url', function () {
   it('selects the parameter with the most comma-separated values', function () {
-    const url = new URL(
-      'https://example.com/base?a=one,two,three&b=alpha,beta&c=single',
-    )
+    const url = new URL('https://example.com/base?a=one,two,three&b=alpha,beta&c=single')
     const parameter = mostValuesParameter(url)
     expect(parameter).toBe('a')
   })
 
   it('do not split with single duplicate shorter than max length', function () {
-    const url = new URL(
-      'https://example.com/base?verylongkey=1&verylongkey=2&b=1',
-    )
+    const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1')
     const urls = splitUrl(url)
-    expect(urls[0].toString()).toMatch(
-      'https://example.com/base?verylongkey=1&verylongkey=2&b=1',
-    )
+    expect(urls[0].toString()).toMatch('https://example.com/base?verylongkey=1&verylongkey=2&b=1')
   })
 
   it('splits with single duplicate', function () {
-    const url = new URL(
-      'https://example.com/base?verylongkey=1&verylongkey=2&b=1',
-    )
+    const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1')
     const urls = splitUrl(url, 50)
-    expect(urls[0].toString()).toMatch(
-      'https://example.com/base?b=1&verylongkey=1',
-    )
-    expect(urls[1].toString()).toMatch(
-      'https://example.com/base?b=1&verylongkey=2',
-    )
+    expect(urls[0].toString()).toMatch('https://example.com/base?b=1&verylongkey=1')
+    expect(urls[1].toString()).toMatch('https://example.com/base?b=1&verylongkey=2')
   })
 
   it('throw error when max length cannot be satisfied', function () {
-    const url = new URL(
-      'https://example.com/base?verylongkey=1&verylongkey=2&b=1',
-    )
+    const url = new URL('https://example.com/base?verylongkey=1&verylongkey=2&b=1')
     expect(() => splitUrl(url, 40)).toThrow()
   })
 
@@ -144,9 +130,7 @@ describe('split url', function () {
   })
 
   it('splits comma-separated values when strategy is configured', function () {
-    const url = new URL(
-      'https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second',
-    )
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second')
     const urls = splitUrl(url, 68, 'taskRunIds', false)
 
     expect(urls).toHaveLength(2)
@@ -167,16 +151,12 @@ describe('split url', function () {
 
     expect(urls.length).toBeGreaterThan(1)
     expect(urls.every((u) => u.searchParams.get('a') === '1,2')).toBe(true)
-    const taskRunIds = urls.flatMap((u) =>
-      (u.searchParams.get('taskRunIds') ?? '').split(','),
-    )
+    const taskRunIds = urls.flatMap((u) => (u.searchParams.get('taskRunIds') ?? '').split(','))
     expect(taskRunIds).toStrictEqual(['x', 'y', 'z'])
   })
 
   it('does not split at exact max length but splits when one character shorter in comma-separated strategy', function () {
-    const url = new URL(
-      'https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second',
-    )
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=first,second')
     const exactLength = url.toString().length
 
     const exactFit = splitUrl(url, exactLength, 'taskRunIds', false)
@@ -202,9 +182,7 @@ describe('split url', function () {
   })
 
   it('throws when comma-separated strategy cannot satisfy max length', function () {
-    const url = new URL(
-      'https://example.com/base?documentFormat=PI_JSON&taskRunIds=verylongvalue',
-    )
+    const url = new URL('https://example.com/base?documentFormat=PI_JSON&taskRunIds=verylongvalue')
     expect(() => splitUrl(url, 40, 'taskRunIds', false)).toThrow()
   })
 })
