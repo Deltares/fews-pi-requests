@@ -4,9 +4,7 @@
       "id": "Rainfall",
       "parameterType": "accumulative",
       "unit": "mm",
-      "parameters": [
-        { "id": "P.obs", "name": "Observed Rainfall", "shortName": "P.obs" }
-      ]
+      "parameters": [{ "id": "P.obs", "name": "Observed Rainfall", "shortName": "P.obs" }]
     },
     {
       "id": "Water Level",

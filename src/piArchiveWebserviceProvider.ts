@@ -16,11 +16,7 @@ import type {
   TimeSeriesResponse,
 } from './response/index.js'
 import { DocumentFormat } from './requestParameters/index.js'
-import {
-  PiRestService,
-  PlainTextParser,
-  RequestOptions,
-} from '@deltares/fews-web-oc-utils'
+import { PiRestService, PlainTextParser, RequestOptions } from '@deltares/fews-web-oc-utils'
 import type { TransformRequestFunction } from '@deltares/fews-web-oc-utils'
 import { BaseFilter } from './requestParameters/baseFilter.js'
 import { ArchiveSources } from './response/archivesources/index.js'
@@ -77,9 +73,7 @@ export class PiArchiveWebserviceProvider {
    * @returns Parameters PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getParameters(
-    filter: ArchiveParametersFilter,
-  ): Promise<ArchiveParameters> {
+  async getParameters(filter: ArchiveParametersFilter): Promise<ArchiveParameters> {
     const url = this.parametersUrl(filter)
     const res = await this.webservice.getData<ArchiveParameters>(url.toString())
     return res.data
@@ -106,9 +100,7 @@ export class PiArchiveWebserviceProvider {
    * @returns Locations PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getLocations(
-    filter: ArchiveLocationsFilter,
-  ): Promise<ArchiveLocations> {
+  async getLocations(filter: ArchiveLocationsFilter): Promise<ArchiveLocations> {
     const url = this.locationsUrl(filter)
     const res = await this.webservice.getData<ArchiveLocations>(url.toString())
     return res.data
@@ -231,9 +223,7 @@ export class PiArchiveWebserviceProvider {
    * @returns Attributes PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async postProductAttributes(
-    filter: ProductAttributesFilter,
-  ): Promise<string> {
+  async postProductAttributes(filter: ProductAttributesFilter): Promise<string> {
     const url = this.productsAttributesUrl(filter)
     const headers = {
       'Content-Type': 'application/json',
@@ -274,10 +264,7 @@ export class PiArchiveWebserviceProvider {
     }
     const filterWithDefaults = { ...mappedFilter, ...defaults }
     const url = this.externalForecastsUrl(filterWithDefaults)
-    const res =
-      await this.webservice.getData<ArchiveExternalNetCDFStorageForecasts>(
-        url.toString(),
-      )
+    const res = await this.webservice.getData<ArchiveExternalNetCDFStorageForecasts>(url.toString())
     return res.data
   }
 
@@ -302,14 +289,10 @@ export class PiArchiveWebserviceProvider {
    * @returns ProductsMetaData PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getProductsMetaData(
-    filter: ProductsMetaDataFilter,
-  ): Promise<ArchiveProductsMetadata> {
+  async getProductsMetaData(filter: ProductsMetaDataFilter): Promise<ArchiveProductsMetadata> {
     const queryParameters = filterToParams(filter, this.explodeQueryParameters)
     const url = this.productsMetaDataUrl(queryParameters)
-    const res = await this.webservice.getData<ArchiveProductsMetadata>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<ArchiveProductsMetadata>(url.toString())
     return res.data
   }
 
@@ -340,15 +323,11 @@ export class PiArchiveWebserviceProvider {
     const filterWithDefaults = { ...defaults, ...filter }
     const url = this.timeSeriesUrl(filterWithDefaults)
     if (url.toString().length <= this.maxUrlLength) {
-      const res = await this.webservice.getData<TimeSeriesResponse>(
-        url.toString(),
-      )
+      const res = await this.webservice.getData<TimeSeriesResponse>(url.toString())
       return res.data
     } else {
       const urls = splitUrl(url, this.maxUrlLength)
-      const promises = urls.map((u) =>
-        this.webservice.getData<TimeSeriesResponse>(u.toString()),
-      )
+      const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()))
       return Promise.all(promises).then((responses) => {
         const response = responses[0].data
         if (response.timeSeries !== undefined) {

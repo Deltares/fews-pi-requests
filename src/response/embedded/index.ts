@@ -1,7 +1,4 @@
-export type {
-  WhatIfTemplatesResponse,
-  WhatIfTemplate,
-} from './whatIfTemplatesResponse.js'
+export type { WhatIfTemplatesResponse, WhatIfTemplate } from './whatIfTemplatesResponse.js'
 export type {
   WhatIfScenarioDescriptorsResponse,
   WhatIfScenarioDescriptor,

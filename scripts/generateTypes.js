@@ -178,8 +178,7 @@ const archiveSchemas = [
   },
   {
     url: `${config.url}/pi_rest_archive_productsmetadata.json`,
-    output:
-      'src/response/archiveproductsmetadata/ArchiveProductsMetaDataResponse.ts',
+    output: 'src/response/archiveproductsmetadata/ArchiveProductsMetaDataResponse.ts',
   },
   {
     url: `${config.url}/pi_rest_archive_sources.json`,

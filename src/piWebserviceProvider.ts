@@ -1,8 +1,5 @@
 import type { TimeSeriesResponse } from './response/timeseries/index.js'
-import type {
-  ModuleRuntimesResponse,
-  TaskRunsResponse,
-} from './response/tasks/index.js'
+import type { ModuleRuntimesResponse, TaskRunsResponse } from './response/tasks/index.js'
 import type { LocationsResponse } from './response/locations/index.js'
 import type { ImportStatusResponse } from './response/importStatus/index.js'
 import type { ExportStatusResponse } from './response/exportStatus/index.js'
@@ -172,13 +169,9 @@ export class PiWebserviceProvider {
    * @returns Locations PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getLogDisplays(
-    filter: LogDisplaysFilter,
-  ): Promise<LogsDisplaysResponse> {
+  async getLogDisplays(filter: LogDisplaysFilter): Promise<LogsDisplaysResponse> {
     const url = this.logDisplaysUrl(filter)
-    const res = await this.webservice.getData<LogsDisplaysResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<LogsDisplaysResponse>(url.toString())
     return res.data
   }
 
@@ -188,13 +181,9 @@ export class PiWebserviceProvider {
    * @returns Locations PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getMicroFrontEnds(
-    filter: MicroFrontEndsFilter,
-  ): Promise<WebOCMicroFrontEndsResponse> {
+  async getMicroFrontEnds(filter: MicroFrontEndsFilter): Promise<WebOCMicroFrontEndsResponse> {
     const url = this.microFrontEndsUrl(filter)
-    const res = await this.webservice.getData<WebOCMicroFrontEndsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WebOCMicroFrontEndsResponse>(url.toString())
     return res.data
   }
 
@@ -204,13 +193,9 @@ export class PiWebserviceProvider {
    * @returns DocumentDisplay PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getDocumentDisplays(
-    filter: DocumentDisplaysFilter,
-  ): Promise<DocumentDisplaysResponse> {
+  async getDocumentDisplays(filter: DocumentDisplaysFilter): Promise<DocumentDisplaysResponse> {
     const url = this.documentDisplaysUrl(filter)
-    const res = await this.webservice.getData<DocumentDisplaysResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<DocumentDisplaysResponse>(url.toString())
     return res.data
   }
 
@@ -226,11 +211,7 @@ export class PiWebserviceProvider {
     const parser = new PlainTextParser<string>()
     const requestOptions = new RequestOptions()
     requestOptions.relativeUrl = !url.startsWith('http')
-    const res = await this.webservice.getDataWithParser<string>(
-      url,
-      requestOptions,
-      parser,
-    )
+    const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser)
     return res.data
   }
 
@@ -241,9 +222,7 @@ export class PiWebserviceProvider {
    * @returns Locations PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getHistoryEdits(
-    filter: HistoryEditsFilter,
-  ): Promise<HistoryEditsResponse> {
+  async getHistoryEdits(filter: HistoryEditsFilter): Promise<HistoryEditsResponse> {
     let url = filter.editUrl
     for (const time in filter.times) {
       url = url + '&times=' + filter.times[time]
@@ -260,9 +239,7 @@ export class PiWebserviceProvider {
    * @returns Parmeters PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getParameters(
-    filter: ParametersFilter,
-  ): Promise<TimeSeriesParametersResponse>
+  async getParameters(filter: ParametersFilter): Promise<TimeSeriesParametersResponse>
   async getParameters(
     filter: ParametersFilter,
     output?: ParameterGroupsOutputOptions,
@@ -272,9 +249,7 @@ export class PiWebserviceProvider {
     output?: ParameterOutputOptions,
   ): Promise<ParameterGroupsOutput | TimeSeriesParametersResponse> {
     const url = this.parametersUrl(filter)
-    const res = await this.webservice.getData<TimeSeriesParametersResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesParametersResponse>(url.toString())
     if (output?.type === 'parameterGroups') {
       return convertToParameterGroups(res.data)
     }
@@ -287,13 +262,9 @@ export class PiWebserviceProvider {
    * @returns time series api response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getTimeSeriesWithRelativeUrl(
-    relativeUrl: string,
-  ): Promise<TimeSeriesResponse> {
+  async getTimeSeriesWithRelativeUrl(relativeUrl: string): Promise<TimeSeriesResponse> {
     const url = new URL(relativeUrl, this._baseUrl)
-    const res = await this.webservice.getData<TimeSeriesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesResponse>(url.toString())
     return res.data
   }
 
@@ -333,20 +304,11 @@ export class PiWebserviceProvider {
 
   private async getTimeSeriesResponse(url: URL) {
     if (url.toString().length <= this.maxUrlLength) {
-      const res = await this.webservice.getData<TimeSeriesResponse>(
-        url.toString(),
-      )
+      const res = await this.webservice.getData<TimeSeriesResponse>(url.toString())
       return res.data
     } else {
-      const urls = splitUrl(
-        url,
-        this.maxUrlLength,
-        undefined,
-        this.explodeQueryParameters,
-      )
-      const promises = urls.map((u) =>
-        this.webservice.getData<TimeSeriesResponse>(u.toString()),
-      )
+      const urls = splitUrl(url, this.maxUrlLength, undefined, this.explodeQueryParameters)
+      const promises = urls.map((u) => this.webservice.getData<TimeSeriesResponse>(u.toString()))
       return Promise.all(promises).then((responses) => {
         const response = responses[0].data
         if (response.timeSeries !== undefined) {
@@ -367,17 +329,13 @@ export class PiWebserviceProvider {
    * @returns Time Series Grid PI API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getTimeSeriesGrid(
-    filter: TimeSeriesGridFilter,
-  ): Promise<TimeSeriesResponse> {
+  async getTimeSeriesGrid(filter: TimeSeriesGridFilter): Promise<TimeSeriesResponse> {
     const defaults: TimeSeriesGridFilter = {
       documentFormat: DocumentFormat.PI_JSON,
     }
     const filterWithDefaults = { ...defaults, ...filter }
     const url = this.timeSeriesGridUrl(filterWithDefaults)
-    const res = await this.webservice.getData<TimeSeriesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesResponse>(url.toString())
     return res.data
   }
 
@@ -389,9 +347,7 @@ export class PiWebserviceProvider {
    * @throws 'Fetch Error' if fetch result is not ok
    */
 
-  async getTimeSeriesGridActions(
-    filter: TimeSeriesGridActionsFilter,
-  ): Promise<ActionsResponse> {
+  async getTimeSeriesGridActions(filter: TimeSeriesGridActionsFilter): Promise<ActionsResponse> {
     const url = this.timeSeriesGridActionsUrl(filter)
     const res = await this.webservice.getData<ActionsResponse>(url.toString())
     return res.data
@@ -408,9 +364,7 @@ export class PiWebserviceProvider {
     filter: TimeSeriesGridMaxValuesFilter,
   ): Promise<TimeSeriesResponse> {
     const url = this.timeSeriesGridMaxValuesUrl(filter)
-    const res = await this.webservice.getData<TimeSeriesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesResponse>(url.toString())
     return res.data
   }
 
@@ -430,21 +384,14 @@ export class PiWebserviceProvider {
 
   private async getTaskRunsResponse(url: URL): Promise<TaskRunsResponse> {
     if (url.toString().length <= this.maxUrlLength) {
-      const res = await this.webservice.getData<TaskRunsResponse>(
-        url.toString(),
-      )
+      const res = await this.webservice.getData<TaskRunsResponse>(url.toString())
       return res.data
     }
 
-    const urls = splitUrl(
-      url,
-      this.maxUrlLength,
-      undefined,
-      this.explodeQueryParameters,
-    ).map((u) => u.toString())
-    const promises = urls.map((url) =>
-      this.webservice.getData<TaskRunsResponse>(url),
+    const urls = splitUrl(url, this.maxUrlLength, undefined, this.explodeQueryParameters).map((u) =>
+      u.toString(),
     )
+    const promises = urls.map((url) => this.webservice.getData<TaskRunsResponse>(url))
     const responses = await Promise.all(promises)
 
     const taskRuns = responses.flatMap((res) => res.data.taskRuns ?? [])
@@ -465,9 +412,7 @@ export class PiWebserviceProvider {
    */
   async getTopologyNodes(): Promise<TopologyNodeResponse> {
     const url = this.topologyNodesUrl()
-    const res = await this.webservice.getData<TopologyNodeResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TopologyNodeResponse>(url.toString())
     return res.data
   }
 
@@ -482,9 +427,7 @@ export class PiWebserviceProvider {
     filter: TopologyThresholdFilter,
   ): Promise<TopologyThresholdNodeResponse> {
     const url = this.topologyThresholdsUrl(filter)
-    const res = await this.webservice.getData<TopologyThresholdNodeResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TopologyThresholdNodeResponse>(url.toString())
     return res.data
   }
 
@@ -496,9 +439,7 @@ export class PiWebserviceProvider {
    */
   async getImportStatus(): Promise<ImportStatusResponse> {
     const url = this.importStatusUrl()
-    const res = await this.webservice.getData<ImportStatusResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<ImportStatusResponse>(url.toString())
     return res.data
   }
 
@@ -510,9 +451,7 @@ export class PiWebserviceProvider {
    */
   async getExportStatus(): Promise<ExportStatusResponse> {
     const url = this.exportStatusUrl()
-    const res = await this.webservice.getData<ExportStatusResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<ExportStatusResponse>(url.toString())
     return res.data
   }
 
@@ -578,9 +517,7 @@ export class PiWebserviceProvider {
       documentFormat: DocumentFormat.PI_JSON,
     }
     const url = this.permissionsUrl(defaults)
-    const res = await this.webservice.getData<PermissionsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<PermissionsResponse>(url.toString())
     return res.data
   }
 
@@ -614,9 +551,7 @@ export class PiWebserviceProvider {
       documentFormat: DocumentFormat.PI_JSON,
     }
     const url = this.webOcConfigurationUrl(defaults)
-    const res = await this.webservice.getData<WebOcConfigurationResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString())
     return res.data
   }
 
@@ -631,9 +566,7 @@ export class PiWebserviceProvider {
       documentFormat: DocumentFormat.PI_JSON,
     }
     const url = this.webOcPublicConfigurationUrl(defaults)
-    const res = await this.webservice.getData<WebOcConfigurationResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WebOcConfigurationResponse>(url.toString())
     return res.data
   }
 
@@ -658,9 +591,7 @@ export class PiWebserviceProvider {
    * @returns Display groups API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getTopologyActions(
-    filter: TopologyActionFilter,
-  ): Promise<ActionsResponse> {
+  async getTopologyActions(filter: TopologyActionFilter): Promise<ActionsResponse> {
     const url = this.topologyActionsUrl(filter)
     const res = await this.webservice.getData<ActionsResponse>(url.toString())
     return res.data
@@ -668,9 +599,7 @@ export class PiWebserviceProvider {
 
   async getDisplayGroupsNodes(): Promise<DisplayGroupsNodesResponse> {
     const url = this.displayGroupsNodesUrl()
-    const res = await this.webservice.getData<DisplayGroupsNodesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<DisplayGroupsNodesResponse>(url.toString())
     return res.data
   }
 
@@ -682,9 +611,7 @@ export class PiWebserviceProvider {
    */
   async getFlags(): Promise<TimeSeriesFlagsResponse> {
     const url = this.flagsUrl()
-    const res = await this.webservice.getData<TimeSeriesFlagsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesFlagsResponse>(url.toString())
     return res.data
   }
 
@@ -696,9 +623,7 @@ export class PiWebserviceProvider {
    */
   async getFlagSources(): Promise<TimeSeriesFlagSourcesResponse> {
     const url = this.flagSourcesUrl()
-    const res = await this.webservice.getData<TimeSeriesFlagSourcesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TimeSeriesFlagSourcesResponse>(url.toString())
     return res.data
   }
 
@@ -709,9 +634,7 @@ export class PiWebserviceProvider {
    * @returns Actions API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getFilterActions(
-    filter: FilterActionsFilter,
-  ): Promise<ActionsResponse> {
+  async getFilterActions(filter: FilterActionsFilter): Promise<ActionsResponse> {
     const url = this.filterActionsUrl(filter)
     const res = await this.webservice.getData<ActionsResponse>(url.toString())
     return res.data
@@ -737,13 +660,9 @@ export class PiWebserviceProvider {
    * @returns Module run times API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getModuleRunTimes(
-    filter: ModuleRuntimesFilter,
-  ): Promise<ModuleRuntimesResponse> {
+  async getModuleRunTimes(filter: ModuleRuntimesFilter): Promise<ModuleRuntimesResponse> {
     const url = this.moduleRunTimesUrl(filter)
-    const res = await this.webservice.getData<ModuleRuntimesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<ModuleRuntimesResponse>(url.toString())
     return res.data
   }
 
@@ -754,13 +673,9 @@ export class PiWebserviceProvider {
    * @returns Dashboards API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getDashboards(
-    filter: DashboardsFilter,
-  ): Promise<WebOCDashboardsResponse> {
+  async getDashboards(filter: DashboardsFilter): Promise<WebOCDashboardsResponse> {
     const url = this.dashboardsUrl(filter)
-    const res = await this.webservice.getData<WebOCDashboardsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WebOCDashboardsResponse>(url.toString())
     return res.data
   }
 
@@ -771,13 +686,9 @@ export class PiWebserviceProvider {
    * @returns LogsDisplayLogsResponse API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getLogDisplayLogs(
-    filter: LogDisplayLogsFilter,
-  ): Promise<LogsDisplayLogsResponse> {
+  async getLogDisplayLogs(filter: LogDisplayLogsFilter): Promise<LogsDisplayLogsResponse> {
     const url = this.logDisplayLogsUrl(filter)
-    const res = await this.webservice.getData<LogsDisplayLogsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<LogsDisplayLogsResponse>(url.toString())
     return res.data
   }
 
@@ -788,9 +699,7 @@ export class PiWebserviceProvider {
    * @returns the response from the server
    * @throws 'Fetch Error' if fetch result is not ok
    * */
-  async postLogDisplaysAction(
-    request: LogDisplayLogsActionRequest,
-  ): Promise<string> {
+  async postLogDisplaysAction(request: LogDisplayLogsActionRequest): Promise<string> {
     const { logDisplayId, ...body } = request
     const url = this.logDisplayActionUrl(logDisplayId)
     const headers = {
@@ -816,13 +725,9 @@ export class PiWebserviceProvider {
    * @returns WhatIfTemplates API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getWhatIfTemplates(
-    filter: WhatIfTemplatesFilter,
-  ): Promise<WhatIfTemplatesResponse> {
+  async getWhatIfTemplates(filter: WhatIfTemplatesFilter): Promise<WhatIfTemplatesResponse> {
     const url = this.whatIfTemplatesUrl(filter)
-    const res = await this.webservice.getData<WhatIfTemplatesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WhatIfTemplatesResponse>(url.toString())
     return res.data
   }
 
@@ -837,9 +742,7 @@ export class PiWebserviceProvider {
     filter: ComponentSettingsFilter,
   ): Promise<WebOCComponentSettingsResponse> {
     const url = this.componentSettingsUrl(filter)
-    const res = await this.webservice.getData<WebOCComponentSettingsResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WebOCComponentSettingsResponse>(url.toString())
     return res.data
   }
 
@@ -850,13 +753,9 @@ export class PiWebserviceProvider {
    * @returns ForecasterNotes API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getForecasterNotes(
-    filter: ForecasterNotesFilter,
-  ): Promise<ForecasterNotesResponse> {
+  async getForecasterNotes(filter: ForecasterNotesFilter): Promise<ForecasterNotesResponse> {
     const url = this.forecasterNotesUrl(filter)
-    const res = await this.webservice.getData<ForecasterNotesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<ForecasterNotesResponse>(url.toString())
     return res.data
   }
 
@@ -869,9 +768,7 @@ export class PiWebserviceProvider {
    */
   async getFssInfo(filter: FssInfoFilter): Promise<WorkflowFssInfoResponse> {
     const url = this.fssInfoUrl(filter)
-    const res = await this.webservice.getData<WorkflowFssInfoResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WorkflowFssInfoResponse>(url.toString())
     return res.data
   }
 
@@ -882,13 +779,9 @@ export class PiWebserviceProvider {
    * @returns WorkflowForecastTimes API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getForecastTimes(
-    filter: ForecastTimesFilter,
-  ): Promise<WorkflowForecastTimesResponse> {
+  async getForecastTimes(filter: ForecastTimesFilter): Promise<WorkflowForecastTimesResponse> {
     const url = this.forecastTimesUrl(filter)
-    const res = await this.webservice.getData<WorkflowForecastTimesResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<WorkflowForecastTimesResponse>(url.toString())
     return res.data
   }
 
@@ -943,9 +836,7 @@ export class PiWebserviceProvider {
    * @returns whether the acknowledgement was successful
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async acknowledgeForecasterNote(
-    keys: ForecasterNoteKeysRequest,
-  ): Promise<string> {
+  async acknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
     const url = this.forecasterNotesUrl({}, 'acknowledge')
     return await this.postForecasterNoteHelper(keys, url)
   }
@@ -957,9 +848,7 @@ export class PiWebserviceProvider {
    * @returns whether the acknowledgement was successful
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async unacknowledgeForecasterNote(
-    keys: ForecasterNoteKeysRequest,
-  ): Promise<string> {
+  async unacknowledgeForecasterNote(keys: ForecasterNoteKeysRequest): Promise<string> {
     const url = this.forecasterNotesUrl({}, 'unacknowledge')
     return await this.postForecasterNoteHelper(keys, url)
   }
@@ -1003,10 +892,7 @@ export class PiWebserviceProvider {
     filter: WhatIfScenariosFilter,
   ): Promise<WhatIfScenarioDescriptorsResponse> {
     const url = this.whatIfScenariosUrl(filter)
-    const res =
-      await this.webservice.getData<WhatIfScenarioDescriptorsResponse>(
-        url.toString(),
-      )
+    const res = await this.webservice.getData<WhatIfScenarioDescriptorsResponse>(url.toString())
     return res.data
   }
 
@@ -1027,9 +913,7 @@ export class PiWebserviceProvider {
     const headers = {
       'Content-Type': 'application/json',
     }
-    const res = await this.webservice.postDataWithParser<
-      DataRequestResult<string>
-    >(
+    const res = await this.webservice.postDataWithParser<DataRequestResult<string>>(
       editUrl,
       requestOptions,
       new PlainTextParser(),
@@ -1049,10 +933,7 @@ export class PiWebserviceProvider {
    * @returns the taskId of the submitted job.
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async postRunTask(
-    filter: RunTaskFilter,
-    piParametersXmlContent: string,
-  ): Promise<string> {
+  async postRunTask(filter: RunTaskFilter, piParametersXmlContent: string): Promise<string> {
     const url = this.runTaskUrl(filter)
     const requestOptions = new RequestOptions()
     requestOptions.relativeUrl = !url.toString().startsWith('http')
@@ -1090,14 +971,13 @@ export class PiWebserviceProvider {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
-    const res =
-      await this.webservice.postDataWithParser<PostWhatIfScenarioResponse>(
-        url.toString(),
-        requestOptions,
-        new DefaultParser(),
-        piParametersXmlContent,
-        headers,
-      )
+    const res = await this.webservice.postDataWithParser<PostWhatIfScenarioResponse>(
+      url.toString(),
+      requestOptions,
+      new DefaultParser(),
+      piParametersXmlContent,
+      headers,
+    )
     return res.data
   }
 
@@ -1126,11 +1006,7 @@ export class PiWebserviceProvider {
     const parser = new PlainTextParser<string>()
     const requestOptions = new RequestOptions()
     requestOptions.relativeUrl = !url.startsWith('http')
-    const res = await this.webservice.getDataWithParser<string>(
-      url,
-      requestOptions,
-      parser,
-    )
+    const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser)
     return res.data
   }
 
@@ -1141,18 +1017,12 @@ export class PiWebserviceProvider {
    * @returns Report API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getDynamicReportDisplay(
-    filter: DynamicReportDisplayFilter,
-  ): Promise<string> {
+  async getDynamicReportDisplay(filter: DynamicReportDisplayFilter): Promise<string> {
     const url = this.dynamicReportDisplayUrl(filter).toString()
     const parser = new PlainTextParser<string>()
     const requestOptions = new RequestOptions()
     requestOptions.relativeUrl = !url.startsWith('http')
-    const res = await this.webservice.getDataWithParser<string>(
-      url,
-      requestOptions,
-      parser,
-    )
+    const res = await this.webservice.getDataWithParser<string>(url, requestOptions, parser)
     return res.data
   }
 
@@ -1167,10 +1037,7 @@ export class PiWebserviceProvider {
     filter: DynamicReportDisplayCapabilitiesFilter,
   ): Promise<DynamicReportDisplayCapabilitiesResponse> {
     const url = this.dynamicReportDisplayUrl(filter, 'capabilities').toString()
-    const res =
-      await this.webservice.getData<DynamicReportDisplayCapabilitiesResponse>(
-        url,
-      )
+    const res = await this.webservice.getData<DynamicReportDisplayCapabilitiesResponse>(url)
     return res.data
   }
 
@@ -1185,8 +1052,7 @@ export class PiWebserviceProvider {
     filter: DynamicReportDisplayFilter,
   ): Promise<DynamicReportDisplayDataResponse> {
     const url = this.dynamicReportDisplayUrl(filter, 'data').toString()
-    const res =
-      await this.webservice.getData<DynamicReportDisplayDataResponse>(url)
+    const res = await this.webservice.getData<DynamicReportDisplayDataResponse>(url)
     return res.data
   }
 
@@ -1210,13 +1076,9 @@ export class PiWebserviceProvider {
    * @returns CorrelationResponse API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getCorrelation(
-    filter: CorrelationFilter,
-  ): Promise<CorrelationResponse> {
+  async getCorrelation(filter: CorrelationFilter): Promise<CorrelationResponse> {
     const url = this.correlationUrl(filter)
-    const res = await this.webservice.getData<CorrelationResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<CorrelationResponse>(url.toString())
     return res.data
   }
 
@@ -1231,9 +1093,7 @@ export class PiWebserviceProvider {
     filter: DataAnalysisDisplaysFilter,
   ): Promise<DataAnalysisDisplaysResponse> {
     const url = this.dataAnalysisDisplaysUrl(filter)
-    const res = await this.webservice.getData<DataAnalysisDisplaysResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<DataAnalysisDisplaysResponse>(url.toString())
     return res.data
   }
 
@@ -1244,13 +1104,9 @@ export class PiWebserviceProvider {
    * @returns TaskRunStatusResponse API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getTaskRunStatus(
-    filter: TaskRunStatusFilter,
-  ): Promise<TaskRunStatusResponse> {
+  async getTaskRunStatus(filter: TaskRunStatusFilter): Promise<TaskRunStatusResponse> {
     const url = this.taskRunStatusUrl(filter)
-    const res = await this.webservice.getData<TaskRunStatusResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<TaskRunStatusResponse>(url.toString())
     return res.data
   }
 
@@ -1261,10 +1117,7 @@ export class PiWebserviceProvider {
    * @returns UserSettingsResponse API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getUserSettings<T>(
-    filter: UserSettingsFilter,
-    parser?: ResponseParser<T>,
-  ): Promise<T> {
+  async getUserSettings<T>(filter: UserSettingsFilter, parser?: ResponseParser<T>): Promise<T> {
     const url = this.userSettingsUrl(filter)
     const requestOption = new RequestOptions()
     requestOption.relativeUrl = !url.toString().startsWith('http')
@@ -1309,13 +1162,9 @@ export class PiWebserviceProvider {
    * @returns UserSettingUsersResponse API response
    * @throws 'Fetch Error' if fetch result is not ok
    */
-  async getUserSettingsUsers(
-    filter: UserSettingsUsersFilter,
-  ): Promise<UserSettingUsersResponse> {
+  async getUserSettingsUsers(filter: UserSettingsUsersFilter): Promise<UserSettingUsersResponse> {
     const url = this.userSettingsUsersUrl(filter)
-    const res = await this.webservice.getData<UserSettingUsersResponse>(
-      url.toString(),
-    )
+    const res = await this.webservice.getData<UserSettingUsersResponse>(url.toString())
     return res.data
   }
 
@@ -1568,10 +1417,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   systemTimeUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/systemtime`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/systemtime`, this._baseUrl)
   }
 
   /**
@@ -1580,10 +1426,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   lastRefreshTimeUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/lastrefreshtime`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/lastrefreshtime`, this._baseUrl)
   }
 
   /**
@@ -1606,10 +1449,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   timeZoneIdUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/timezoneid`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/timezoneid`, this._baseUrl)
   }
 
   /**
@@ -1646,8 +1486,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   resourcesStaticUrl(resource: string): URL {
-    if (resource.startsWith('http://') || resource.startsWith('https://'))
-      return new URL(resource)
+    if (resource.startsWith('http://') || resource.startsWith('https://')) return new URL(resource)
     return new URL(
       `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/static/${resource}`,
       this._baseUrl,
@@ -1662,8 +1501,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   resourcesIconsUrl(resource: string): URL {
-    if (resource.startsWith('http://') || resource.startsWith('https://'))
-      return new URL(resource)
+    if (resource.startsWith('http://') || resource.startsWith('https://')) return new URL(resource)
     return new URL(
       `${this._baseUrl.pathname}${this.API_ENDPOINT}/resources/icons/${resource}`,
       this._baseUrl,
@@ -1676,10 +1514,7 @@ export class PiWebserviceProvider {
    * @returns complete url for making a request
    */
   topologyNodesUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/topology/nodes`, this._baseUrl)
   }
 
   /**
@@ -1705,17 +1540,11 @@ export class PiWebserviceProvider {
   }
 
   flagsUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/flags`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/flags`, this._baseUrl)
   }
 
   flagSourcesUrl(): URL {
-    return new URL(
-      `${this._baseUrl.pathname}${this.API_ENDPOINT}/flagsources`,
-      this._baseUrl,
-    )
+    return new URL(`${this._baseUrl.pathname}${this.API_ENDPOINT}/flagsources`, this._baseUrl)
   }
 
   processDataUrl(filter: ProcessDataFilter): URL {

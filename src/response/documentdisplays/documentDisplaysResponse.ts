@@ -4,9 +4,7 @@
  * DocumentDisplaysResponse PI_JSON
  */
 export interface DocumentDisplaysResponse {
-  documentDisplays?: (
-    DocumentDisplayReport | DocumentDisplayBrowser | DocumentDisplayCompose
-  )[]
+  documentDisplays?: (DocumentDisplayReport | DocumentDisplayBrowser | DocumentDisplayCompose)[]
   /**
    * List of workflows associated with the document displays
    */

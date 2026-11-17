@@ -27,21 +27,13 @@ export function mostValuesParameter(url: URL): string {
   return split
 }
 
-function createSplitError(
-  split: string,
-  maxLength: number,
-  failingUrl: URL,
-): Error {
+function createSplitError(split: string, maxLength: number, failingUrl: URL): Error {
   return new Error(
     `Cannot split url by query parameter '${split}' to be shorter than ${maxLength} <= ${failingUrl.toString()}.`,
   )
 }
 
-function splitUrlByCommaSeparatedValues(
-  url: URL,
-  maxLength: number,
-  parameter?: string,
-): URL[] {
+function splitUrlByCommaSeparatedValues(url: URL, maxLength: number, parameter?: string): URL[] {
   const split = parameter ?? mostValuesParameter(url)
   const baseUrl = new URL(url.toString())
   baseUrl.searchParams.delete(split)
@@ -83,11 +75,7 @@ function splitUrlByCommaSeparatedValues(
   return urls
 }
 
-function splitUrlByRepeatedParams(
-  url: URL,
-  maxLength: number,
-  parameter?: string,
-): URL[] {
+function splitUrlByRepeatedParams(url: URL, maxLength: number, parameter?: string): URL[] {
   const split = parameter ?? mostFrequentParameter(url)
   const baseUrl = new URL(url.toString())
   baseUrl.searchParams.delete(split)
@@ -95,10 +83,7 @@ function splitUrlByRepeatedParams(
   let newUrl = new URL(baseUrl.toString())
 
   for (const value of url.searchParams.getAll(split)) {
-    if (
-      newUrl.toString().length + split.length + value.length + 2 >
-      maxLength
-    ) {
+    if (newUrl.toString().length + split.length + value.length + 2 > maxLength) {
       urls.push(new URL(newUrl.toString()))
       newUrl = new URL(baseUrl.toString())
     }
