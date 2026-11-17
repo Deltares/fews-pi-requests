@@ -7,6 +7,10 @@ function resolveRelativePath(relative: string): string {
 }
 
 export default defineConfig({
+  fmt: {
+    singleQuote: true,
+    semi: false,
+  },
   build: {
     lib: {
       entry: resolveRelativePath('src/index.ts'),
